@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -146,10 +147,10 @@ public class PlayerController : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(spherePosition, GroundedRadius);
+        //Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawSphere(spherePosition, GroundedRadius);
     }
 
     private void JumpAndGravity()
