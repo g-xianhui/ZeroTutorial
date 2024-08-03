@@ -48,6 +48,15 @@ public class NetworkManager : MonoBehaviour
                 Debug.Log("connect timeout");
                 return false;
             }
+
+            // it may failed immediately when connect to loopback interface
+            if (connectTask.Status == TaskStatus.Faulted) {
+                foreach (var ex in connectTask.Exception?.InnerExceptions ?? new(Array.Empty<Exception>()))
+                {
+                    Debug.Log(ex.ToString());
+                }
+                return false;
+            }
         }
         catch (SocketException  e)
         {
