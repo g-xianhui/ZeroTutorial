@@ -212,6 +212,18 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &20644332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20644325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff722eddb97ba94da7964c6ddf93238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &23871872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8948,6 +8960,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 20644331}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 20644332}
   m_SourcePrefab: {fileID: 100100000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
 --- !u!1001 &1736731160
 PrefabInstance:
