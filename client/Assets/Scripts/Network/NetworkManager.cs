@@ -15,6 +15,87 @@ using UnityEngine.Assertions;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
+public class RecvBuffer
+{
+    enum ParseStage
+    {
+        TLEN, DATA
+    }
+
+    static readonly int TLEN_SIZE = 2;
+    byte[] _tlenBytes = new byte[TLEN_SIZE];
+
+    ParseStage _parseStage = ParseStage.TLEN;
+    int _needBytes = TLEN_SIZE;
+
+    public byte[] buffer;
+    public int position;
+
+    public RecvBuffer()
+    {
+        buffer = new byte[1 << (TLEN_SIZE * 8)];
+        position = 0;
+    }
+
+    public byte[][] Recv(byte[] bytes, int n)
+    {
+        int bindex = 0;
+        int index = 0;
+
+        List<byte[]> msgs = new List<byte[]>();
+
+        while (_needBytes > 0 && bindex < n)
+        {
+            switch (_parseStage)
+            {
+                case ParseStage.TLEN:
+                    index = TLEN_SIZE - _needBytes;
+                    _tlenBytes[index] = bytes[bindex];
+                    _needBytes -= 1;
+                    bindex += 1;
+                    if (_needBytes == 0)
+                    {
+                        _parseStage = ParseStage.DATA;
+                        _needBytes = CalcPackageDataLength();
+                    }
+                    break;
+                case ParseStage.DATA:
+                    int leftBytesNum = n - bindex;
+                    if (leftBytesNum < _needBytes)
+                    {
+                        Buffer.BlockCopy(bytes, bindex, buffer, position, leftBytesNum);
+                        _needBytes -= leftBytesNum;
+                        bindex += leftBytesNum;
+                        position += leftBytesNum;
+                    }
+                    else
+                    {
+                        Buffer.BlockCopy(bytes, bindex, buffer, position, _needBytes);
+                        bindex += _needBytes;
+                        position = 0;
+
+                        // finish one msg
+                        byte[] msg = new byte[_needBytes];
+                        Buffer.BlockCopy(buffer, 0, msg, 0, _needBytes);
+                        msgs.Add(msg);
+
+                        // reset to initial state
+                        _parseStage = ParseStage.TLEN;
+                        _needBytes = TLEN_SIZE;
+                    }
+                    break;
+            }
+        }
+
+        return msgs.ToArray();
+    }
+
+    int CalcPackageDataLength()
+    {
+        return BinaryPrimitives.ReadInt16LittleEndian(_tlenBytes);
+    }
+}
+
 class SendBuffer
 {
     public byte[] _buffer;
@@ -101,6 +182,7 @@ public class NetworkManager : MonoBehaviour
 
     private uint _sendBufferSize = 64 * 1024;
     private SendBuffer _sendBuffer = null;
+    private RecvBuffer _recvBuffer = null;
 
     void Awake()
     {
@@ -150,6 +232,7 @@ public class NetworkManager : MonoBehaviour
         _stream = _client.GetStream();
 
         _sendBuffer = new SendBuffer(_sendBufferSize);
+        _recvBuffer = new RecvBuffer();
         return true;
     }
 
@@ -169,15 +252,28 @@ public class NetworkManager : MonoBehaviour
 
     public void Close()
     {
-        _client.Close();
+        Debug.Log("close socket");
         _isConnected = false;
+        _stream.Close();
+        _stream = null;
     }
 
     public void Send(string msg)
     {
         Debug.Log("Send: " + msg);
-        byte[] bytes = Encoding.UTF8.GetBytes(msg);
-        _sendBuffer.Send(bytes);
+        using (MemoryStream mem = new MemoryStream())
+        {
+            using (BinaryWriter binaryWriter = new BinaryWriter(mem))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(msg);
+
+                UInt16 msgLen = (UInt16)bytes.Length;
+                binaryWriter.Write(msgLen);
+                binaryWriter.Write(bytes);
+            }
+            byte[] data = mem.ToArray();
+            _sendBuffer.Send(data);
+        }
     }
 
     private void SendThreadFunc()
@@ -197,11 +293,13 @@ public class NetworkManager : MonoBehaviour
                 catch (Exception e)
                 {
                     Debug.LogError(e.ToString());
-                    Close();
                     break;
                 }
             }
         }
+
+        if (_isConnected)
+            OnLostServer();
     }
 
     private void RecvThreadFunc()
@@ -214,8 +312,14 @@ public class NetworkManager : MonoBehaviour
                 int nReads = _stream.Read(buffer, 0, buffer.Length);
                 if (nReads == 0)
                     break;
-                string msg = Encoding.UTF8.GetString(buffer, 0, nReads);
-                Debug.Log("Recv: " + msg);
+
+                byte[][] msgs = _recvBuffer.Recv(buffer, nReads);
+
+                foreach (byte[] bytes in msgs)
+                {
+                    string msg = Encoding.UTF8.GetString(bytes);
+                    Debug.Log("Recv: " + msg);
+                }
             }
             catch (Exception e)
             {
@@ -223,11 +327,14 @@ public class NetworkManager : MonoBehaviour
                 break;
             }
         }
+
+        if (_isConnected)
+            OnLostServer();
     }
 
     private void OnLostServer()
     {
         Debug.LogError("OnLostServer");
-        _isConnected = false;
+        Close();
     }
 }
