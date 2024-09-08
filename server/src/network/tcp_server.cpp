@@ -38,53 +38,53 @@ void TcpServer::start(struct event_base* base)
     /* Listen on 0.0.0.0 */
     sin.sin_addr.s_addr = htonl(0);
     /* Listen on the given port. */
-    sin.sin_port = htons(port_);
+    sin.sin_port = htons(_port);
 
-    listener_ = evconnlistener_new_bind(base, accept_conn_cb, this,
+    _listener = evconnlistener_new_bind(base, accept_conn_cb, this,
         LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE, -1,
         (struct sockaddr*)&sin, sizeof(sin));
-    if (!listener_) {
+    if (!_listener) {
         std::cerr << "Couldn't create listener" << std::endl;
         return;
     }
-    evconnlistener_set_error_cb(listener_, accept_error_cb);
+    evconnlistener_set_error_cb(_listener, accept_error_cb);
 }
 
 void TcpServer::stop()
 {
-    for (auto &pair : id_2_conn_) {
+    for (auto &pair : _id_2_conn) {
         delete pair.second;
     }
-    id_2_conn_.clear();
+    _id_2_conn.clear();
 
-    if (listener_) {
-        evconnlistener_disable(listener_);
-        evconnlistener_free(listener_);
+    if (_listener) {
+        evconnlistener_disable(_listener);
+        evconnlistener_free(_listener);
     }
 }
 
 void TcpServer::kill_connection(int conn_id)
 {
-    auto iter = id_2_conn_.find(conn_id);
-    if (iter != id_2_conn_.end()) {
+    auto iter = _id_2_conn.find(conn_id);
+    if (iter != _id_2_conn.end()) {
         TcpConnection* conn = iter->second;
         delete conn;
-        id_2_conn_.erase(iter);
+        _id_2_conn.erase(iter);
     }
 }
 
 int TcpServer::on_new_connection(struct evconnlistener* listener, evutil_socket_t fd)
 {
-    next_conn_id_++;
+    _next_conn_id++;
     struct event_base* base = evconnlistener_get_base(listener);
     TcpConnection* conn = new TcpConnection{base, fd};
-    id_2_conn_.emplace(next_conn_id_, conn);
+    _id_2_conn.emplace(_next_conn_id, conn);
 
-    conn->set_lost_callback([this, conn_id = next_conn_id_]() {
+    conn->set_lost_callback([this, conn_id = _next_conn_id]() {
         kill_connection(conn_id);
     });
 
-    return next_conn_id_;
+    return _next_conn_id;
 }
 
 void TcpServer::on_lost_connection(int conn_id)

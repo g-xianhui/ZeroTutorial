@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -184,6 +185,8 @@ public class NetworkManager : MonoBehaviour
     private SendBuffer _sendBuffer = null;
     private RecvBuffer _recvBuffer = null;
 
+    private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
+
     void Awake()
     {
         Instance = this;
@@ -198,6 +201,24 @@ public class NetworkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleNetworkMsg();
+    }
+
+    private void HandleNetworkMsg()
+    {
+        while (true)
+        {
+            byte[] bytes = null;
+            if (_msgQueue.TryDequeue(out bytes!))
+            {
+                string msg = Encoding.UTF8.GetString(bytes);
+                Debug.Log("Recv: " + msg);
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 
     public async Task<bool> ConnectAsync(string host, int port, int connectTimeoutMs)
@@ -317,8 +338,7 @@ public class NetworkManager : MonoBehaviour
 
                 foreach (byte[] bytes in msgs)
                 {
-                    string msg = Encoding.UTF8.GetString(bytes);
-                    Debug.Log("Recv: " + msg);
+                    _msgQueue.Enqueue(bytes);
                 }
             }
             catch (Exception e)

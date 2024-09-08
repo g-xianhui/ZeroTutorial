@@ -11,7 +11,7 @@ class TcpConnection;
 class TcpServer
 {
 public:
-    TcpServer(const std::string& host, int port) : host_(host), port_(port) {}
+    TcpServer(const std::string& host, int port) : _host(host), _port(port) {}
 
     void start(struct event_base* base);
     void stop();
@@ -22,11 +22,11 @@ public:
     void on_lost_connection(int conn);
 
 private:
-    std::string host_;
-    int port_;
+    std::string _host;
+    int _port;
 
-    struct evconnlistener* listener_ = nullptr;
-    int next_conn_id_ = 0;
-    std::map<int, TcpConnection*> id_2_conn_;
+    struct evconnlistener* _listener = nullptr;
+    int _next_conn_id = 0;
+    std::map<int, TcpConnection*> _id_2_conn;
 };
 
