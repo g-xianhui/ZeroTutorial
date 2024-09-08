@@ -5,56 +5,100 @@
 #include <iostream>
 #include <cassert>
 
-const size_t SEND_BUFFER_SIZE = 64 * 1024;
+size_t write_7bit_encoded_int(uint32_t value, char len_bytes[5])
+{
+    size_t i = 0;
+    while (value > 0x7F)
+    {
+        len_bytes[i++] = (char)(value | ~0x7F);
+        value >>= 7;
+    }
+    len_bytes[i++] = (char)value;
+    return i;
+}
+
+uint32_t read_7bit_encoded_int(char len_bytes[5])
+{
+    uint32_t value = 0;
+
+    char c;
+    int i = 0;
+    int s = 0;
+    do
+    {
+        c = len_bytes[i++];
+        uint32_t x = (c & 0x7F);
+        x <<= s;
+        value += x;
+        s += 7;
+    } while (c & 0x80);
+
+    return value;
+}
+
+const size_t SEND_BUFFER_SIZE = 16 * 1024 * 1024;
 
 std::vector<std::string> RecvBuffer::recv(const char* bytes, size_t n) {
     std::vector<std::string> msgs;
 
     size_t bindex = 0;
-    while (_needBytes > 0 && bindex < n)
+    while (_need_bytes > 0 && bindex < n)
     {
-        switch (_parseStage)
+        switch (_parse_stage)
         {
-        case ParseStage::TLEN:
-            _tlenBytes[TLEN_SIZE - _needBytes] = bytes[bindex];
-            _needBytes -= 1;
-            bindex += 1;
-            if (_needBytes == 0)
-            {
-                _parseStage = ParseStage::DATA;
-                _needBytes = calc_package_data_length();
+        case ParseStage::LEN:
+            _len_bytes[_len_bytes_position++] = bytes[bindex];
+            if ((bytes[bindex] & 0x80) == 0)
+                _need_bytes = 0;
 
-                assert(_needBytes <= MAX_PACKAGE_SIZE);
+            bindex += 1;
+            if (_need_bytes == 0)
+            {
+                _parse_stage = ParseStage::DATA;
+                _need_bytes = calc_package_data_length();
+                _len_bytes_position = 0;
+
+                assert(_need_bytes <= MAX_PACKAGE_SIZE);
+                // FIXME too slow
+                _buffer = new char[_need_bytes];
             }
             break;
         case ParseStage::DATA:
             size_t leftBytesNum = n - bindex;
-            if (leftBytesNum < _needBytes)
+            if (leftBytesNum < _need_bytes)
             {
                 memcpy(_buffer + _position, bytes + bindex, leftBytesNum);
-                _needBytes -= leftBytesNum;
+                _need_bytes -= leftBytesNum;
                 bindex += leftBytesNum;
                 _position += leftBytesNum;
             }
             else
             {
-                memcpy(_buffer + _position, bytes + bindex, _needBytes);
-                bindex += _needBytes;
-                _position = 0;
+                memcpy(_buffer + _position, bytes + bindex, _need_bytes);
+                bindex += _need_bytes;
 
                 // finish one msg
-                std::string msg{ _buffer, _needBytes };
+                std::string msg{ _buffer, _need_bytes };
                 msgs.push_back(std::move(msg));
 
                 // reset to initial state
-                _parseStage = ParseStage::TLEN;
-                _needBytes = TLEN_SIZE;
+                _parse_stage = ParseStage::LEN;
+                _need_bytes = 1;
+
+                delete[] _buffer;
+                _buffer = nullptr;
+                _position = 0;
             }
             break;
         }
     }
 
     return msgs;
+}
+
+size_t RecvBuffer::calc_package_data_length()
+{
+    return read_7bit_encoded_int(_len_bytes);
 }
 
 static void
@@ -123,7 +167,9 @@ void TcpConnection::send_data(const char* data, size_t n)
 
 void TcpConnection::send_msg(const char* msg_bytes, size_t n)
 {
-    send_data((const char*)&n, RecvBuffer::TLEN_SIZE);
+    char len_bytes[5] = { 0 };
+    size_t encoded_size = write_7bit_encoded_int((uint32_t)n, len_bytes);
+    send_data(len_bytes, encoded_size);
     send_data(msg_bytes, n);
 }
 

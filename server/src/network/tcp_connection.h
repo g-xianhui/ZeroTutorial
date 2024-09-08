@@ -10,35 +10,28 @@
 class RecvBuffer {
 public:
     enum class ParseStage {
-        TLEN,
+        LEN,
         DATA
     };
 
-    static const size_t TLEN_SIZE = 2;
-    static const size_t MAX_PACKAGE_SIZE = 1 << (TLEN_SIZE * 8);
-
-    RecvBuffer() {
-        _buffer = new char[MAX_PACKAGE_SIZE];
-    }
-
-    ~RecvBuffer() {
-        delete[] _buffer;
-    }
+    // uint32 can be encoded as 5 bytes
+    static const size_t MAX_LEN_SIZE = 5;
+    static const size_t MAX_PACKAGE_SIZE = 16 * 1024 * 1024;
 
     std::vector<std::string> recv(const char* bytes, size_t n);
 
-    inline size_t calc_package_data_length()
-    {
-        return *(reinterpret_cast<uint16_t*>(_tlenBytes));
-    }
+    size_t calc_package_data_length();
+
 private:
-    char _tlenBytes[TLEN_SIZE] = { 0 };
-    ParseStage _parseStage = ParseStage::TLEN;
-    size_t _needBytes = TLEN_SIZE;
+    char _len_bytes[MAX_LEN_SIZE] = { 0 };
+
+    ParseStage _parse_stage = ParseStage::LEN;
+    size_t _len_bytes_position = 0;
+    size_t _need_bytes = 1;
 
     // next useful position of buffer
     size_t _position = 0;
-    char* _buffer;
+    char* _buffer = nullptr;
 };
 
 class TcpConnection {

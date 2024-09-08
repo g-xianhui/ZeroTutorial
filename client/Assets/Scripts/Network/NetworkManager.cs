@@ -23,25 +23,19 @@ public class RecvBuffer
         TLEN, DATA
     }
 
-    static readonly int TLEN_SIZE = 2;
+    static readonly int TLEN_SIZE = 5;
     byte[] _tlenBytes = new byte[TLEN_SIZE];
+    int _tlenBytesPosition = 0;
 
     ParseStage _parseStage = ParseStage.TLEN;
-    int _needBytes = TLEN_SIZE;
+    int _needBytes = 1;
 
-    public byte[] buffer;
-    public int position;
-
-    public RecvBuffer()
-    {
-        buffer = new byte[1 << (TLEN_SIZE * 8)];
-        position = 0;
-    }
+    public byte[] buffer = null;
+    public int position = 0;
 
     public byte[][] Recv(byte[] bytes, int n)
     {
         int bindex = 0;
-        int index = 0;
 
         List<byte[]> msgs = new List<byte[]>();
 
@@ -50,14 +44,19 @@ public class RecvBuffer
             switch (_parseStage)
             {
                 case ParseStage.TLEN:
-                    index = TLEN_SIZE - _needBytes;
-                    _tlenBytes[index] = bytes[bindex];
-                    _needBytes -= 1;
+                    int index = TLEN_SIZE - _needBytes;
+                    _tlenBytes[_tlenBytesPosition++] = bytes[bindex];
+                    if ((bytes[bindex] & 0x80) == 0)
+                        _needBytes = 0;
+
                     bindex += 1;
                     if (_needBytes == 0)
                     {
                         _parseStage = ParseStage.DATA;
                         _needBytes = CalcPackageDataLength();
+                        _tlenBytesPosition = 0;
+
+                        buffer = new byte[_needBytes];
                     }
                     break;
                 case ParseStage.DATA:
@@ -82,7 +81,7 @@ public class RecvBuffer
 
                         // reset to initial state
                         _parseStage = ParseStage.TLEN;
-                        _needBytes = TLEN_SIZE;
+                        _needBytes = 1;
                     }
                     break;
             }
@@ -91,9 +90,28 @@ public class RecvBuffer
         return msgs.ToArray();
     }
 
+    int Read7BitEncodedInt(byte[] bytes)
+    {
+        int value = 0;
+
+        byte c;
+        int i = 0;
+        int s = 0;
+        do
+        {
+            c = bytes[i++];
+            int x = (c & 0x7F);
+            x <<= s;
+            value += x;
+            s += 7;
+        } while ((c & 0x80) != 0);
+
+        return value;
+    }
+
     int CalcPackageDataLength()
     {
-        return BinaryPrimitives.ReadInt16LittleEndian(_tlenBytes);
+        return Read7BitEncodedInt(_tlenBytes);
     }
 }
 
@@ -279,6 +297,25 @@ public class NetworkManager : MonoBehaviour
         _stream = null;
     }
 
+    public void Write7BitEncodedInt(BinaryWriter writer, int value)
+    {
+        uint uValue = (uint)value;
+
+        // Write out an int 7 bits at a time. The high bit of the byte,
+        // when on, tells reader to continue reading more bytes.
+        //
+        // Using the constants 0x7F and ~0x7F below offers smaller
+        // codegen than using the constant 0x80.
+
+        while (uValue > 0x7Fu)
+        {
+            writer.Write((byte)(uValue | ~0x7Fu));
+            uValue >>= 7;
+        }
+
+        writer.Write((byte)uValue);
+    }
+
     public void Send(string msg)
     {
         Debug.Log("Send: " + msg);
@@ -287,9 +324,7 @@ public class NetworkManager : MonoBehaviour
             using (BinaryWriter binaryWriter = new BinaryWriter(mem))
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(msg);
-
-                UInt16 msgLen = (UInt16)bytes.Length;
-                binaryWriter.Write(msgLen);
+                Write7BitEncodedInt(binaryWriter, bytes.Length);
                 binaryWriter.Write(bytes);
             }
             byte[] data = mem.ToArray();
