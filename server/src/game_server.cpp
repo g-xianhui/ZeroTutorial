@@ -1,5 +1,5 @@
 #include "globals.h"
-#include "network/tcp_server.h"
+#include "echo_service.h"
 
 #include <event2/event.h>
 
@@ -31,8 +31,8 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    TcpServer tcp_server(HOST, PORT);
-    tcp_server.start(EVENT_BASE);
+    EchoService echo_service;
+    echo_service.start(HOST, PORT);
 
     event_base_dispatch(EVENT_BASE);
     return 0;

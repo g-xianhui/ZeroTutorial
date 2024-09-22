@@ -6,6 +6,7 @@
 *.lo
 *.o
 *.obj
+*.dylib
 
 # Precompiled Headers
 *.gch
@@ -40,6 +41,7 @@
 # Visual Studio cache directory
 .vs/
 .vsconfig
+.vscode
 
 # Gradle cache directory
 .gradle/

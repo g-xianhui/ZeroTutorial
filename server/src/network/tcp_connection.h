@@ -7,6 +7,8 @@
 #include <vector>
 #include <string>
 
+class Service;
+
 class RecvBuffer {
 public:
     enum class ParseStage {
@@ -36,7 +38,7 @@ private:
 
 class TcpConnection {
 public:
-    TcpConnection(struct event_base* base, evutil_socket_t fd);
+    TcpConnection(struct event_base* base, evutil_socket_t fd, Service* service);
     ~TcpConnection();
 
     void handle_data(const char* buffer, size_t n);
@@ -53,6 +55,8 @@ public:
     }
 
 private:
+    Service* _service = nullptr;
+
     struct bufferevent* _bev = nullptr;
     std::function<void()> _on_lost_connection_callback;
 

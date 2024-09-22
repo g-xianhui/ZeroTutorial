@@ -1,5 +1,7 @@
 #include "network/tcp_connection.h"
 
+#include "service.h"
+
 #include <event2/buffer.h>
 
 #include <iostream>
@@ -129,7 +131,7 @@ socket_event_cb(struct bufferevent* _bev, short events, void* ctx)
     }
 }
 
-TcpConnection::TcpConnection(struct event_base* base, evutil_socket_t fd)
+TcpConnection::TcpConnection(struct event_base* base, evutil_socket_t fd, Service* service) : _service(service)
 {
     _bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
 
@@ -147,8 +149,7 @@ void TcpConnection::handle_data(const char* buffer, size_t n)
 {
     std::vector<std::string> msgs = _recvBuffer.recv(buffer, n);
     for (std::string& msg : msgs) {
-        std::cout << "recv: " << msg << std::endl;
-        send_msg(msg.c_str(), msg.size());
+        _service->handle_msg(this, msg);
     }
 }
 

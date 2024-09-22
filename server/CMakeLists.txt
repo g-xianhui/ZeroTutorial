@@ -30,3 +30,12 @@ IF (MSVC)
     set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")
 ENDIF()
 
+IF (APPLE)
+    add_custom_command(
+        TARGET game_server PRE_BUILD
+        COMMAND rm libevent_core.dylib libevent_extra.dylib
+        COMMAND ln -s libevent_core-2.1.7.dylib libevent_core.dylib
+        COMMAND ln -s libevent_extra-2.1.7.dylib libevent_extra.dylib
+        WORKING_DIRECTORY ${THIRDPARTY_DIR}/lib
+    )
+ENDIF()

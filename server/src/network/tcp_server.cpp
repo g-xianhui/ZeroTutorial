@@ -77,7 +77,7 @@ int TcpServer::on_new_connection(struct evconnlistener* listener, evutil_socket_
 {
     _next_conn_id++;
     struct event_base* base = evconnlistener_get_base(listener);
-    TcpConnection* conn = new TcpConnection{base, fd};
+    TcpConnection* conn = new TcpConnection{base, fd, _service};
     _id_2_conn.emplace(_next_conn_id, conn);
 
     conn->set_lost_callback([this, conn_id = _next_conn_id]() {

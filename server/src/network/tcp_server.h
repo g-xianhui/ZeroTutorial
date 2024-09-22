@@ -6,12 +6,13 @@
 #include <event2/listener.h>
 #include <event2/bufferevent.h>
 
+class Service;
 class TcpConnection;
 
 class TcpServer
 {
 public:
-    TcpServer(const std::string& host, int port) : _host(host), _port(port) {}
+    TcpServer(const std::string& host, int port, Service* service) : _host(host), _port(port), _service(service) {}
 
     void start(struct event_base* base);
     void stop();
@@ -24,6 +25,8 @@ public:
 private:
     std::string _host;
     int _port;
+    // 提供的服务
+    Service* _service;
 
     struct evconnlistener* _listener = nullptr;
     int _next_conn_id = 0;
