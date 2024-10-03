@@ -1,5 +1,6 @@
 #include "network/tcp_server.h"
 #include "network/tcp_connection.h"
+#include "service.h"
 
 #include <cstring>
 #include <cassert>
@@ -52,42 +53,15 @@ void TcpServer::start(struct event_base* base)
 
 void TcpServer::stop()
 {
-    for (auto &pair : _id_2_conn) {
-        delete pair.second;
-    }
-    _id_2_conn.clear();
-
     if (_listener) {
         evconnlistener_disable(_listener);
         evconnlistener_free(_listener);
     }
 }
 
-void TcpServer::kill_connection(int conn_id)
+void TcpServer::on_new_connection(struct evconnlistener* listener, evutil_socket_t fd)
 {
-    auto iter = _id_2_conn.find(conn_id);
-    if (iter != _id_2_conn.end()) {
-        TcpConnection* conn = iter->second;
-        delete conn;
-        _id_2_conn.erase(iter);
-    }
-}
-
-int TcpServer::on_new_connection(struct evconnlistener* listener, evutil_socket_t fd)
-{
-    _next_conn_id++;
     struct event_base* base = evconnlistener_get_base(listener);
     TcpConnection* conn = new TcpConnection{base, fd, _service};
-    _id_2_conn.emplace(_next_conn_id, conn);
-
-    conn->set_lost_callback([this, conn_id = _next_conn_id]() {
-        kill_connection(conn_id);
-    });
-
-    return _next_conn_id;
-}
-
-void TcpServer::on_lost_connection(int conn_id)
-{
-    kill_connection(conn_id);
+    _service->on_new_connection(conn);
 }

@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "echo_service.h"
+#include "space_service.h"
 
 #include <event2/event.h>
 
@@ -31,8 +32,11 @@ int main(int argc, char** argv) {
         return -1;
     }
 
-    EchoService echo_service;
-    echo_service.start(HOST, PORT);
+    //EchoService echo_service;
+    //echo_service.start(HOST, PORT);
+
+    SpaceService space_service;
+    space_service.start(HOST, PORT);
 
     event_base_dispatch(EVENT_BASE);
     return 0;

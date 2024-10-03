@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
@@ -230,11 +231,60 @@ public class NetworkManager : MonoBehaviour
             if (_msgQueue.TryDequeue(out bytes!))
             {
                 string msg = Encoding.UTF8.GetString(bytes);
-                Debug.Log("Recv: " + msg);
+                //Debug.Log("Recv: " + msg);
+                HandleNetworkMsg(msg);
             }
             else
             {
                 break;
+            }
+        }
+    }
+
+    private void HandleNetworkMsg(string msg)
+    {
+        if (msg.StartsWith("join_failed#"))
+        {
+            int pos = msg.IndexOf('#');
+            string reason = msg.Substring(pos);
+            Debug.Log("join space failed: " + reason);
+        }
+        else if (msg.StartsWith("join_successed#"))
+        {
+            int pos = msg.IndexOf('#');
+            string tmp = msg.Substring(pos);
+            string[] arguments = tmp.Split(':');
+
+            Debug.Log($"join space successed! name: {arguments[0]}, position: ({arguments[1]}, {arguments[2]}, {arguments[3]})");
+            SceneManager.LoadScene("DemoScene", LoadSceneMode.Single);
+        }
+        else if (msg.StartsWith("players_enter_sight#"))
+        {
+            int pos = msg.IndexOf('#');
+            string tmp = msg.Substring(pos);
+
+            string[] playerStrings = tmp.Split('|');
+            if (playerStrings.Length == 0)
+                return;
+
+            foreach (string playerString in playerStrings)
+            {
+                string[] arguments = playerString.Split(':');
+                Debug.Log($"player enter sight, name: {arguments[0]}, position: ({arguments[1]}, {arguments[2]}, {arguments[3]})");
+            }
+        }
+        else if (msg.StartsWith("players_leave_sight#"))
+        {
+            int pos = msg.IndexOf('#');
+            string tmp = msg.Substring(pos);
+            
+            string[] playerStrings = tmp.Split('|');
+            if (playerStrings.Length == 0)
+                return;
+
+            foreach (string playerString in playerStrings)
+            {
+                Debug.Log($"player leave sight, name: {playerString}");
             }
         }
     }

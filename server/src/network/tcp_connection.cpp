@@ -203,6 +203,5 @@ void TcpConnection::on_lost_connection()
     bufferevent_free(_bev);
     _bev = nullptr;
 
-    if (_on_lost_connection_callback)
-        _on_lost_connection_callback();
+    _service->on_lost_connection(this);
 }

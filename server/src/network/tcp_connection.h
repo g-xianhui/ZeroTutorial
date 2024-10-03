@@ -50,15 +50,9 @@ public:
     void on_error(int err);
     void on_lost_connection();
 
-    inline void set_lost_callback(std::function<void()>&& cb) {
-        _on_lost_connection_callback = std::move(cb);
-    }
-
 private:
     Service* _service = nullptr;
 
     struct bufferevent* _bev = nullptr;
-    std::function<void()> _on_lost_connection_callback;
-
     RecvBuffer _recvBuffer;
 };

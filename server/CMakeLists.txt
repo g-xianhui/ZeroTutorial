@@ -20,7 +20,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
 
 file(GLOB GAME_SERVER_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/game_server.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp)
-file(GLOB GAME_SERVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h)
+file(GLOB GAME_SERVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h)
 
 add_executable(game_server ${GAME_SERVER_SRCS} ${GAME_SERVER_HEADERS})
 target_link_libraries(game_server ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
@@ -28,6 +28,7 @@ target_link_libraries(game_server ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
 IF (MSVC)
     set(MY_PATH "PATH=%PATH%" ${THIRDPARTY_DIR}/lib)
     set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
 ENDIF()
 
 IF (APPLE)

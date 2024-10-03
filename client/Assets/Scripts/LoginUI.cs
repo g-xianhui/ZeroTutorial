@@ -23,6 +23,20 @@ public class LoginUI : MonoBehaviour
         }
     }
 
+    public void OnConnectResult(bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            Debug.Log("connect to server successed");
+            string joinRequest = "join#" + AccountText.text;
+            NetworkManager.Instance.Send(joinRequest);
+        }
+        else
+        {
+            Debug.Log("connect to server failed");
+        }
+    }
+
     public void OnLoginButtonClick()
     {
         string serverAddress = ServerAddressText.text;
@@ -45,7 +59,7 @@ public class LoginUI : MonoBehaviour
             }
             string host = arr[0];
 
-            NetworkManager.Instance.Connect(host, port, OnLoginResult);
+            NetworkManager.Instance.Connect(host, port, OnConnectResult);
         }
     }
 }
