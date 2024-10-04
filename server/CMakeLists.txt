@@ -19,7 +19,7 @@ ENDIF()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
 
-file(GLOB GAME_SERVER_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/game_server.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp)
+file(GLOB GAME_SERVER_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp)
 file(GLOB GAME_SERVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h)
 
 add_executable(game_server ${GAME_SERVER_SRCS} ${GAME_SERVER_HEADERS})
