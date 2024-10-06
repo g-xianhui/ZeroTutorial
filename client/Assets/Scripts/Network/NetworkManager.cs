@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -120,7 +121,7 @@ class SendBuffer
 {
     public byte[] _buffer;
     public uint _capacity;
-    // _buffer[_startPos, _endPos] ÎªÎ´±»·¢ËÍµÄÊı¾İ
+    // _buffer[_startPos, _endPos] ä¸ºæœªè¢«å‘é€çš„æ•°æ®
     public uint _startPos, _endPos;
     public uint _sendBytes = 0;
 
@@ -128,7 +129,7 @@ class SendBuffer
     {
         _buffer = new byte[len];
         _capacity = len;
-        // _startPosÓÉ·¢ËÍÏß³ÌĞŞ¸Ä£¬_endPosÓÉÖ÷Ïß³ÌĞŞ¸Ä£¬ÀíÂÛÉÏ²»»áÓĞÏß³ÌÎÊÌâ
+        // _startPosç”±å‘é€çº¿ç¨‹ä¿®æ”¹ï¼Œ_endPosç”±ä¸»çº¿ç¨‹ä¿®æ”¹ï¼Œç†è®ºä¸Šä¸ä¼šæœ‰çº¿ç¨‹é—®é¢˜
         _startPos = _endPos = 0;
     }
 
@@ -205,6 +206,7 @@ public class NetworkManager : MonoBehaviour
     private RecvBuffer _recvBuffer = null;
 
     private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
+    private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
     void Awake()
     {
@@ -231,7 +233,7 @@ public class NetworkManager : MonoBehaviour
             if (_msgQueue.TryDequeue(out bytes!))
             {
                 string msg = Encoding.UTF8.GetString(bytes);
-                //Debug.Log("Recv: " + msg);
+                // Debug.Log("Recv: " + msg);
                 HandleNetworkMsg(msg);
             }
             else
@@ -243,48 +245,78 @@ public class NetworkManager : MonoBehaviour
 
     private void HandleNetworkMsg(string msg)
     {
-        if (msg.StartsWith("join_failed#"))
+        if (msg.StartsWith("login_reply#"))
         {
             int pos = msg.IndexOf('#');
-            string reason = msg.Substring(pos);
+            string tmp = msg.Substring(pos+1);
+            int result = int.Parse(tmp);
+            if (result == 0)
+            {
+                Debug.Log("login successed");    
+                StartCoroutine(loadScene());
+            }
+            else
+            {
+                Debug.Log("login failed: " + result);    
+            }
+        }
+        else if (msg.StartsWith("join_failed#"))
+        {
+            int pos = msg.IndexOf('#');
+            string reason = msg.Substring(pos+1);
             Debug.Log("join space failed: " + reason);
         }
         else if (msg.StartsWith("join_successed#"))
         {
             int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos);
+            string tmp = msg.Substring(pos+1);
             string[] arguments = tmp.Split(':');
 
-            Debug.Log($"join space successed! name: {arguments[0]}, position: ({arguments[1]}, {arguments[2]}, {arguments[3]})");
-            SceneManager.LoadScene("DemoScene", LoadSceneMode.Single);
+            Vector3 position = new Vector3(float.Parse(arguments[1]), float.Parse(arguments[2]), float.Parse(arguments[3]));
+            Debug.Log($"join space successed! name: {arguments[0]}, position: {position}");
+
+            GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
+            if (prefab != null) {
+                GameObject.Instantiate(prefab, position, Quaternion.identity);
+            } else {
+                Debug.Log("main character not found");
+            }
         }
         else if (msg.StartsWith("players_enter_sight#"))
         {
             int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos);
-
-            string[] playerStrings = tmp.Split('|');
-            if (playerStrings.Length == 0)
+            string tmp = msg.Substring(pos+1);
+            if (tmp.Length == 0)
                 return;
 
+            string[] playerStrings = tmp.Split('|');
             foreach (string playerString in playerStrings)
             {
                 string[] arguments = playerString.Split(':');
-                Debug.Log($"player enter sight, name: {arguments[0]}, position: ({arguments[1]}, {arguments[2]}, {arguments[3]})");
+                Vector3 position =  new Vector3(float.Parse(arguments[1]), float.Parse(arguments[2]), float.Parse(arguments[3]));
+                Debug.Log($"player enter sight, name: {arguments[0]}, position: {position}");
+                
+                GameObject otherPlayer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                otherPlayer.transform.position = position;
+                _players.Add(arguments[0], otherPlayer);
             }
         }
         else if (msg.StartsWith("players_leave_sight#"))
         {
             int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos);
+            string tmp = msg.Substring(pos+1);
+            if (tmp.Length == 0)
+                return;
             
             string[] playerStrings = tmp.Split('|');
-            if (playerStrings.Length == 0)
-                return;
-
-            foreach (string playerString in playerStrings)
+            foreach (string name in playerStrings)
             {
-                Debug.Log($"player leave sight, name: {playerString}");
+                Debug.Log($"player leave sight, name: {name}");
+                
+                GameObject player = null;
+                if (_players.Remove(name, out player)) {
+                    GameObject.Destroy(player);
+                }
             }
         }
     }
@@ -441,5 +473,16 @@ public class NetworkManager : MonoBehaviour
     {
         Debug.LogError("OnLostServer");
         Close();
+    }
+
+    private IEnumerator loadScene() {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DemoScene");
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        string joinRequest = "join";
+        Send(joinRequest);
     }
 }

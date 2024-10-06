@@ -8,7 +8,7 @@
 
 class Service {
 public:
-    ~Service() {}
+    virtual ~Service() {}
 
     virtual void start(const std::string& listen_address, int listen_port) {
         _server = new TcpServer(listen_address, listen_port, this);

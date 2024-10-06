@@ -27,7 +27,7 @@ void Space::join(Player* player)
 
     // 随机一个出生点
     float x = get_random() * _width;
-    float y = 100.f;
+    float y = 3.f;
     float z = get_random() * _height;
 
     player->set_position(x, y, z);
@@ -37,12 +37,16 @@ void Space::join(Player* player)
     buffer << "join_successed#" << player->get_name() << ":" << x << ":" << y << ":" << z;
     std::string join_successed_reply = buffer.str();
     player->send_msg(join_successed_reply.c_str(), join_successed_reply.size());
-
+    buffer.str("");
     buffer.clear();
+
     buffer << "players_enter_sight#" << player->get_name() << ":" << x << ":" << y << ":" << z;
     std::string enter_other_sight = buffer.str();
+    buffer.str("");
+    buffer.clear();
 
     std::string players_enter_sight{"players_enter_sight#"};
+    bool first = true;
     for (Player* other : _players) {
         // 告知场景内的其他玩家，有新玩家进入了场景
         other->send_msg(enter_other_sight.c_str(), enter_other_sight.size());
@@ -52,8 +56,11 @@ void Space::join(Player* player)
 
         std::ostringstream buffer;
         buffer << other->get_name() << ":" << px << ":" << py << ":" << pz;
+        if (!first)
+            players_enter_sight += "|";
+        else
+            first = false;
         players_enter_sight += buffer.str();
-        players_enter_sight += "|";
     }
     // 把场景内所有已存在的玩家信息发送给新玩家
     player->send_msg(players_enter_sight.c_str(), players_enter_sight.size());

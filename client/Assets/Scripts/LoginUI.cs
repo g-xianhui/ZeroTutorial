@@ -28,8 +28,8 @@ public class LoginUI : MonoBehaviour
         if (isSuccess)
         {
             Debug.Log("connect to server successed");
-            string joinRequest = "join#" + AccountText.text;
-            NetworkManager.Instance.Send(joinRequest);
+            string loginRequest = "login#" + AccountText.text;
+            NetworkManager.Instance.Send(loginRequest);
         }
         else
         {

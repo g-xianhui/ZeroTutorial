@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using UnityEngine;
 using UnityEngine.XR;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -95,6 +96,9 @@ public class PlayerController : MonoBehaviour
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         Application.targetFrameRate = 30;
+
+        CinemachineBrain brain = _mainCamera.GetComponent<CinemachineBrain>();
+        brain.ActiveVirtualCamera.Follow = CinemachineCameraTarget.transform;
     }
 
     // Start is called before the first frame update
@@ -122,7 +126,7 @@ public class PlayerController : MonoBehaviour
         Move(h, v);
     }
 
-    // ÎÒÃÇÏëÓ¦ÓÃroot motion£¬µ«Ä¬ÈÏµÄanimator move»áµş¼ÓÖØÁ¦µÄ´¦Àí£¬µ«ÏÔÈ»ÏÖÔÚÖØÁ¦ÊÇÓÉplayer controller½Ó¹ÜµÄ£¬ĞèÒªºöÂÔ¡£
+    // æˆ‘ä»¬æƒ³åº”ç”¨root motionï¼Œä½†é»˜è®¤çš„animator moveä¼šå åŠ é‡åŠ›çš„å¤„ç†ï¼Œä½†æ˜¾ç„¶ç°åœ¨é‡åŠ›æ˜¯ç”±player controlleræ¥ç®¡çš„ï¼Œéœ€è¦å¿½ç•¥ã€‚
     private void OnAnimatorMove()
     {
         transform.position += _anim.deltaPosition;
@@ -236,35 +240,35 @@ public class PlayerController : MonoBehaviour
         if (move != Vector2.zero)
         {
             Vector3 inputDirection = new Vector3(h, 0, v).normalized;
-            // Ïà»úµÄ³¯Ïò¾ÍÊÇ½ÇÉ«µÄÕıÃæ³¯Ïò£¬ºóÕß¿ÉÄÜÂäºóÓÚÇ°Õß£¬ÀıÈçÕ¾×Å²»¶¯£¬Ö±½Óµ÷ÕûÏà»úµÄ³¯Ïò¡£ËùÒÔÒªÏÈ×ªµ½Ïà»ú·½Ïò£¬ÔÙ×ªµ½ÊäÈëµÄ·½Ïò¡£
+            // ç›¸æœºçš„æœå‘å°±æ˜¯è§’è‰²çš„æ­£é¢æœå‘ï¼Œåè€…å¯èƒ½è½åäºå‰è€…ï¼Œä¾‹å¦‚ç«™ç€ä¸åŠ¨ï¼Œç›´æ¥è°ƒæ•´ç›¸æœºçš„æœå‘ã€‚æ‰€ä»¥è¦å…ˆè½¬åˆ°ç›¸æœºæ–¹å‘ï¼Œå†è½¬åˆ°è¾“å…¥çš„æ–¹å‘ã€‚
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
 
-            // SmoothDampAngle²»ÊÇ²åÖµµÄÊµÏÖ£¬¶øÊÇÁíÒ»ÖÖĞ§¹û£¨implements a critically damped harmonic oscillator£©£¬ËùÒÔ²»ÒªÓÃ²åÖµµÄË¼Î¬È¥Àí½âÕâ¸öº¯Êı¡£
-            // Í¬Ê±£¬Õâ¸öº¯ÊıĞèÒªÒ»¸öref velocity±äÁ¿£¬Õâ¸ö±äÁ¿µÄÉúÃüÖÜÆÚÒªÖ§³Åµ½µ½´ïtarget¡£
+            // SmoothDampAngleä¸æ˜¯æ’å€¼çš„å®ç°ï¼Œè€Œæ˜¯å¦ä¸€ç§æ•ˆæœï¼ˆimplements a critically damped harmonic oscillatorï¼‰ï¼Œæ‰€ä»¥ä¸è¦ç”¨æ’å€¼çš„æ€ç»´å»ç†è§£è¿™ä¸ªå‡½æ•°ã€‚
+            // åŒæ—¶ï¼Œè¿™ä¸ªå‡½æ•°éœ€è¦ä¸€ä¸ªref velocityå˜é‡ï¼Œè¿™ä¸ªå˜é‡çš„ç”Ÿå‘½å‘¨æœŸè¦æ”¯æ’‘åˆ°åˆ°è¾¾targetã€‚
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
             // rotate to face input direction relative to camera position
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
-        // ÒÆ¶¯·½ÏòÊÇ¹Ì¶¨µÄ£¬×ªÉíÊÇÔÚÒÆ¶¯µÄ¹ı³ÌÖĞÍê³ÉµÄ
+        // ç§»åŠ¨æ–¹å‘æ˜¯å›ºå®šçš„ï¼Œè½¬èº«æ˜¯åœ¨ç§»åŠ¨çš„è¿‡ç¨‹ä¸­å®Œæˆçš„
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
         // move the player
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _deltaHeight, 0.0f));
 
-        // ¶¯»­
+        // åŠ¨ç”»
         _anim.SetFloat("Speed", _speed);
     }
 
     private void CameraRotation()
     {
-        // h/v ÕâÀï·µ»ØµÄÊÇÊó±êµÄÆ«ÒÆÀï£¬µ¥Î»¿ÉÄÜÊÇÊÀ½ç×ø±ê£¬Ò²¿ÉÄÜÊÇÏñËØ£¬µ«ÎŞ¹ØÖØÒª¡£rotSpeedµÄµ¥Î»ÊÇ£º ½Ç¶È/Ã¿µ¥Î»Æ«ÒÆÁ¿£¬ËùÒÔh/v³ËÒÔrotSpeedÖ®ºó¿ÉÒÔÖ±½Óµ±×÷½Ç¶ÈÀ´ÓÃ¡£
+        // h/v è¿™é‡Œè¿”å›çš„æ˜¯é¼ æ ‡çš„åç§»é‡Œï¼Œå•ä½å¯èƒ½æ˜¯ä¸–ç•Œåæ ‡ï¼Œä¹Ÿå¯èƒ½æ˜¯åƒç´ ï¼Œä½†æ— å…³é‡è¦ã€‚rotSpeedçš„å•ä½æ˜¯ï¼š è§’åº¦/æ¯å•ä½åç§»é‡ï¼Œæ‰€ä»¥h/vä¹˜ä»¥rotSpeedä¹‹åå¯ä»¥ç›´æ¥å½“ä½œè§’åº¦æ¥ç”¨ã€‚
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
 
-        // ²»ÄÜÖ±½Órotate£¬ÏëÏóÒ»ÏÂÏÈµÍÍ·90¶È£¬È»ºóÏò×ó×ª90¶È£¬µÍÍ·Ã»ÎÊÌâ£¬µ«×ó×ªÊ±±¾ÒâÊÇÈÆYÖá£¨Space.Self£©Ğı×ª90¶È£¬µ«µÍÍ·90¶ÈÊ±YÖáÍ¬ÑùÒÑ¾­ÈÆXÖáĞı×ªÁË90¶È£¬µ¼ÖÂĞ§¹û¾ÍÍêÈ«²»¶ÔÁË¡£
-        // ÕıÈ·µÄ·½Ê½ÊÇÁ½¸öÖáµÄĞı×ªÁ¿·Ö±ğÀÛ¼Ó£¬ÕâÑùÁ½¸öÖáÖ®¼ä¾Í²»»á²úÉú¸ÉÈÅ£¬¶øÇÒÒıÇæµ×ÏÂÊÇÓÃËÄÔªÊıÀ´±íÊ¾Ğı×ª£¬²»»áÓĞËÀËøµÄÎÊÌâ¡£
+        // ä¸èƒ½ç›´æ¥rotateï¼Œæƒ³è±¡ä¸€ä¸‹å…ˆä½å¤´90åº¦ï¼Œç„¶åå‘å·¦è½¬90åº¦ï¼Œä½å¤´æ²¡é—®é¢˜ï¼Œä½†å·¦è½¬æ—¶æœ¬æ„æ˜¯ç»•Yè½´ï¼ˆSpace.Selfï¼‰æ—‹è½¬90åº¦ï¼Œä½†ä½å¤´90åº¦æ—¶Yè½´åŒæ ·å·²ç»ç»•Xè½´æ—‹è½¬äº†90åº¦ï¼Œå¯¼è‡´æ•ˆæœå°±å®Œå…¨ä¸å¯¹äº†ã€‚
+        // æ­£ç¡®çš„æ–¹å¼æ˜¯ä¸¤ä¸ªè½´çš„æ—‹è½¬é‡åˆ†åˆ«ç´¯åŠ ï¼Œè¿™æ ·ä¸¤ä¸ªè½´ä¹‹é—´å°±ä¸ä¼šäº§ç”Ÿå¹²æ‰°ï¼Œè€Œä¸”å¼•æ“åº•ä¸‹æ˜¯ç”¨å››å…ƒæ•°æ¥è¡¨ç¤ºæ—‹è½¬ï¼Œä¸ä¼šæœ‰æ­»é”çš„é—®é¢˜ã€‚
         // CinemachineCameraTarget.transform.Rotate(v, h, 0);
 
         if ((h != 0f || v != 0f) && !LockCameraPosition)
