@@ -2,41 +2,12 @@
 
 #include "service.h"
 
+#include "bit_utils.h"
+
 #include <event2/buffer.h>
 
 #include <iostream>
 #include <cassert>
-
-size_t write_7bit_encoded_int(uint32_t value, char len_bytes[5])
-{
-    size_t i = 0;
-    while (value > 0x7F)
-    {
-        len_bytes[i++] = (char)(value | ~0x7F);
-        value >>= 7;
-    }
-    len_bytes[i++] = (char)value;
-    return i;
-}
-
-uint32_t read_7bit_encoded_int(char len_bytes[5])
-{
-    uint32_t value = 0;
-
-    char c;
-    int i = 0;
-    int s = 0;
-    do
-    {
-        c = len_bytes[i++];
-        uint32_t x = (c & 0x7F);
-        x <<= s;
-        value += x;
-        s += 7;
-    } while (c & 0x80);
-
-    return value;
-}
 
 const size_t SEND_BUFFER_SIZE = 16 * 1024 * 1024;
 

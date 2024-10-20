@@ -90,3 +90,4 @@ crashlytics-build.properties
 
 # Server
 server/build/
+server/CMakeUserPresets.json

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package space_service;
+
+message Vector3f {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message LoginRequest {
+  string username = 1;
+}
+
+message LoginReply {
+  int32 result = 1;
+}
+
+message JoinReply {
+  int32 result = 1;
+  optional Vector3f position = 2;
+}
+
+message AoiPlayer {
+  string name = 1;
+  Vector3f position = 2;  
+}
+
+message PlayersEnterSight {
+  repeated AoiPlayer players = 1;
+}
+
+message PlayersLeaveSight {
+  repeated string players = 1;
+}

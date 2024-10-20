@@ -3,6 +3,8 @@
 
 #include "network/tcp_connection.h"
 
+#include "proto/space_service.pb.h"
+
 #include <random>
 #include <sstream>
 
@@ -32,38 +34,43 @@ void Space::join(Player* player)
 
     player->set_position(x, y, z);
 
-    std::ostringstream buffer;
     // 告知玩家加入场景成功，并附带初始坐标
-    buffer << "join_successed#" << player->get_name() << ":" << x << ":" << y << ":" << z;
-    std::string join_successed_reply = buffer.str();
-    player->send_msg(join_successed_reply.c_str(), join_successed_reply.size());
-    buffer.str("");
-    buffer.clear();
+    space_service::JoinReply join_reply;
+    join_reply.set_result(0);
+    space_service::Vector3f* position = join_reply.mutable_position();
+    position->set_x(x);
+    position->set_y(y);
+    position->set_z(z);
+    send_proto_msg(player->get_conn(), "join_reply", join_reply);
 
-    buffer << "players_enter_sight#" << player->get_name() << ":" << x << ":" << y << ":" << z;
-    std::string enter_other_sight = buffer.str();
-    buffer.str("");
-    buffer.clear();
+    space_service::PlayersEnterSight others_sight;
+    space_service::AoiPlayer* aoi_player = others_sight.add_players();
+    aoi_player->set_name(player->get_name());
+    space_service::Vector3f* aoi_position = aoi_player->mutable_position();
+    aoi_position->set_x(x);
+    aoi_position->set_y(y);
+    aoi_position->set_z(z);
 
-    std::string players_enter_sight{"players_enter_sight#"};
-    bool first = true;
+    space_service::PlayersEnterSight player_sight;
     for (Player* other : _players) {
+        if (!other->get_conn())
+            continue;
+
         // 告知场景内的其他玩家，有新玩家进入了场景
-        other->send_msg(enter_other_sight.c_str(), enter_other_sight.size());
+        send_proto_msg(other->get_conn(), "players_enter_sight", others_sight);
 
         float px, py, pz;
         other->get_position(px, py, pz);
 
-        std::ostringstream buffer;
-        buffer << other->get_name() << ":" << px << ":" << py << ":" << pz;
-        if (!first)
-            players_enter_sight += "|";
-        else
-            first = false;
-        players_enter_sight += buffer.str();
+        space_service::AoiPlayer* aoi_player = player_sight.add_players();
+        aoi_player->set_name(other->get_name());
+        space_service::Vector3f* aoi_position = aoi_player->mutable_position();
+        aoi_position->set_x(px);
+        aoi_position->set_y(py);
+        aoi_position->set_z(pz);
     }
     // 把场景内所有已存在的玩家信息发送给新玩家
-    player->send_msg(players_enter_sight.c_str(), players_enter_sight.size());
+    send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
 
     _players.push_back(player);
 }
@@ -73,19 +80,15 @@ void Space::leave(Player* player)
     auto iter = std::find(_players.begin(), _players.end(), player);
     if (iter != _players.end()) {
         Player* player = *iter;
-
-        float x, y, z;
-        player->get_position(x, y, z);
-
-        std::ostringstream buffer;
-        buffer << "players_leave_sight#" << player->get_name();
-        std::string leave_other_sight = buffer.str();
+        space_service::PlayersLeaveSight sight;
+        std::string* player_name = sight.add_players();
+        *player_name = player->get_name();
 
         // 告知其他玩家该player退出了场景
         for (Player* other : _players) {
             if (other == player)
                 continue;
-            other->send_msg(leave_other_sight.c_str(), leave_other_sight.size());
+            send_proto_msg(other->get_conn(), "players_leave_sight", sight);
         }
 
         _players.erase(iter);

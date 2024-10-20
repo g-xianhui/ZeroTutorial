@@ -5,10 +5,10 @@ set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_CXX_STANDARD 20)
 
 set(THIRDPARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${CMAKE_SYSTEM_NAME})
-include_directories(${THIRDPARTY_DIR}/include/libevent)
-link_directories(${THIRDPARTY_DIR}/lib)
+# include_directories(${THIRDPARTY_DIR}/include/libevent)
+# link_directories(${THIRDPARTY_DIR}/lib)
 
-set(THIRDPARTY_LIBS event_core event_extra)
+# set(THIRDPARTY_LIBS event_core event_extra)
 
 IF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     list(APPEND SYSTEM_LIBS
@@ -19,11 +19,20 @@ ENDIF()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
 
-file(GLOB GAME_SERVER_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp)
+file(GLOB GAME_SERVER_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/proto/*.cc)
 file(GLOB GAME_SERVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h)
 
 add_executable(game_server ${GAME_SERVER_SRCS} ${GAME_SERVER_HEADERS})
 target_link_libraries(game_server ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
+
+find_package(protobuf)
+find_package(absl REQUIRED)
+find_package(Libevent REQUIRED)
+
+target_include_directories(game_server PUBLIC ${protobuf_INCLUDE_DIR} ${absl_INCLUDE_DIR} ${Libevent_INCLUDE_DIR})
+target_link_libraries(game_server protobuf::protobuf)
+target_link_libraries(game_server abseil::abseil)
+target_link_libraries(game_server libevent::libevent)
 
 IF (MSVC)
     set(MY_PATH "PATH=%PATH%" ${THIRDPARTY_DIR}/lib)
@@ -31,7 +40,7 @@ IF (MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
 ENDIF()
 
-IF (APPLE)
+#[[IF (APPLE)
     add_custom_command(
         TARGET game_server PRE_BUILD
         COMMAND rm libevent_core.dylib libevent_extra.dylib
@@ -39,4 +48,4 @@ IF (APPLE)
         COMMAND ln -s libevent_extra-2.1.7.dylib libevent_extra.dylib
         WORKING_DIRECTORY ${THIRDPARTY_DIR}/lib
     )
-ENDIF()
+ENDIF()]]

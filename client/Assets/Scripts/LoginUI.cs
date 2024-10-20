@@ -1,6 +1,10 @@
+using ProtoBuf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,8 +32,9 @@ public class LoginUI : MonoBehaviour
         if (isSuccess)
         {
             Debug.Log("connect to server successed");
-            string loginRequest = "login#" + AccountText.text;
-            NetworkManager.Instance.Send(loginRequest);
+            SpaceService.LoginRequest loginRequest = new SpaceService.LoginRequest();
+            loginRequest.Username = AccountText.text;
+            NetworkManager.Instance.Send("login", loginRequest);
         }
         else
         {

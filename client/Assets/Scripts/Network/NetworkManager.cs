@@ -1,3 +1,4 @@
+using SpaceService;
 using System;
 using System.Buffers.Binary;
 using System.Collections;
@@ -17,6 +18,30 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
+using static UnityEngine.EventSystems.EventTrigger;
+
+public class BitUtils
+{
+    public static int Read7BitEncodedInt(byte[] bytes, out int out_pos)
+    {
+        int value = 0;
+
+        byte c;
+        int i = 0;
+        int s = 0;
+        do
+        {
+            c = bytes[i++];
+            int x = (c & 0x7F);
+            x <<= s;
+            value += x;
+            s += 7;
+        } while ((c & 0x80) != 0);
+
+        out_pos = i;
+        return value;
+    }
+}
 
 public class RecvBuffer
 {
@@ -245,79 +270,19 @@ public class NetworkManager : MonoBehaviour
 
     private void HandleNetworkMsg(string msg)
     {
-        if (msg.StartsWith("login_reply#"))
-        {
-            int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos+1);
-            int result = int.Parse(tmp);
-            if (result == 0)
-            {
-                Debug.Log("login successed");    
-                StartCoroutine(loadScene());
-            }
-            else
-            {
-                Debug.Log("login failed: " + result);    
-            }
-        }
-        else if (msg.StartsWith("join_failed#"))
-        {
-            int pos = msg.IndexOf('#');
-            string reason = msg.Substring(pos+1);
-            Debug.Log("join space failed: " + reason);
-        }
-        else if (msg.StartsWith("join_successed#"))
-        {
-            int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos+1);
-            string[] arguments = tmp.Split(':');
+        byte[] bytes = Encoding.ASCII.GetBytes(msg);
+        int i = 0;
+        int msgNameLenght = BitUtils.Read7BitEncodedInt(bytes, out i);
+        string msgName = Encoding.ASCII.GetString(bytes, i, msgNameLenght);
+        Debug.Log($"msgName: {msgName}");
 
-            Vector3 position = new Vector3(float.Parse(arguments[1]), float.Parse(arguments[2]), float.Parse(arguments[3]));
-            Debug.Log($"join space successed! name: {arguments[0]}, position: {position}");
-
-            GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
-            if (prefab != null) {
-                GameObject.Instantiate(prefab, position, Quaternion.identity);
-            } else {
-                Debug.Log("main character not found");
-            }
-        }
-        else if (msg.StartsWith("players_enter_sight#"))
+        byte[] msgBytes = bytes.Skip(i + msgNameLenght).ToArray();
+        var m = typeof(NetworkManager).GetMethod(msgName);
+        if (m != null)
         {
-            int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos+1);
-            if (tmp.Length == 0)
-                return;
-
-            string[] playerStrings = tmp.Split('|');
-            foreach (string playerString in playerStrings)
-            {
-                string[] arguments = playerString.Split(':');
-                Vector3 position =  new Vector3(float.Parse(arguments[1]), float.Parse(arguments[2]), float.Parse(arguments[3]));
-                Debug.Log($"player enter sight, name: {arguments[0]}, position: {position}");
-                
-                GameObject otherPlayer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                otherPlayer.transform.position = position;
-                _players.Add(arguments[0], otherPlayer);
-            }
-        }
-        else if (msg.StartsWith("players_leave_sight#"))
-        {
-            int pos = msg.IndexOf('#');
-            string tmp = msg.Substring(pos+1);
-            if (tmp.Length == 0)
-                return;
-            
-            string[] playerStrings = tmp.Split('|');
-            foreach (string name in playerStrings)
-            {
-                Debug.Log($"player leave sight, name: {name}");
-                
-                GameObject player = null;
-                if (_players.Remove(name, out player)) {
-                    GameObject.Destroy(player);
-                }
-            }
+            object[] args = new object[1];
+            args[0] = msgBytes;
+            m.Invoke(this, args);
         }
     }
 
@@ -367,7 +332,7 @@ public class NetworkManager : MonoBehaviour
         {
             Task sendTask = Task.Run(() => { SendThreadFunc(); });
             Task readTask = Task.Run(() => { RecvThreadFunc(); });
-            Task.WhenAll(sendTask, readTask);
+            await Task.WhenAll(sendTask, readTask);
         }
     }
 
@@ -398,20 +363,49 @@ public class NetworkManager : MonoBehaviour
         writer.Write((byte)uValue);
     }
 
-    public void Send(string msg)
+    public void Send(byte[] bytes)
     {
-        Debug.Log("Send: " + msg);
         using (MemoryStream mem = new MemoryStream())
         {
             using (BinaryWriter binaryWriter = new BinaryWriter(mem))
             {
-                byte[] bytes = Encoding.UTF8.GetBytes(msg);
                 Write7BitEncodedInt(binaryWriter, bytes.Length);
                 binaryWriter.Write(bytes);
             }
             byte[] data = mem.ToArray();
             _sendBuffer.Send(data);
         }
+    }
+
+    public void Send(string msg)
+    {
+        byte[] bytes = Encoding.UTF8.GetBytes(msg);
+        Send(bytes);
+    }
+
+    public void Send<T>(string msgName, T msgObj)
+    {
+        using (MemoryStream mem = new MemoryStream())
+        {
+            using (BinaryWriter binaryWriter = new BinaryWriter(mem))
+            {
+                byte[] msgNameBytes = Encoding.ASCII.GetBytes(msgName);
+                Write7BitEncodedInt(binaryWriter, msgNameBytes.Length);
+                binaryWriter.Write(msgNameBytes);
+
+                if (msgObj != null)
+                    ProtoBuf.Serializer.Serialize(mem, msgObj);
+            }
+
+            byte[] data = mem.ToArray();
+            Send(data);
+        }
+    }
+
+    public T Recv<T>(byte[] bytes)
+    {
+        using (MemoryStream ms = new MemoryStream(bytes))
+            return ProtoBuf.Serializer.Deserialize<T>(ms);
     }
 
     private void SendThreadFunc()
@@ -482,7 +476,72 @@ public class NetworkManager : MonoBehaviour
             yield return null;
         }
 
-        string joinRequest = "join";
-        Send(joinRequest);
+        object arg = null;
+        Send("join", arg);
+    }
+
+    public void login_reply(byte[] msgBytes)
+    {
+        SpaceService.LoginReply loginReply = Recv<SpaceService.LoginReply>(msgBytes);
+        if (loginReply.Result == 0)
+        {
+            Debug.Log("login successed");
+            StartCoroutine(loadScene());
+        }
+        else
+        {
+            Debug.Log("login failed: " + loginReply.Result);
+        }
+    }
+
+    public void join_reply(byte[] msgBytes)
+    {
+        SpaceService.JoinReply joinReply = Recv<SpaceService.JoinReply>(msgBytes);
+        if (joinReply.Result == 0)
+        {
+            Vector3 position = new Vector3(joinReply.Position.X, joinReply.Position.Y, joinReply.Position.Z);
+            Debug.Log($"join space successed! position: {position}");
+            GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
+            if (prefab != null)
+            {
+                GameObject.Instantiate(prefab, position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.Log("main character not found");
+            }
+        }
+        else
+        {
+            Debug.Log("join failed: " + joinReply.Result);
+        }
+    }
+
+    public void players_enter_sight(byte[] msgBytes)
+    {
+        SpaceService.PlayersEnterSight sight = Recv<SpaceService.PlayersEnterSight>(msgBytes);
+        foreach (SpaceService.AoiPlayer aoiPlayer in sight.Players)
+        {
+            SpaceService.Vector3f aoiPosition = aoiPlayer.Position;
+            Vector3 position = new Vector3(aoiPosition.X, aoiPosition.Y, aoiPosition.Z);
+            Debug.Log($"player enter sight, name: {aoiPlayer.Name}, position: {position}");
+
+            GameObject otherPlayer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            otherPlayer.transform.position = position;
+            _players.Add(aoiPlayer.Name, otherPlayer);
+        }
+    }
+
+    public void players_leave_sight(byte[] msgBytes)
+    {
+        SpaceService.PlayersLeaveSight sight = Recv<SpaceService.PlayersLeaveSight>(msgBytes);
+        foreach (string playerName in sight.Players)
+        {
+            GameObject player = null;
+            if (_players.Remove(playerName, out player))
+            {
+                GameObject.Destroy(player);
+            }
+        }
     }
 }

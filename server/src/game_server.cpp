@@ -2,6 +2,7 @@
 #include "echo_service.h"
 #include "space_service.h"
 
+#include <google/protobuf/stubs/common.h>
 #include <event2/event.h>
 
 #include <iostream>
@@ -12,6 +13,8 @@ const char* HOST = "0.0.0.0";
 const int PORT = 1988;
 
 int main(int argc, char** argv) {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+
 #ifdef _WIN32
     WSADATA wsa_data;
     if (WSAStartup(0x0201, &wsa_data) != 0) {
