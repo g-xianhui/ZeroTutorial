@@ -4,12 +4,6 @@ project(ZeroServer)
 set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_CXX_STANDARD 20)
 
-set(THIRDPARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${CMAKE_SYSTEM_NAME})
-# include_directories(${THIRDPARTY_DIR}/include/libevent)
-# link_directories(${THIRDPARTY_DIR}/lib)
-
-# set(THIRDPARTY_LIBS event_core event_extra)
-
 IF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     list(APPEND SYSTEM_LIBS
         ws2_32
@@ -35,17 +29,6 @@ target_link_libraries(game_server abseil::abseil)
 target_link_libraries(game_server libevent::libevent)
 
 IF (MSVC)
-    set(MY_PATH "PATH=%PATH%" ${THIRDPARTY_DIR}/lib)
-    set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")
+    # set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
 ENDIF()
-
-#[[IF (APPLE)
-    add_custom_command(
-        TARGET game_server PRE_BUILD
-        COMMAND rm libevent_core.dylib libevent_extra.dylib
-        COMMAND ln -s libevent_core-2.1.7.dylib libevent_core.dylib
-        COMMAND ln -s libevent_extra-2.1.7.dylib libevent_extra.dylib
-        WORKING_DIRECTORY ${THIRDPARTY_DIR}/lib
-    )
-ENDIF()]]
