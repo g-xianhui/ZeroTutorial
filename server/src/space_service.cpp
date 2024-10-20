@@ -8,7 +8,7 @@
 
 #include "proto/space_service.pb.h"
 
-#define REG_MSG_HANDLER(msg_name) name_2_handler.insert(std::make_pair(#msg_name, &SpaceService::##msg_name))
+#define REG_MSG_HANDLER(msg_name) name_2_handler.insert(std::make_pair(#msg_name, &SpaceService::msg_name))
 
 enum class LoginError {
     already_logined = 1,
