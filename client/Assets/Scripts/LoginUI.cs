@@ -1,4 +1,4 @@
-using ProtoBuf;
+using Google.Protobuf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ public class LoginUI : MonoBehaviour
             Debug.Log("connect to server successed");
             SpaceService.LoginRequest loginRequest = new SpaceService.LoginRequest();
             loginRequest.Username = AccountText.text;
-            NetworkManager.Instance.Send("login", loginRequest);
+            NetworkManager.Instance.Send("login", loginRequest.ToByteArray());
         }
         else
         {

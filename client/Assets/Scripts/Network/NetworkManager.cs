@@ -19,6 +19,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 using static UnityEngine.EventSystems.EventTrigger;
+using Google.Protobuf;
 
 public class BitUtils
 {
@@ -383,7 +384,7 @@ public class NetworkManager : MonoBehaviour
         Send(bytes);
     }
 
-    public void Send<T>(string msgName, T msgObj)
+    public void Send(string msgName, byte[] msgBytes)
     {
         using (MemoryStream mem = new MemoryStream())
         {
@@ -393,8 +394,10 @@ public class NetworkManager : MonoBehaviour
                 Write7BitEncodedInt(binaryWriter, msgNameBytes.Length);
                 binaryWriter.Write(msgNameBytes);
 
-                if (msgObj != null)
-                    ProtoBuf.Serializer.Serialize(mem, msgObj);
+                if (msgBytes != null)
+                    binaryWriter.Write(msgBytes);
+                //if (msgObj != null)
+                //    ProtoBuf.Serializer.Serialize(mem, msgObj);
             }
 
             byte[] data = mem.ToArray();
@@ -402,11 +405,11 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public T Recv<T>(byte[] bytes)
-    {
-        using (MemoryStream ms = new MemoryStream(bytes))
-            return ProtoBuf.Serializer.Deserialize<T>(ms);
-    }
+    //public T Recv<T>(byte[] bytes)
+    //{
+    //    using (MemoryStream ms = new MemoryStream(bytes))
+    //        return ProtoBuf.Serializer.Deserialize<T>(ms);
+    //}
 
     private void SendThreadFunc()
     {
@@ -476,13 +479,12 @@ public class NetworkManager : MonoBehaviour
             yield return null;
         }
 
-        object arg = null;
-        Send("join", arg);
+        Send("join", null);
     }
 
     public void login_reply(byte[] msgBytes)
     {
-        SpaceService.LoginReply loginReply = Recv<SpaceService.LoginReply>(msgBytes);
+        SpaceService.LoginReply loginReply = SpaceService.LoginReply.Parser.ParseFrom(msgBytes);
         if (loginReply.Result == 0)
         {
             Debug.Log("login successed");
@@ -496,7 +498,7 @@ public class NetworkManager : MonoBehaviour
 
     public void join_reply(byte[] msgBytes)
     {
-        SpaceService.JoinReply joinReply = Recv<SpaceService.JoinReply>(msgBytes);
+        SpaceService.JoinReply joinReply = SpaceService.JoinReply.Parser.ParseFrom(msgBytes);
         if (joinReply.Result == 0)
         {
             Vector3 position = new Vector3(joinReply.Position.X, joinReply.Position.Y, joinReply.Position.Z);
@@ -519,7 +521,7 @@ public class NetworkManager : MonoBehaviour
 
     public void players_enter_sight(byte[] msgBytes)
     {
-        SpaceService.PlayersEnterSight sight = Recv<SpaceService.PlayersEnterSight>(msgBytes);
+        SpaceService.PlayersEnterSight sight = SpaceService.PlayersEnterSight.Parser.ParseFrom(msgBytes);
         foreach (SpaceService.AoiPlayer aoiPlayer in sight.Players)
         {
             SpaceService.Vector3f aoiPosition = aoiPlayer.Position;
@@ -534,7 +536,7 @@ public class NetworkManager : MonoBehaviour
 
     public void players_leave_sight(byte[] msgBytes)
     {
-        SpaceService.PlayersLeaveSight sight = Recv<SpaceService.PlayersLeaveSight>(msgBytes);
+        SpaceService.PlayersLeaveSight sight = SpaceService.PlayersLeaveSight.Parser.ParseFrom(msgBytes);
         foreach (string playerName in sight.Players)
         {
             GameObject player = null;
