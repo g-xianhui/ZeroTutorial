@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <cassert>
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 #include <event2/buffer.h>
 
@@ -22,8 +22,8 @@ accept_error_cb(struct evconnlistener* listener, void* ctx)
 {
     struct event_base* base = evconnlistener_get_base(listener);
     int err = EVUTIL_SOCKET_ERROR();
-    fprintf(stderr, "Got an error %d (%s) on the listener. "
-        "Shutting down.\n", err, evutil_socket_error_to_string(err));
+    spdlog::error("Got an error {} ({}) on the listener.\n Shutting down.",
+        err, evutil_socket_error_to_string(err));
     event_base_loopexit(base, NULL);
 }
 
@@ -45,7 +45,7 @@ void TcpServer::start(struct event_base* base)
         LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE, -1,
         (struct sockaddr*)&sin, sizeof(sin));
     if (!_listener) {
-        std::cerr << "Couldn't create listener" << std::endl;
+        spdlog::error("Couldn't create listener");
         return;
     }
     evconnlistener_set_error_cb(_listener, accept_error_cb);

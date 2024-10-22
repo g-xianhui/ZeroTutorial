@@ -22,11 +22,13 @@ target_link_libraries(game_server ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
 find_package(protobuf)
 find_package(absl REQUIRED)
 find_package(Libevent REQUIRED)
+find_package(spdlog REQUIRED)
 
 target_include_directories(game_server PUBLIC ${protobuf_INCLUDE_DIR} ${absl_INCLUDE_DIR} ${Libevent_INCLUDE_DIR})
 target_link_libraries(game_server protobuf::protobuf)
 target_link_libraries(game_server abseil::abseil)
 target_link_libraries(game_server libevent::libevent)
+target_link_libraries(game_server spdlog::spdlog)
 
 IF (MSVC)
     # set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")

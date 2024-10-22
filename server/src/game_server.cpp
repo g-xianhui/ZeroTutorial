@@ -4,8 +4,7 @@
 
 #include <google/protobuf/stubs/common.h>
 #include <event2/event.h>
-
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 struct event_base* EVENT_BASE = nullptr;
 
@@ -14,6 +13,8 @@ const int PORT = 1988;
 
 int main(int argc, char** argv) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+    spdlog::set_level(spdlog::level::debug);
 
 #ifdef _WIN32
     WSADATA wsa_data;
@@ -24,16 +25,18 @@ int main(int argc, char** argv) {
             NULL, error, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&buffer, 0, NULL);
         std::string message(buffer, size);
         LocalFree(buffer);
-        std::cerr << "WSAStartup failed: " << message << std::endl;
+        spdlog::error("WSAStartup failed: {}", message);
         return 1;
     }
 #endif
 
     EVENT_BASE = event_base_new();
     if (!EVENT_BASE) {
-        std::cerr << "create event base failed!" << std::endl;
+        spdlog::error("create event base failed!");
         return -1;
     }
+
+    spdlog::info("game server started!");
 
     //EchoService echo_service;
     //echo_service.start(HOST, PORT);

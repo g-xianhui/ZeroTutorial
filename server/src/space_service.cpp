@@ -8,6 +8,8 @@
 
 #include "proto/space_service.pb.h"
 
+#include <spdlog/spdlog.h>
+
 #define REG_MSG_HANDLER(msg_name) name_2_handler.insert(std::make_pair(#msg_name, &SpaceService::msg_name))
 
 enum class LoginError {
@@ -78,7 +80,7 @@ void SpaceService::handle_msg(TcpConnection* conn, const std::string& msg)
         (this->*msg_handler)(conn, msg_bytes);
     }
     else {
-        std::cerr << "msg_handler not found: " << msg_name << std::endl;
+        spdlog::error("msg_handler not found: {}", msg_name);
     }
 }
 
@@ -88,7 +90,7 @@ void SpaceService::login(TcpConnection* conn, const std::string& msg_bytes)
     login_req.ParseFromString(msg_bytes);
 
     const std::string& username = login_req.username();
-    std::cout << "login: " << username << std::endl;
+    spdlog::info("login: {}", username);
 
     space_service::LoginReply login_reply;
     int result = 0;

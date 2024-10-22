@@ -1,6 +1,7 @@
 [requires]
 protobuf/5.27.0
 libevent/2.1.12
+spdlog/1.14.1
 
 [generators]
 CMakeDeps

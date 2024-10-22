@@ -6,7 +6,7 @@
 
 #include <event2/buffer.h>
 
-#include <iostream>
+#include <spdlog/spdlog.h>
 #include <cassert>
 
 const size_t SEND_BUFFER_SIZE = 16 * 1024 * 1024;
@@ -129,7 +129,7 @@ void TcpConnection::send_data(const char* data, size_t n)
     struct evbuffer* buf = bufferevent_get_output(_bev);
     size_t len = evbuffer_get_length(buf);
     if (len + n > SEND_BUFFER_SIZE) {
-        std::cerr << __FUNCTION__ << " reach snd buf limit, write " << n << ", cur_len: " << len << std::endl;
+        spdlog::error("{} reach snd buf limit, write {}, cur_len: {}", __FUNCTION__, n, len);
         on_lost_connection();
     }
     else {
@@ -169,7 +169,6 @@ void TcpConnection::on_error(int err)
 
 void TcpConnection::on_lost_connection()
 {
-    std::cerr << __FUNCTION__ << std::endl;
     // actually on_lost_connection means half close, we have to close the connection on our side
     bufferevent_free(_bev);
     _bev = nullptr;
