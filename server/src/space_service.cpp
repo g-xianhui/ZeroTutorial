@@ -25,6 +25,7 @@ std::map<std::string, SpaceService::MsgHandlerFunc> SpaceService::register_msg_h
     REG_MSG_HANDLER(login);
     REG_MSG_HANDLER(join);
     REG_MSG_HANDLER(leave);
+    REG_MSG_HANDLER(upload_movement);
     return name_2_handler;
 }
 
@@ -59,6 +60,12 @@ void SpaceService::on_lost_connection(TcpConnection* conn)
 {
     leave(conn, std::string{});
     delete conn;
+}
+
+Player* SpaceService::find_player(TcpConnection* conn)
+{
+    auto iter = _conn_2_player.find(conn);
+    return iter == _conn_2_player.end() ? nullptr : iter->second;
 }
 
 void SpaceService::handle_msg(TcpConnection* conn, const std::string& msg)
@@ -133,8 +140,19 @@ void SpaceService::leave(TcpConnection* conn, const std::string&)
     delete player;
 }
 
-Player* SpaceService::find_player(TcpConnection* conn)
+void SpaceService::upload_movement(TcpConnection* conn, const std::string& msg_bytes)
 {
-    auto iter = _conn_2_player.find(conn);
-    return iter == _conn_2_player.end() ? nullptr : iter->second;
+    Player* player = find_player(conn);
+    if (!player)
+        return;
+
+    space_service::Movement movement;
+    movement.ParseFromString(msg_bytes);
+    spdlog::debug("movement position({}, {}, {}), velocity({}, {}, {})",
+        movement.position().x(), movement.position().y(), movement.position().z(),
+        movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
+
+    player->set_position(movement.position().x(), movement.position().y(), movement.position().z());
+    player->set_rotation(movement.rotation().x(), movement.rotation().y(), movement.rotation().z());
+    player->set_velocity(movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
 }

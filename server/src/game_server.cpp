@@ -1,15 +1,30 @@
 #include "globals.h"
 #include "echo_service.h"
 #include "space_service.h"
+#include "wheel_timer.h"
 
 #include <google/protobuf/stubs/common.h>
 #include <event2/event.h>
 #include <spdlog/spdlog.h>
 
 struct event_base* EVENT_BASE = nullptr;
+WheelTimer G_Timer{ 33, 1024 };
 
 const char* HOST = "0.0.0.0";
 const int PORT = 1988;
+
+static void on_libevent_update(evutil_socket_t fd, short what, void* arg)
+{
+    G_Timer.update();
+}
+
+void init_timer() {
+    struct event* ev = event_new(EVENT_BASE, -1, EV_PERSIST, on_libevent_update, nullptr);
+    struct timeval tv = { 0, 33 * 1000 };
+    event_add(ev, &tv);
+
+    G_Timer.start();
+}
 
 int main(int argc, char** argv) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -35,6 +50,7 @@ int main(int argc, char** argv) {
         spdlog::error("create event base failed!");
         return -1;
     }
+    init_timer();
 
     spdlog::info("game server started!");
 

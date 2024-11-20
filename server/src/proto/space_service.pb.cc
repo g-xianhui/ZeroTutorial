@@ -105,6 +105,27 @@ struct LoginReplyDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginReplyDefaultTypeInternal _LoginReply_default_instance_;
 
+inline constexpr Movement::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        position_{nullptr},
+        rotation_{nullptr},
+        velocity_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Movement::Movement(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MovementDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MovementDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MovementDefaultTypeInternal() {}
+  union {
+    Movement _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MovementDefaultTypeInternal _Movement_default_instance_;
+
 inline constexpr JoinReply::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -165,6 +186,47 @@ struct PlayersEnterSightDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayersEnterSightDefaultTypeInternal _PlayersEnterSight_default_instance_;
+
+inline constexpr PlayerMovement::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        data_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerMovement::PlayerMovement(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PlayerMovementDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerMovementDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerMovementDefaultTypeInternal() {}
+  union {
+    PlayerMovement _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerMovementDefaultTypeInternal _PlayerMovement_default_instance_;
+
+inline constexpr PlayerMovements::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : datas_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerMovements::PlayerMovements(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PlayerMovementsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerMovementsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerMovementsDefaultTypeInternal() {}
+  union {
+    PlayerMovements _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerMovementsDefaultTypeInternal _PlayerMovements_default_instance_;
 }  // namespace space_service
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_space_5fservice_2eproto = nullptr;
@@ -184,6 +246,20 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::space_service::Vector3f, _impl_.x_),
         PROTOBUF_FIELD_OFFSET(::space_service::Vector3f, _impl_.y_),
         PROTOBUF_FIELD_OFFSET(::space_service::Vector3f, _impl_.z_),
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.position_),
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.rotation_),
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.velocity_),
+        0,
+        1,
+        2,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::LoginRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -244,52 +320,86 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::PlayersLeaveSight, _impl_.players_),
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovement, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovement, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovement, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovement, _impl_.data_),
+        ~0u,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovements, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovements, _impl_.datas_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::space_service::Vector3f)},
-        {11, -1, -1, sizeof(::space_service::LoginRequest)},
-        {20, -1, -1, sizeof(::space_service::LoginReply)},
-        {29, 39, -1, sizeof(::space_service::JoinReply)},
-        {41, 51, -1, sizeof(::space_service::AoiPlayer)},
-        {53, -1, -1, sizeof(::space_service::PlayersEnterSight)},
-        {62, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
+        {11, 22, -1, sizeof(::space_service::Movement)},
+        {25, -1, -1, sizeof(::space_service::LoginRequest)},
+        {34, -1, -1, sizeof(::space_service::LoginReply)},
+        {43, 53, -1, sizeof(::space_service::JoinReply)},
+        {55, 65, -1, sizeof(::space_service::AoiPlayer)},
+        {67, -1, -1, sizeof(::space_service::PlayersEnterSight)},
+        {76, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
+        {85, 95, -1, sizeof(::space_service::PlayerMovement)},
+        {97, -1, -1, sizeof(::space_service::PlayerMovements)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
+    &::space_service::_Movement_default_instance_._instance,
     &::space_service::_LoginRequest_default_instance_._instance,
     &::space_service::_LoginReply_default_instance_._instance,
     &::space_service::_JoinReply_default_instance_._instance,
     &::space_service::_AoiPlayer_default_instance_._instance,
     &::space_service::_PlayersEnterSight_default_instance_._instance,
     &::space_service::_PlayersLeaveSight_default_instance_._instance,
+    &::space_service::_PlayerMovement_default_instance_._instance,
+    &::space_service::_PlayerMovements_default_instance_._instance,
 };
 const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\023space_service.proto\022\rspace_service\"+\n\010"
     "Vector3f\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001("
-    "\002\" \n\014LoginRequest\022\020\n\010username\030\001 \001(\t\"\034\n\nL"
-    "oginReply\022\016\n\006result\030\001 \001(\005\"X\n\tJoinReply\022\016"
-    "\n\006result\030\001 \001(\005\022.\n\010position\030\002 \001(\0132\027.space"
-    "_service.Vector3fH\000\210\001\001B\013\n\t_position\"D\n\tA"
-    "oiPlayer\022\014\n\004name\030\001 \001(\t\022)\n\010position\030\002 \001(\013"
-    "2\027.space_service.Vector3f\">\n\021PlayersEnte"
-    "rSight\022)\n\007players\030\001 \003(\0132\030.space_service."
-    "AoiPlayer\"$\n\021PlayersLeaveSight\022\017\n\007player"
-    "s\030\001 \003(\tb\006proto3"
+    "\002\"\213\001\n\010Movement\022)\n\010position\030\001 \001(\0132\027.space"
+    "_service.Vector3f\022)\n\010rotation\030\002 \001(\0132\027.sp"
+    "ace_service.Vector3f\022)\n\010velocity\030\003 \001(\0132\027"
+    ".space_service.Vector3f\" \n\014LoginRequest\022"
+    "\020\n\010username\030\001 \001(\t\"\034\n\nLoginReply\022\016\n\006resul"
+    "t\030\001 \001(\005\"X\n\tJoinReply\022\016\n\006result\030\001 \001(\005\022.\n\010"
+    "position\030\002 \001(\0132\027.space_service.Vector3fH"
+    "\000\210\001\001B\013\n\t_position\"D\n\tAoiPlayer\022\014\n\004name\030\001"
+    " \001(\t\022)\n\010position\030\002 \001(\0132\027.space_service.V"
+    "ector3f\">\n\021PlayersEnterSight\022)\n\007players\030"
+    "\001 \003(\0132\030.space_service.AoiPlayer\"$\n\021Playe"
+    "rsLeaveSight\022\017\n\007players\030\001 \003(\t\"E\n\016PlayerM"
+    "ovement\022\014\n\004name\030\001 \001(\t\022%\n\004data\030\002 \001(\0132\027.sp"
+    "ace_service.Movement\"\?\n\017PlayerMovements\022"
+    ",\n\005datas\030\001 \003(\0132\035.space_service.PlayerMov"
+    "ementb\006proto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    415,
+    693,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
     nullptr,
     0,
-    7,
+    10,
     schemas,
     file_default_instances,
     TableStruct_space_5fservice_2eproto::offsets,
@@ -567,6 +677,306 @@ void Vector3f::InternalSwap(Vector3f* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata Vector3f::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Movement::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<Movement>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Movement, _impl_._has_bits_);
+};
+
+Movement::Movement(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.Movement)
+}
+inline PROTOBUF_NDEBUG_INLINE Movement::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::Movement& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+Movement::Movement(
+    ::google::protobuf::Arena* arena,
+    const Movement& from)
+    : ::google::protobuf::Message(arena) {
+  Movement* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.position_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(
+                              arena, *from._impl_.position_)
+                        : nullptr;
+  _impl_.rotation_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(
+                              arena, *from._impl_.rotation_)
+                        : nullptr;
+  _impl_.velocity_ = (cached_has_bits & 0x00000004u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(
+                              arena, *from._impl_.velocity_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.Movement)
+}
+inline PROTOBUF_NDEBUG_INLINE Movement::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void Movement::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, position_),
+           0,
+           offsetof(Impl_, velocity_) -
+               offsetof(Impl_, position_) +
+               sizeof(Impl_::velocity_));
+}
+Movement::~Movement() {
+  // @@protoc_insertion_point(destructor:space_service.Movement)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void Movement::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.position_;
+  delete _impl_.rotation_;
+  delete _impl_.velocity_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+Movement::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(Movement, _impl_._cached_size_),
+              false,
+          },
+          &Movement::MergeImpl,
+          &Movement::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 3, 0, 2> Movement::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Movement, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    3,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_Movement_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::Movement>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .space_service.Vector3f position = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Movement, _impl_.position_)}},
+    // .space_service.Vector3f rotation = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(Movement, _impl_.rotation_)}},
+    // .space_service.Vector3f velocity = 3;
+    {::_pbi::TcParser::FastMtS1,
+     {26, 2, 2, PROTOBUF_FIELD_OFFSET(Movement, _impl_.velocity_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .space_service.Vector3f position = 1;
+    {PROTOBUF_FIELD_OFFSET(Movement, _impl_.position_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .space_service.Vector3f rotation = 2;
+    {PROTOBUF_FIELD_OFFSET(Movement, _impl_.rotation_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .space_service.Vector3f velocity = 3;
+    {PROTOBUF_FIELD_OFFSET(Movement, _impl_.velocity_), _Internal::kHasBitsOffset + 2, 2,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
+    {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
+    {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void Movement::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.Movement)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.position_ != nullptr);
+      _impl_.position_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.rotation_ != nullptr);
+      _impl_.rotation_->Clear();
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(_impl_.velocity_ != nullptr);
+      _impl_.velocity_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* Movement::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.Movement)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .space_service.Vector3f position = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.position_, _impl_.position_->GetCachedSize(), target, stream);
+  }
+
+  // .space_service.Vector3f rotation = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *_impl_.rotation_, _impl_.rotation_->GetCachedSize(), target, stream);
+  }
+
+  // .space_service.Vector3f velocity = 3;
+  if (cached_has_bits & 0x00000004u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, *_impl_.velocity_, _impl_.velocity_->GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.Movement)
+  return target;
+}
+
+::size_t Movement::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.Movement)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    // .space_service.Vector3f position = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.position_);
+    }
+
+    // .space_service.Vector3f rotation = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.rotation_);
+    }
+
+    // .space_service.Vector3f velocity = 3;
+    if (cached_has_bits & 0x00000004u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.velocity_);
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void Movement::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Movement*>(&to_msg);
+  auto& from = static_cast<const Movement&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.Movement)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.position_ != nullptr);
+      if (_this->_impl_.position_ == nullptr) {
+        _this->_impl_.position_ =
+            ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(arena, *from._impl_.position_);
+      } else {
+        _this->_impl_.position_->MergeFrom(*from._impl_.position_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.rotation_ != nullptr);
+      if (_this->_impl_.rotation_ == nullptr) {
+        _this->_impl_.rotation_ =
+            ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(arena, *from._impl_.rotation_);
+      } else {
+        _this->_impl_.rotation_->MergeFrom(*from._impl_.rotation_);
+      }
+    }
+    if (cached_has_bits & 0x00000004u) {
+      ABSL_DCHECK(from._impl_.velocity_ != nullptr);
+      if (_this->_impl_.velocity_ == nullptr) {
+        _this->_impl_.velocity_ =
+            ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(arena, *from._impl_.velocity_);
+      } else {
+        _this->_impl_.velocity_->MergeFrom(*from._impl_.velocity_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Movement::CopyFrom(const Movement& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.Movement)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Movement::InternalSwap(Movement* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Movement, _impl_.velocity_)
+      + sizeof(Movement::_impl_.velocity_)
+      - PROTOBUF_FIELD_OFFSET(Movement, _impl_.position_)>(
+          reinterpret_cast<char*>(&_impl_.position_),
+          reinterpret_cast<char*>(&other->_impl_.position_));
+}
+
+::google::protobuf::Metadata Movement::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -1796,6 +2206,438 @@ void PlayersLeaveSight::InternalSwap(PlayersLeaveSight* PROTOBUF_RESTRICT other)
 }
 
 ::google::protobuf::Metadata PlayersLeaveSight::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerMovement::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<PlayerMovement>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_._has_bits_);
+};
+
+PlayerMovement::PlayerMovement(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.PlayerMovement)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerMovement::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::PlayerMovement& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        name_(arena, from.name_) {}
+
+PlayerMovement::PlayerMovement(
+    ::google::protobuf::Arena* arena,
+    const PlayerMovement& from)
+    : ::google::protobuf::Message(arena) {
+  PlayerMovement* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.data_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Movement>(
+                              arena, *from._impl_.data_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.PlayerMovement)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerMovement::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        name_(arena) {}
+
+inline void PlayerMovement::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.data_ = {};
+}
+PlayerMovement::~PlayerMovement() {
+  // @@protoc_insertion_point(destructor:space_service.PlayerMovement)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PlayerMovement::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  delete _impl_.data_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+PlayerMovement::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_._cached_size_),
+              false,
+          },
+          &PlayerMovement::MergeImpl,
+          &PlayerMovement::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 41, 2> PlayerMovement::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PlayerMovement_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::PlayerMovement>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .space_service.Movement data = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_.data_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_.name_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .space_service.Movement data = 2;
+    {PROTOBUF_FIELD_OFFSET(PlayerMovement, _impl_.data_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::space_service::Movement>()},
+  }}, {{
+    "\34\4\0\0\0\0\0\0"
+    "space_service.PlayerMovement"
+    "name"
+  }},
+};
+
+PROTOBUF_NOINLINE void PlayerMovement::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.PlayerMovement)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.data_ != nullptr);
+    _impl_.data_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* PlayerMovement::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.PlayerMovement)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "space_service.PlayerMovement.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .space_service.Movement data = 2;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *_impl_.data_, _impl_.data_->GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.PlayerMovement)
+  return target;
+}
+
+::size_t PlayerMovement::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.PlayerMovement)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  // .space_service.Movement data = 2;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.data_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void PlayerMovement::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PlayerMovement*>(&to_msg);
+  auto& from = static_cast<const PlayerMovement&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.PlayerMovement)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.data_ != nullptr);
+    if (_this->_impl_.data_ == nullptr) {
+      _this->_impl_.data_ =
+          ::google::protobuf::Message::CopyConstruct<::space_service::Movement>(arena, *from._impl_.data_);
+    } else {
+      _this->_impl_.data_->MergeFrom(*from._impl_.data_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayerMovement::CopyFrom(const PlayerMovement& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.PlayerMovement)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerMovement::InternalSwap(PlayerMovement* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  swap(_impl_.data_, other->_impl_.data_);
+}
+
+::google::protobuf::Metadata PlayerMovement::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerMovements::_Internal {
+ public:
+};
+
+PlayerMovements::PlayerMovements(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.PlayerMovements)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerMovements::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::PlayerMovements& from_msg)
+      : datas_{visibility, arena, from.datas_},
+        _cached_size_{0} {}
+
+PlayerMovements::PlayerMovements(
+    ::google::protobuf::Arena* arena,
+    const PlayerMovements& from)
+    : ::google::protobuf::Message(arena) {
+  PlayerMovements* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:space_service.PlayerMovements)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerMovements::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : datas_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void PlayerMovements::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+PlayerMovements::~PlayerMovements() {
+  // @@protoc_insertion_point(destructor:space_service.PlayerMovements)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PlayerMovements::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+PlayerMovements::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(PlayerMovements, _impl_._cached_size_),
+              false,
+          },
+          &PlayerMovements::MergeImpl,
+          &PlayerMovements::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> PlayerMovements::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_PlayerMovements_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::PlayerMovements>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .space_service.PlayerMovement datas = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerMovements, _impl_.datas_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .space_service.PlayerMovement datas = 1;
+    {PROTOBUF_FIELD_OFFSET(PlayerMovements, _impl_.datas_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::space_service::PlayerMovement>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PlayerMovements::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.PlayerMovements)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.datas_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* PlayerMovements::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.PlayerMovements)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .space_service.PlayerMovement datas = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this->_internal_datas_size());
+       i < n; i++) {
+    const auto& repfield = this->_internal_datas().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.PlayerMovements)
+  return target;
+}
+
+::size_t PlayerMovements::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.PlayerMovements)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // repeated .space_service.PlayerMovement datas = 1;
+  total_size += 1UL * this->_internal_datas_size();
+  for (const auto& msg : this->_internal_datas()) {
+    total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void PlayerMovements::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PlayerMovements*>(&to_msg);
+  auto& from = static_cast<const PlayerMovements&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.PlayerMovements)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_datas()->MergeFrom(
+      from._internal_datas());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayerMovements::CopyFrom(const PlayerMovements& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.PlayerMovements)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerMovements::InternalSwap(PlayerMovements* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.datas_.InternalSwap(&other->_impl_.datas_);
+}
+
+::google::protobuf::Metadata PlayerMovements::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

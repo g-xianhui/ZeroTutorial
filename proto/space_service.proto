@@ -8,6 +8,12 @@ message Vector3f {
   float z = 3;
 }
 
+message Movement {
+  Vector3f position = 1;
+  Vector3f rotation = 2;
+  Vector3f velocity = 3;
+}
+
 message LoginRequest {
   string username = 1;
 }
@@ -32,4 +38,13 @@ message PlayersEnterSight {
 
 message PlayersLeaveSight {
   repeated string players = 1;
+}
+
+message PlayerMovement {
+  string name = 1;
+  Movement data = 2;
+}
+
+message PlayerMovements {
+  repeated PlayerMovement datas = 1;
 }

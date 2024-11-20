@@ -1,5 +1,6 @@
 #include "space.h"
 #include "player.h"
+#include "wheel_timer.h"
 
 #include "network/tcp_connection.h"
 
@@ -13,6 +14,13 @@ float get_random()
     static std::default_random_engine e;
     static std::uniform_real_distribution<float> dis(0.f, 1.f);
     return dis(e);
+}
+
+Space::Space(size_t w, size_t h) : _width(w), _height(h)
+{
+    _update_timer = G_Timer.add_timer(100, [this]() {
+        this->update();
+    }, true);
 }
 
 Space::~Space()
@@ -99,4 +107,47 @@ bool Space::has_player(Player* player)
 {
     auto iter = std::find(_players.begin(), _players.end(), player);
     return iter != _players.end();
+}
+
+void Space::update()
+{
+    //UE中character有一个transform，其中rotation是以quaternaion来存储的，但是在双端传输时会转成yaw/roll/pitch。
+    //所以总的策略和python3对字符串的处理就很像，对外的utf-8，对内是unicode
+    //TTransform
+    ///** Rotation of this transformation, as a quaternion */
+    //TPersistentVectorRegisterType<T> Rotation;
+    ///** Translation of this transformation, as a vector */
+    //TPersistentVectorRegisterType<T> Translation;
+    ///** 3D scale (always applied in local space) as a vector */
+    //TPersistentVectorRegisterType<T> Scale3D;
+
+    space_service::PlayerMovements player_movements;
+    for (Player* p : _players) {
+        Vector3f cur_position = p->get_position();
+        Rotation cur_rotation = p->get_rotation();
+        Vector3f cur_velocity = p->get_velocity();
+
+        space_service::PlayerMovement* data = player_movements.add_datas();
+        data->set_name(p->get_name());
+
+        space_service::Movement* new_move = data->mutable_data();
+        space_service::Vector3f* position = new_move->mutable_position();
+        position->set_x(cur_position.x);
+        position->set_y(cur_position.y);
+        position->set_z(cur_position.z);
+
+        space_service::Vector3f* rotation = new_move->mutable_rotation();
+        rotation->set_x(cur_rotation.pitch);
+        rotation->set_y(cur_rotation.yaw);
+        rotation->set_z(cur_rotation.roll);
+
+        space_service::Vector3f* velocity = new_move->mutable_velocity();
+        velocity->set_x(cur_velocity.x);
+        velocity->set_y(cur_velocity.y);
+        velocity->set_z(cur_velocity.z);
+    }
+
+    for (Player* p : _players) {
+        send_proto_msg(p->get_conn(), "sync_movement", player_movements);
+    }
 }

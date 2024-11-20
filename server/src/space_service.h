@@ -25,6 +25,8 @@ public:
     virtual void on_lost_connection(TcpConnection* conn) override;
     virtual void handle_msg(TcpConnection* conn, const std::string& msg) override;
 
+    Player* find_player(TcpConnection* conn);
+
     // 请求以username登录
     void login(TcpConnection*, const std::string&);
 
@@ -33,8 +35,7 @@ public:
     // 请求离开场景
     void leave(TcpConnection*, const std::string&);
 
-    Player* find_player(TcpConnection* conn);
-
+    void upload_movement(TcpConnection*, const std::string&);
 private:
     Space* _space = nullptr;
 

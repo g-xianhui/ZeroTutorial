@@ -258,9 +258,7 @@ public class NetworkManager : MonoBehaviour
             byte[] bytes = null;
             if (_msgQueue.TryDequeue(out bytes!))
             {
-                string msg = Encoding.UTF8.GetString(bytes);
-                // Debug.Log("Recv: " + msg);
-                HandleNetworkMsg(msg);
+                HandleNetworkMsg(bytes);
             }
             else
             {
@@ -269,13 +267,11 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    private void HandleNetworkMsg(string msg)
+    private void HandleNetworkMsg(byte[] bytes)
     {
-        byte[] bytes = Encoding.ASCII.GetBytes(msg);
         int i = 0;
         int msgNameLenght = BitUtils.Read7BitEncodedInt(bytes, out i);
         string msgName = Encoding.ASCII.GetString(bytes, i, msgNameLenght);
-        Debug.Log($"msgName: {msgName}");
 
         byte[] msgBytes = bytes.Skip(i + msgNameLenght).ToArray();
         var m = typeof(NetworkManager).GetMethod(msgName);
@@ -396,20 +392,12 @@ public class NetworkManager : MonoBehaviour
 
                 if (msgBytes != null)
                     binaryWriter.Write(msgBytes);
-                //if (msgObj != null)
-                //    ProtoBuf.Serializer.Serialize(mem, msgObj);
             }
 
             byte[] data = mem.ToArray();
             Send(data);
         }
     }
-
-    //public T Recv<T>(byte[] bytes)
-    //{
-    //    using (MemoryStream ms = new MemoryStream(bytes))
-    //        return ProtoBuf.Serializer.Deserialize<T>(ms);
-    //}
 
     private void SendThreadFunc()
     {
@@ -543,6 +531,25 @@ public class NetworkManager : MonoBehaviour
             if (_players.Remove(playerName, out player))
             {
                 GameObject.Destroy(player);
+            }
+        }
+    }
+
+    public GameObject find_player(string name)
+    {
+        return _players.GetValueOrDefault(name);
+    }
+
+    public void sync_movement(byte[] msgBytes)
+    {
+        SpaceService.PlayerMovements playerMovements = SpaceService.PlayerMovements.Parser.ParseFrom(msgBytes);
+        foreach (SpaceService.PlayerMovement playerMovement in playerMovements.Datas)
+        {
+            GameObject otherPlayer = find_player(playerMovement.Name);
+            if (otherPlayer != null)
+            {
+                otherPlayer.transform.position = new Vector3(playerMovement.Data.Position.X, playerMovement.Data.Position.Y, playerMovement.Data.Position.Z);
+                otherPlayer.transform.rotation = Quaternion.Euler(playerMovement.Data.Rotation.X, playerMovement.Data.Rotation.Y, playerMovement.Data.Rotation.Z);
             }
         }
     }
