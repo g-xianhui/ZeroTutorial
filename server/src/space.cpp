@@ -16,6 +16,40 @@ float get_random()
     return dis(e);
 }
 
+void get_movement_data(Player* p, space_service::Movement* new_move)
+{
+    Vector3f cur_position = p->get_position();
+    Rotation cur_rotation = p->get_rotation();
+    Vector3f cur_velocity = p->get_velocity();
+    Vector3f cur_acceleration = p->get_acceleration();
+    Vector3f cur_angular_velocity = p->get_angular_velocity();
+
+    space_service::Vector3f* position = new_move->mutable_position();
+    position->set_x(cur_position.x);
+    position->set_y(cur_position.y);
+    position->set_z(cur_position.z);
+
+    space_service::Vector3f* rotation = new_move->mutable_rotation();
+    rotation->set_x(cur_rotation.pitch);
+    rotation->set_y(cur_rotation.yaw);
+    rotation->set_z(cur_rotation.roll);
+
+    space_service::Vector3f* velocity = new_move->mutable_velocity();
+    velocity->set_x(cur_velocity.x);
+    velocity->set_y(cur_velocity.y);
+    velocity->set_z(cur_velocity.z);
+
+    space_service::Vector3f* acceleration = new_move->mutable_acceleration();
+    acceleration->set_x(cur_acceleration.x);
+    acceleration->set_y(cur_acceleration.y);
+    acceleration->set_z(cur_acceleration.z);
+
+    space_service::Vector3f* angular_velocity = new_move->mutable_angular_velocity();
+    angular_velocity->set_x(cur_angular_velocity.x);
+    angular_velocity->set_y(cur_angular_velocity.y);
+    angular_velocity->set_z(cur_angular_velocity.z);
+}
+
 Space::Space(size_t w, size_t h) : _width(w), _height(h)
 {
     _update_timer = G_Timer.add_timer(100, [this]() {
@@ -54,10 +88,8 @@ void Space::join(Player* player)
     space_service::PlayersEnterSight others_sight;
     space_service::AoiPlayer* aoi_player = others_sight.add_players();
     aoi_player->set_name(player->get_name());
-    space_service::Vector3f* aoi_position = aoi_player->mutable_position();
-    aoi_position->set_x(x);
-    aoi_position->set_y(y);
-    aoi_position->set_z(z);
+    space_service::Movement* new_transform = aoi_player->mutable_transform();
+    get_movement_data(player, new_transform);
 
     space_service::PlayersEnterSight player_sight;
     for (Player* other : _players) {
@@ -67,15 +99,10 @@ void Space::join(Player* player)
         // 告知场景内的其他玩家，有新玩家进入了场景
         send_proto_msg(other->get_conn(), "players_enter_sight", others_sight);
 
-        float px, py, pz;
-        other->get_position(px, py, pz);
-
         space_service::AoiPlayer* aoi_player = player_sight.add_players();
         aoi_player->set_name(other->get_name());
-        space_service::Vector3f* aoi_position = aoi_player->mutable_position();
-        aoi_position->set_x(px);
-        aoi_position->set_y(py);
-        aoi_position->set_z(pz);
+        space_service::Movement* new_transform = aoi_player->mutable_transform();
+        get_movement_data(other, new_transform);
     }
     // 把场景内所有已存在的玩家信息发送给新玩家
     send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
@@ -111,40 +138,13 @@ bool Space::has_player(Player* player)
 
 void Space::update()
 {
-    //UE中character有一个transform，其中rotation是以quaternaion来存储的，但是在双端传输时会转成yaw/roll/pitch。
-    //所以总的策略和python3对字符串的处理就很像，对外的utf-8，对内是unicode
-    //TTransform
-    ///** Rotation of this transformation, as a quaternion */
-    //TPersistentVectorRegisterType<T> Rotation;
-    ///** Translation of this transformation, as a vector */
-    //TPersistentVectorRegisterType<T> Translation;
-    ///** 3D scale (always applied in local space) as a vector */
-    //TPersistentVectorRegisterType<T> Scale3D;
-
     space_service::PlayerMovements player_movements;
     for (Player* p : _players) {
-        Vector3f cur_position = p->get_position();
-        Rotation cur_rotation = p->get_rotation();
-        Vector3f cur_velocity = p->get_velocity();
-
         space_service::PlayerMovement* data = player_movements.add_datas();
         data->set_name(p->get_name());
 
         space_service::Movement* new_move = data->mutable_data();
-        space_service::Vector3f* position = new_move->mutable_position();
-        position->set_x(cur_position.x);
-        position->set_y(cur_position.y);
-        position->set_z(cur_position.z);
-
-        space_service::Vector3f* rotation = new_move->mutable_rotation();
-        rotation->set_x(cur_rotation.pitch);
-        rotation->set_y(cur_rotation.yaw);
-        rotation->set_z(cur_rotation.roll);
-
-        space_service::Vector3f* velocity = new_move->mutable_velocity();
-        velocity->set_x(cur_velocity.x);
-        velocity->set_y(cur_velocity.y);
-        velocity->set_z(cur_velocity.z);
+        get_movement_data(p, new_move);
     }
 
     for (Player* p : _players) {

@@ -233,6 +233,17 @@ public class NetworkManager : MonoBehaviour
 
     private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
     private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
+    private GameObject _mainPlayer = null;
+
+    private float _rtt = 0.1f;
+    public float RTT
+    {
+        get => _rtt;
+        set
+        {
+            _rtt = value;
+        }
+    }
 
     void Awake()
     {
@@ -494,7 +505,10 @@ public class NetworkManager : MonoBehaviour
             GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
             if (prefab != null)
             {
-                GameObject.Instantiate(prefab, position, Quaternion.identity);
+                GameObject mainCharacter = GameObject.Instantiate(prefab, position, Quaternion.identity);
+                NetworkComponent networkComponent = mainCharacter.GetComponent<NetworkComponent>();
+                networkComponent.NetRole = ENetRole.Autonomous;
+                _mainPlayer = mainCharacter;
             }
             else
             {
@@ -512,13 +526,25 @@ public class NetworkManager : MonoBehaviour
         SpaceService.PlayersEnterSight sight = SpaceService.PlayersEnterSight.Parser.ParseFrom(msgBytes);
         foreach (SpaceService.AoiPlayer aoiPlayer in sight.Players)
         {
-            SpaceService.Vector3f aoiPosition = aoiPlayer.Position;
+            SpaceService.Vector3f aoiPosition = aoiPlayer.Transform.Position;
+            SpaceService.Vector3f aoiRotation = aoiPlayer.Transform.Rotation;
             Vector3 position = new Vector3(aoiPosition.X, aoiPosition.Y, aoiPosition.Z);
-            Debug.Log($"player enter sight, name: {aoiPlayer.Name}, position: {position}");
+            Quaternion rotation = Quaternion.Euler(aoiRotation.X, aoiRotation.Y, aoiRotation.Z);
+            Debug.Log($"player enter sight, name: {aoiPlayer.Name}, position: {position}, rotation: {rotation.eulerAngles}");
 
-            GameObject otherPlayer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            otherPlayer.transform.position = position;
-            _players.Add(aoiPlayer.Name, otherPlayer);
+            GameObject prefab = Resources.Load<GameObject>("Character/OtherCharacter");
+            if (prefab != null)
+            {
+                GameObject otherPlayer = GameObject.Instantiate(prefab, position, rotation);
+                NetworkComponent networkComponent = otherPlayer.GetComponent<NetworkComponent>();
+                networkComponent.NetRole = ENetRole.Simulate;
+                networkComponent.InitMovement(aoiPlayer.Transform);
+                _players.Add(aoiPlayer.Name, otherPlayer);
+            }
+            else
+            {
+                Debug.Log("other character prefab not found");
+            }
         }
     }
 
@@ -548,9 +574,24 @@ public class NetworkManager : MonoBehaviour
             GameObject otherPlayer = find_player(playerMovement.Name);
             if (otherPlayer != null)
             {
-                otherPlayer.transform.position = new Vector3(playerMovement.Data.Position.X, playerMovement.Data.Position.Y, playerMovement.Data.Position.Z);
-                otherPlayer.transform.rotation = Quaternion.Euler(playerMovement.Data.Rotation.X, playerMovement.Data.Rotation.Y, playerMovement.Data.Rotation.Z);
+                ServerMovePack serverMovePack = new ServerMovePack
+                {
+                    Position = new Vector3(playerMovement.Data.Position.X, playerMovement.Data.Position.Y, playerMovement.Data.Position.Z),
+                    Rotation = Quaternion.Euler(playerMovement.Data.Rotation.X, playerMovement.Data.Rotation.Y, playerMovement.Data.Rotation.Z),
+                    Velocity = new Vector3(playerMovement.Data.Velocity.X, playerMovement.Data.Velocity.Y, playerMovement.Data.Velocity.Z),
+                    Acceleration = new Vector3(playerMovement.Data.Acceleration.X, playerMovement.Data.Acceleration.Y, playerMovement.Data.Acceleration.Z),
+                    AngularVelocity = new Vector3(playerMovement.Data.AngularVelocity.X, playerMovement.Data.AngularVelocity.Y, playerMovement.Data.AngularVelocity.Z),
+                };
+                NetworkComponent networkComponent = otherPlayer.GetComponent<NetworkComponent>();
+                networkComponent.SyncMovement(serverMovePack);
             }
         }
+    }
+
+    public void pong(byte[] msgBytes)
+    {
+        SpaceService.Pong pong = SpaceService.Pong.Parser.ParseFrom(msgBytes);
+        NetworkComponent networkComponent = _mainPlayer.GetComponent<NetworkComponent>();
+        networkComponent.Pong(pong.T);
     }
 }

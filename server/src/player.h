@@ -63,6 +63,26 @@ public:
         return _velocity;
     }
 
+    inline void set_acceleration(float x, float y, float z) {
+        _acceleration.x = x;
+        _acceleration.y = y;
+        _acceleration.z = z;
+    }
+
+    inline Vector3f get_acceleration() {
+        return _acceleration;
+    }
+
+    inline void set_angular_velocity(float x, float y, float z) {
+        _angular_velocity.x = x;
+        _angular_velocity.y = y;
+        _angular_velocity.z = z;
+    }
+
+    inline Vector3f get_angular_velocity() {
+        return _angular_velocity;
+    }
+
     inline void set_pos_update(bool is_update) { _is_pos_update = is_update; }
     inline bool is_pos_update() { return _is_pos_update; }
 
@@ -73,6 +93,8 @@ private:
     Vector3f _position;
     Rotation _rotation;
     Vector3f _velocity;
+    Vector3f _acceleration;
+    Vector3f _angular_velocity;
 
     bool _is_pos_update = false;
 };

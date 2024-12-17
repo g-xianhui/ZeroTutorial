@@ -11,7 +11,9 @@ message Vector3f {
 message Movement {
   Vector3f position = 1;
   Vector3f rotation = 2;
-  Vector3f velocity = 3;
+  optional Vector3f velocity = 3;
+  optional Vector3f acceleration = 4;
+  optional Vector3f angular_velocity = 5;
 }
 
 message LoginRequest {
@@ -30,6 +32,7 @@ message JoinReply {
 message AoiPlayer {
   string name = 1;
   Vector3f position = 2;  
+  Movement transform = 3;
 }
 
 message PlayersEnterSight {
@@ -47,4 +50,12 @@ message PlayerMovement {
 
 message PlayerMovements {
   repeated PlayerMovement datas = 1;
+}
+
+message Ping {
+  float t = 1;
+}
+
+message Pong {
+  float t = 1;
 }

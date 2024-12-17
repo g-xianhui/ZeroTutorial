@@ -35,7 +35,11 @@ public:
     // 请求离开场景
     void leave(TcpConnection*, const std::string&);
 
+    // 移动同步
     void upload_movement(TcpConnection*, const std::string&);
+    
+    // ping
+    void ping(TcpConnection*, const std::string&);
 private:
     Space* _space = nullptr;
 

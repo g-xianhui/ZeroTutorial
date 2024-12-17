@@ -26,6 +26,7 @@ std::map<std::string, SpaceService::MsgHandlerFunc> SpaceService::register_msg_h
     REG_MSG_HANDLER(join);
     REG_MSG_HANDLER(leave);
     REG_MSG_HANDLER(upload_movement);
+    REG_MSG_HANDLER(ping);
     return name_2_handler;
 }
 
@@ -155,4 +156,20 @@ void SpaceService::upload_movement(TcpConnection* conn, const std::string& msg_b
     player->set_position(movement.position().x(), movement.position().y(), movement.position().z());
     player->set_rotation(movement.rotation().x(), movement.rotation().y(), movement.rotation().z());
     player->set_velocity(movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
+    player->set_acceleration(movement.acceleration().x(), movement.acceleration().y(), movement.acceleration().z());
+    player->set_angular_velocity(movement.angular_velocity().x(), movement.angular_velocity().y(), movement.angular_velocity().z());
+}
+
+void SpaceService::ping(TcpConnection* conn, const std::string& msg_bytes)
+{
+    Player* player = find_player(conn);
+    if (!player)
+        return;
+
+    space_service::Ping ping_data;
+    ping_data.ParseFromString(msg_bytes);
+
+    space_service::Pong pong_data;
+    pong_data.set_t(ping_data.t());
+    send_proto_msg(conn, "pong", pong_data);
 }

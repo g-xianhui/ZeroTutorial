@@ -51,7 +51,7 @@ std::vector<std::string> RecvBuffer::recv(const char* bytes, size_t n) {
                 bindex += _need_bytes;
 
                 // finish one msg
-                std::string msg{ _buffer, _need_bytes };
+                std::string msg{ _buffer, _position + _need_bytes };
                 msgs.push_back(std::move(msg));
 
                 // reset to initial state
