@@ -151,6 +151,8 @@ class SendBuffer
     public uint _startPos, _endPos;
     public uint _sendBytes = 0;
 
+    private AutoResetEvent _dataEvent = new AutoResetEvent(false);
+
     public SendBuffer(uint len)
     {
         _buffer = new byte[len];
@@ -187,6 +189,7 @@ class SendBuffer
         }
 
         _endPos = (_endPos + dataLength) % _capacity;
+        _dataEvent.Set();
     }
 
     public void Flush(NetworkStream stream)
@@ -212,6 +215,17 @@ class SendBuffer
         }
 
         _startPos = saveEndPos;
+    }
+
+    public bool WaitDataEvent()
+    {
+        _dataEvent.WaitOne();
+        return true;
+    }
+
+    public void Close()
+    {
+        _dataEvent.Set();
     }
 }
 
@@ -414,21 +428,15 @@ public class NetworkManager : MonoBehaviour
     {
         while (_isConnected)
         {
-            if (_sendBuffer.Empty())
+            _sendBuffer.WaitDataEvent();
+            try
             {
-                Thread.Sleep(10);
+                _sendBuffer.Flush(_stream);
             }
-            else
+            catch (Exception e)
             {
-                try
-                {
-                    _sendBuffer.Flush(_stream);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(e.ToString());
-                    break;
-                }
+                Debug.LogError(e.ToString());
+                break;
             }
         }
 

@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff722eddb97ba94da7964c6ddf93238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncMovementMode: 2
+  SyncMovementMode: 1
   MovementUploadInterval: 0.03333
   MovementSyncInterval: 0.1
   PredictionCorrectionDistance: 1
