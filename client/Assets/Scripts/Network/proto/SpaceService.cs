@@ -25,31 +25,32 @@ namespace SpaceService {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChNzcGFjZV9zZXJ2aWNlLnByb3RvEg1zcGFjZV9zZXJ2aWNlIisKCFZlY3Rv",
-            "cjNmEgkKAXgYASABKAISCQoBeRgCIAEoAhIJCgF6GAMgASgCIq8CCghNb3Zl",
+            "cjNmEgkKAXgYASABKAISCQoBeRgCIAEoAhIJCgF6GAMgASgCItACCghNb3Zl",
             "bWVudBIpCghwb3NpdGlvbhgBIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9y",
             "M2YSKQoIcm90YXRpb24YAiABKAsyFy5zcGFjZV9zZXJ2aWNlLlZlY3RvcjNm",
             "Ei4KCHZlbG9jaXR5GAMgASgLMhcuc3BhY2Vfc2VydmljZS5WZWN0b3IzZkgA",
             "iAEBEjIKDGFjY2VsZXJhdGlvbhgEIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVj",
             "dG9yM2ZIAYgBARI2ChBhbmd1bGFyX3ZlbG9jaXR5GAUgASgLMhcuc3BhY2Vf",
-            "c2VydmljZS5WZWN0b3IzZkgCiAEBQgsKCV92ZWxvY2l0eUIPCg1fYWNjZWxl",
-            "cmF0aW9uQhMKEV9hbmd1bGFyX3ZlbG9jaXR5IiAKDExvZ2luUmVxdWVzdBIQ",
-            "Cgh1c2VybmFtZRgBIAEoCSIcCgpMb2dpblJlcGx5Eg4KBnJlc3VsdBgBIAEo",
-            "BSJYCglKb2luUmVwbHkSDgoGcmVzdWx0GAEgASgFEi4KCHBvc2l0aW9uGAIg",
-            "ASgLMhcuc3BhY2Vfc2VydmljZS5WZWN0b3IzZkgAiAEBQgsKCV9wb3NpdGlv",
-            "biJwCglBb2lQbGF5ZXISDAoEbmFtZRgBIAEoCRIpCghwb3NpdGlvbhgCIAEo",
-            "CzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2YSKgoJdHJhbnNmb3JtGAMgASgL",
-            "Mhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudCI+ChFQbGF5ZXJzRW50ZXJTaWdo",
-            "dBIpCgdwbGF5ZXJzGAEgAygLMhguc3BhY2Vfc2VydmljZS5Bb2lQbGF5ZXIi",
-            "JAoRUGxheWVyc0xlYXZlU2lnaHQSDwoHcGxheWVycxgBIAMoCSJFCg5QbGF5",
-            "ZXJNb3ZlbWVudBIMCgRuYW1lGAEgASgJEiUKBGRhdGEYAiABKAsyFy5zcGFj",
-            "ZV9zZXJ2aWNlLk1vdmVtZW50Ij8KD1BsYXllck1vdmVtZW50cxIsCgVkYXRh",
-            "cxgBIAMoCzIdLnNwYWNlX3NlcnZpY2UuUGxheWVyTW92ZW1lbnQiEQoEUGlu",
-            "ZxIJCgF0GAEgASgCIhEKBFBvbmcSCQoBdBgBIAEoAmIGcHJvdG8z"));
+            "c2VydmljZS5WZWN0b3IzZkgCiAEBEgwKBG1vZGUYBiABKAUSEQoJdGltZXN0",
+            "YW1wGAcgASgCQgsKCV92ZWxvY2l0eUIPCg1fYWNjZWxlcmF0aW9uQhMKEV9h",
+            "bmd1bGFyX3ZlbG9jaXR5IiAKDExvZ2luUmVxdWVzdBIQCgh1c2VybmFtZRgB",
+            "IAEoCSIcCgpMb2dpblJlcGx5Eg4KBnJlc3VsdBgBIAEoBSJYCglKb2luUmVw",
+            "bHkSDgoGcmVzdWx0GAEgASgFEi4KCHBvc2l0aW9uGAIgASgLMhcuc3BhY2Vf",
+            "c2VydmljZS5WZWN0b3IzZkgAiAEBQgsKCV9wb3NpdGlvbiJwCglBb2lQbGF5",
+            "ZXISDAoEbmFtZRgBIAEoCRIpCghwb3NpdGlvbhgCIAEoCzIXLnNwYWNlX3Nl",
+            "cnZpY2UuVmVjdG9yM2YSKgoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2Vy",
+            "dmljZS5Nb3ZlbWVudCI+ChFQbGF5ZXJzRW50ZXJTaWdodBIpCgdwbGF5ZXJz",
+            "GAEgAygLMhguc3BhY2Vfc2VydmljZS5Bb2lQbGF5ZXIiJAoRUGxheWVyc0xl",
+            "YXZlU2lnaHQSDwoHcGxheWVycxgBIAMoCSJFCg5QbGF5ZXJNb3ZlbWVudBIM",
+            "CgRuYW1lGAEgASgJEiUKBGRhdGEYAiABKAsyFy5zcGFjZV9zZXJ2aWNlLk1v",
+            "dmVtZW50Ij8KD1BsYXllck1vdmVtZW50cxIsCgVkYXRhcxgBIAMoCzIdLnNw",
+            "YWNlX3NlcnZpY2UuUGxheWVyTW92ZW1lbnQiEQoEUGluZxIJCgF0GAEgASgC",
+            "IhEKBFBvbmcSCQoBdBgBIAEoAmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Vector3f), global::SpaceService.Vector3f.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Movement), global::SpaceService.Movement.Parser, new[]{ "Position", "Rotation", "Velocity", "Acceleration", "AngularVelocity" }, new[]{ "Velocity", "Acceleration", "AngularVelocity" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Movement), global::SpaceService.Movement.Parser, new[]{ "Position", "Rotation", "Velocity", "Acceleration", "AngularVelocity", "Mode", "Timestamp" }, new[]{ "Velocity", "Acceleration", "AngularVelocity" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginRequest), global::SpaceService.LoginRequest.Parser, new[]{ "Username" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginReply), global::SpaceService.LoginReply.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.JoinReply), global::SpaceService.JoinReply.Parser, new[]{ "Result", "Position" }, new[]{ "Position" }, null, null, null),
@@ -378,6 +379,8 @@ namespace SpaceService {
       velocity_ = other.velocity_ != null ? other.velocity_.Clone() : null;
       acceleration_ = other.acceleration_ != null ? other.acceleration_.Clone() : null;
       angularVelocity_ = other.angularVelocity_ != null ? other.angularVelocity_.Clone() : null;
+      mode_ = other.mode_;
+      timestamp_ = other.timestamp_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -447,6 +450,30 @@ namespace SpaceService {
       }
     }
 
+    /// <summary>Field number for the "mode" field.</summary>
+    public const int ModeFieldNumber = 6;
+    private int mode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Mode {
+      get { return mode_; }
+      set {
+        mode_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "timestamp" field.</summary>
+    public const int TimestampFieldNumber = 7;
+    private float timestamp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Timestamp {
+      get { return timestamp_; }
+      set {
+        timestamp_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -467,6 +494,8 @@ namespace SpaceService {
       if (!object.Equals(Velocity, other.Velocity)) return false;
       if (!object.Equals(Acceleration, other.Acceleration)) return false;
       if (!object.Equals(AngularVelocity, other.AngularVelocity)) return false;
+      if (Mode != other.Mode) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Timestamp, other.Timestamp)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -479,6 +508,8 @@ namespace SpaceService {
       if (velocity_ != null) hash ^= Velocity.GetHashCode();
       if (acceleration_ != null) hash ^= Acceleration.GetHashCode();
       if (angularVelocity_ != null) hash ^= AngularVelocity.GetHashCode();
+      if (Mode != 0) hash ^= Mode.GetHashCode();
+      if (Timestamp != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Timestamp);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -517,6 +548,14 @@ namespace SpaceService {
         output.WriteRawTag(42);
         output.WriteMessage(AngularVelocity);
       }
+      if (Mode != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Mode);
+      }
+      if (Timestamp != 0F) {
+        output.WriteRawTag(61);
+        output.WriteFloat(Timestamp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -547,6 +586,14 @@ namespace SpaceService {
         output.WriteRawTag(42);
         output.WriteMessage(AngularVelocity);
       }
+      if (Mode != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Mode);
+      }
+      if (Timestamp != 0F) {
+        output.WriteRawTag(61);
+        output.WriteFloat(Timestamp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -571,6 +618,12 @@ namespace SpaceService {
       }
       if (angularVelocity_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AngularVelocity);
+      }
+      if (Mode != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Mode);
+      }
+      if (Timestamp != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -613,6 +666,12 @@ namespace SpaceService {
           AngularVelocity = new global::SpaceService.Vector3f();
         }
         AngularVelocity.MergeFrom(other.AngularVelocity);
+      }
+      if (other.Mode != 0) {
+        Mode = other.Mode;
+      }
+      if (other.Timestamp != 0F) {
+        Timestamp = other.Timestamp;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -668,6 +727,14 @@ namespace SpaceService {
             input.ReadMessage(AngularVelocity);
             break;
           }
+          case 48: {
+            Mode = input.ReadInt32();
+            break;
+          }
+          case 61: {
+            Timestamp = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -720,6 +787,14 @@ namespace SpaceService {
               AngularVelocity = new global::SpaceService.Vector3f();
             }
             input.ReadMessage(AngularVelocity);
+            break;
+          }
+          case 48: {
+            Mode = input.ReadInt32();
+            break;
+          }
+          case 61: {
+            Timestamp = input.ReadFloat();
             break;
           }
         }

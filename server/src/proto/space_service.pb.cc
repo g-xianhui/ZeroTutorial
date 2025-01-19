@@ -150,7 +150,9 @@ inline constexpr Movement::Impl_::Impl_(
         rotation_{nullptr},
         velocity_{nullptr},
         acceleration_{nullptr},
-        angular_velocity_{nullptr} {}
+        angular_velocity_{nullptr},
+        mode_{0},
+        timestamp_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Movement::Movement(::_pbi::ConstantInitialized)
@@ -300,11 +302,15 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.velocity_),
         PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.acceleration_),
         PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.angular_velocity_),
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.mode_),
+        PROTOBUF_FIELD_OFFSET(::space_service::Movement, _impl_.timestamp_),
         0,
         1,
         2,
         3,
         4,
+        ~0u,
+        ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::LoginRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -411,17 +417,17 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::space_service::Vector3f)},
-        {11, 24, -1, sizeof(::space_service::Movement)},
-        {29, -1, -1, sizeof(::space_service::LoginRequest)},
-        {38, -1, -1, sizeof(::space_service::LoginReply)},
-        {47, 57, -1, sizeof(::space_service::JoinReply)},
-        {59, 70, -1, sizeof(::space_service::AoiPlayer)},
-        {73, -1, -1, sizeof(::space_service::PlayersEnterSight)},
-        {82, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
-        {91, 101, -1, sizeof(::space_service::PlayerMovement)},
-        {103, -1, -1, sizeof(::space_service::PlayerMovements)},
-        {112, -1, -1, sizeof(::space_service::Ping)},
-        {121, -1, -1, sizeof(::space_service::Pong)},
+        {11, 26, -1, sizeof(::space_service::Movement)},
+        {33, -1, -1, sizeof(::space_service::LoginRequest)},
+        {42, -1, -1, sizeof(::space_service::LoginReply)},
+        {51, 61, -1, sizeof(::space_service::JoinReply)},
+        {63, 74, -1, sizeof(::space_service::AoiPlayer)},
+        {77, -1, -1, sizeof(::space_service::PlayersEnterSight)},
+        {86, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
+        {95, 105, -1, sizeof(::space_service::PlayerMovement)},
+        {107, -1, -1, sizeof(::space_service::PlayerMovements)},
+        {116, -1, -1, sizeof(::space_service::Ping)},
+        {125, -1, -1, sizeof(::space_service::Pong)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -441,34 +447,35 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     protodesc_cold) = {
     "\n\023space_service.proto\022\rspace_service\"+\n\010"
     "Vector3f\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001("
-    "\002\"\257\002\n\010Movement\022)\n\010position\030\001 \001(\0132\027.space"
+    "\002\"\320\002\n\010Movement\022)\n\010position\030\001 \001(\0132\027.space"
     "_service.Vector3f\022)\n\010rotation\030\002 \001(\0132\027.sp"
     "ace_service.Vector3f\022.\n\010velocity\030\003 \001(\0132\027"
     ".space_service.Vector3fH\000\210\001\001\0222\n\014accelera"
     "tion\030\004 \001(\0132\027.space_service.Vector3fH\001\210\001\001"
     "\0226\n\020angular_velocity\030\005 \001(\0132\027.space_servi"
-    "ce.Vector3fH\002\210\001\001B\013\n\t_velocityB\017\n\r_accele"
-    "rationB\023\n\021_angular_velocity\" \n\014LoginRequ"
-    "est\022\020\n\010username\030\001 \001(\t\"\034\n\nLoginReply\022\016\n\006r"
-    "esult\030\001 \001(\005\"X\n\tJoinReply\022\016\n\006result\030\001 \001(\005"
-    "\022.\n\010position\030\002 \001(\0132\027.space_service.Vecto"
-    "r3fH\000\210\001\001B\013\n\t_position\"p\n\tAoiPlayer\022\014\n\004na"
-    "me\030\001 \001(\t\022)\n\010position\030\002 \001(\0132\027.space_servi"
-    "ce.Vector3f\022*\n\ttransform\030\003 \001(\0132\027.space_s"
-    "ervice.Movement\">\n\021PlayersEnterSight\022)\n\007"
-    "players\030\001 \003(\0132\030.space_service.AoiPlayer\""
-    "$\n\021PlayersLeaveSight\022\017\n\007players\030\001 \003(\t\"E\n"
-    "\016PlayerMovement\022\014\n\004name\030\001 \001(\t\022%\n\004data\030\002 "
-    "\001(\0132\027.space_service.Movement\"\?\n\017PlayerMo"
-    "vements\022,\n\005datas\030\001 \003(\0132\035.space_service.P"
-    "layerMovement\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"\021\n\004Pong"
-    "\022\t\n\001t\030\001 \001(\002b\006proto3"
+    "ce.Vector3fH\002\210\001\001\022\014\n\004mode\030\006 \001(\005\022\021\n\ttimest"
+    "amp\030\007 \001(\002B\013\n\t_velocityB\017\n\r_accelerationB"
+    "\023\n\021_angular_velocity\" \n\014LoginRequest\022\020\n\010"
+    "username\030\001 \001(\t\"\034\n\nLoginReply\022\016\n\006result\030\001"
+    " \001(\005\"X\n\tJoinReply\022\016\n\006result\030\001 \001(\005\022.\n\010pos"
+    "ition\030\002 \001(\0132\027.space_service.Vector3fH\000\210\001"
+    "\001B\013\n\t_position\"p\n\tAoiPlayer\022\014\n\004name\030\001 \001("
+    "\t\022)\n\010position\030\002 \001(\0132\027.space_service.Vect"
+    "or3f\022*\n\ttransform\030\003 \001(\0132\027.space_service."
+    "Movement\">\n\021PlayersEnterSight\022)\n\007players"
+    "\030\001 \003(\0132\030.space_service.AoiPlayer\"$\n\021Play"
+    "ersLeaveSight\022\017\n\007players\030\001 \003(\t\"E\n\016Player"
+    "Movement\022\014\n\004name\030\001 \001(\t\022%\n\004data\030\002 \001(\0132\027.s"
+    "pace_service.Movement\"\?\n\017PlayerMovements"
+    "\022,\n\005datas\030\001 \003(\0132\035.space_service.PlayerMo"
+    "vement\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"\021\n\004Pong\022\t\n\001t\030\001"
+    " \001(\002b\006proto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    939,
+    972,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
@@ -800,6 +807,13 @@ Movement::Movement(
   _impl_.angular_velocity_ = (cached_has_bits & 0x00000010u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(
                               arena, *from._impl_.angular_velocity_)
                         : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, mode_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, mode_),
+           offsetof(Impl_, timestamp_) -
+               offsetof(Impl_, mode_) +
+               sizeof(Impl_::timestamp_));
 
   // @@protoc_insertion_point(copy_constructor:space_service.Movement)
 }
@@ -813,9 +827,9 @@ inline void Movement::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, position_),
            0,
-           offsetof(Impl_, angular_velocity_) -
+           offsetof(Impl_, timestamp_) -
                offsetof(Impl_, position_) +
-               sizeof(Impl_::angular_velocity_));
+               sizeof(Impl_::timestamp_));
 }
 Movement::~Movement() {
   // @@protoc_insertion_point(destructor:space_service.Movement)
@@ -853,15 +867,15 @@ Movement::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 5, 0, 2> Movement::_table_ = {
+const ::_pbi::TcParseTable<3, 7, 5, 0, 2> Movement::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Movement, _impl_._has_bits_),
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    7, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967168,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    7,  // num_field_entries
     5,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_Movement_default_instance_._instance,
@@ -887,8 +901,12 @@ const ::_pbi::TcParseTable<3, 5, 5, 0, 2> Movement::_table_ = {
     // optional .space_service.Vector3f angular_velocity = 5;
     {::_pbi::TcParser::FastMtS1,
      {42, 4, 4, PROTOBUF_FIELD_OFFSET(Movement, _impl_.angular_velocity_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // int32 mode = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Movement, _impl_.mode_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(Movement, _impl_.mode_)}},
+    // float timestamp = 7;
+    {::_pbi::TcParser::FastF32S1,
+     {61, 63, 0, PROTOBUF_FIELD_OFFSET(Movement, _impl_.timestamp_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -907,6 +925,12 @@ const ::_pbi::TcParseTable<3, 5, 5, 0, 2> Movement::_table_ = {
     // optional .space_service.Vector3f angular_velocity = 5;
     {PROTOBUF_FIELD_OFFSET(Movement, _impl_.angular_velocity_), _Internal::kHasBitsOffset + 4, 4,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // int32 mode = 6;
+    {PROTOBUF_FIELD_OFFSET(Movement, _impl_.mode_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // float timestamp = 7;
+    {PROTOBUF_FIELD_OFFSET(Movement, _impl_.timestamp_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
   }}, {{
     {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
     {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
@@ -947,6 +971,9 @@ PROTOBUF_NOINLINE void Movement::Clear() {
       _impl_.angular_velocity_->Clear();
     }
   }
+  ::memset(&_impl_.mode_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.timestamp_) -
+      reinterpret_cast<char*>(&_impl_.mode_)) + sizeof(_impl_.timestamp_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -987,6 +1014,25 @@ PROTOBUF_NOINLINE void Movement::Clear() {
   if (cached_has_bits & 0x00000010u) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         5, *_impl_.angular_velocity_, _impl_.angular_velocity_->GetCachedSize(), target, stream);
+  }
+
+  // int32 mode = 6;
+  if (this->_internal_mode() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<6>(
+            stream, this->_internal_mode(), target);
+  }
+
+  // float timestamp = 7;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timestamp = this->_internal_timestamp();
+  ::uint32_t raw_timestamp;
+  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
+  if (raw_timestamp != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        7, this->_internal_timestamp(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1040,6 +1086,22 @@ PROTOBUF_NOINLINE void Movement::Clear() {
     }
 
   }
+  // int32 mode = 6;
+  if (this->_internal_mode() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_mode());
+  }
+
+  // float timestamp = 7;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timestamp = this->_internal_timestamp();
+  ::uint32_t raw_timestamp;
+  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
+  if (raw_timestamp != 0) {
+    total_size += 5;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1101,6 +1163,17 @@ void Movement::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
       }
     }
   }
+  if (from._internal_mode() != 0) {
+    _this->_impl_.mode_ = from._impl_.mode_;
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timestamp = from._internal_timestamp();
+  ::uint32_t raw_timestamp;
+  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
+  if (raw_timestamp != 0) {
+    _this->_impl_.timestamp_ = from._impl_.timestamp_;
+  }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1118,8 +1191,8 @@ void Movement::InternalSwap(Movement* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Movement, _impl_.angular_velocity_)
-      + sizeof(Movement::_impl_.angular_velocity_)
+      PROTOBUF_FIELD_OFFSET(Movement, _impl_.timestamp_)
+      + sizeof(Movement::_impl_.timestamp_)
       - PROTOBUF_FIELD_OFFSET(Movement, _impl_.position_)>(
           reinterpret_cast<char*>(&_impl_.position_),
           reinterpret_cast<char*>(&other->_impl_.position_));

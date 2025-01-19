@@ -149,15 +149,23 @@ void SpaceService::upload_movement(TcpConnection* conn, const std::string& msg_b
 
     space_service::Movement movement;
     movement.ParseFromString(msg_bytes);
-    spdlog::debug("movement position({}, {}, {}), velocity({}, {}, {})",
-        movement.position().x(), movement.position().y(), movement.position().z(),
-        movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
+
+    //Vector3f old_pos = player->get_position();
+    //float dist_x = (movement.position().x() - old_pos.x);
+    //float dist_z = (movement.position().z() - old_pos.z);
+    //float dist = dist_x * dist_x + dist_z * dist_z;
+    //spdlog::debug("player: {} at position({}, {}, {}), velocity({}, {}, {}, dist: {})",
+    //    player->get_name(), movement.position().x(), movement.position().y(), movement.position().z(),
+    //    movement.velocity().x(), movement.velocity().y(), movement.velocity().z(), dist);
+
 
     player->set_position(movement.position().x(), movement.position().y(), movement.position().z());
     player->set_rotation(movement.rotation().x(), movement.rotation().y(), movement.rotation().z());
     player->set_velocity(movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
     player->set_acceleration(movement.acceleration().x(), movement.acceleration().y(), movement.acceleration().z());
     player->set_angular_velocity(movement.angular_velocity().x(), movement.angular_velocity().y(), movement.angular_velocity().z());
+    player->set_move_mode(movement.mode());
+    player->set_move_timestamp(movement.timestamp());
 }
 
 void SpaceService::ping(TcpConnection* conn, const std::string& msg_bytes)

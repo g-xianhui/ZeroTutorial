@@ -111,13 +111,10 @@ PrefabInstance:
       addedObject: {fileID: 369}
     - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 372}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 371}
-    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5932704487291862706}
-    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -7451482255226661972}
   m_SourcePrefab: {fileID: 100100000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
 --- !u!4 &8624795073988240853 stripped
 Transform:
@@ -155,7 +152,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &371
+--- !u!114 &372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,47 +166,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SyncMovementMode: 2
   MovementUploadInterval: 0.03333
-  MovementInterpolateInterval: 0.1
-  EnableForwardRTT: 1
+  MovementSyncInterval: 0.1
   PredictionCorrectionDistance: 1
   PredictionHardSnapDistance: 2
   PredictionCorrectionRotation: 30
   PredictionHardSnapRotation: 90
---- !u!114 &5932704487291862706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8624795073988278709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3cd7ede48689e14bb28f44f353fc18a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
-  rotSpeed: 0.8
-  SpeedChangeRate: 10
-  RotationSmoothTime: 0.12
-  JumpHeight: 1.2
-  Gravity: -15
-  JumpTimeout: 0.5
-  FallTimeout: 0.15
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.28
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  CinemachineCameraTarget: {fileID: 0}
-  TopClamp: 70
-  BottomClamp: -30
-  LockCameraPosition: 0
-  _deltaHeight: 0
+  EnableRotationPredicte: 0
   IsJumping: 0
   IsFalling: 0
---- !u!114 &-7451482255226661972
+  Grounded: 0
+--- !u!114 &371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

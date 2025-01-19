@@ -48,6 +48,9 @@ void get_movement_data(Player* p, space_service::Movement* new_move)
     angular_velocity->set_x(cur_angular_velocity.x);
     angular_velocity->set_y(cur_angular_velocity.y);
     angular_velocity->set_z(cur_angular_velocity.z);
+
+    new_move->set_mode(p->get_move_mode());
+    new_move->set_timestamp(p->get_move_timestamp());
 }
 
 Space::Space(size_t w, size_t h) : _width(w), _height(h)

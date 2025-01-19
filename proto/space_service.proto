@@ -14,6 +14,8 @@ message Movement {
   optional Vector3f velocity = 3;
   optional Vector3f acceleration = 4;
   optional Vector3f angular_velocity = 5;
+  int32 mode = 6;
+  float timestamp = 7;
 }
 
 message LoginRequest {

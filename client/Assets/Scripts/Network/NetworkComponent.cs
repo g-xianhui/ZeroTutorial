@@ -34,12 +34,16 @@ public class ServerMovePack
     public Vector3 Velocity;
     public Vector3 Acceleration;
     public Vector3 AngularVelocity;
+    public int Mode;
+    public float TimeStamp;
 }
 
 public class NetworkComponent : MonoBehaviour
 {
 
     private CharacterController _characterController;
+    private PlayerController _playerController;
+    private Animator _anim;
 
     private ENetRole _netRole;
     public ENetRole NetRole
@@ -69,6 +73,7 @@ public class NetworkComponent : MonoBehaviour
     // 位移插值当前经过的时长
     private float _lerpTimePass = 0f;
     private bool _isInterpolating = false;
+    private float _lastSimulateTimeStamp = 0f;
 
     // 位移相差超过该值开始修正
     [Tooltip("correction distance")]
@@ -110,11 +115,17 @@ public class NetworkComponent : MonoBehaviour
     private float _pingInterval = 1f;
     private float _nextPingTime = 0f;
 
+    public bool IsJumping = false;
+    public bool IsFalling = false;
+    public bool Grounded = false;
+
     // Start is called before the first frame update
     void Start()
     {
         _nextMovementUploadTime = Time.time;
         _characterController = GetComponent<CharacterController>();
+        _playerController = GetComponent<PlayerController>();
+        _anim = GetComponent<Animator>();
 
         _lastFrameRotation = transform.rotation;
         _lastFrameVelocity = Vector3.zero;
@@ -154,6 +165,9 @@ public class NetworkComponent : MonoBehaviour
                 PredicteMovement();
                 PredictRotate();
             }
+
+            Vector3 horizontalV = new Vector3(_curVelocity.x, 0, _curVelocity.z);
+            _anim.SetFloat("Speed", horizontalV.magnitude);
         }
     }
 
@@ -210,10 +224,6 @@ public class NetworkComponent : MonoBehaviour
         Vector3 velocity = _characterController.velocity;
         Vector3 acceleration = (velocity - _lastFrameVelocity) / Time.deltaTime;
 
-        // 暂时未处理跳跃之类的情况
-        velocity.y = 0;
-        acceleration.y = 0;
-
         Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(_lastFrameRotation);
         // deltaRotation可能是个负数，但此时通过deltaRotation.eulerAngles得到的却是一个正数，估计范围是[180, 360)，但其实没有转那么大的角度，只是方向反了而已。例如359，其实只是转了1度。
         // 因此使用Mathf.DeltaAngle计算真正的最小旋转角度，例如359，就变成-1了。
@@ -229,7 +239,9 @@ public class NetworkComponent : MonoBehaviour
             Rotation = new SpaceService.Vector3f { X = transform.rotation.eulerAngles.x, Y = transform.rotation.eulerAngles.y, Z = transform.rotation.eulerAngles.z },
             Velocity = new SpaceService.Vector3f { X = velocity.x, Y = velocity.y, Z = velocity.z },
             Acceleration = new SpaceService.Vector3f { X = acceleration.x, Y = acceleration.y, Z = acceleration.z },
-            AngularVelocity = new SpaceService.Vector3f { X = angularVelocity.x, Y = angularVelocity.y, Z = angularVelocity.z }
+            AngularVelocity = new SpaceService.Vector3f { X = angularVelocity.x, Y = angularVelocity.y, Z = angularVelocity.z },
+            Mode = _playerController.GetMoveMode(),
+            Timestamp = Time.time,
         };
         NetworkManager.Instance.Send("upload_movement", movement.ToByteArray());
     }
@@ -304,13 +316,19 @@ public class NetworkComponent : MonoBehaviour
                 }
             }
             _rotationBlendingTime = 0f;
+
+            UpdateMoveMode(serverMovePack.Mode);
         }
     }
 
     private void ApplyMovementFromServer(ServerMovePack serverMovePack)
     {
+        _curVelocity = (serverMovePack.Position - transform.position) / MovementSyncInterval;
+
         transform.position = serverMovePack.Position;
         transform.rotation = serverMovePack.Rotation;
+
+        UpdateMoveMode(serverMovePack.Mode);
     }
 
     private void InterpolateMovement()
@@ -352,12 +370,32 @@ public class NetworkComponent : MonoBehaviour
                 float t = Mathf.Min(1f, _lerpTimePass / MovementSyncInterval);
                 transform.position = Vector3.Lerp(_startPos, _endPos, t);
                 transform.rotation = Quaternion.Slerp(_startRot, _endRot, t);
+
+                // FIXME: 目前服务器并没有在实时计算更新玩家的位置，服务器的位置采用的是由玩家主动上传的值。所以:
+                // velocity = (_endPos - _startPos) / MovementSyncInterval
+                // 计算出来的的velocity并不准确，服务器在MovementSyncInterval内不一定就能稳定收到来自客户端总计移动了MovementSyncInterval的数据包。
+                // 因此，当采用上面的公式计算时，会发现角色的移动动画偶尔会突变，例如本来autonomous稳定的跑动，速度是5，但到了simulator上，速度有时是5，
+                // 但偶尔会先跳到3，然后再跳到7,就是数据同步没那么稳定导致的。
+                // 在当前服务器还没自己实时计算更新的情况下，我们只能做一些妥协，让simulator看起来流畅一些，因此这里就把_curVelocity设为了autonomous
+                // 原本的移动速度，但这个速度只会应用到动画上，simulator真实的移动速度还是上面公式计算的值。虽然偶尔动画与实际的速度不一致，细看可能会发
+                // 现滑步之类的情况，但已经比动画突变要好很多了。
+                float realInterval = MovementSyncInterval;
+                if (_lastSimulateTimeStamp > 0)
+                {
+                    realInterval = serverMovePack.TimeStamp - _lastSimulateTimeStamp;
+                }
+                _lastSimulateTimeStamp = serverMovePack.TimeStamp;
+                _curVelocity = (_endPos - _startPos) / realInterval;
+
+                UpdateMoveMode(serverMovePack.Mode);
+
                 _isInterpolating = true;
             }
             else
             {
                 _isInterpolating = false;
                 _lerpTimePass = 0;
+                _curVelocity = Vector3.zero;
             }
         }
         else
@@ -434,5 +472,37 @@ public class NetworkComponent : MonoBehaviour
     private Quaternion ForwardPredicteRotation(Quaternion rotation, Vector3 velocity, float t)
     {
         return rotation * Quaternion.Euler(velocity * t);
+    }
+
+    private void UpdateMoveMode(int mode)
+    {
+        IsJumping = false;
+        IsFalling = false;
+        Grounded = false;
+
+        if ((mode & 1) != 0)
+        {
+            IsJumping = true;
+        }
+
+        if ((mode & 2) != 0)
+        {
+            IsFalling = true;
+        }
+
+        if ((mode & 4) != 0)
+        {
+            Grounded = true;
+        }
+
+        _anim.SetBool("Jumping", IsJumping);
+        _anim.SetBool("Falling", IsFalling);
+        _anim.SetBool("Grounded", Grounded);
+    }
+
+    public float GetSpeed()
+    {
+        Vector3 horizontalV = new Vector3(_curVelocity.x, 0, _curVelocity.z);
+        return horizontalV.magnitude;
     }
 }

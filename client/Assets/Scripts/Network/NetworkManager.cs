@@ -416,7 +416,7 @@ public class NetworkManager : MonoBehaviour
         {
             if (_sendBuffer.Empty())
             {
-                Thread.Sleep(100);
+                Thread.Sleep(10);
             }
             else
             {
@@ -581,6 +581,8 @@ public class NetworkManager : MonoBehaviour
                     Velocity = new Vector3(playerMovement.Data.Velocity.X, playerMovement.Data.Velocity.Y, playerMovement.Data.Velocity.Z),
                     Acceleration = new Vector3(playerMovement.Data.Acceleration.X, playerMovement.Data.Acceleration.Y, playerMovement.Data.Acceleration.Z),
                     AngularVelocity = new Vector3(playerMovement.Data.AngularVelocity.X, playerMovement.Data.AngularVelocity.Y, playerMovement.Data.AngularVelocity.Z),
+                    Mode = playerMovement.Data.Mode,
+                    TimeStamp = playerMovement.Data.Timestamp,
                 };
                 NetworkComponent networkComponent = otherPlayer.GetComponent<NetworkComponent>();
                 networkComponent.SyncMovement(serverMovePack);

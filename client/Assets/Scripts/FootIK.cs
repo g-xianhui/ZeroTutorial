@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(PlayerController))]
+[RequireComponent(typeof(Animator))]
 public class FootIK : MonoBehaviour
 {
     [Header("foot ik")]
@@ -23,11 +23,13 @@ public class FootIK : MonoBehaviour
 
     private Animator _anim;
     private PlayerController _controller;
+    private NetworkComponent _networkComp;
 
     void Awake()
     {
         _anim = GetComponent<Animator>();
         _controller = GetComponent<PlayerController>();
+        _networkComp = GetComponent<NetworkComponent>();
 
         Application.targetFrameRate = 30;
     }
@@ -69,8 +71,16 @@ public class FootIK : MonoBehaviour
         if (!UseFootIK)
             return;
 
-        if (_controller.IsFalling || _controller.IsJumping) return;
-        if (_controller.GetSpeed() > 0) return;
+        if (_controller !=  null)
+        {
+            if (_controller.IsFalling || _controller.IsJumping) return;
+            if (_controller.GetSpeed() > 0) return;
+        }
+        else
+        {
+            if (_networkComp.IsFalling || _networkComp.IsJumping) return;
+            if (_networkComp.GetSpeed() > 0) return;
+        }
 
         float ikWeight = 1f;
         _anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, ikWeight);

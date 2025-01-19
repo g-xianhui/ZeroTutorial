@@ -1302,6 +1302,8 @@ class Movement final : public ::google::protobuf::Message
     kVelocityFieldNumber = 3,
     kAccelerationFieldNumber = 4,
     kAngularVelocityFieldNumber = 5,
+    kModeFieldNumber = 6,
+    kTimestampFieldNumber = 7,
   };
   // .space_service.Vector3f position = 1;
   bool has_position() const;
@@ -1378,12 +1380,32 @@ class Movement final : public ::google::protobuf::Message
   ::space_service::Vector3f* _internal_mutable_angular_velocity();
 
   public:
+  // int32 mode = 6;
+  void clear_mode() ;
+  ::int32_t mode() const;
+  void set_mode(::int32_t value);
+
+  private:
+  ::int32_t _internal_mode() const;
+  void _internal_set_mode(::int32_t value);
+
+  public:
+  // float timestamp = 7;
+  void clear_timestamp() ;
+  float timestamp() const;
+  void set_timestamp(float value);
+
+  private:
+  float _internal_timestamp() const;
+  void _internal_set_timestamp(float value);
+
+  public:
   // @@protoc_insertion_point(class_scope:space_service.Movement)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 5,
+      3, 7, 5,
       0, 2>
       _table_;
 
@@ -1411,6 +1433,8 @@ class Movement final : public ::google::protobuf::Message
     ::space_service::Vector3f* velocity_;
     ::space_service::Vector3f* acceleration_;
     ::space_service::Vector3f* angular_velocity_;
+    ::int32_t mode_;
+    float timestamp_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2933,6 +2957,50 @@ inline void Movement::set_allocated_angular_velocity(::space_service::Vector3f* 
 
   _impl_.angular_velocity_ = reinterpret_cast<::space_service::Vector3f*>(value);
   // @@protoc_insertion_point(field_set_allocated:space_service.Movement.angular_velocity)
+}
+
+// int32 mode = 6;
+inline void Movement::clear_mode() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mode_ = 0;
+}
+inline ::int32_t Movement::mode() const {
+  // @@protoc_insertion_point(field_get:space_service.Movement.mode)
+  return _internal_mode();
+}
+inline void Movement::set_mode(::int32_t value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:space_service.Movement.mode)
+}
+inline ::int32_t Movement::_internal_mode() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.mode_;
+}
+inline void Movement::_internal_set_mode(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.mode_ = value;
+}
+
+// float timestamp = 7;
+inline void Movement::clear_timestamp() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timestamp_ = 0;
+}
+inline float Movement::timestamp() const {
+  // @@protoc_insertion_point(field_get:space_service.Movement.timestamp)
+  return _internal_timestamp();
+}
+inline void Movement::set_timestamp(float value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:space_service.Movement.timestamp)
+}
+inline float Movement::_internal_timestamp() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.timestamp_;
+}
+inline void Movement::_internal_set_timestamp(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timestamp_ = value;
 }
 
 // -------------------------------------------------------------------

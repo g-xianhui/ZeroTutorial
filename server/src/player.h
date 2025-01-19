@@ -83,6 +83,22 @@ public:
         return _angular_velocity;
     }
 
+    inline void set_move_mode(int mode) {
+        _move_mode = mode;
+    }
+
+    inline int get_move_mode() {
+        return _move_mode;
+    }
+
+    inline void set_move_timestamp(float t) {
+        _move_timestamp = t;
+    }
+
+    inline float get_move_timestamp() {
+        return _move_timestamp;
+    }
+
     inline void set_pos_update(bool is_update) { _is_pos_update = is_update; }
     inline bool is_pos_update() { return _is_pos_update; }
 
@@ -95,6 +111,8 @@ private:
     Vector3f _velocity;
     Vector3f _acceleration;
     Vector3f _angular_velocity;
+    int _move_mode;
+    float _move_timestamp;
 
     bool _is_pos_update = false;
 };

@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
         if (IsJumping)
         {
             _jumpTotalHeight += _deltaHeight;
-            if (_jumpTotalHeight > JumpHeight)
+            if (_verticalVelocity <= 0)
             {
                 // stop jumping and start falling
                 IsJumping = false;
@@ -293,6 +293,27 @@ public class PlayerController : MonoBehaviour
         if (lfAngle < -360f) lfAngle += 360f;
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
+    }
+
+    public int GetMoveMode()
+    {
+        int result = 0;
+        if (IsJumping)
+        {
+            result |= 1;
+        }
+
+        if (IsFalling)
+        {
+            result |= 2;
+        }
+
+        if (Grounded)
+        {
+            result |= 4;
+        }
+
+        return result;
     }
 }
 
