@@ -115,9 +115,10 @@ public class NetworkComponent : MonoBehaviour
     private float _pingInterval = 1f;
     private float _nextPingTime = 0f;
 
+    public bool Grounded = false;
     public bool IsJumping = false;
     public bool IsFalling = false;
-    public bool Grounded = false;
+    public bool IsFlying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -479,25 +480,32 @@ public class NetworkComponent : MonoBehaviour
         IsJumping = false;
         IsFalling = false;
         Grounded = false;
+        IsFlying = false;
 
         if ((mode & 1) != 0)
-        {
-            IsJumping = true;
-        }
-
-        if ((mode & 2) != 0)
-        {
-            IsFalling = true;
-        }
-
-        if ((mode & 4) != 0)
         {
             Grounded = true;
         }
 
+        if ((mode & 2) != 0)
+        {
+            IsJumping = true;
+        }
+
+        if ((mode & 4) != 0)
+        {
+            IsFalling = true;
+        }
+
+        if ((mode & 8) != 0)
+        {
+            IsFlying = true;
+        }
+
+        _anim.SetBool("Grounded", Grounded);
         _anim.SetBool("Jumping", IsJumping);
         _anim.SetBool("Falling", IsFalling);
-        _anim.SetBool("Grounded", Grounded);
+        _anim.SetBool("Flying", IsFlying);
     }
 
     public float GetSpeed()

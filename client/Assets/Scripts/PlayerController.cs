@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     public bool IsJumping = false;
     public bool IsFalling = false;
+    public bool IsFlying = false;
+    public bool IgnoreGravity = false;
 
     // cinemachine
     private float _cinemachineTargetYaw;
@@ -160,7 +162,8 @@ public class PlayerController : MonoBehaviour
     private void JumpAndGravity()
     {
         _deltaHeight = _verticalVelocity * Time.deltaTime;
-        _verticalVelocity += Gravity * Time.deltaTime;
+        if (!IgnoreGravity)
+            _verticalVelocity += Gravity * Time.deltaTime;
 
         if (Grounded)
         {
@@ -188,21 +191,41 @@ public class PlayerController : MonoBehaviour
             _jumpTimeoutDelta -= Time.deltaTime;
         }
 
+        if (IsFlying)
+        {
+            // stop fly mode, fall down to ground
+            if (Input.GetButtonDown("Fly"))
+            {
+                IsFalling = true;
+                IsFlying = false;
+                IgnoreGravity = false;
+            }
+        }
+
         if (IsJumping)
         {
-            _jumpTotalHeight += _deltaHeight;
             if (_verticalVelocity <= 0)
             {
                 // stop jumping and start falling
                 IsJumping = false;
                 IsFalling = true;
-                _verticalVelocity = 0f;
-                _jumpTotalHeight = 0f;
+            }
+            else
+            {
+                // start to fly mode
+                if (Input.GetButtonDown("Fly"))
+                {
+                    IsJumping = false;
+                    IsFlying = true;
+                    IgnoreGravity = true;
+                    _verticalVelocity = 0.0f;
+                }
             }
         }
 
         _anim.SetBool("Jumping", IsJumping);
         _anim.SetBool("Falling", IsFalling);
+        _anim.SetBool("Flying", IsFlying);
     }
 
     void Move(float h, float v)
@@ -298,19 +321,24 @@ public class PlayerController : MonoBehaviour
     public int GetMoveMode()
     {
         int result = 0;
-        if (IsJumping)
+        if (Grounded)
         {
             result |= 1;
         }
 
-        if (IsFalling)
+        if (IsJumping)
         {
             result |= 2;
         }
 
-        if (Grounded)
+        if (IsFalling)
         {
             result |= 4;
+        }
+
+        if (IsFlying)
+        {
+            result |= 8;
         }
 
         return result;
