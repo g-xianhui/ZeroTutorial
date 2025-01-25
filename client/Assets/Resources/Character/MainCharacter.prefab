@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118,6 +118,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9121786693785550946}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2028276290072673776}
   m_SourcePrefab: {fileID: 100100000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
 --- !u!4 &8624795073988240853 stripped
 Transform:
@@ -141,28 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cd7ede48689e14bb28f44f353fc18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
-  rotSpeed: 0.8
-  SpeedChangeRate: 10
-  RotationSmoothTime: 0.119
-  JumpHeight: 3
-  Gravity: -15
-  JumpTimeout: 1
-  FallTimeout: 0.15
-  Grounded: 1
-  GroundedOffset: -0.1
-  GroundedRadius: 0.25
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  CinemachineCameraTarget: {fileID: 4744325128362035869}
-  TopClamp: 70
-  BottomClamp: -30
-  LockCameraPosition: 0
-  _deltaHeight: 0
-  IsJumping: 0
-  IsFalling: 0
 --- !u!143 &6103041591599603875
 CharacterController:
   m_ObjectHideFlags: 0
@@ -220,6 +201,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff722eddb97ba94da7964c6ddf93238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncMovementMode: 0
-  MovementUploadInterval: 0.0333
-  MovementInterpolateInterval: 0.1
+--- !u!114 &2028276290072673776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da336cfd628328d4d9b87f90bb1f4dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 2
+  SprintSpeed: 5.335
+  rotSpeed: 0.8
+  SpeedChangeRate: 10
+  RotationSmoothTime: 0.12
+  JumpHeight: 3
+  Gravity: -15
+  JumpTimeout: 0.5
+  FallTimeout: 0.15
+  GroundedOffset: -0.14
+  GroundedRadius: 0.28
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  CinemachineCameraTarget: {fileID: 4744325128362035869}
+  TopClamp: 70
+  BottomClamp: -30
+  LockCameraPosition: 0
+  _deltaHeight: 0
+  Grounded: 1
+  IsJumping: 0
+  IsFalling: 0
+  IsFlying: 0
+  IgnoreGravity: 0
+  MovementUploadInterval: 0.03333

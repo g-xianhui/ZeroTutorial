@@ -115,6 +115,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 371}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2028276290072673776}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1145428035268312065}
   m_SourcePrefab: {fileID: 100100000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
 --- !u!4 &8624795073988240853 stripped
 Transform:
@@ -164,17 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff722eddb97ba94da7964c6ddf93238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncMovementMode: 1
-  MovementUploadInterval: 0.03333
-  MovementSyncInterval: 0.1
-  PredictionCorrectionDistance: 1
-  PredictionHardSnapDistance: 2
-  PredictionCorrectionRotation: 30
-  PredictionHardSnapRotation: 90
-  EnableRotationPredicte: 0
-  IsJumping: 0
-  IsFalling: 0
-  Grounded: 0
 --- !u!114 &371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +189,59 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &2028276290072673776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da336cfd628328d4d9b87f90bb1f4dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 2
+  SprintSpeed: 5.335
+  rotSpeed: 0.8
+  SpeedChangeRate: 10
+  RotationSmoothTime: 0.12
+  JumpHeight: 1.2
+  Gravity: -15
+  JumpTimeout: 0.5
+  FallTimeout: 0.15
+  GroundedOffset: -0.14
+  GroundedRadius: 0.28
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  CinemachineCameraTarget: {fileID: 0}
+  TopClamp: 70
+  BottomClamp: -30
+  LockCameraPosition: 0
+  _deltaHeight: 0
+  Grounded: 1
+  IsJumping: 0
+  IsFalling: 0
+  IsFlying: 0
+  IgnoreGravity: 0
+  MovementUploadInterval: 0.03333
+--- !u!114 &-1145428035268312065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba31b76de9e87ee4eb71f3b66235acf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncMovementMode: 1
+  MovementSyncInterval: 0.1
+  PredictionCorrectionDistance: 1
+  PredictionHardSnapDistance: 3
+  PredictionCorrectionRotation: 30
+  PredictionHardSnapRotation: 90
+  EnableRotationPredicte: 0

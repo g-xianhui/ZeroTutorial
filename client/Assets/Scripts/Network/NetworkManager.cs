@@ -546,7 +546,8 @@ public class NetworkManager : MonoBehaviour
                 GameObject otherPlayer = GameObject.Instantiate(prefab, position, rotation);
                 NetworkComponent networkComponent = otherPlayer.GetComponent<NetworkComponent>();
                 networkComponent.NetRole = ENetRole.Simulate;
-                networkComponent.InitMovement(aoiPlayer.Transform);
+                SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
+                simulateMovement.InitMovement(aoiPlayer.Transform);
                 _players.Add(aoiPlayer.Name, otherPlayer);
             }
             else
@@ -592,8 +593,8 @@ public class NetworkManager : MonoBehaviour
                     Mode = playerMovement.Data.Mode,
                     TimeStamp = playerMovement.Data.Timestamp,
                 };
-                NetworkComponent networkComponent = otherPlayer.GetComponent<NetworkComponent>();
-                networkComponent.SyncMovement(serverMovePack);
+                SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
+                simulateMovement.SyncMovement(serverMovePack);
             }
         }
     }
