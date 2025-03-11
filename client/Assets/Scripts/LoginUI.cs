@@ -1,4 +1,5 @@
 using Google.Protobuf;
+using SpaceService;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class LoginUI : MonoBehaviour
 {
     public Text ServerAddressText;
     public Text AccountText;
+    public bool OfflineMode = false;
 
     public void OnLoginResult(bool isSuccess)
     {
@@ -34,6 +36,10 @@ public class LoginUI : MonoBehaviour
             Debug.Log("connect to server successed");
             SpaceService.LoginRequest loginRequest = new SpaceService.LoginRequest();
             loginRequest.Username = AccountText.text;
+            if (AccountText.text == string.Empty)
+            {
+                loginRequest.Username = GetRandomString(5);
+            }
             NetworkManager.Instance.Send("login", loginRequest.ToByteArray());
         }
         else
@@ -49,8 +55,16 @@ public class LoginUI : MonoBehaviour
 
         if (serverAddress == string.Empty || account == string.Empty)
         {
-            Debug.Log("offline test");
-            SceneManager.LoadScene("DemoScene", LoadSceneMode.Single);
+            if (OfflineMode)
+            {
+                NetworkManager.Instance.LoadOfflineScene();
+            }
+            else
+            {
+                string host = "127.0.0.1";
+                int port = 1988;
+                NetworkManager.Instance.Connect(host, port, OnConnectResult);
+            }
         }
         else
         {
@@ -66,5 +80,21 @@ public class LoginUI : MonoBehaviour
 
             NetworkManager.Instance.Connect(host, port, OnConnectResult);
         }
+    }
+
+    public string GetRandomString(int length)
+    {
+        byte[] b = new byte[4];
+        new System.Security.Cryptography.RNGCryptoServiceProvider().GetBytes(b);
+        System.Random r = new System.Random(BitConverter.ToInt32(b, 0));
+        string s = null, str = "";
+        str += "0123456789";
+        str += "abcdefghijklmnopqrstuvwxyz";
+        str += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (int i = 0; i < length; i++)
+        {
+            s += str.Substring(r.Next(0, str.Length - 1), 1);
+        }
+        return s;
     }
 }

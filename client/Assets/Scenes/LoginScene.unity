@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ServerAddressText: {fileID: 522269483}
   AccountText: {fileID: 698560565}
+  OfflineMode: 0
 --- !u!4 &75962857
 Transform:
   m_ObjectHideFlags: 0
@@ -1309,6 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7655f0f22bc0c4285d1cebb21fdfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConnectTimeoutMs: 2000
 --- !u!4 &1316243022
 Transform:
   m_ObjectHideFlags: 0

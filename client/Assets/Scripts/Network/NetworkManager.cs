@@ -247,7 +247,13 @@ public class NetworkManager : MonoBehaviour
 
     private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
     private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
+
     private GameObject _mainPlayer = null;
+    public GameObject MainPlayer
+    {
+        get => _mainPlayer;
+        set => _mainPlayer = value;
+    }
 
     private float _rtt = 0.1f;
     public float RTT
@@ -513,10 +519,9 @@ public class NetworkManager : MonoBehaviour
             GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
             if (prefab != null)
             {
-                GameObject mainCharacter = GameObject.Instantiate(prefab, position, Quaternion.identity);
-                NetworkComponent networkComponent = mainCharacter.GetComponent<NetworkComponent>();
+                MainPlayer = GameObject.Instantiate(prefab, position, Quaternion.identity);
+                NetworkComponent networkComponent = MainPlayer.GetComponent<NetworkComponent>();
                 networkComponent.NetRole = ENetRole.Autonomous;
-                _mainPlayer = mainCharacter;
             }
             else
             {
@@ -604,5 +609,31 @@ public class NetworkManager : MonoBehaviour
         SpaceService.Pong pong = SpaceService.Pong.Parser.ParseFrom(msgBytes);
         NetworkComponent networkComponent = _mainPlayer.GetComponent<NetworkComponent>();
         networkComponent.Pong(pong.T);
+    }
+
+    public void LoadOfflineScene()
+    {
+        StartCoroutine(loadOfflineScene());
+    }
+
+    private IEnumerator loadOfflineScene()
+    {
+        Debug.Log("offline test");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DemoScene");
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        Vector3 position = new Vector3(15, 0, 3);
+        GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
+        if (prefab != null)
+        {
+            MainPlayer = GameObject.Instantiate(prefab, position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("main character not found");
+        }
     }
 }

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
             Cursor.lockState = CursorLockMode.None;
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetKey(KeyCode.RightAlt))
             Cursor.lockState = CursorLockMode.Locked;
     }
 }

@@ -100,9 +100,6 @@ public class CharacterMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         _networkComponent = GetComponent<NetworkComponent>();
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        CinemachineBrain brain = _mainCamera.GetComponent<CinemachineBrain>();
-        brain.ActiveVirtualCamera.Follow = CinemachineCameraTarget.transform;
     }
 
     // Start is called before the first frame update
@@ -116,7 +113,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_networkComponent != null && _networkComponent.NetRole != ENetRole.Autonomous)
+        if (_networkComponent != null && _networkComponent.NetRole == ENetRole.Simulate)
             return;
 
         // Store the input axes.
