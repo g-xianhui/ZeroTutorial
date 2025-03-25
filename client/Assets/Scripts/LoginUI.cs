@@ -34,13 +34,12 @@ public class LoginUI : MonoBehaviour
         if (isSuccess)
         {
             Debug.Log("connect to server successed");
-            SpaceService.LoginRequest loginRequest = new SpaceService.LoginRequest();
-            loginRequest.Username = AccountText.text;
-            if (AccountText.text == string.Empty)
+            string username = AccountText.text;
+            if (username == string.Empty)
             {
-                loginRequest.Username = GetRandomString(5);
+                username = GetRandomString(5);
             }
-            NetworkManager.Instance.Send("login", loginRequest.ToByteArray());
+            NetworkManager.Instance.login(username);
         }
         else
         {

@@ -106,8 +106,12 @@ public class SimulateMovement : MonoBehaviour
             PredictRotate();
         }
 
-        Vector3 horizontalV = new Vector3(_curVelocity.x, 0, _curVelocity.z);
-        _characterMovement.SetSpeed(horizontalV.magnitude);
+        // root motion控制位移时不能设置speed，否则会触发正常的移动动画，与root motion产生冲突
+        if (_characterMovement.EnableMovement)
+        {
+            Vector3 horizontalV = new Vector3(_curVelocity.x, 0, _curVelocity.z);
+            _characterMovement.SetSpeed(horizontalV.magnitude);
+        }
 
         _characterMovement.UpdateAnimation();
     }
@@ -278,7 +282,6 @@ public class SimulateMovement : MonoBehaviour
                 }
                 _lastSimulateTimeStamp = serverMovePack.TimeStamp;
                 _curVelocity = (_endPos - _startPos) / realInterval;
-
                 _characterMovement.UpdateMoveMode(serverMovePack.Mode);
 
                 _isInterpolating = true;
@@ -288,12 +291,14 @@ public class SimulateMovement : MonoBehaviour
                 _isInterpolating = false;
                 _lerpTimePass = 0;
                 _curVelocity = Vector3.zero;
+                _characterMovement.UpdateMoveMode(serverMovePack.Mode);
             }
         }
         else
         {
             _isInterpolating = false;
             _lerpTimePass = 0;
+            _curVelocity = Vector3.zero;
         }
     }
 

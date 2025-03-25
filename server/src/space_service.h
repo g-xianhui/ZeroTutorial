@@ -40,6 +40,8 @@ public:
     
     // ping
     void ping(TcpConnection*, const std::string&);
+
+    void normal_attack(TcpConnection*, const std::string&);
 private:
     Space* _space = nullptr;
 

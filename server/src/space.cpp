@@ -154,3 +154,26 @@ void Space::update()
         send_proto_msg(p->get_conn(), "sync_movement", player_movements);
     }
 }
+
+constexpr const char* combo_animations[] = { "Attack01", "Attack02" };
+
+void Space::normal_attack(Player* player, int combo_seq)
+{
+    if (combo_seq < 0 || combo_seq >= sizeof(combo_animations) / sizeof(const char*))
+        return;
+
+    space_service::PlayerAnimation player_animation;
+    player_animation.set_name(player->get_name());
+
+    space_service::Animation* animation = player_animation.mutable_data();
+    animation->set_name(combo_animations[combo_seq]);
+    animation->set_speed(1.f);
+    animation->set_op(space_service::Animation::OperationType::Animation_OperationType_START);
+
+    for (Player* other : _players) {
+        if (other == player)
+            continue;
+
+        send_proto_msg(other->get_conn(), "sync_animation", player_animation);
+    }
+}

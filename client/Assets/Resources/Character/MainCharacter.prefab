@@ -44,8 +44,16 @@ PrefabInstance:
       value: MainCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_RootOrder
@@ -99,6 +107,22 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b4f06675b586d724d97c226c3954fe2b, type: 2}
+    - target: {fileID: 13700002, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b4f06675b586d724d97c226c3954fe2b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -121,6 +145,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2028276290072673776}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8618871291142402404}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 442090036231646091}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3161169329509457489}
   m_SourcePrefab: {fileID: 100100000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
 --- !u!4 &8624795073988240853 stripped
 Transform:
@@ -238,3 +271,57 @@ MonoBehaviour:
   IsFlying: 0
   IgnoreGravity: 0
   MovementUploadInterval: 0.03333
+--- !u!114 &8618871291142402404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cbe6ef99d320f4f89a263d511cccf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboClips:
+  - Attack01
+  - Attack02
+--- !u!114 &442090036231646091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fb34d0d70e29048a873e9236449639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  Health: 0
+  MaxMana: 0
+  Mana: 0
+  Attack: 0
+  AttackSpeed: 1
+  AdditionalAttackSpeed: 0
+  Defence: 0
+  CriticalRate: 0
+  CriticalDamage: 0
+  Accuracy: 0
+  DodgeRate: 0
+  Shield: 0
+  Tenacity: 0
+  Lifesteal: 0
+--- !u!114 &3161169329509457489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e27f4e860b4d1f459e690636d23ba98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -28,8 +28,6 @@ public class FootIK : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _characterMovement = GetComponent<CharacterMovement>();
-
-        Application.targetFrameRate = 30;
     }
 
     private void CalcFootIK(HumanBodyBones bone, Vector3 rayDir, out Vector3 targetIKPos, float bottomHeight, ref Quaternion targetIKRotation)

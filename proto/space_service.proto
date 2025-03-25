@@ -61,3 +61,24 @@ message Ping {
 message Pong {
   float t = 1;
 }
+
+message NormalAttack {
+  int32 combo = 1;
+}
+
+message Animation {
+  enum OperationType {
+    START = 0;
+    STOP = 1;
+    UPDATE = 2;
+  }
+
+  string name = 1;
+  OperationType op = 2;
+  float speed = 3;
+}
+
+message PlayerAnimation {
+  string name = 1;
+  Animation data = 2;
+}

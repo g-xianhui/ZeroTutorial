@@ -94,6 +94,8 @@ public class CharacterMovement : MonoBehaviour
     // 用于计算加速度
     private Vector3 _lastFrameVelocity;
 
+    public bool EnableMovement { get; set; } = true;
+
     void Awake()
     {
         _anim = GetComponent<Animator>();
@@ -116,15 +118,11 @@ public class CharacterMovement : MonoBehaviour
         if (_networkComponent != null && _networkComponent.NetRole == ENetRole.Simulate)
             return;
 
-        // Store the input axes.
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
         GroundedCheck();
 
         JumpAndGravity();
 
-        Move(h, v);
+        Move();
 
         UpdateAnimation();
 
@@ -132,14 +130,16 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // 我们想应用root motion，但默认的animator move会叠加重力的处理，但显然现在重力是由player controller接管的，需要忽略。
-    private void OnAnimatorMove()
-    {
-        transform.position += _anim.deltaPosition;
-        transform.Rotate(_anim.deltaRotation.eulerAngles);
-    }
+    //private void OnAnimatorMove()
+    //{
+    //    transform.position += _anim.deltaPosition;
+    //    transform.Rotate(_anim.deltaRotation.eulerAngles);
+    //}
 
     private void LateUpdate()
     {
+        if (_networkComponent != null && _networkComponent.NetRole == ENetRole.Simulate)
+            return;
         CameraRotation();
     }
 
@@ -165,6 +165,15 @@ public class CharacterMovement : MonoBehaviour
 
     private void JumpAndGravity()
     {
+        bool isJumpPressed = false;
+        bool isFlyPressed = false;
+
+        if (EnableMovement)
+        {
+            isJumpPressed = Input.GetButtonDown("Jump");
+            isFlyPressed = Input.GetButtonDown("Fly");
+        }
+
         _deltaHeight = _verticalVelocity * Time.deltaTime;
         if (!IgnoreGravity)
             _verticalVelocity += Gravity * Time.deltaTime;
@@ -180,8 +189,7 @@ public class CharacterMovement : MonoBehaviour
             // stop falling
             IsFalling = false;
 
-            bool isJump = Input.GetButtonDown("Jump");
-            if (isJump && _jumpTimeoutDelta <= 0.0f)
+            if (isJumpPressed && _jumpTimeoutDelta <= 0.0f)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -198,7 +206,7 @@ public class CharacterMovement : MonoBehaviour
         if (IsFlying)
         {
             // stop fly mode, fall down to ground
-            if (Input.GetButtonDown("Fly"))
+            if (isFlyPressed)
             {
                 IsFalling = true;
                 IsFlying = false;
@@ -217,7 +225,7 @@ public class CharacterMovement : MonoBehaviour
             else
             {
                 // start to fly mode
-                if (Input.GetButtonDown("Fly"))
+                if (isFlyPressed)
                 {
                     IsJumping = false;
                     IsFlying = true;
@@ -228,8 +236,18 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    void Move(float h, float v)
+    void Move()
     {
+        // Store the input axes.
+        float h = 0f;
+        float v = 0f;
+
+        if (EnableMovement)
+        {
+            h = Input.GetAxis("Horizontal");
+            v = Input.GetAxis("Vertical");
+        }
+
         float targetSpeed = 0.0f;
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -338,6 +356,11 @@ public class CharacterMovement : MonoBehaviour
             result |= 8;
         }
 
+        if (EnableMovement)
+        {
+            result |= 16;
+        }
+
         return result;
     }
 
@@ -347,6 +370,7 @@ public class CharacterMovement : MonoBehaviour
         IsJumping = false;
         IsFalling = false;
         IsFlying = false;
+        EnableMovement = false;
 
         if ((mode & 1) != 0)
         {
@@ -366,6 +390,11 @@ public class CharacterMovement : MonoBehaviour
         if ((mode & 8) != 0)
         {
             IsFlying = true;
+        }
+
+        if ((mode & 16) != 0)
+        {
+            EnableMovement = true;
         }
     }
 

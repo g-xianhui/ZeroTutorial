@@ -248,6 +248,7 @@ public class NetworkManager : MonoBehaviour
     private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
     private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
 
+    private string _playerName = null;
     private GameObject _mainPlayer = null;
     public GameObject MainPlayer
     {
@@ -265,6 +266,8 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
+    public bool IsOfflineMode { get; set; } = false;
+
     void Awake()
     {
         Instance = this;
@@ -274,6 +277,8 @@ public class NetworkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
@@ -495,6 +500,42 @@ public class NetworkManager : MonoBehaviour
         Send("join", null);
     }
 
+    public void LoadOfflineScene()
+    {
+        IsOfflineMode = true;
+        StartCoroutine(loadOfflineScene());
+    }
+
+    private IEnumerator loadOfflineScene()
+    {
+        Debug.Log("offline test");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DemoScene");
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        Vector3 position = new Vector3(15, 0, 3);
+        GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
+        if (prefab != null)
+        {
+            MainPlayer = GameObject.Instantiate(prefab, position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log("main character not found");
+        }
+    }
+
+    public void login(string username)
+    {
+        SpaceService.LoginRequest loginRequest = new SpaceService.LoginRequest();
+        loginRequest.Username = username;
+        Send("login", loginRequest.ToByteArray());
+
+        _playerName = username;
+    }
+
     public void login_reply(byte[] msgBytes)
     {
         SpaceService.LoginReply loginReply = SpaceService.LoginReply.Parser.ParseFrom(msgBytes);
@@ -611,29 +652,30 @@ public class NetworkManager : MonoBehaviour
         networkComponent.Pong(pong.T);
     }
 
-    public void LoadOfflineScene()
+    public void sync_animation(byte[] msgBytes)
     {
-        StartCoroutine(loadOfflineScene());
-    }
-
-    private IEnumerator loadOfflineScene()
-    {
-        Debug.Log("offline test");
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DemoScene");
-        while (!asyncLoad.isDone)
+        SpaceService.PlayerAnimation playerAnimation = SpaceService.PlayerAnimation.Parser.ParseFrom(msgBytes);
+        GameObject player = null;
+        if (playerAnimation.Name == _playerName)
         {
-            yield return null;
-        }
-
-        Vector3 position = new Vector3(15, 0, 3);
-        GameObject prefab = Resources.Load<GameObject>("Character/MainCharacter");
-        if (prefab != null)
-        {
-            MainPlayer = GameObject.Instantiate(prefab, position, Quaternion.identity);
+            player = _mainPlayer;
         }
         else
         {
-            Debug.Log("main character not found");
+            player = find_player(playerAnimation.Name);
+        }
+
+        if (player != null)
+        {
+            Animator animator = player.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.speed = playerAnimation.Data.Speed;
+                if (playerAnimation.Data.Op == SpaceService.Animation.Types.OperationType.Start)
+                {
+                    animator.CrossFade(playerAnimation.Data.Name, 0.2f * playerAnimation.Data.Speed);
+                }
+            }
         }
     }
 }

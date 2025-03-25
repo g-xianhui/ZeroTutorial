@@ -44,12 +44,20 @@ PrefabInstance:
       value: OtherCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,6 +129,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1145428035268312065}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8565504567142977395}
+    - targetCorrespondingSourceObject: {fileID: 100048, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 442090036231646091}
   m_SourcePrefab: {fileID: 100100000, guid: 659c7284dc1e16a4bbbf3d746380383e, type: 3}
 --- !u!4 &8624795073988240853 stripped
 Transform:
@@ -245,3 +259,45 @@ MonoBehaviour:
   PredictionCorrectionRotation: 30
   PredictionHardSnapRotation: 90
   EnableRotationPredicte: 0
+--- !u!114 &8565504567142977395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cbe6ef99d320f4f89a263d511cccf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComboClips:
+  - Attack01
+  - Attack02
+--- !u!114 &442090036231646091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624795073988278709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fb34d0d70e29048a873e9236449639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  Health: 0
+  MaxMana: 0
+  Mana: 0
+  Attack: 0
+  AttackSpeed: 1
+  AdditionalAttackSpeed: 0
+  Defence: 0
+  CriticalRate: 0
+  CriticalDamage: 0
+  Accuracy: 0
+  DodgeRate: 0
+  Shield: 0
+  Tenacity: 0
+  Lifesteal: 0

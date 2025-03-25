@@ -17,6 +17,8 @@ public:
 
     void update();
 
+    void normal_attack(Player* player, int combo_seq);
+
 private:
     size_t _width;
     size_t _height;
