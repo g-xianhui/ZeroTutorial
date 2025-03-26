@@ -9,6 +9,8 @@
 #include <random>
 #include <sstream>
 
+const float DEG2RAD = 3.14159265358979323846f / 180.0f;
+
 float get_random()
 {
     static std::default_random_engine e;
@@ -53,6 +55,27 @@ void get_movement_data(Player* p, space_service::Movement* new_move)
     new_move->set_timestamp(p->get_move_timestamp());
 }
 
+bool is_point_in_sector(float cx, float cy, float ux, float uy, float r, float theta, float px, float py)
+{
+    // D = P - C
+    float dx = px - cx;
+    float dy = py - cy;
+
+    // |D| = (dx^2 + dy^2)^0.5
+    float length = sqrt(dx * dx + dy * dy);
+
+    // |D| > r
+    if (length > r)
+        return false;
+
+    // Normalize D
+    dx /= length;
+    dy /= length;
+
+    // acos(D dot U) < theta
+    return acos(dx * ux + dy * uy) < theta;
+}
+
 Space::Space(size_t w, size_t h) : _width(w), _height(h)
 {
     _update_timer = G_Timer.add_timer(100, [this]() {
@@ -71,6 +94,8 @@ void Space::join(Player* player)
 {
     if (has_player(player))
         return;
+
+    player->enter_space(this);
 
     // 随机一个出生点
     float x = get_random() * _width;
@@ -129,6 +154,7 @@ void Space::leave(Player* player)
             send_proto_msg(other->get_conn(), "players_leave_sight", sight);
         }
 
+        player->leave_space();
         _players.erase(iter);
     }
 }
@@ -162,6 +188,10 @@ void Space::normal_attack(Player* player, int combo_seq)
     if (combo_seq < 0 || combo_seq >= sizeof(combo_animations) / sizeof(const char*))
         return;
 
+    // 这里直接告知客户端播放某个动画，而不是告知客户端执行normal_attack，原因是普攻（包括后面的技能）可能做得很复杂，有多种效果，随机或玩家选择，
+    // 因此直接让服务器来算这个逻辑，告知客户端结果算了。如果动画很长，可以把animation的基础信息记录下来，新玩家上线时同步过去就是了。
+    // 另一方面，技能动画可能是带root motion的，如果后面想要做精确的同步，则动画同步也是必须的事。
+    // 倒是普通的受击、死亡之类的，直接修改一个状态，然后同步给客户端就好了。
     space_service::PlayerAnimation player_animation;
     player_animation.set_name(player->get_name());
 
@@ -175,5 +205,30 @@ void Space::normal_attack(Player* player, int combo_seq)
             continue;
 
         send_proto_msg(other->get_conn(), "sync_animation", player_animation);
+    }
+
+    // TODO 普攻效果需要读配置，目前先暂定为0.5秒后对处于面前2米60度扇形区域内的敌人造成10点伤害
+    G_Timer.add_timer(500, [this, player]() {
+        // FIXME 指针安全
+        Vector3f center = player->get_position();
+        Rotation rot = player->get_rotation();
+        float ux = sinf(rot.yaw * DEG2RAD);
+        float uz = cosf(rot.yaw * DEG2RAD);
+
+        for (Player* other : _players) {
+            if (other == player)
+                continue;
+
+            Vector3f pos = other->get_position();
+            if (is_point_in_sector(center.x, center.z, ux, uz, 2.f, 30.f * DEG2RAD, pos.x, pos.z))
+                other->take_damage(player, 10);
+        }
+    });
+}
+
+void Space::call_all(const std::string& msg_name, const std::string& msg_bytes)
+{
+    for (Player* player : _players) {
+        send_raw_msg(player->get_conn(), msg_name, msg_bytes);
     }
 }

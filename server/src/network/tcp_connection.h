@@ -59,6 +59,7 @@ private:
     RecvBuffer _recvBuffer;
 };
 
+void send_raw_msg(TcpConnection* conn, const std::string& msg_name, const std::string& msg_bytes);
 
 template<typename T>
 void send_proto_msg(TcpConnection* conn, const std::string& msg_name, T& msg_obj)
@@ -66,13 +67,17 @@ void send_proto_msg(TcpConnection* conn, const std::string& msg_name, T& msg_obj
     if (!conn)
         return;
 
-    char len_bytes[5] = { 0 };
-    size_t encoded_size = write_7bit_encoded_int((uint32_t)msg_name.size(), len_bytes);
-
-    std::string msg{ len_bytes, encoded_size };
-    msg += msg_name;
     std::string msg_bytes;
     msg_obj.SerializeToString(&msg_bytes);
-    msg += msg_bytes;
-    conn->send_msg(msg.c_str(), msg.size());
+    send_raw_msg(conn, msg_name, msg_bytes);
+
+    //char len_bytes[5] = { 0 };
+    //size_t encoded_size = write_7bit_encoded_int((uint32_t)msg_name.size(), len_bytes);
+
+    //std::string msg{ len_bytes, encoded_size };
+    //msg += msg_name;
+    //std::string msg_bytes;
+    //msg_obj.SerializeToString(&msg_bytes);
+    //msg += msg_bytes;
+    //conn->send_msg(msg.c_str(), msg.size());
 }

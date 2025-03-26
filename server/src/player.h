@@ -7,7 +7,7 @@ class TcpConnection;
 struct Vector3f {
     float x = 0;
     float y = 0;
-    float z= 0;
+    float z = 0;
 };
 
 struct Rotation {
@@ -15,6 +15,8 @@ struct Rotation {
     float yaw = 0;
     float roll = 0;
 };
+
+class Space;
 
 class Player {
 public:
@@ -26,6 +28,9 @@ public:
     inline const std::string& get_name() const { return _name; }
 
     void send_msg(const char* msg_bytes, size_t n);
+
+    void enter_space(Space* space);
+    void leave_space();
 
     inline void set_position(float x, float y, float z) {
         _position.x = x;
@@ -102,9 +107,13 @@ public:
     inline void set_pos_update(bool is_update) { _is_pos_update = is_update; }
     inline bool is_pos_update() { return _is_pos_update; }
 
+    void take_damage(Player* attacker, int damage);
+
 private:
     TcpConnection* _conn;
     std::string _name;
+
+    Space* _space = nullptr;
 
     Vector3f _position;
     Rotation _rotation;

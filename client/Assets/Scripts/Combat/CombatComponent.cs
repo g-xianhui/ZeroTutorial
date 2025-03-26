@@ -109,4 +109,10 @@ public class CombatComponent : MonoBehaviour
         _anim.speed = 1;
         AN_EnableMovement(1);
     }
+
+    public void TakeDamage(int damage)
+    {
+        // TODO uiî’×Ö
+        _anim.CrossFade("BeHit", 0.2f);
+    }
 }

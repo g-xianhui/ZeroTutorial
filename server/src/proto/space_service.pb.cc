@@ -46,6 +46,28 @@ struct Vector3fDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Vector3fDefaultTypeInternal _Vector3f_default_instance_;
 
+inline constexpr TakeDamage::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        damage_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR TakeDamage::TakeDamage(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct TakeDamageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TakeDamageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TakeDamageDefaultTypeInternal() {}
+  union {
+    TakeDamage _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TakeDamageDefaultTypeInternal _TakeDamage_default_instance_;
+
 inline constexpr Pong::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : t_{0},
@@ -507,6 +529,16 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::space_service::PlayerAnimation, _impl_.data_),
         ~0u,
         0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::TakeDamage, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::TakeDamage, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::space_service::TakeDamage, _impl_.damage_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -526,6 +558,7 @@ static const ::_pbi::MigrationSchema
         {134, -1, -1, sizeof(::space_service::NormalAttack)},
         {143, -1, -1, sizeof(::space_service::Animation)},
         {154, 164, -1, sizeof(::space_service::PlayerAnimation)},
+        {166, -1, -1, sizeof(::space_service::TakeDamage)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -543,6 +576,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_NormalAttack_default_instance_._instance,
     &::space_service::_Animation_default_instance_._instance,
     &::space_service::_PlayerAnimation_default_instance_._instance,
+    &::space_service::_TakeDamage_default_instance_._instance,
 };
 const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -576,19 +610,20 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     "peed\030\003 \001(\002\"0\n\rOperationType\022\t\n\005START\020\000\022\010"
     "\n\004STOP\020\001\022\n\n\006UPDATE\020\002\"G\n\017PlayerAnimation\022"
     "\014\n\004name\030\001 \001(\t\022&\n\004data\030\002 \001(\0132\030.space_serv"
-    "ice.Animationb\006proto3"
+    "ice.Animation\"*\n\nTakeDamage\022\014\n\004name\030\001 \001("
+    "\t\022\016\n\006damage\030\002 \001(\005b\006proto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    1221,
+    1265,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
     nullptr,
     0,
-    15,
+    16,
     schemas,
     file_default_instances,
     TableStruct_space_5fservice_2eproto::offsets,
@@ -4103,6 +4138,225 @@ void PlayerAnimation::InternalSwap(PlayerAnimation* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata PlayerAnimation::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class TakeDamage::_Internal {
+ public:
+};
+
+TakeDamage::TakeDamage(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.TakeDamage)
+}
+inline PROTOBUF_NDEBUG_INLINE TakeDamage::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::TakeDamage& from_msg)
+      : name_(arena, from.name_),
+        _cached_size_{0} {}
+
+TakeDamage::TakeDamage(
+    ::google::protobuf::Arena* arena,
+    const TakeDamage& from)
+    : ::google::protobuf::Message(arena) {
+  TakeDamage* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.damage_ = from._impl_.damage_;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.TakeDamage)
+}
+inline PROTOBUF_NDEBUG_INLINE TakeDamage::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        _cached_size_{0} {}
+
+inline void TakeDamage::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.damage_ = {};
+}
+TakeDamage::~TakeDamage() {
+  // @@protoc_insertion_point(destructor:space_service.TakeDamage)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void TakeDamage::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+TakeDamage::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(TakeDamage, _impl_._cached_size_),
+              false,
+          },
+          &TakeDamage::MergeImpl,
+          &TakeDamage::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 37, 2> TakeDamage::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_TakeDamage_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::TakeDamage>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 damage = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(TakeDamage, _impl_.damage_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(TakeDamage, _impl_.damage_)}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(TakeDamage, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(TakeDamage, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 damage = 2;
+    {PROTOBUF_FIELD_OFFSET(TakeDamage, _impl_.damage_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+    "\30\4\0\0\0\0\0\0"
+    "space_service.TakeDamage"
+    "name"
+  }},
+};
+
+PROTOBUF_NOINLINE void TakeDamage::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.TakeDamage)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.damage_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* TakeDamage::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.TakeDamage)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "space_service.TakeDamage.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // int32 damage = 2;
+  if (this->_internal_damage() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_damage(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.TakeDamage)
+  return target;
+}
+
+::size_t TakeDamage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.TakeDamage)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  // int32 damage = 2;
+  if (this->_internal_damage() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_damage());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void TakeDamage::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<TakeDamage*>(&to_msg);
+  auto& from = static_cast<const TakeDamage&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.TakeDamage)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (from._internal_damage() != 0) {
+    _this->_impl_.damage_ = from._impl_.damage_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TakeDamage::CopyFrom(const TakeDamage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.TakeDamage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void TakeDamage::InternalSwap(TakeDamage* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+        swap(_impl_.damage_, other->_impl_.damage_);
+}
+
+::google::protobuf::Metadata TakeDamage::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

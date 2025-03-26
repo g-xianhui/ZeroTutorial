@@ -82,3 +82,8 @@ message PlayerAnimation {
   string name = 1;
   Animation data = 2;
 }
+
+message TakeDamage {
+  string name = 1;
+  int32 damage = 2;
+}

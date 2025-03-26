@@ -93,6 +93,9 @@ extern PlayersLeaveSightDefaultTypeInternal _PlayersLeaveSight_default_instance_
 class Pong;
 struct PongDefaultTypeInternal;
 extern PongDefaultTypeInternal _Pong_default_instance_;
+class TakeDamage;
+struct TakeDamageDefaultTypeInternal;
+extern TakeDamageDefaultTypeInternal _TakeDamage_default_instance_;
 class Vector3f;
 struct Vector3fDefaultTypeInternal;
 extern Vector3fDefaultTypeInternal _Vector3f_default_instance_;
@@ -330,6 +333,195 @@ class Vector3f final : public ::google::protobuf::Message
     float x_;
     float y_;
     float z_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TakeDamage final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.TakeDamage) */ {
+ public:
+  inline TakeDamage() : TakeDamage(nullptr) {}
+  ~TakeDamage() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR TakeDamage(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline TakeDamage(const TakeDamage& from) : TakeDamage(nullptr, from) {}
+  inline TakeDamage(TakeDamage&& from) noexcept
+      : TakeDamage(nullptr, std::move(from)) {}
+  inline TakeDamage& operator=(const TakeDamage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TakeDamage& operator=(TakeDamage&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TakeDamage& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TakeDamage* internal_default_instance() {
+    return reinterpret_cast<const TakeDamage*>(
+        &_TakeDamage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(TakeDamage& a, TakeDamage& b) { a.Swap(&b); }
+  inline void Swap(TakeDamage* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TakeDamage* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TakeDamage* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<TakeDamage>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const TakeDamage& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const TakeDamage& from) { TakeDamage::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(TakeDamage* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.TakeDamage"; }
+
+ protected:
+  explicit TakeDamage(::google::protobuf::Arena* arena);
+  TakeDamage(::google::protobuf::Arena* arena, const TakeDamage& from);
+  TakeDamage(::google::protobuf::Arena* arena, TakeDamage&& from) noexcept
+      : TakeDamage(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNameFieldNumber = 1,
+    kDamageFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // int32 damage = 2;
+  void clear_damage() ;
+  ::int32_t damage() const;
+  void set_damage(::int32_t value);
+
+  private:
+  ::int32_t _internal_damage() const;
+  void _internal_set_damage(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.TakeDamage)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      37, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_TakeDamage_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const TakeDamage& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::int32_t damage_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4768,6 +4960,82 @@ inline void PlayerAnimation::set_allocated_data(::space_service::Animation* valu
 
   _impl_.data_ = reinterpret_cast<::space_service::Animation*>(value);
   // @@protoc_insertion_point(field_set_allocated:space_service.PlayerAnimation.data)
+}
+
+// -------------------------------------------------------------------
+
+// TakeDamage
+
+// string name = 1;
+inline void TakeDamage::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& TakeDamage::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.TakeDamage.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void TakeDamage::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:space_service.TakeDamage.name)
+}
+inline std::string* TakeDamage::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:space_service.TakeDamage.name)
+  return _s;
+}
+inline const std::string& TakeDamage::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void TakeDamage::_internal_set_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* TakeDamage::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* TakeDamage::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.TakeDamage.name)
+  return _impl_.name_.Release();
+}
+inline void TakeDamage::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.name_.IsDefault()) {
+          _impl_.name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:space_service.TakeDamage.name)
+}
+
+// int32 damage = 2;
+inline void TakeDamage::clear_damage() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.damage_ = 0;
+}
+inline ::int32_t TakeDamage::damage() const {
+  // @@protoc_insertion_point(field_get:space_service.TakeDamage.damage)
+  return _internal_damage();
+}
+inline void TakeDamage::set_damage(::int32_t value) {
+  _internal_set_damage(value);
+  // @@protoc_insertion_point(field_set:space_service.TakeDamage.damage)
+}
+inline ::int32_t TakeDamage::_internal_damage() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.damage_;
+}
+inline void TakeDamage::_internal_set_damage(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.damage_ = value;
 }
 
 #ifdef __GNUC__

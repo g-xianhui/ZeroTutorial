@@ -175,3 +175,17 @@ void TcpConnection::on_lost_connection()
 
     _service->on_lost_connection(this);
 }
+
+void send_raw_msg(TcpConnection* conn, const std::string& msg_name, const std::string& msg_bytes)
+{
+    if (!conn)
+        return;
+
+    char len_bytes[5] = { 0 };
+    size_t encoded_size = write_7bit_encoded_int((uint32_t)msg_name.size(), len_bytes);
+
+    std::string msg{ len_bytes, encoded_size };
+    msg += msg_name;
+    msg += msg_bytes;
+    conn->send_msg(msg.c_str(), msg.size());
+}

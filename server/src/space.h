@@ -19,6 +19,8 @@ public:
 
     void normal_attack(Player* player, int combo_seq);
 
+    void call_all(const std::string& msg_name, const std::string& msg_bytes);
+
 private:
     size_t _width;
     size_t _height;

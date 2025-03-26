@@ -678,4 +678,29 @@ public class NetworkManager : MonoBehaviour
             }
         }
     }
+
+    public void take_damage(byte[] msgBytes)
+    {
+        SpaceService.TakeDamage msg = SpaceService.TakeDamage.Parser.ParseFrom(msgBytes);
+
+        // TODO 目前每条消息都要这样来找到作用的实体，太麻烦了，应该要让每条消息都带一个charater id，然后在入口统一处理
+        GameObject player = null;
+        if (msg.Name == _playerName)
+        {
+            player = _mainPlayer;
+        }
+        else
+        {
+            player = find_player(msg.Name);
+        }
+
+        if (player != null)
+        {
+            CombatComponent combatComponent = player.GetComponent<CombatComponent>();
+            if (combatComponent != null)
+            {
+                combatComponent.TakeDamage(msg.Damage);
+            }
+        }
+    }
 }
