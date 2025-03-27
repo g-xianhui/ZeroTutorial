@@ -28,6 +28,7 @@ std::map<std::string, SpaceService::MsgHandlerFunc> SpaceService::register_msg_h
     REG_MSG_HANDLER(upload_movement);
     REG_MSG_HANDLER(ping);
     REG_MSG_HANDLER(normal_attack);
+    REG_MSG_HANDLER(skill_attack);
     return name_2_handler;
 }
 
@@ -193,5 +194,18 @@ void SpaceService::normal_attack(TcpConnection* conn, const std::string& msg_byt
     req.ParseFromString(msg_bytes);
 
     int combo_seq = req.combo();
-    _space->normal_attack(player, combo_seq);
+    player->normal_attack(combo_seq);
+}
+
+void SpaceService::skill_attack(TcpConnection* conn, const std::string& msg_bytes)
+{
+    Player* player = find_player(conn);
+    if (!player)
+        return;
+
+    space_service::SkillAttack req;
+    req.ParseFromString(msg_bytes);
+
+    int skill_id = req.skill_id();
+    player->skill_attack(skill_id);
 }

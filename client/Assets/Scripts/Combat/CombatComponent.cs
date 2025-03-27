@@ -76,6 +76,7 @@ public class CombatComponent : MonoBehaviour
         _skillComponent.CastSkill(skillIndex);
     }
 
+    // 动画过渡会把结尾的事件回调忽略掉
     public void AN_EnableNormalAttack(int enable)
     {
         EnableNormalAttack = enable > 0;
@@ -108,6 +109,12 @@ public class CombatComponent : MonoBehaviour
     {
         _anim.speed = 1;
         AN_EnableMovement(1);
+    }
+
+
+    public void AN_SkillEnd()
+    {
+        _skillComponent.StopSkill();
     }
 
     public void TakeDamage(int damage)

@@ -46,13 +46,13 @@ namespace SpaceService {
             "dmVtZW50Ij8KD1BsYXllck1vdmVtZW50cxIsCgVkYXRhcxgBIAMoCzIdLnNw",
             "YWNlX3NlcnZpY2UuUGxheWVyTW92ZW1lbnQiEQoEUGluZxIJCgF0GAEgASgC",
             "IhEKBFBvbmcSCQoBdBgBIAEoAiIdCgxOb3JtYWxBdHRhY2sSDQoFY29tYm8Y",
-            "ASABKAUijgEKCUFuaW1hdGlvbhIMCgRuYW1lGAEgASgJEjIKAm9wGAIgASgO",
-            "MiYuc3BhY2Vfc2VydmljZS5BbmltYXRpb24uT3BlcmF0aW9uVHlwZRINCgVz",
-            "cGVlZBgDIAEoAiIwCg1PcGVyYXRpb25UeXBlEgkKBVNUQVJUEAASCAoEU1RP",
-            "UBABEgoKBlVQREFURRACIkcKD1BsYXllckFuaW1hdGlvbhIMCgRuYW1lGAEg",
-            "ASgJEiYKBGRhdGEYAiABKAsyGC5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbiIq",
-            "CgpUYWtlRGFtYWdlEgwKBG5hbWUYASABKAkSDgoGZGFtYWdlGAIgASgFYgZw",
-            "cm90bzM="));
+            "ASABKAUiHwoLU2tpbGxBdHRhY2sSEAoIc2tpbGxfaWQYASABKAUijgEKCUFu",
+            "aW1hdGlvbhIMCgRuYW1lGAEgASgJEjIKAm9wGAIgASgOMiYuc3BhY2Vfc2Vy",
+            "dmljZS5BbmltYXRpb24uT3BlcmF0aW9uVHlwZRINCgVzcGVlZBgDIAEoAiIw",
+            "Cg1PcGVyYXRpb25UeXBlEgkKBVNUQVJUEAASCAoEU1RPUBABEgoKBlVQREFU",
+            "RRACIkcKD1BsYXllckFuaW1hdGlvbhIMCgRuYW1lGAEgASgJEiYKBGRhdGEY",
+            "AiABKAsyGC5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbiIqCgpUYWtlRGFtYWdl",
+            "EgwKBG5hbWUYASABKAkSDgoGZGFtYWdlGAIgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -69,6 +69,7 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Ping), global::SpaceService.Ping.Parser, new[]{ "T" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Pong), global::SpaceService.Pong.Parser, new[]{ "T" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.NormalAttack), global::SpaceService.NormalAttack.Parser, new[]{ "Combo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillAttack), global::SpaceService.SkillAttack.Parser, new[]{ "SkillId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Animation), global::SpaceService.Animation.Parser, new[]{ "Name", "Op", "Speed" }, null, new[]{ typeof(global::SpaceService.Animation.Types.OperationType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAnimation), global::SpaceService.PlayerAnimation.Parser, new[]{ "Name", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.TakeDamage), global::SpaceService.TakeDamage.Parser, new[]{ "Name", "Damage" }, null, null, null, null)
@@ -3145,6 +3146,204 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SkillAttack : pb::IMessage<SkillAttack>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SkillAttack> _parser = new pb::MessageParser<SkillAttack>(() => new SkillAttack());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SkillAttack> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SkillAttack() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SkillAttack(SkillAttack other) : this() {
+      skillId_ = other.skillId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SkillAttack Clone() {
+      return new SkillAttack(this);
+    }
+
+    /// <summary>Field number for the "skill_id" field.</summary>
+    public const int SkillIdFieldNumber = 1;
+    private int skillId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SkillId {
+      get { return skillId_; }
+      set {
+        skillId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SkillAttack);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SkillAttack other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SkillId != other.SkillId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (SkillId != 0) hash ^= SkillId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (SkillId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(SkillId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (SkillId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(SkillId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (SkillId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SkillAttack other) {
+      if (other == null) {
+        return;
+      }
+      if (other.SkillId != 0) {
+        SkillId = other.SkillId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            SkillId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            SkillId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Animation : pb::IMessage<Animation>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3159,7 +3358,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[13]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3445,7 +3644,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[14]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3689,7 +3888,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[15]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

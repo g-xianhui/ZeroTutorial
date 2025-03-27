@@ -42,6 +42,7 @@ public:
     void ping(TcpConnection*, const std::string&);
 
     void normal_attack(TcpConnection*, const std::string&);
+    void skill_attack(TcpConnection*, const std::string&);
 private:
     Space* _space = nullptr;
 

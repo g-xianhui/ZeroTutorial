@@ -93,6 +93,9 @@ extern PlayersLeaveSightDefaultTypeInternal _PlayersLeaveSight_default_instance_
 class Pong;
 struct PongDefaultTypeInternal;
 extern PongDefaultTypeInternal _Pong_default_instance_;
+class SkillAttack;
+struct SkillAttackDefaultTypeInternal;
+extern SkillAttackDefaultTypeInternal _SkillAttack_default_instance_;
 class TakeDamage;
 struct TakeDamageDefaultTypeInternal;
 extern TakeDamageDefaultTypeInternal _TakeDamage_default_instance_;
@@ -396,7 +399,7 @@ class TakeDamage final : public ::google::protobuf::Message
     return reinterpret_cast<const TakeDamage*>(
         &_TakeDamage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(TakeDamage& a, TakeDamage& b) { a.Swap(&b); }
   inline void Swap(TakeDamage* other) {
     if (other == this) return;
@@ -522,6 +525,177 @@ class TakeDamage final : public ::google::protobuf::Message
                           const TakeDamage& from_msg);
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::int32_t damage_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SkillAttack final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.SkillAttack) */ {
+ public:
+  inline SkillAttack() : SkillAttack(nullptr) {}
+  ~SkillAttack() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR SkillAttack(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline SkillAttack(const SkillAttack& from) : SkillAttack(nullptr, from) {}
+  inline SkillAttack(SkillAttack&& from) noexcept
+      : SkillAttack(nullptr, std::move(from)) {}
+  inline SkillAttack& operator=(const SkillAttack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SkillAttack& operator=(SkillAttack&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SkillAttack& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SkillAttack* internal_default_instance() {
+    return reinterpret_cast<const SkillAttack*>(
+        &_SkillAttack_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(SkillAttack& a, SkillAttack& b) { a.Swap(&b); }
+  inline void Swap(SkillAttack* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SkillAttack* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SkillAttack* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<SkillAttack>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SkillAttack& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const SkillAttack& from) { SkillAttack::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SkillAttack* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.SkillAttack"; }
+
+ protected:
+  explicit SkillAttack(::google::protobuf::Arena* arena);
+  SkillAttack(::google::protobuf::Arena* arena, const SkillAttack& from);
+  SkillAttack(::google::protobuf::Arena* arena, SkillAttack&& from) noexcept
+      : SkillAttack(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSkillIdFieldNumber = 1,
+  };
+  // int32 skill_id = 1;
+  void clear_skill_id() ;
+  ::int32_t skill_id() const;
+  void set_skill_id(::int32_t value);
+
+  private:
+  ::int32_t _internal_skill_id() const;
+  void _internal_set_skill_id(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.SkillAttack)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_SkillAttack_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const SkillAttack& from_msg);
+    ::int32_t skill_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1635,7 +1809,7 @@ class Animation final : public ::google::protobuf::Message
     return reinterpret_cast<const Animation*>(
         &_Animation_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(Animation& a, Animation& b) { a.Swap(&b); }
   inline void Swap(Animation* other) {
     if (other == this) return;
@@ -1856,7 +2030,7 @@ class PlayerAnimation final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayerAnimation*>(
         &_PlayerAnimation_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(PlayerAnimation& a, PlayerAnimation& b) { a.Swap(&b); }
   inline void Swap(PlayerAnimation* other) {
     if (other == this) return;
@@ -4712,6 +4886,32 @@ inline ::int32_t NormalAttack::_internal_combo() const {
 inline void NormalAttack::_internal_set_combo(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.combo_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SkillAttack
+
+// int32 skill_id = 1;
+inline void SkillAttack::clear_skill_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.skill_id_ = 0;
+}
+inline ::int32_t SkillAttack::skill_id() const {
+  // @@protoc_insertion_point(field_get:space_service.SkillAttack.skill_id)
+  return _internal_skill_id();
+}
+inline void SkillAttack::set_skill_id(::int32_t value) {
+  _internal_set_skill_id(value);
+  // @@protoc_insertion_point(field_set:space_service.SkillAttack.skill_id)
+}
+inline ::int32_t SkillAttack::_internal_skill_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.skill_id_;
+}
+inline void SkillAttack::_internal_set_skill_id(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.skill_id_ = value;
 }
 
 // -------------------------------------------------------------------

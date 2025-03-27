@@ -68,6 +68,25 @@ struct TakeDamageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TakeDamageDefaultTypeInternal _TakeDamage_default_instance_;
 
+inline constexpr SkillAttack::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : skill_id_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SkillAttack::SkillAttack(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SkillAttackDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SkillAttackDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SkillAttackDefaultTypeInternal() {}
+  union {
+    SkillAttack _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SkillAttackDefaultTypeInternal _SkillAttack_default_instance_;
+
 inline constexpr Pong::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : t_{0},
@@ -507,6 +526,15 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::NormalAttack, _impl_.combo_),
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::SkillAttack, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::SkillAttack, _impl_.skill_id_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::Animation, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -556,9 +584,10 @@ static const ::_pbi::MigrationSchema
         {116, -1, -1, sizeof(::space_service::Ping)},
         {125, -1, -1, sizeof(::space_service::Pong)},
         {134, -1, -1, sizeof(::space_service::NormalAttack)},
-        {143, -1, -1, sizeof(::space_service::Animation)},
-        {154, 164, -1, sizeof(::space_service::PlayerAnimation)},
-        {166, -1, -1, sizeof(::space_service::TakeDamage)},
+        {143, -1, -1, sizeof(::space_service::SkillAttack)},
+        {152, -1, -1, sizeof(::space_service::Animation)},
+        {163, 173, -1, sizeof(::space_service::PlayerAnimation)},
+        {175, -1, -1, sizeof(::space_service::TakeDamage)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -574,6 +603,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Ping_default_instance_._instance,
     &::space_service::_Pong_default_instance_._instance,
     &::space_service::_NormalAttack_default_instance_._instance,
+    &::space_service::_SkillAttack_default_instance_._instance,
     &::space_service::_Animation_default_instance_._instance,
     &::space_service::_PlayerAnimation_default_instance_._instance,
     &::space_service::_TakeDamage_default_instance_._instance,
@@ -604,26 +634,27 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     "pace_service.Movement\"\?\n\017PlayerMovements"
     "\022,\n\005datas\030\001 \003(\0132\035.space_service.PlayerMo"
     "vement\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"\021\n\004Pong\022\t\n\001t\030\001"
-    " \001(\002\"\035\n\014NormalAttack\022\r\n\005combo\030\001 \001(\005\"\216\001\n\t"
-    "Animation\022\014\n\004name\030\001 \001(\t\0222\n\002op\030\002 \001(\0162&.sp"
-    "ace_service.Animation.OperationType\022\r\n\005s"
-    "peed\030\003 \001(\002\"0\n\rOperationType\022\t\n\005START\020\000\022\010"
-    "\n\004STOP\020\001\022\n\n\006UPDATE\020\002\"G\n\017PlayerAnimation\022"
-    "\014\n\004name\030\001 \001(\t\022&\n\004data\030\002 \001(\0132\030.space_serv"
-    "ice.Animation\"*\n\nTakeDamage\022\014\n\004name\030\001 \001("
-    "\t\022\016\n\006damage\030\002 \001(\005b\006proto3"
+    " \001(\002\"\035\n\014NormalAttack\022\r\n\005combo\030\001 \001(\005\"\037\n\013S"
+    "killAttack\022\020\n\010skill_id\030\001 \001(\005\"\216\001\n\tAnimati"
+    "on\022\014\n\004name\030\001 \001(\t\0222\n\002op\030\002 \001(\0162&.space_ser"
+    "vice.Animation.OperationType\022\r\n\005speed\030\003 "
+    "\001(\002\"0\n\rOperationType\022\t\n\005START\020\000\022\010\n\004STOP\020"
+    "\001\022\n\n\006UPDATE\020\002\"G\n\017PlayerAnimation\022\014\n\004name"
+    "\030\001 \001(\t\022&\n\004data\030\002 \001(\0132\030.space_service.Ani"
+    "mation\"*\n\nTakeDamage\022\014\n\004name\030\001 \001(\t\022\016\n\006da"
+    "mage\030\002 \001(\005b\006proto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    1265,
+    1298,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
     nullptr,
     0,
-    16,
+    17,
     schemas,
     file_default_instances,
     TableStruct_space_5fservice_2eproto::offsets,
@@ -3620,6 +3651,178 @@ void NormalAttack::InternalSwap(NormalAttack* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata NormalAttack::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class SkillAttack::_Internal {
+ public:
+};
+
+SkillAttack::SkillAttack(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.SkillAttack)
+}
+SkillAttack::SkillAttack(
+    ::google::protobuf::Arena* arena, const SkillAttack& from)
+    : SkillAttack(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE SkillAttack::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SkillAttack::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.skill_id_ = {};
+}
+SkillAttack::~SkillAttack() {
+  // @@protoc_insertion_point(destructor:space_service.SkillAttack)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SkillAttack::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+SkillAttack::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(SkillAttack, _impl_._cached_size_),
+              false,
+          },
+          &SkillAttack::MergeImpl,
+          &SkillAttack::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> SkillAttack::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SkillAttack_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::SkillAttack>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // int32 skill_id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SkillAttack, _impl_.skill_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SkillAttack, _impl_.skill_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 skill_id = 1;
+    {PROTOBUF_FIELD_OFFSET(SkillAttack, _impl_.skill_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void SkillAttack::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.SkillAttack)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.skill_id_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* SkillAttack::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.SkillAttack)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 skill_id = 1;
+  if (this->_internal_skill_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_skill_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.SkillAttack)
+  return target;
+}
+
+::size_t SkillAttack::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.SkillAttack)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 skill_id = 1;
+  if (this->_internal_skill_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_skill_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void SkillAttack::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<SkillAttack*>(&to_msg);
+  auto& from = static_cast<const SkillAttack&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.SkillAttack)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_skill_id() != 0) {
+    _this->_impl_.skill_id_ = from._impl_.skill_id_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SkillAttack::CopyFrom(const SkillAttack& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.SkillAttack)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void SkillAttack::InternalSwap(SkillAttack* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+        swap(_impl_.skill_id_, other->_impl_.skill_id_);
+}
+
+::google::protobuf::Metadata SkillAttack::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

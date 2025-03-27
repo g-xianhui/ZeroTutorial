@@ -129,13 +129,6 @@ public class CharacterMovement : MonoBehaviour
         CheckUploadMovement();
     }
 
-    // 我们想应用root motion，但默认的animator move会叠加重力的处理，但显然现在重力是由player controller接管的，需要忽略。
-    //private void OnAnimatorMove()
-    //{
-    //    transform.position += _anim.deltaPosition;
-    //    transform.Rotate(_anim.deltaRotation.eulerAngles);
-    //}
-
     private void LateUpdate()
     {
         if (_networkComponent != null && _networkComponent.NetRole == ENetRole.Simulate)

@@ -107,6 +107,9 @@ public:
     inline void set_pos_update(bool is_update) { _is_pos_update = is_update; }
     inline bool is_pos_update() { return _is_pos_update; }
 
+    void normal_attack(int combo_seq);
+    void skill_attack(int skill_id);
+
     void take_damage(Player* attacker, int damage);
 
 private:
