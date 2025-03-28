@@ -31,6 +31,7 @@ public:
 
     void enter_space(Space* space);
     void leave_space();
+    inline Space* get_space() { return _space; }
 
     inline void set_position(float x, float y, float z) {
         _position.x = x;
@@ -110,6 +111,7 @@ public:
     void normal_attack(int combo_seq);
     void skill_attack(int skill_id);
 
+    void play_animation(const std::string& name, float speed=1.f);
     void take_damage(Player* attacker, int damage);
 
 private:

@@ -4,6 +4,7 @@
 #include "math_utils.h"
 #include "network/tcp_connection.h"
 #include "proto/space_service.pb.h"
+#include "combat/skill/skill_factory.h"
 
 void Player::send_msg(const char* msg_bytes, size_t n)
 {
@@ -35,18 +36,7 @@ void Player::normal_attack(int combo_seq)
     // 因此直接让服务器来算这个逻辑，告知客户端结果算了。如果动画很长，可以把animation的基础信息记录下来，新玩家上线时同步过去就是了。
     // 另一方面，技能动画可能是带root motion的，如果后面想要做精确的同步，则动画同步也是必须的事。
     // 倒是普通的受击、死亡之类的，直接修改一个状态，然后同步给客户端就好了。
-    space_service::PlayerAnimation player_animation;
-    player_animation.set_name(get_name());
-
-    space_service::Animation* animation = player_animation.mutable_data();
-    animation->set_name(combo_animations[combo_seq]);
-    // TODO 属性实现
-    animation->set_speed(1.f);
-    animation->set_op(space_service::Animation::OperationType::Animation_OperationType_START);
-
-    std::string msg_bytes;
-    player_animation.SerializeToString(&msg_bytes);
-    _space->call_others(this, "sync_animation", msg_bytes);
+    play_animation(combo_animations[combo_seq]);
 
     // TODO 普攻效果需要读配置，目前先暂定为0.5秒后对处于面前2米60度扇形区域内的敌人造成10点伤害
     G_Timer.add_timer(500, [this]() {
@@ -67,30 +57,25 @@ void Player::normal_attack(int combo_seq)
 
 void Player::skill_attack(int skill_id)
 {
+    ISkill* skill = SkillFactory::instance().create(1);
+    if (skill)
+        skill->execute(this);
+}
+
+void Player::play_animation(const std::string& name, float speed)
+{
+    // TODO 最好弄个属性同步机制，新上线的玩家也能看到
     space_service::PlayerAnimation player_animation;
     player_animation.set_name(get_name());
 
     space_service::Animation* animation = player_animation.mutable_data();
-    animation->set_name("Skill1");
-    // TODO 属性实现
-    animation->set_speed(1.f);
+    animation->set_name(name);
+    animation->set_speed(speed);
     animation->set_op(space_service::Animation::OperationType::Animation_OperationType_START);
 
     std::string msg_bytes;
     player_animation.SerializeToString(&msg_bytes);
     _space->call_others(this, "sync_animation", msg_bytes);
-
-    G_Timer.add_timer(1500, [this]() {
-        // FIXME 指针安全
-        Vector3f center = get_position();
-
-        std::vector<Player*> others = _space->find_players_in_circle(center.x, center.z, 2.f);
-        for (Player* other : others) {
-            if (other == this)
-                continue;
-            other->take_damage(this, 10);
-        }
-    });
 }
 
 void Player::take_damage(Player* attacker, int damage)

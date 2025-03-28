@@ -12,9 +12,22 @@ ENDIF()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
+source_group(combat ${CMAKE_CURRENT_SOURCE_DIR}/src/combat)
+source_group(skill ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill)
 
-file(GLOB GAME_SERVER_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/proto/*.cc)
-file(GLOB GAME_SERVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h)
+file(GLOB GAME_SERVER_SRCS
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/proto/*.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill/*.cpp
+)
+file(GLOB GAME_SERVER_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill/*.h
+)
 
 add_executable(game_server ${GAME_SERVER_SRCS} ${GAME_SERVER_HEADERS})
 target_link_libraries(game_server ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
