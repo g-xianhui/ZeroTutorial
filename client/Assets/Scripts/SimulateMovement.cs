@@ -32,37 +32,37 @@ public class SimulateMovement : MonoBehaviour
     [Tooltip("interval of movement sync from server in second")]
     public float MovementSyncInterval = 0.1f;
 
-    // µ±Ç°±¾µØËÙ¶È
+    // å½“å‰æœ¬åœ°é€Ÿåº¦
     private Vector3 _curVelocity;
 
-    // ====== ²åÖµÄ£Ê½ =======
-    // ´ÓÍøÂçÍ¬²½¹ıÀ´µÄÎ»ÒÆÊı¾İ°ü¶ÓÁĞ
+    // ====== æ’å€¼æ¨¡å¼ =======
+    // ä»ç½‘ç»œåŒæ­¥è¿‡æ¥çš„ä½ç§»æ•°æ®åŒ…é˜Ÿåˆ—
     private Queue<ServerMovePack> _interpolateMovements = new Queue<ServerMovePack>();
-    // Î»ÒÆ²åÖµµÄÆğÊ¼µã
+    // ä½ç§»æ’å€¼çš„èµ·å§‹ç‚¹
     private Vector3 _startPos;
     private Quaternion _startRot;
-    // Î»ÒÆ²åÖµµÄÖÕµã
+    // ä½ç§»æ’å€¼çš„ç»ˆç‚¹
     private Vector3 _endPos;
     private Quaternion _endRot;
-    // Î»ÒÆ²åÖµµ±Ç°¾­¹ıµÄÊ±³¤
+    // ä½ç§»æ’å€¼å½“å‰ç»è¿‡çš„æ—¶é•¿
     private float _lerpTimePass = 0f;
     private bool _isInterpolating = false;
     private float _lastSimulateTimeStamp = 0f;
 
-    // ====== Ô¤²âÄ£Ê½ =======
-    // Î»ÒÆÏà²î³¬¹ı¸ÃÖµ¿ªÊ¼ĞŞÕı
+    // ====== é¢„æµ‹æ¨¡å¼ =======
+    // ä½ç§»ç›¸å·®è¶…è¿‡è¯¥å€¼å¼€å§‹ä¿®æ­£
     [Tooltip("correction distance")]
     public float PredictionCorrectionDistance = 1f;
-    // Î»ÒÆÏà²î³¬¹ı¸ÃÖµÇ¿ÖÆÁ¢¼´¸üĞÂ
+    // ä½ç§»ç›¸å·®è¶…è¿‡è¯¥å€¼å¼ºåˆ¶ç«‹å³æ›´æ–°
     [Tooltip("hard snap distance")]
     public float PredictionHardSnapDistance = 3f;
-    // ³¯ÏòÏà²î³¬¹ı¸ÃÖµ¿ªÊ¼ĞŞÕı
+    // æœå‘ç›¸å·®è¶…è¿‡è¯¥å€¼å¼€å§‹ä¿®æ­£
     [Tooltip("correction rotation")]
     public float PredictionCorrectionRotation = 30f;
-    // ³¯ÏòÏà²î³¬¹ı¸ÃÖµÇ¿ÖÆÁ¢¼´¸üĞÂ
+    // æœå‘ç›¸å·®è¶…è¿‡è¯¥å€¼å¼ºåˆ¶ç«‹å³æ›´æ–°
     [Tooltip("hard snap rotation")]
     public float PredictionHardSnapRotation = 90f;
-    // ÈËĞÎ½ÇÉ«µÄĞı×ªËÙ¶ÈÌ«¿ìÁË£¬Ô¤²âÊ®ÓĞ°Ë¾ÅÊÇ´íµÄ£¬»òÕß¾Í°ÑÍ¬²½µÄÆµÂÊµ÷¸ß
+    // äººå½¢è§’è‰²çš„æ—‹è½¬é€Ÿåº¦å¤ªå¿«äº†ï¼Œé¢„æµ‹åæœ‰å…«ä¹æ˜¯é”™çš„ï¼Œæˆ–è€…å°±æŠŠåŒæ­¥çš„é¢‘ç‡è°ƒé«˜
     [Tooltip("enable rotation predicte")]
     public bool EnableRotationPredicte = false;
 
@@ -106,7 +106,7 @@ public class SimulateMovement : MonoBehaviour
             PredictRotate();
         }
 
-        // root motion¿ØÖÆÎ»ÒÆÊ±²»ÄÜÉèÖÃspeed£¬·ñÔò»á´¥·¢Õı³£µÄÒÆ¶¯¶¯»­£¬Óëroot motion²úÉú³åÍ»
+        // root motionæ§åˆ¶ä½ç§»æ—¶ä¸èƒ½è®¾ç½®speedï¼Œå¦åˆ™ä¼šè§¦å‘æ­£å¸¸çš„ç§»åŠ¨åŠ¨ç”»ï¼Œä¸root motionäº§ç”Ÿå†²çª
         if (_characterMovement.EnableMovement)
         {
             Vector3 horizontalV = new Vector3(_curVelocity.x, 0, _curVelocity.z);
@@ -136,7 +136,7 @@ public class SimulateMovement : MonoBehaviour
     {
         if (SyncMovementMode == ESyncMovementMode.Predict)
         {
-            // Á¢ÂíÏòÇ°Ô¤²âRTTÊ±¼ä£¬¶ÔÆë·şÎñ¶ËÊ±¼äÏß
+            // ç«‹é©¬å‘å‰é¢„æµ‹RTTæ—¶é—´ï¼Œå¯¹é½æœåŠ¡ç«¯æ—¶é—´çº¿
             _serverPosition = ForwardPredictePosition(_serverPosition, _serverVelocity, _serverAcceleration, NetworkManager.Instance.RTT);
             _serverRotation = ForwardPredicteRotation(_serverRotation, _serverAngularVelocity, NetworkManager.Instance.RTT);
             _serverVelocity = _serverVelocity + _serverAcceleration * NetworkManager.Instance.RTT;
@@ -239,7 +239,7 @@ public class SimulateMovement : MonoBehaviour
     {
         if (_isInterpolating)
         {
-            // ²åÖµ½øĞĞÖĞ
+            // æ’å€¼è¿›è¡Œä¸­
             _lerpTimePass += Time.deltaTime;
             float t = Mathf.Min(1f, _lerpTimePass / MovementSyncInterval);
             transform.position = Vector3.Lerp(_startPos, _endPos, t);

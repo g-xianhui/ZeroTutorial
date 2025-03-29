@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ÎÒÃÇÏëÓ¦ÓÃroot motion£¬µ«Ä¬ÈÏµÄanimator move»áµş¼ÓÖØÁ¦µÄ´¦Àí£¬µ«ÏÔÈ»ÏÖÔÚÖØÁ¦ÊÇÓÉCharacterMovement½Ó¹ÜµÄ£¬ĞèÒªºöÂÔ¡£
+    // æˆ‘ä»¬æƒ³åº”ç”¨root motionï¼Œä½†é»˜è®¤çš„animator moveä¼šå åŠ é‡åŠ›çš„å¤„ç†ï¼Œä½†æ˜¾ç„¶ç°åœ¨é‡åŠ›æ˜¯ç”±CharacterMovementæ¥ç®¡çš„ï¼Œéœ€è¦å¿½ç•¥ã€‚
     private void OnAnimatorMove()
     {
         if (!_anim) return;

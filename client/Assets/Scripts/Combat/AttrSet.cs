@@ -15,22 +15,22 @@ public class AttrSet : MonoBehaviour
     public int Defence;
     public float CriticalRate;
     public float CriticalDamage;
-    // ÃüÖĞÂÊ
+    // å‘½ä¸­ç‡
     [Range(0.0f, 1.0f)]
     public float Accuracy;
-    // ÉÁ±Ü
+    // é—ªé¿
     [Range(0.0f, 1.0f)]
     public float DodgeRate;
-    // »¤¶Ü
+    // æŠ¤ç›¾
     public int Shield;
-    // ÈÍĞÔ
+    // éŸ§æ€§
     [Range(0.0f, 1.0f)]
     public float Tenacity;
-    // ÎüÑª
+    // å¸è¡€
     [Range(0.0f, 1.0f)]
     public float Lifesteal;
 
-    // ×´Ì¬£¨ÔÎÑ£¡¢¶³½á¡¢°ÔÌå¡£¡£¡££©
+    // çŠ¶æ€ï¼ˆæ™•çœ©ã€å†»ç»“ã€éœ¸ä½“ã€‚ã€‚ã€‚ï¼‰
     private int Status;
 
     // Start is called before the first frame update
@@ -48,40 +48,40 @@ public class AttrSet : MonoBehaviour
 
     public void TakeDamage(AttrSet attacker, int attackDamage)
     {
-        // 1. »ù´¡ÉËº¦¼ÆËã
+        // 1. åŸºç¡€ä¼¤å®³è®¡ç®—
         int baseDamage = Mathf.Max(1, attackDamage - this.Defence);
 
-        // 2. ±©»÷ÅĞ¶Ï
+        // 2. æš´å‡»åˆ¤æ–­
         bool isCritical = Random.value < attacker.CriticalRate;
         float damage = isCritical ? baseDamage * (1 + attacker.CriticalDamage) : baseDamage;
 
-        // 3. ÃüÖĞÓëÉÁ±ÜÅĞ¶Ï
+        // 3. å‘½ä¸­ä¸é—ªé¿åˆ¤æ–­
         bool isHit = Random.value < (attacker.Accuracy - this.DodgeRate);
         if (!isHit)
         {
-            Debug.Log("¹¥»÷Î´ÃüÖĞ£¡");
+            Debug.Log("æ”»å‡»æœªå‘½ä¸­ï¼");
             damage = 0;
         }
 
-        // 4. »¤¶ÜÎüÊÕ
+        // 4. æŠ¤ç›¾å¸æ”¶
         int shieldAbsorb = Mathf.Min((int)damage, this.Shield);
         this.Shield -= shieldAbsorb;
         damage -= shieldAbsorb;
 
-        // 5. Êµ¼Ê¿ÛÑª
+        // 5. å®é™…æ‰£è¡€
         this.Health -= (int)damage;
-        this.Health = Mathf.Max(0, this.Health); // È·±£ÉúÃüÖµ²»µÍÓÚ0
+        this.Health = Mathf.Max(0, this.Health); // ç¡®ä¿ç”Ÿå‘½å€¼ä¸ä½äº0
 
-        // 6. ÎüÑªĞ§¹û
+        // 6. å¸è¡€æ•ˆæœ
         if (damage > 0 && attacker.Lifesteal > 0)
         {
             int healAmount = (int)(damage * attacker.Lifesteal);
             attacker.Health += healAmount;
-            attacker.Health = Mathf.Min(attacker.MaxHealth, attacker.Health); // È·±£ÉúÃüÖµ²»³¬¹ıÉÏÏŞ
+            attacker.Health = Mathf.Min(attacker.MaxHealth, attacker.Health); // ç¡®ä¿ç”Ÿå‘½å€¼ä¸è¶…è¿‡ä¸Šé™
         }
 
-        // Êä³öÈÕÖ¾
-        Debug.Log($"¹¥»÷ÕßÔì³ÉÉËº¦: {damage}, ÊÇ·ñ±©»÷: {isCritical}, »¤¶ÜÎüÊÕ: {shieldAbsorb}, ·ÀÓùÕßÊ£ÓàÉúÃü: {this.Health}");
+        // è¾“å‡ºæ—¥å¿—
+        Debug.Log($"æ”»å‡»è€…é€ æˆä¼¤å®³: {damage}, æ˜¯å¦æš´å‡»: {isCritical}, æŠ¤ç›¾å¸æ”¶: {shieldAbsorb}, é˜²å¾¡è€…å‰©ä½™ç”Ÿå‘½: {this.Health}");
     }
 
 }

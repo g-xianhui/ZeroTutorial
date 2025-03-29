@@ -14,7 +14,7 @@ public class FootIK : MonoBehaviour
     [Range(0, 2)]
     [SerializeField]
     public float RaycastDownDistance = 1.5f;
-    // ÓÃÓÚĞŞÕıbodyPosition£¬²»ÖªµÀÎªÊ²Ã´¼ÆËã³öÀ´µÄÖµ×ÜÊÇ²îÒ»µã
+    // ç”¨äºä¿®æ­£bodyPositionï¼Œä¸çŸ¥é“ä¸ºä»€ä¹ˆè®¡ç®—å‡ºæ¥çš„å€¼æ€»æ˜¯å·®ä¸€ç‚¹
     [SerializeField]
     public float PelivsOffset = 0;
 
@@ -42,7 +42,7 @@ public class FootIK : MonoBehaviour
             targetIKPos.y += bottomHeight;
 
             Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-            // ×¢ÒâÏà³ËµÄË³Ğò²»ÄÜµ÷×ª£¬ÊÔÒ»ÏÂ¾ÍÖªµÀÁË
+            // æ³¨æ„ç›¸ä¹˜çš„é¡ºåºä¸èƒ½è°ƒè½¬ï¼Œè¯•ä¸€ä¸‹å°±çŸ¥é“äº†
             targetIKRotation = rotation * targetIKRotation;
         }
         else

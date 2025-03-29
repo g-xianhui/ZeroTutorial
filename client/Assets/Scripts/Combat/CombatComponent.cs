@@ -76,7 +76,7 @@ public class CombatComponent : MonoBehaviour
         _skillComponent.CastSkill(skillIndex);
     }
 
-    // ¶¯»­¹ý¶É»á°Ñ½áÎ²µÄÊÂ¼þ»Øµ÷ºöÂÔµô
+    // åŠ¨ç”»è¿‡æ¸¡ä¼šæŠŠç»“å°¾çš„äº‹ä»¶å›žè°ƒå¿½ç•¥æŽ‰
     public void AN_EnableNormalAttack(int enable)
     {
         EnableNormalAttack = enable > 0;
@@ -84,7 +84,7 @@ public class CombatComponent : MonoBehaviour
 
     public void AN_EnableMovement(int enable)
     {
-        // simulatorµÄÒÆ¶¯×´Ì¬ÓÉÍøÂç½Ó¹Ü
+        // simulatorçš„ç§»åŠ¨çŠ¶æ€ç”±ç½‘ç»œæŽ¥ç®¡
         if (_networkComponent != null && _networkComponent.NetRole == ENetRole.Simulate)
             return;
         _characterMovement.EnableMovement = enable > 0;
@@ -119,7 +119,7 @@ public class CombatComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // TODO uiî’×Ö
+        // TODO uié¡ å­—
         _anim.CrossFade("BeHit", 0.2f);
     }
 }

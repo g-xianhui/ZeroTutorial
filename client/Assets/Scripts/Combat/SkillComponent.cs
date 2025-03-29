@@ -27,7 +27,7 @@ public class SkillComponent : MonoBehaviour
 
     public void CastSkill(int skillIndex)
     {
-        // Ôİ¶¨Í¬Ê±Ö»ÄÜÔËĞĞÒ»¸ö¼¼ÄÜ
+        // æš‚å®šåŒæ—¶åªèƒ½è¿è¡Œä¸€ä¸ªæŠ€èƒ½
         if (runningSkill != null && runningSkill.IsActive)
             return;
 
@@ -42,7 +42,7 @@ public class SkillComponent : MonoBehaviour
             throw new ArgumentException($"Skill_{skillId} not found!");
         }
 
-        // ´´½¨ÊµÀı
+        // åˆ›å»ºå®ä¾‹
         runningSkill = (ISkill)Activator.CreateInstance(skillType);
         runningSkill.Execute(this);
 
