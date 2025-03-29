@@ -114,6 +114,8 @@ public class CombatComponent : MonoBehaviour
 
     public void AN_SkillEnd()
     {
+        if (_networkComponent != null && _networkComponent.NetRole == ENetRole.Simulate)
+            return;
         _skillComponent.StopSkill();
     }
 
