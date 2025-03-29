@@ -1,5 +1,14 @@
 #include "math_utils.h"
-#include "math.h"
+#include <math.h>
+#include <random>
+
+float random_01()
+{
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    static std::uniform_real_distribution<float> dis(0.0f, 1.0f);
+    return dis(gen);
+}
 
 bool is_point_in_circle(float cx, float cy, float r, float px, float py)
 {

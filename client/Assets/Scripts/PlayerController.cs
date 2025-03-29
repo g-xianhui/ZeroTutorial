@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
     }
 
     // 我们想应用root motion，但默认的animator move会叠加重力的处理，但显然现在重力是由CharacterMovement接管的，需要忽略。
-    // 解决simulator抖动的一个办法是让它不要使用root motion，完全使用服务端的位置同步
     private void OnAnimatorMove()
     {
         if (!_anim) return;

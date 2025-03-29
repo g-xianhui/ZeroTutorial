@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+
+#include "icomponent.h"
 
 class TcpConnection;
 
@@ -21,8 +24,11 @@ class Space;
 class Player {
 public:
     // conn的生命周期由外部管理
-    Player(TcpConnection* conn, const std::string& name) : _conn(conn), _name(name) {}
-    ~Player() {}
+    Player(TcpConnection* conn, const std::string& name);
+    ~Player();
+
+    void start();
+    void stop();
 
     inline TcpConnection* get_conn() { return _conn; }
     inline const std::string& get_name() const { return _name; }
@@ -32,6 +38,15 @@ public:
     void enter_space(Space* space);
     void leave_space();
     inline Space* get_space() { return _space; }
+
+    template<IsComponent T>
+    void add_component();
+
+    template<IsComponent T>
+    void remove_component();
+
+    template<IsComponent T>
+    T* get_component();
 
     inline void set_position(float x, float y, float z) {
         _position.x = x;
@@ -112,13 +127,14 @@ public:
     void skill_attack(int skill_id);
 
     void play_animation(const std::string& name, float speed=1.f);
-    void take_damage(Player* attacker, int damage);
 
 private:
     TcpConnection* _conn;
     std::string _name;
 
     Space* _space = nullptr;
+
+    std::unordered_map<std::string, IComponent*> _components;
 
     Vector3f _position;
     Rotation _rotation;
