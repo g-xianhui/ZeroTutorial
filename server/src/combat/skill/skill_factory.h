@@ -41,3 +41,4 @@ public:
         }; \
         static AutoRegister_##cls _autoRegister_##cls; \
     }
+

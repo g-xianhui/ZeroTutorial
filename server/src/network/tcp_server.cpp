@@ -29,21 +29,14 @@ accept_error_cb(struct evconnlistener* listener, void* ctx)
 
 void TcpServer::start(struct event_base* base)
 {
-    struct sockaddr_in sin;
-
-    /* Clear the sockaddr before using it, in case there are extra
-    * platform-specific fields that can mess us up. */
-    std::memset(&sin, 0, sizeof(sin));
-    /* This is an INET address */
-    sin.sin_family = AF_INET; 
-    /* Listen on 0.0.0.0 */
-    sin.sin_addr.s_addr = htonl(0);
-    /* Listen on the given port. */
-    sin.sin_port = htons(_port);
+    sockaddr_in6 addr{};
+    addr.sin6_family = AF_INET6;
+    addr.sin6_addr = in6addr_any;
+    addr.sin6_port = htons(_port);
 
     _listener = evconnlistener_new_bind(base, accept_conn_cb, this,
         LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE, -1,
-        (struct sockaddr*)&sin, sizeof(sin));
+        (struct sockaddr*)&addr, sizeof(addr));
     if (!_listener) {
         spdlog::error("Couldn't create listener");
         return;
