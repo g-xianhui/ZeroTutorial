@@ -26,5 +26,6 @@ private:
     Service* _service;
 
     struct evconnlistener* _listener = nullptr;
+    struct evconnlistener* _listener_v6 = nullptr;
 };
 

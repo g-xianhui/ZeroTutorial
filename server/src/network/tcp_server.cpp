@@ -29,19 +29,33 @@ accept_error_cb(struct evconnlistener* listener, void* ctx)
 
 void TcpServer::start(struct event_base* base)
 {
-    sockaddr_in6 addr{};
-    addr.sin6_family = AF_INET6;
-    addr.sin6_addr = in6addr_any;
-    addr.sin6_port = htons(_port);
+    struct sockaddr_in addr_v4 {};
+    addr_v4.sin_family = AF_INET;
+    addr_v4.sin_addr.s_addr = INADDR_ANY;
+    addr_v4.sin_port = htons(_port);
 
     _listener = evconnlistener_new_bind(base, accept_conn_cb, this,
         LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE, -1,
-        (struct sockaddr*)&addr, sizeof(addr));
+        (struct sockaddr*)&addr_v4, sizeof(addr_v4));
     if (!_listener) {
-        spdlog::error("Couldn't create listener");
+        spdlog::error("Couldn't create listener for ipv4");
         return;
     }
     evconnlistener_set_error_cb(_listener, accept_error_cb);
+
+    sockaddr_in6 addr_v6{};
+    addr_v6.sin6_family = AF_INET6;
+    addr_v6.sin6_addr = in6addr_any;
+    addr_v6.sin6_port = htons(_port);
+
+    _listener_v6 = evconnlistener_new_bind(base, accept_conn_cb, this,
+        LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE, -1,
+        (struct sockaddr*)&addr_v6, sizeof(addr_v6));
+    if (!_listener_v6) {
+        spdlog::error("Couldn't create listener for ipv6");
+        return;
+    }
+    evconnlistener_set_error_cb(_listener_v6, accept_error_cb);
 }
 
 void TcpServer::stop()
@@ -49,6 +63,11 @@ void TcpServer::stop()
     if (_listener) {
         evconnlistener_disable(_listener);
         evconnlistener_free(_listener);
+    }
+
+    if (_listener_v6) {
+        evconnlistener_disable(_listener_v6);
+        evconnlistener_free(_listener_v6);
     }
 }
 
