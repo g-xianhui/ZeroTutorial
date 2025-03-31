@@ -49,7 +49,7 @@ void TcpServer::start(struct event_base* base)
     addr_v6.sin6_port = htons(_port);
 
     _listener_v6 = evconnlistener_new_bind(base, accept_conn_cb, this,
-        LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE, -1,
+        LEV_OPT_CLOSE_ON_FREE | LEV_OPT_REUSEABLE | LEV_OPT_BIND_IPV6ONLY, -1,
         (struct sockaddr*)&addr_v6, sizeof(addr_v6));
     if (!_listener_v6) {
         spdlog::error("Couldn't create listener for ipv6");

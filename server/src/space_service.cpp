@@ -140,6 +140,7 @@ void SpaceService::leave(TcpConnection* conn, const std::string&)
     _conn_2_player.erase(conn);
     _exists_names.erase(player->get_name());
 
+    spdlog::info("logout: {}", player->get_name());
     delete player;
 }
 
