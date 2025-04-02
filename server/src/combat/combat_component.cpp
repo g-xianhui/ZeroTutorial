@@ -6,6 +6,7 @@
 #include "math_utils.h"
 #include "wheel_timer.h"
 
+#include "network/tcp_connection.h"
 #include "proto/space_service.pb.h"
 
 #include <spdlog/spdlog.h>
@@ -21,7 +22,15 @@ void CombatComponent::start()
     _attr_set.defence = 5;
     _attr_set.init();
 
-    _skills.push_back(1);
+    {
+        SkillInfo skill_info{
+            .skill_id = 1,
+            .anmimator_state = "Skill1",
+            .cost_mana = 2,
+            .cool_down = 5000
+        };
+        _skill_infos.push_back(skill_info);
+    }
 }
 
 void CombatComponent::stop()
@@ -81,36 +90,85 @@ void CombatComponent::normal_attack(int combo_seq)
 
 void CombatComponent::cast_skill(int skill_id)
 {
-    // 目前只允许同时使用一个技能
-    if (_running_skill)
-    {
-        if (_running_skill->is_active())
-            return;
-        stop_running_skill();
+    auto iter = std::find_if(_skill_infos.begin(), _skill_infos.end(), [skill_id](const SkillInfo& info) {
+        return info.skill_id == skill_id;
+    });
+    if (iter == _skill_infos.end()) {
+        spdlog::error("cast skill but skill {} not found!", skill_id);
+        return;
     }
 
-    ISkill* skill = SkillFactory::instance().create(skill_id);
-    if (skill)
-    {
-        _running_skill = skill;
-        skill->set_owner(this);
+    SkillInfo& info = *iter;
+    if (can_cast_skill(info)) {
+        // reduce cost
+        _attr_set.mana -= info.cost_mana;
+        info.next_cast_time = int(G_Timer.ms_since_start()) + info.cool_down;
+
+        ISkill* skill = get_or_create_skill_instance(skill_id, info.instance_per_entity);
         skill->execute();
     }
-    else
-    {
-        spdlog::error("skill {} not found", skill_id);
+
+    // TODO 有个属性同步机制就好了
+    // 更新客户端cd
+    sync_skill_info(info);
+    // 更新客户端蓝量
+    sync_attr_set();
+}
+
+bool CombatComponent::can_cast_skill(const SkillInfo& info)
+{
+    if (_attr_set.mana < info.cost_mana)
+        return false;
+
+    if (G_Timer.ms_since_start() < info.next_cast_time)
+        return false;
+
+    if (_running_skills.contains(info.skill_id)) {
+        ISkill* skill = _running_skills[info.skill_id];
+        assert(skill);
+        if (skill->is_active())
+            return false;
     }
+
+    return true;
+}
+
+ISkill* CombatComponent::get_or_create_skill_instance(int skill_id, bool instance_per_entity)
+{
+    if (_running_skills.contains(skill_id)) {
+        ISkill* skill = _running_skills[skill_id];
+        assert(skill && !skill->is_active());
+
+        if (instance_per_entity) {
+            skill->reset();
+        }
+        else {
+            delete skill;
+            skill = create_skill_instance(skill_id);
+        }
+        return skill;
+    }
+    else {
+        return create_skill_instance(skill_id);
+    }
+}
+
+ISkill* CombatComponent::create_skill_instance(int skill_id)
+{
+    ISkill* skill = SkillFactory::instance().create(skill_id);
+    assert(skill);
+    skill->set_owner(this);
+    _running_skills[skill_id] = skill;
+    return skill;
 }
 
 void CombatComponent::stop_running_skill()
 {
-    if (_running_skill) {
-        _running_skill->set_owner(nullptr);
-        _running_skill->destroy();
-
-        delete _running_skill;
-        _running_skill = nullptr;
+    for (auto [_, skill] : _running_skills) {
+        skill->destroy();
+        delete skill;
     }
+    _running_skills.clear();
 }
 
 void CombatComponent::take_damage(CombatComponent* attacker, int damage)
@@ -127,4 +185,34 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
     msg.SerializeToString(&msg_bytes);
     Space* space = _owner->get_space();
     space->call_all("take_damage", msg_bytes);
+}
+
+void CombatComponent::fill_proto_attr_set(space_service::AttrSet& msg)
+{
+    msg.set_max_hp(_attr_set.max_health);
+    msg.set_hp(_attr_set.health);
+    msg.set_max_mana(_attr_set.max_mana);
+    msg.set_mana(_attr_set.mana);
+    msg.set_status(_attr_set.status);
+}
+
+void CombatComponent::sync_attr_set()
+{
+    space_service::PlayerAttrSet msg;
+    msg.set_name(_owner->get_name());
+    space_service::AttrSet* data = msg.mutable_data();
+    fill_proto_attr_set(*data);
+    
+    std::string msg_bytes;
+    msg.SerializeToString(&msg_bytes);
+    Space* space = _owner->get_space();
+    space->call_all("update_attr_set", msg_bytes);
+}
+
+void CombatComponent::sync_skill_info(const SkillInfo& skill_info)
+{
+    space_service::SkillInfo msg;
+    msg.set_skill_id(skill_info.skill_id);
+    msg.set_next_cast_time(skill_info.next_cast_time);
+    send_proto_msg(_owner->get_conn(), "update_skill_info", msg);
 }

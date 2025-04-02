@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttrSet : MonoBehaviour
+public class AttrSet
 {
     public int MaxHealth;
     public int Health;
@@ -31,20 +31,7 @@ public class AttrSet : MonoBehaviour
     public float Lifesteal;
 
     // 状态（晕眩、冻结、霸体。。。）
-    private int Status;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Health = MaxHealth;
-        Mana = MaxMana;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int Status;
 
     public void TakeDamage(AttrSet attacker, int attackDamage)
     {

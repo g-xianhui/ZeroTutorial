@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     void CheckCombatInput()
     {
+        if (NetworkManager.Instance.IsOfflineMode)
+            return;
+
         if (Input.GetButtonDown("Fire"))
         {
             combatComponent.NormalAttack();

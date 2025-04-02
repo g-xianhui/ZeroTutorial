@@ -3,6 +3,7 @@
 #include "player.h"
 
 #include "bit_utils.h"
+#include "wheel_timer.h"
 
 #include "network/tcp_connection.h"
 
@@ -153,15 +154,6 @@ void SpaceService::upload_movement(TcpConnection* conn, const std::string& msg_b
     space_service::Movement movement;
     movement.ParseFromString(msg_bytes);
 
-    //Vector3f old_pos = player->get_position();
-    //float dist_x = (movement.position().x() - old_pos.x);
-    //float dist_z = (movement.position().z() - old_pos.z);
-    //float dist = dist_x * dist_x + dist_z * dist_z;
-    //spdlog::debug("player: {} at position({}, {}, {}), velocity({}, {}, {}, dist: {})",
-    //    player->get_name(), movement.position().x(), movement.position().y(), movement.position().z(),
-    //    movement.velocity().x(), movement.velocity().y(), movement.velocity().z(), dist);
-
-
     player->set_position(movement.position().x(), movement.position().y(), movement.position().z());
     player->set_rotation(movement.rotation().x(), movement.rotation().y(), movement.rotation().z());
     player->set_velocity(movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
@@ -182,6 +174,8 @@ void SpaceService::ping(TcpConnection* conn, const std::string& msg_bytes)
 
     space_service::Pong pong_data;
     pong_data.set_t(ping_data.t());
+    // 用于客户端估算服务器时间
+    pong_data.set_server_t(int(G_Timer.ms_since_start()));
     send_proto_msg(conn, "pong", pong_data);
 }
 

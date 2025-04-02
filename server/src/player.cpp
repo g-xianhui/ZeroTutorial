@@ -106,7 +106,7 @@ void Player::skill_attack(int skill_id)
     }
 }
 
-void Player::play_animation(const std::string& name, float speed)
+void Player::play_animation(const std::string& name, float speed, bool sync_to_all)
 {
     // TODO 最好弄个属性同步机制，新上线的玩家也能看到
     space_service::PlayerAnimation player_animation;
@@ -119,5 +119,8 @@ void Player::play_animation(const std::string& name, float speed)
 
     std::string msg_bytes;
     player_animation.SerializeToString(&msg_bytes);
-    _space->call_others(this, "sync_animation", msg_bytes);
+    if (sync_to_all)
+        _space->call_all("sync_animation", msg_bytes);
+    else
+        _space->call_others(this, "sync_animation", msg_bytes);
 }

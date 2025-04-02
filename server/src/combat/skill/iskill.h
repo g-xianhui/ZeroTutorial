@@ -6,6 +6,7 @@ class ISkill {
 public:
     virtual ~ISkill() = default;
 
+    virtual void reset() { set_active(true); }
     virtual void destroy() {}
     virtual void execute() = 0;
 

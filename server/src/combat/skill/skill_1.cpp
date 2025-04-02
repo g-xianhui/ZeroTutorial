@@ -24,7 +24,7 @@ void Skill_1::execute() {
     Player* player = combat_comp->get_owner();
     assert(player);
 
-    player->play_animation("Skill1");
+    player->play_animation("Skill1", 1.f, true);
 
     _effect_timer = G_Timer.add_timer(1500, [this]() {
         CombatComponent* combat_comp = get_owner();

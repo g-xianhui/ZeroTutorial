@@ -163,7 +163,7 @@ class SendBuffer
 
     public bool Empty()
     {
-        return _startPos == _endPos; 
+        return _startPos == _endPos;
     }
 
     public uint Length()
@@ -265,6 +265,7 @@ public class NetworkManager : MonoBehaviour
             _rtt = value;
         }
     }
+    private int _clockOffset = 0;
 
     public bool IsOfflineMode { get; set; } = false;
 
@@ -333,7 +334,8 @@ public class NetworkManager : MonoBehaviour
             }
 
             // it may failed immediately when connect to loopback interface
-            if (connectTask.Status == TaskStatus.Faulted) {
+            if (connectTask.Status == TaskStatus.Faulted)
+            {
                 foreach (var ex in connectTask.Exception?.InnerExceptions ?? new(Array.Empty<Exception>()))
                 {
                     Debug.Log(ex.ToString());
@@ -490,7 +492,8 @@ public class NetworkManager : MonoBehaviour
         Close();
     }
 
-    private IEnumerator loadScene() {
+    private IEnumerator loadScene()
+    {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("DemoScene");
         while (!asyncLoad.isDone)
         {
@@ -594,6 +597,8 @@ public class NetworkManager : MonoBehaviour
                 networkComponent.NetRole = ENetRole.Simulate;
                 SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
                 simulateMovement.InitMovement(aoiPlayer.Transform);
+                CombatComponent combatComponent = otherPlayer.GetComponent<CombatComponent>();
+                combatComponent.UpdateAttrSet(aoiPlayer.AttrSet);
                 _players.Add(aoiPlayer.Name, otherPlayer);
             }
             else
@@ -650,6 +655,14 @@ public class NetworkManager : MonoBehaviour
         SpaceService.Pong pong = SpaceService.Pong.Parser.ParseFrom(msgBytes);
         NetworkComponent networkComponent = _mainPlayer.GetComponent<NetworkComponent>();
         networkComponent.Pong(pong.T);
+
+        float serverMs = pong.ServerT + RTT / 2;
+        _clockOffset = Mathf.CeilToInt(serverMs - Time.time);
+    }
+
+    public int GetServerTime()
+    {
+        return Mathf.CeilToInt(Time.time) + _clockOffset;
     }
 
     public void sync_animation(byte[] msgBytes)
@@ -701,6 +714,34 @@ public class NetworkManager : MonoBehaviour
             {
                 combatComponent.TakeDamage(msg.Damage);
             }
+        }
+    }
+
+    public void update_skill_info(byte[] msgBytes)
+    {
+        SpaceService.SkillInfo skillInfo = SpaceService.SkillInfo.Parser.ParseFrom(msgBytes);
+        CombatComponent combatComponent = _mainPlayer.GetComponent<CombatComponent>();
+        combatComponent.UpdateSkillInfo(skillInfo);
+    }
+
+    public void update_attr_set(byte[] msgBytes)
+    {
+        SpaceService.PlayerAttrSet msg = SpaceService.PlayerAttrSet.Parser.ParseFrom(msgBytes);
+
+        GameObject player = null;
+        if (msg.Name == _playerName)
+        {
+            player = _mainPlayer;
+        }
+        else
+        {
+            player = find_player(msg.Name);
+        }
+
+        if (player != null)
+        {
+            CombatComponent combatComponent = player.GetComponent<CombatComponent>();
+            combatComponent.UpdateAttrSet(msg.Data);
         }
     }
 }

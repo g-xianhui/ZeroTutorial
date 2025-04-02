@@ -3,6 +3,8 @@
 #include "wheel_timer.h"
 #include "math_utils.h"
 
+#include "combat/combat_component.h"
+
 #include "network/tcp_connection.h"
 
 #include "proto/space_service.pb.h"
@@ -97,6 +99,9 @@ void Space::join(Player* player)
     aoi_player->set_name(player->get_name());
     space_service::Movement* new_transform = aoi_player->mutable_transform();
     get_movement_data(player, new_transform);
+    space_service::AttrSet* new_attr_set = aoi_player->mutable_attr_set();
+    CombatComponent* combat_comp = player->get_component<CombatComponent>();
+    combat_comp->fill_proto_attr_set(*new_attr_set);
 
     space_service::PlayersEnterSight player_sight;
     for (Player* other : _players) {
@@ -110,11 +115,17 @@ void Space::join(Player* player)
         aoi_player->set_name(other->get_name());
         space_service::Movement* new_transform = aoi_player->mutable_transform();
         get_movement_data(other, new_transform);
+        space_service::AttrSet* new_attr_set = aoi_player->mutable_attr_set();
+        CombatComponent* combat_comp = other->get_component<CombatComponent>();
+        combat_comp->fill_proto_attr_set(*new_attr_set);
     }
     // 把场景内所有已存在的玩家信息发送给新玩家
     send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
 
     _players.push_back(player);
+
+    // FIXME 同步属性给自己，目前用了call_all的接口
+    combat_comp->sync_attr_set();
 }
 
 void Space::leave(Player* player)

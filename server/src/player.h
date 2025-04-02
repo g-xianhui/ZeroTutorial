@@ -126,7 +126,7 @@ public:
     void normal_attack(int combo_seq);
     void skill_attack(int skill_id);
 
-    void play_animation(const std::string& name, float speed=1.f);
+    void play_animation(const std::string& name, float speed = 1.f, bool sync_to_all = false);
 
 private:
     TcpConnection* _conn;
