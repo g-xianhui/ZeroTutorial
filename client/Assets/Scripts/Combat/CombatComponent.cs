@@ -37,9 +37,13 @@ public class CombatComponent : MonoBehaviour
     public bool EnableComboAttack { get; set; } = false;
 
     [SerializeField]
-    private Slider heathSlider;
-    [SerializeField]
-    private Slider manaSlider;
+    private GameObject headUIMountPoint;
+    private HeadUI headUI = null;
+
+    private void Awake()
+    {
+        CreateHeadUI();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +58,20 @@ public class CombatComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        headUI.ShowAt(headUIMountPoint.transform.position);
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(headUI.gameObject);
+    }
+
+    void CreateHeadUI()
+    {
+        GameObject prefab = Resources.Load<GameObject>("UI/HeadUI");
+        GameObject headUIGameObject = GameObject.Instantiate(prefab);
+        headUIGameObject.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
+        headUI = headUIGameObject.AddComponent<HeadUI>();
     }
 
     public AttrSet GetAttrSet()
@@ -185,8 +203,8 @@ public class CombatComponent : MonoBehaviour
         _attrSet.Mana = attrSet.Mana;
         _attrSet.Status = attrSet.Status;
 
-        heathSlider.value = (_attrSet.Health * 1.0f) / _attrSet.MaxHealth;
-        manaSlider.value = (_attrSet.Mana * 1.0f) / _attrSet.MaxMana;
+        headUI.UpdateHeathSlider((_attrSet.Health * 1.0f) / _attrSet.MaxHealth);
+        headUI.UpdateManaSlider((_attrSet.Mana * 1.0f) / _attrSet.MaxMana);
     }
 
     // 动画过渡会把结尾的事件回调忽略掉
@@ -233,6 +251,6 @@ public class CombatComponent : MonoBehaviour
         else
             _attrSet.Health -= damage;
 
-        heathSlider.value = (_attrSet.Health * 1.0f) / _attrSet.MaxHealth;
+        headUI.UpdateHeathSlider((_attrSet.Health * 1.0f) / _attrSet.MaxHealth);
     }
 }
