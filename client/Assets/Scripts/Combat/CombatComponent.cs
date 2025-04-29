@@ -63,7 +63,13 @@ public class CombatComponent : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(headUI.gameObject);
+        try
+        {
+            Destroy(headUI.gameObject);
+        }
+        catch
+        {
+        }
     }
 
     void CreateHeadUI()

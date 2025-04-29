@@ -178,7 +178,7 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
         return;
 
     space_service::TakeDamage msg;
-    msg.set_name(_owner->get_name());
+    msg.set_eid(_owner->get_eid());
     msg.set_damage(damage);
 
     std::string msg_bytes;
@@ -199,7 +199,7 @@ void CombatComponent::fill_proto_attr_set(space_service::AttrSet& msg)
 void CombatComponent::sync_attr_set()
 {
     space_service::PlayerAttrSet msg;
-    msg.set_name(_owner->get_name());
+    msg.set_eid(_owner->get_eid());
     space_service::AttrSet* data = msg.mutable_data();
     fill_proto_attr_set(*data);
     

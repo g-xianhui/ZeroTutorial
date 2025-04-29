@@ -115,6 +115,7 @@ void SpaceService::login(TcpConnection* conn, const std::string& msg_bytes)
         Player* player = new Player{ conn, username };
         _conn_2_player.insert(std::make_pair(conn, player));
         _exists_names.insert(username);
+        login_reply.set_eid(player->get_eid());
     }
 
     login_reply.set_result(result);

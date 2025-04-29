@@ -1,10 +1,12 @@
 #pragma once
 
-#include <map>
+#include <memory>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 class Player;
+class AOI;
 
 class Space {
 public:
@@ -14,6 +16,9 @@ public:
     void join(Player* player);
     void leave(Player* player);
     bool has_player(Player* player);
+    Player* find_player(int eid);
+
+    void update_position(int eid, float x, float y, float z);
 
     void update();
 
@@ -29,5 +34,8 @@ private:
 
     int _update_timer;
 
+    std::unordered_map<int, Player*> _eid_2_player;
     std::vector<Player*> _players;
+
+    std::shared_ptr<AOI> _aoi;
 };

@@ -9,8 +9,15 @@
 #include "combat/combat_component.h"
 #include "combat/skill/skill_factory.h"
 
+static int gen_eid() {
+    static int G_IDX = 0;
+    G_IDX += 1;
+    return G_IDX;
+}
+
 Player::Player(TcpConnection* conn, const std::string& name) : _conn(conn), _name(name)
 {
+    set_eid(gen_eid());
     start();
 }
 
@@ -88,6 +95,16 @@ T* Player::get_component()
     return iter == _components.end() ? nullptr : static_cast<T*>(iter->second);
 }
 
+void Player::set_position(float x, float y, float z) {
+    _position.x = x;
+    _position.y = y;
+    _position.z = z;
+
+    if (_space) {
+        _space->update_position(get_eid(), x, y, z);
+    }
+}
+
 constexpr const char* combo_animations[] = { "Attack01", "Attack02" };
 
 void Player::normal_attack(int combo_seq)
@@ -110,7 +127,7 @@ void Player::play_animation(const std::string& name, float speed, bool sync_to_a
 {
     // TODO 最好弄个属性同步机制，新上线的玩家也能看到
     space_service::PlayerAnimation player_animation;
-    player_animation.set_name(get_name());
+    player_animation.set_eid(get_eid());
 
     space_service::Animation* animation = player_animation.mutable_data();
     animation->set_name(name);

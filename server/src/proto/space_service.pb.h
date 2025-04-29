@@ -477,23 +477,17 @@ class TakeDamage final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNameFieldNumber = 1,
+    kEidFieldNumber = 1,
     kDamageFieldNumber = 2,
   };
-  // string name = 1;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
 
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
 
   public:
   // int32 damage = 2;
@@ -512,7 +506,7 @@ class TakeDamage final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      37, 2>
+      0, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -532,7 +526,7 @@ class TakeDamage final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const TakeDamage& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::int32_t eid_;
     ::int32_t damage_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1232,32 +1226,22 @@ class PlayersLeaveSight final : public ::google::protobuf::Message
   enum : int {
     kPlayersFieldNumber = 1,
   };
-  // repeated string players = 1;
+  // repeated int32 players = 1;
   int players_size() const;
   private:
   int _internal_players_size() const;
 
   public:
   void clear_players() ;
-  const std::string& players(int index) const;
-  std::string* mutable_players(int index);
-  void set_players(int index, const std::string& value);
-  void set_players(int index, std::string&& value);
-  void set_players(int index, const char* value);
-  void set_players(int index, const char* value, std::size_t size);
-  void set_players(int index, absl::string_view value);
-  std::string* add_players();
-  void add_players(const std::string& value);
-  void add_players(std::string&& value);
-  void add_players(const char* value);
-  void add_players(const char* value, std::size_t size);
-  void add_players(absl::string_view value);
-  const ::google::protobuf::RepeatedPtrField<std::string>& players() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* mutable_players();
+  ::int32_t players(int index) const;
+  void set_players(int index, ::int32_t value);
+  void add_players(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& players() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_players();
 
   private:
-  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_players() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_players();
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_players() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_players();
 
   public:
   // @@protoc_insertion_point(class_scope:space_service.PlayersLeaveSight)
@@ -1266,7 +1250,7 @@ class PlayersLeaveSight final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      47, 2>
+      0, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -1286,7 +1270,8 @@ class PlayersLeaveSight final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const PlayersLeaveSight& from_msg);
-    ::google::protobuf::RepeatedPtrField<std::string> players_;
+    ::google::protobuf::RepeatedField<::int32_t> players_;
+    mutable ::google::protobuf::internal::CachedSize _players_cached_byte_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1939,6 +1924,7 @@ class LoginReply final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kResultFieldNumber = 1,
+    kEidFieldNumber = 2,
   };
   // int32 result = 1;
   void clear_result() ;
@@ -1950,12 +1936,22 @@ class LoginReply final : public ::google::protobuf::Message
   void _internal_set_result(::int32_t value);
 
   public:
+  // int32 eid = 2;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:space_service.LoginReply)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
+      1, 2, 0,
       0, 2>
       _table_;
 
@@ -1977,6 +1973,7 @@ class LoginReply final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const LoginReply& from_msg);
     ::int32_t result_;
+    ::int32_t eid_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2549,25 +2546,9 @@ class PlayerAttrSet final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNameFieldNumber = 1,
     kDataFieldNumber = 2,
+    kEidFieldNumber = 1,
   };
-  // string name = 1;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
   // .space_service.AttrSet data = 2;
   bool has_data() const;
   void clear_data() ;
@@ -2583,13 +2564,23 @@ class PlayerAttrSet final : public ::google::protobuf::Message
   ::space_service::AttrSet* _internal_mutable_data();
 
   public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:space_service.PlayerAttrSet)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 1,
-      40, 2>
+      0, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -2611,8 +2602,8 @@ class PlayerAttrSet final : public ::google::protobuf::Message
                           const PlayerAttrSet& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
     ::space_service::AttrSet* data_;
+    ::int32_t eid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2744,25 +2735,9 @@ class PlayerAnimation final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNameFieldNumber = 1,
     kDataFieldNumber = 2,
+    kEidFieldNumber = 1,
   };
-  // string name = 1;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
   // .space_service.Animation data = 2;
   bool has_data() const;
   void clear_data() ;
@@ -2778,13 +2753,23 @@ class PlayerAnimation final : public ::google::protobuf::Message
   ::space_service::Animation* _internal_mutable_data();
 
   public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:space_service.PlayerAnimation)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 1,
-      42, 2>
+      0, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -2806,8 +2791,8 @@ class PlayerAnimation final : public ::google::protobuf::Message
                           const PlayerAnimation& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
     ::space_service::Animation* data_;
+    ::int32_t eid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3397,25 +3382,9 @@ class PlayerMovement final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNameFieldNumber = 1,
     kDataFieldNumber = 2,
+    kEidFieldNumber = 1,
   };
-  // string name = 1;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
   // .space_service.Movement data = 2;
   bool has_data() const;
   void clear_data() ;
@@ -3431,13 +3400,23 @@ class PlayerMovement final : public ::google::protobuf::Message
   ::space_service::Movement* _internal_mutable_data();
 
   public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:space_service.PlayerMovement)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 1,
-      41, 2>
+      0, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -3459,8 +3438,8 @@ class PlayerMovement final : public ::google::protobuf::Message
                           const PlayerMovement& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
     ::space_service::Movement* data_;
+    ::int32_t eid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3592,12 +3571,13 @@ class AoiPlayer final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kNameFieldNumber = 1,
-    kPositionFieldNumber = 2,
-    kTransformFieldNumber = 3,
-    kAttrSetFieldNumber = 4,
+    kNameFieldNumber = 2,
+    kPositionFieldNumber = 3,
+    kTransformFieldNumber = 4,
+    kAttrSetFieldNumber = 5,
+    kEidFieldNumber = 1,
   };
-  // string name = 1;
+  // string name = 2;
   void clear_name() ;
   const std::string& name() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -3613,7 +3593,7 @@ class AoiPlayer final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
-  // .space_service.Vector3f position = 2;
+  // .space_service.Vector3f position = 3;
   bool has_position() const;
   void clear_position() ;
   const ::space_service::Vector3f& position() const;
@@ -3628,7 +3608,7 @@ class AoiPlayer final : public ::google::protobuf::Message
   ::space_service::Vector3f* _internal_mutable_position();
 
   public:
-  // .space_service.Movement transform = 3;
+  // .space_service.Movement transform = 4;
   bool has_transform() const;
   void clear_transform() ;
   const ::space_service::Movement& transform() const;
@@ -3643,7 +3623,7 @@ class AoiPlayer final : public ::google::protobuf::Message
   ::space_service::Movement* _internal_mutable_transform();
 
   public:
-  // .space_service.AttrSet attr_set = 4;
+  // .space_service.AttrSet attr_set = 5;
   bool has_attr_set() const;
   void clear_attr_set() ;
   const ::space_service::AttrSet& attr_set() const;
@@ -3658,12 +3638,22 @@ class AoiPlayer final : public ::google::protobuf::Message
   ::space_service::AttrSet* _internal_mutable_attr_set();
 
   public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:space_service.AoiPlayer)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 3,
+      3, 5, 3,
       36, 2>
       _table_;
 
@@ -3690,6 +3680,7 @@ class AoiPlayer final : public ::google::protobuf::Message
     ::space_service::Vector3f* position_;
     ::space_service::Movement* transform_;
     ::space_service::AttrSet* attr_set_;
+    ::int32_t eid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4742,6 +4733,28 @@ inline void LoginReply::_internal_set_result(::int32_t value) {
   _impl_.result_ = value;
 }
 
+// int32 eid = 2;
+inline void LoginReply::clear_eid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = 0;
+}
+inline ::int32_t LoginReply::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.LoginReply.eid)
+  return _internal_eid();
+}
+inline void LoginReply::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.LoginReply.eid)
+}
+inline ::int32_t LoginReply::_internal_eid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.eid_;
+}
+inline void LoginReply::_internal_set_eid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // JoinReply
@@ -5086,7 +5099,29 @@ inline void AttrSet::_internal_set_status(::int32_t value) {
 
 // AoiPlayer
 
-// string name = 1;
+// int32 eid = 1;
+inline void AoiPlayer::clear_eid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = 0;
+}
+inline ::int32_t AoiPlayer::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.AoiPlayer.eid)
+  return _internal_eid();
+}
+inline void AoiPlayer::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.AoiPlayer.eid)
+}
+inline ::int32_t AoiPlayer::_internal_eid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.eid_;
+}
+inline void AoiPlayer::_internal_set_eid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = value;
+}
+
+// string name = 2;
 inline void AoiPlayer::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.name_.ClearToEmpty();
@@ -5136,7 +5171,7 @@ inline void AoiPlayer::set_allocated_name(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.name)
 }
 
-// .space_service.Vector3f position = 2;
+// .space_service.Vector3f position = 3;
 inline bool AoiPlayer::has_position() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.position_ != nullptr);
@@ -5232,7 +5267,7 @@ inline void AoiPlayer::set_allocated_position(::space_service::Vector3f* value) 
   // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.position)
 }
 
-// .space_service.Movement transform = 3;
+// .space_service.Movement transform = 4;
 inline bool AoiPlayer::has_transform() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.transform_ != nullptr);
@@ -5328,7 +5363,7 @@ inline void AoiPlayer::set_allocated_transform(::space_service::Movement* value)
   // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.transform)
 }
 
-// .space_service.AttrSet attr_set = 4;
+// .space_service.AttrSet attr_set = 5;
 inline bool AoiPlayer::has_attr_set() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.attr_set_ != nullptr);
@@ -5481,7 +5516,7 @@ PlayersEnterSight::_internal_mutable_players() {
 
 // PlayersLeaveSight
 
-// repeated string players = 1;
+// repeated int32 players = 1;
 inline int PlayersLeaveSight::_internal_players_size() const {
   return _internal_players().size();
 }
@@ -5492,93 +5527,36 @@ inline void PlayersLeaveSight::clear_players() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.players_.Clear();
 }
-inline std::string* PlayersLeaveSight::add_players()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  std::string* _s = _internal_mutable_players()->Add();
-  // @@protoc_insertion_point(field_add_mutable:space_service.PlayersLeaveSight.players)
-  return _s;
-}
-inline const std::string& PlayersLeaveSight::players(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::int32_t PlayersLeaveSight::players(int index) const {
   // @@protoc_insertion_point(field_get:space_service.PlayersLeaveSight.players)
   return _internal_players().Get(index);
 }
-inline std::string* PlayersLeaveSight::mutable_players(int index)
+inline void PlayersLeaveSight::set_players(int index, ::int32_t value) {
+  _internal_mutable_players()->Set(index, value);
+  // @@protoc_insertion_point(field_set:space_service.PlayersLeaveSight.players)
+}
+inline void PlayersLeaveSight::add_players(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_players()->Add(value);
+  // @@protoc_insertion_point(field_add:space_service.PlayersLeaveSight.players)
+}
+inline const ::google::protobuf::RepeatedField<::int32_t>& PlayersLeaveSight::players() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:space_service.PlayersLeaveSight.players)
-  return _internal_mutable_players()->Mutable(index);
-}
-inline void PlayersLeaveSight::set_players(int index, const std::string& value) {
-  _internal_mutable_players()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::set_players(int index, std::string&& value) {
-  _internal_mutable_players()->Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::set_players(int index, const char* value) {
-  ABSL_DCHECK(value != nullptr);
-  _internal_mutable_players()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::set_players(int index, const char* value,
-                              std::size_t size) {
-  _internal_mutable_players()->Mutable(index)->assign(
-      reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::set_players(int index, absl::string_view value) {
-  _internal_mutable_players()->Mutable(index)->assign(
-      value.data(), value.size());
-  // @@protoc_insertion_point(field_set_string_piece:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::add_players(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_players()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::add_players(std::string&& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_players()->Add(std::move(value));
-  // @@protoc_insertion_point(field_add:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::add_players(const char* value) {
-  ABSL_DCHECK(value != nullptr);
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_players()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::add_players(const char* value, std::size_t size) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_players()->Add()->assign(
-      reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:space_service.PlayersLeaveSight.players)
-}
-inline void PlayersLeaveSight::add_players(absl::string_view value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_players()->Add()->assign(value.data(),
-                                                     value.size());
-  // @@protoc_insertion_point(field_add_string_piece:space_service.PlayersLeaveSight.players)
-}
-inline const ::google::protobuf::RepeatedPtrField<std::string>&
-PlayersLeaveSight::players() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:space_service.PlayersLeaveSight.players)
   return _internal_players();
 }
-inline ::google::protobuf::RepeatedPtrField<std::string>*
-PlayersLeaveSight::mutable_players() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::RepeatedField<::int32_t>* PlayersLeaveSight::mutable_players()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:space_service.PlayersLeaveSight.players)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_players();
 }
-inline const ::google::protobuf::RepeatedPtrField<std::string>&
+inline const ::google::protobuf::RepeatedField<::int32_t>&
 PlayersLeaveSight::_internal_players() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.players_;
 }
-inline ::google::protobuf::RepeatedPtrField<std::string>*
-PlayersLeaveSight::_internal_mutable_players() {
+inline ::google::protobuf::RepeatedField<::int32_t>* PlayersLeaveSight::_internal_mutable_players() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.players_;
 }
@@ -5587,54 +5565,26 @@ PlayersLeaveSight::_internal_mutable_players() {
 
 // PlayerMovement
 
-// string name = 1;
-inline void PlayerMovement::clear_name() {
+// int32 eid = 1;
+inline void PlayerMovement::clear_eid() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
+  _impl_.eid_ = 0;
 }
-inline const std::string& PlayerMovement::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.PlayerMovement.name)
-  return _internal_name();
+inline ::int32_t PlayerMovement::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.PlayerMovement.eid)
+  return _internal_eid();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PlayerMovement::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:space_service.PlayerMovement.name)
+inline void PlayerMovement::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.PlayerMovement.eid)
 }
-inline std::string* PlayerMovement::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:space_service.PlayerMovement.name)
-  return _s;
-}
-inline const std::string& PlayerMovement::_internal_name() const {
+inline ::int32_t PlayerMovement::_internal_eid() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
+  return _impl_.eid_;
 }
-inline void PlayerMovement::_internal_set_name(const std::string& value) {
+inline void PlayerMovement::_internal_set_eid(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
-}
-inline std::string* PlayerMovement::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* PlayerMovement::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:space_service.PlayerMovement.name)
-  return _impl_.name_.Release();
-}
-inline void PlayerMovement::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.name_.IsDefault()) {
-          _impl_.name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:space_service.PlayerMovement.name)
+  _impl_.eid_ = value;
 }
 
 // .space_service.Movement data = 2;
@@ -6014,54 +5964,26 @@ inline void Animation::_internal_set_speed(float value) {
 
 // PlayerAnimation
 
-// string name = 1;
-inline void PlayerAnimation::clear_name() {
+// int32 eid = 1;
+inline void PlayerAnimation::clear_eid() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
+  _impl_.eid_ = 0;
 }
-inline const std::string& PlayerAnimation::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.PlayerAnimation.name)
-  return _internal_name();
+inline ::int32_t PlayerAnimation::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.PlayerAnimation.eid)
+  return _internal_eid();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PlayerAnimation::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:space_service.PlayerAnimation.name)
+inline void PlayerAnimation::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.PlayerAnimation.eid)
 }
-inline std::string* PlayerAnimation::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:space_service.PlayerAnimation.name)
-  return _s;
-}
-inline const std::string& PlayerAnimation::_internal_name() const {
+inline ::int32_t PlayerAnimation::_internal_eid() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
+  return _impl_.eid_;
 }
-inline void PlayerAnimation::_internal_set_name(const std::string& value) {
+inline void PlayerAnimation::_internal_set_eid(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
-}
-inline std::string* PlayerAnimation::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* PlayerAnimation::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:space_service.PlayerAnimation.name)
-  return _impl_.name_.Release();
-}
-inline void PlayerAnimation::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.name_.IsDefault()) {
-          _impl_.name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:space_service.PlayerAnimation.name)
+  _impl_.eid_ = value;
 }
 
 // .space_service.Animation data = 2;
@@ -6164,54 +6086,26 @@ inline void PlayerAnimation::set_allocated_data(::space_service::Animation* valu
 
 // TakeDamage
 
-// string name = 1;
-inline void TakeDamage::clear_name() {
+// int32 eid = 1;
+inline void TakeDamage::clear_eid() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
+  _impl_.eid_ = 0;
 }
-inline const std::string& TakeDamage::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.TakeDamage.name)
-  return _internal_name();
+inline ::int32_t TakeDamage::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.TakeDamage.eid)
+  return _internal_eid();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void TakeDamage::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:space_service.TakeDamage.name)
+inline void TakeDamage::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.TakeDamage.eid)
 }
-inline std::string* TakeDamage::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:space_service.TakeDamage.name)
-  return _s;
-}
-inline const std::string& TakeDamage::_internal_name() const {
+inline ::int32_t TakeDamage::_internal_eid() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
+  return _impl_.eid_;
 }
-inline void TakeDamage::_internal_set_name(const std::string& value) {
+inline void TakeDamage::_internal_set_eid(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
-}
-inline std::string* TakeDamage::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* TakeDamage::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:space_service.TakeDamage.name)
-  return _impl_.name_.Release();
-}
-inline void TakeDamage::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.name_.IsDefault()) {
-          _impl_.name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:space_service.TakeDamage.name)
+  _impl_.eid_ = value;
 }
 
 // int32 damage = 2;
@@ -6240,54 +6134,26 @@ inline void TakeDamage::_internal_set_damage(::int32_t value) {
 
 // PlayerAttrSet
 
-// string name = 1;
-inline void PlayerAttrSet::clear_name() {
+// int32 eid = 1;
+inline void PlayerAttrSet::clear_eid() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.ClearToEmpty();
+  _impl_.eid_ = 0;
 }
-inline const std::string& PlayerAttrSet::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.PlayerAttrSet.name)
-  return _internal_name();
+inline ::int32_t PlayerAttrSet::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.PlayerAttrSet.eid)
+  return _internal_eid();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void PlayerAttrSet::set_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:space_service.PlayerAttrSet.name)
+inline void PlayerAttrSet::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.PlayerAttrSet.eid)
 }
-inline std::string* PlayerAttrSet::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:space_service.PlayerAttrSet.name)
-  return _s;
-}
-inline const std::string& PlayerAttrSet::_internal_name() const {
+inline ::int32_t PlayerAttrSet::_internal_eid() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.name_.Get();
+  return _impl_.eid_;
 }
-inline void PlayerAttrSet::_internal_set_name(const std::string& value) {
+inline void PlayerAttrSet::_internal_set_eid(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.Set(value, GetArena());
-}
-inline std::string* PlayerAttrSet::_internal_mutable_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.name_.Mutable( GetArena());
-}
-inline std::string* PlayerAttrSet::release_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:space_service.PlayerAttrSet.name)
-  return _impl_.name_.Release();
-}
-inline void PlayerAttrSet::set_allocated_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.name_.IsDefault()) {
-          _impl_.name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:space_service.PlayerAttrSet.name)
+  _impl_.eid_ = value;
 }
 
 // .space_service.AttrSet data = 2;

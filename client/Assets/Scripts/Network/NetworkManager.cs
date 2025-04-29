@@ -246,8 +246,9 @@ public class NetworkManager : MonoBehaviour
     private RecvBuffer _recvBuffer = null;
 
     private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
-    private Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
+    private Dictionary<int, GameObject> _players = new Dictionary<int, GameObject>();
 
+    private int _playerEid = -1;
     private string _playerName = null;
     private GameObject _mainPlayer = null;
     public GameObject MainPlayer
@@ -544,7 +545,8 @@ public class NetworkManager : MonoBehaviour
         SpaceService.LoginReply loginReply = SpaceService.LoginReply.Parser.ParseFrom(msgBytes);
         if (loginReply.Result == 0)
         {
-            Debug.Log("login successed");
+            Debug.Log($"login successed, player eid is: {loginReply.Eid}");
+            _playerEid = loginReply.Eid;
             StartCoroutine(loadScene());
         }
         else
@@ -587,7 +589,7 @@ public class NetworkManager : MonoBehaviour
             SpaceService.Vector3f aoiRotation = aoiPlayer.Transform.Rotation;
             Vector3 position = new Vector3(aoiPosition.X, aoiPosition.Y, aoiPosition.Z);
             Quaternion rotation = Quaternion.Euler(aoiRotation.X, aoiRotation.Y, aoiRotation.Z);
-            Debug.Log($"player enter sight, name: {aoiPlayer.Name}, position: {position}, rotation: {rotation.eulerAngles}");
+            Debug.Log($"player enter sight, eid: {aoiPlayer.Eid}, name: {aoiPlayer.Name}, position: {position}, rotation: {rotation.eulerAngles}");
 
             GameObject prefab = Resources.Load<GameObject>("Character/OtherCharacter");
             if (prefab != null)
@@ -599,7 +601,7 @@ public class NetworkManager : MonoBehaviour
                 simulateMovement.InitMovement(aoiPlayer.Transform);
                 CombatComponent combatComponent = otherPlayer.GetComponent<CombatComponent>();
                 combatComponent.UpdateAttrSet(aoiPlayer.AttrSet);
-                _players.Add(aoiPlayer.Name, otherPlayer);
+                _players.Add(aoiPlayer.Eid, otherPlayer);
             }
             else
             {
@@ -611,19 +613,19 @@ public class NetworkManager : MonoBehaviour
     public void players_leave_sight(byte[] msgBytes)
     {
         SpaceService.PlayersLeaveSight sight = SpaceService.PlayersLeaveSight.Parser.ParseFrom(msgBytes);
-        foreach (string playerName in sight.Players)
+        foreach (int eid in sight.Players)
         {
             GameObject player = null;
-            if (_players.Remove(playerName, out player))
+            if (_players.Remove(eid, out player))
             {
                 GameObject.Destroy(player);
             }
         }
     }
 
-    public GameObject find_player(string name)
+    public GameObject find_player(int eid)
     {
-        return _players.GetValueOrDefault(name);
+        return _players.GetValueOrDefault(eid);
     }
 
     public void sync_movement(byte[] msgBytes)
@@ -631,7 +633,7 @@ public class NetworkManager : MonoBehaviour
         SpaceService.PlayerMovements playerMovements = SpaceService.PlayerMovements.Parser.ParseFrom(msgBytes);
         foreach (SpaceService.PlayerMovement playerMovement in playerMovements.Datas)
         {
-            GameObject otherPlayer = find_player(playerMovement.Name);
+            GameObject otherPlayer = find_player(playerMovement.Eid);
             if (otherPlayer != null)
             {
                 ServerMovePack serverMovePack = new ServerMovePack
@@ -669,13 +671,13 @@ public class NetworkManager : MonoBehaviour
     {
         SpaceService.PlayerAnimation playerAnimation = SpaceService.PlayerAnimation.Parser.ParseFrom(msgBytes);
         GameObject player = null;
-        if (playerAnimation.Name == _playerName)
+        if (playerAnimation.Eid == _playerEid)
         {
             player = _mainPlayer;
         }
         else
         {
-            player = find_player(playerAnimation.Name);
+            player = find_player(playerAnimation.Eid);
         }
 
         if (player != null)
@@ -698,13 +700,13 @@ public class NetworkManager : MonoBehaviour
 
         // TODO 目前每条消息都要这样来找到作用的实体，太麻烦了，应该要让每条消息都带一个charater id，然后在入口统一处理
         GameObject player = null;
-        if (msg.Name == _playerName)
+        if (msg.Eid == _playerEid)
         {
             player = _mainPlayer;
         }
         else
         {
-            player = find_player(msg.Name);
+            player = find_player(msg.Eid);
         }
 
         if (player != null)
@@ -729,13 +731,13 @@ public class NetworkManager : MonoBehaviour
         SpaceService.PlayerAttrSet msg = SpaceService.PlayerAttrSet.Parser.ParseFrom(msgBytes);
 
         GameObject player = null;
-        if (msg.Name == _playerName)
+        if (msg.Eid == _playerEid)
         {
             player = _mainPlayer;
         }
         else
         {
-            player = find_player(msg.Name);
+            player = find_player(msg.Eid);
         }
 
         if (player != null)

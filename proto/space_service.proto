@@ -24,6 +24,7 @@ message LoginRequest {
 
 message LoginReply {
   int32 result = 1;
+  int32 eid = 2;
 }
 
 message JoinReply {
@@ -47,11 +48,12 @@ message AttrSet {
 }
 
 message AoiPlayer {
-  string name = 1;
-  Vector3f position = 2;  
-  Movement transform = 3;
+  int32 eid = 1;
+  string name = 2;
+  Vector3f position = 3;  
+  Movement transform = 4;
 
-  AttrSet attr_set = 4;
+  AttrSet attr_set = 5;
 }
 
 message PlayersEnterSight {
@@ -59,11 +61,11 @@ message PlayersEnterSight {
 }
 
 message PlayersLeaveSight {
-  repeated string players = 1;
+  repeated int32 players = 1;
 }
 
 message PlayerMovement {
-  string name = 1;
+  int32 eid = 1;
   Movement data = 2;
 }
 
@@ -101,16 +103,16 @@ message Animation {
 }
 
 message PlayerAnimation {
-  string name = 1;
+  int32 eid = 1;
   Animation data = 2;
 }
 
 message TakeDamage {
-  string name = 1;
+  int32 eid = 1;
   int32 damage = 2;
 }
 
 message PlayerAttrSet {
-  string name = 1;
+  int32 eid = 1;
   AttrSet data = 2;
 }

@@ -4,13 +4,14 @@
 #include "math_utils.h"
 
 #include "combat/combat_component.h"
-
 #include "network/tcp_connection.h"
-
 #include "proto/space_service.pb.h"
+#include "aoi/aoi_factory.h"
 
 #include <random>
 #include <sstream>
+
+const float default_view_raidus = 10.f;
 
 float get_random()
 {
@@ -62,6 +63,9 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
     _update_timer = G_Timer.add_timer(100, [this]() {
         this->update();
     }, true);
+
+    _aoi = create_aoi(AOIType::GRID, 30);
+    _aoi->start();
 }
 
 Space::~Space()
@@ -69,6 +73,10 @@ Space::~Space()
     for (Player* player : _players) {
         player->send_msg("kick_out", strlen("kick_out"));
     }
+
+    G_Timer.del_timer(_update_timer);
+
+    _aoi->stop();
 }
 
 void Space::join(Player* player)
@@ -85,6 +93,11 @@ void Space::join(Player* player)
 
     player->set_position(x, y, z);
 
+    int eid = player->get_eid();
+    _eid_2_player.insert(std::make_pair(eid, player));
+
+    _aoi->add_entity(eid, x, z, default_view_raidus);
+
     // 告知玩家加入场景成功，并附带初始坐标
     space_service::JoinReply join_reply;
     join_reply.set_result(0);
@@ -94,37 +107,10 @@ void Space::join(Player* player)
     position->set_z(z);
     send_proto_msg(player->get_conn(), "join_reply", join_reply);
 
-    space_service::PlayersEnterSight others_sight;
-    space_service::AoiPlayer* aoi_player = others_sight.add_players();
-    aoi_player->set_name(player->get_name());
-    space_service::Movement* new_transform = aoi_player->mutable_transform();
-    get_movement_data(player, new_transform);
-    space_service::AttrSet* new_attr_set = aoi_player->mutable_attr_set();
-    CombatComponent* combat_comp = player->get_component<CombatComponent>();
-    combat_comp->fill_proto_attr_set(*new_attr_set);
-
-    space_service::PlayersEnterSight player_sight;
-    for (Player* other : _players) {
-        if (!other->get_conn())
-            continue;
-
-        // 告知场景内的其他玩家，有新玩家进入了场景
-        send_proto_msg(other->get_conn(), "players_enter_sight", others_sight);
-
-        space_service::AoiPlayer* aoi_player = player_sight.add_players();
-        aoi_player->set_name(other->get_name());
-        space_service::Movement* new_transform = aoi_player->mutable_transform();
-        get_movement_data(other, new_transform);
-        space_service::AttrSet* new_attr_set = aoi_player->mutable_attr_set();
-        CombatComponent* combat_comp = other->get_component<CombatComponent>();
-        combat_comp->fill_proto_attr_set(*new_attr_set);
-    }
-    // 把场景内所有已存在的玩家信息发送给新玩家
-    send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
-
     _players.push_back(player);
 
     // FIXME 同步属性给自己，目前用了call_all的接口
+    CombatComponent* combat_comp = player->get_component<CombatComponent>();
     combat_comp->sync_attr_set();
 }
 
@@ -133,17 +119,7 @@ void Space::leave(Player* player)
     auto iter = std::find(_players.begin(), _players.end(), player);
     if (iter != _players.end()) {
         Player* player = *iter;
-        space_service::PlayersLeaveSight sight;
-        std::string* player_name = sight.add_players();
-        *player_name = player->get_name();
-
-        // 告知其他玩家该player退出了场景
-        for (Player* other : _players) {
-            if (other == player)
-                continue;
-            send_proto_msg(other->get_conn(), "players_leave_sight", sight);
-        }
-
+        _aoi->del_entity(player->get_eid());
         player->leave_space();
         _players.erase(iter);
     }
@@ -151,23 +127,72 @@ void Space::leave(Player* player)
 
 bool Space::has_player(Player* player)
 {
-    auto iter = std::find(_players.begin(), _players.end(), player);
-    return iter != _players.end();
+    return _eid_2_player.contains(player->get_eid());
+}
+
+Player* Space::find_player(int eid)
+{
+    auto iter = _eid_2_player.find(eid);
+    return (iter == _eid_2_player.end()) ? nullptr : iter->second;
+}
+
+void Space::update_position(int eid, float x, float y, float z)
+{
+    _aoi->update_entity(eid, x, z);
 }
 
 void Space::update()
 {
-    space_service::PlayerMovements player_movements;
-    for (Player* p : _players) {
-        space_service::PlayerMovement* data = player_movements.add_datas();
-        data->set_name(p->get_name());
+    std::vector<AOIState> aoi_state = _aoi->fetch_state();
+    for (auto& state : aoi_state) {
+        int eid = state.eid;
 
-        space_service::Movement* new_move = data->mutable_data();
-        get_movement_data(p, new_move);
-    }
+        Player* player = find_player(eid);
+        if (!player)
+            continue;
 
-    for (Player* p : _players) {
-        send_proto_msg(p->get_conn(), "sync_movement", player_movements);
+        // 同步新进入或退出自己视野的玩家给player
+        for (const TriggerNotify& notify : state.notifies) {
+            if (notify.is_add) {
+                space_service::PlayersEnterSight player_sight;
+                for (int other_eid : notify.entities) {
+                    Player* other = find_player(other_eid);
+                    if (!other)
+                        continue;
+
+                    space_service::AoiPlayer* aoi_player = player_sight.add_players();
+                    aoi_player->set_eid(other->get_eid());
+                    aoi_player->set_name(other->get_name());
+                    space_service::Movement* new_transform = aoi_player->mutable_transform();
+                    get_movement_data(other, new_transform);
+                    space_service::AttrSet* new_attr_set = aoi_player->mutable_attr_set();
+                    CombatComponent* combat_comp = other->get_component<CombatComponent>();
+                    combat_comp->fill_proto_attr_set(*new_attr_set);
+                }
+                send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
+            }
+            else {
+                space_service::PlayersLeaveSight player_sight;
+                for (int other_eid : notify.entities) {
+                    player_sight.add_players(other_eid);
+                }
+                send_proto_msg(player->get_conn(), "players_leave_sight", player_sight);
+            }
+        }
+
+        // 同步视野内玩家的移动给player
+        space_service::PlayerMovements player_movements;
+        for (int interest_eid : state.interests) {
+            Player* p = find_player(interest_eid);
+            if (p) {
+                space_service::PlayerMovement* data = player_movements.add_datas();
+                data->set_eid(interest_eid);
+
+                space_service::Movement* new_move = data->mutable_data();
+                get_movement_data(p, new_move);
+            }
+        }
+        send_proto_msg(player->get_conn(), "sync_movement", player_movements);
     }
 }
 
@@ -190,10 +215,12 @@ void Space::call_others(Player* player, const std::string& msg_name, const std::
 std::vector<Player*> Space::find_players_in_circle(float cx, float cy, float r)
 {
     std::vector<Player*> players;
-    for (Player* player : _players) {
-        Vector3f pos = player->get_position();
-        if (is_point_in_circle(cx, cy, r, pos.x, pos.z))
-            players.push_back(player);
+    std::vector<int> eids = _aoi->get_entities_in_circle(cx, cy, r);
+    for (int eid : eids) {
+        auto iter = _eid_2_player.find(eid);
+        if (iter != _eid_2_player.end()) {
+            players.push_back(iter->second);
+        }
     }
     return players;
 }

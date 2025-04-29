@@ -33,6 +33,9 @@ public:
     inline TcpConnection* get_conn() { return _conn; }
     inline const std::string& get_name() const { return _name; }
 
+    inline int get_eid() const { return _eid; }
+    inline void set_eid(int eid) { _eid = eid; }
+
     void send_msg(const char* msg_bytes, size_t n);
 
     void enter_space(Space* space);
@@ -48,11 +51,7 @@ public:
     template<IsComponent T>
     T* get_component();
 
-    inline void set_position(float x, float y, float z) {
-        _position.x = x;
-        _position.y = y;
-        _position.z = z;
-    }
+    void set_position(float x, float y, float z);
 
     inline void get_position(float& x, float& y, float& z) const {
         x = _position.x;
@@ -130,6 +129,7 @@ public:
 
 private:
     TcpConnection* _conn;
+    int _eid;
     std::string _name;
 
     Space* _space = nullptr;

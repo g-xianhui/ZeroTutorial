@@ -34,56 +34,57 @@ namespace SpaceService {
             "c2VydmljZS5WZWN0b3IzZkgCiAEBEgwKBG1vZGUYBiABKAUSEQoJdGltZXN0",
             "YW1wGAcgASgCQgsKCV92ZWxvY2l0eUIPCg1fYWNjZWxlcmF0aW9uQhMKEV9h",
             "bmd1bGFyX3ZlbG9jaXR5IiAKDExvZ2luUmVxdWVzdBIQCgh1c2VybmFtZRgB",
-            "IAEoCSIcCgpMb2dpblJlcGx5Eg4KBnJlc3VsdBgBIAEoBSJYCglKb2luUmVw",
-            "bHkSDgoGcmVzdWx0GAEgASgFEi4KCHBvc2l0aW9uGAIgASgLMhcuc3BhY2Vf",
-            "c2VydmljZS5WZWN0b3IzZkgAiAEBQgsKCV9wb3NpdGlvbiKBAQoJU2tpbGxJ",
-            "bmZvEhAKCHNraWxsX2lkGAEgASgFEhYKDm5leHRfY2FzdF90aW1lGAIgASgF",
-            "EhYKCWNvc3RfbWFuYRgDIAEoBUgAiAEBEhYKCWNvb2xfZG93bhgEIAEoBUgB",
-            "iAEBQgwKCl9jb3N0X21hbmFCDAoKX2Nvb2xfZG93biJVCgdBdHRyU2V0Eg4K",
-            "Bm1heF9ocBgBIAEoBRIKCgJocBgCIAEoBRIQCghtYXhfbWFuYRgDIAEoBRIM",
-            "CgRtYW5hGAQgASgFEg4KBnN0YXR1cxgFIAEoBSKaAQoJQW9pUGxheWVyEgwK",
-            "BG5hbWUYASABKAkSKQoIcG9zaXRpb24YAiABKAsyFy5zcGFjZV9zZXJ2aWNl",
-            "LlZlY3RvcjNmEioKCXRyYW5zZm9ybRgDIAEoCzIXLnNwYWNlX3NlcnZpY2Uu",
-            "TW92ZW1lbnQSKAoIYXR0cl9zZXQYBCABKAsyFi5zcGFjZV9zZXJ2aWNlLkF0",
-            "dHJTZXQiPgoRUGxheWVyc0VudGVyU2lnaHQSKQoHcGxheWVycxgBIAMoCzIY",
-            "LnNwYWNlX3NlcnZpY2UuQW9pUGxheWVyIiQKEVBsYXllcnNMZWF2ZVNpZ2h0",
-            "Eg8KB3BsYXllcnMYASADKAkiRQoOUGxheWVyTW92ZW1lbnQSDAoEbmFtZRgB",
-            "IAEoCRIlCgRkYXRhGAIgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudCI/",
-            "Cg9QbGF5ZXJNb3ZlbWVudHMSLAoFZGF0YXMYASADKAsyHS5zcGFjZV9zZXJ2",
-            "aWNlLlBsYXllck1vdmVtZW50IhEKBFBpbmcSCQoBdBgBIAEoAiIjCgRQb25n",
-            "EgkKAXQYASABKAISEAoIc2VydmVyX3QYAiABKAUiHQoMTm9ybWFsQXR0YWNr",
-            "Eg0KBWNvbWJvGAEgASgFIh8KC1NraWxsQXR0YWNrEhAKCHNraWxsX2lkGAEg",
-            "ASgFIo4BCglBbmltYXRpb24SDAoEbmFtZRgBIAEoCRIyCgJvcBgCIAEoDjIm",
-            "LnNwYWNlX3NlcnZpY2UuQW5pbWF0aW9uLk9wZXJhdGlvblR5cGUSDQoFc3Bl",
-            "ZWQYAyABKAIiMAoNT3BlcmF0aW9uVHlwZRIJCgVTVEFSVBAAEggKBFNUT1AQ",
-            "ARIKCgZVUERBVEUQAiJHCg9QbGF5ZXJBbmltYXRpb24SDAoEbmFtZRgBIAEo",
-            "CRImCgRkYXRhGAIgASgLMhguc3BhY2Vfc2VydmljZS5BbmltYXRpb24iKgoK",
-            "VGFrZURhbWFnZRIMCgRuYW1lGAEgASgJEg4KBmRhbWFnZRgCIAEoBSJDCg1Q",
-            "bGF5ZXJBdHRyU2V0EgwKBG5hbWUYASABKAkSJAoEZGF0YRgCIAEoCzIWLnNw",
-            "YWNlX3NlcnZpY2UuQXR0clNldGIGcHJvdG8z"));
+            "IAEoCSIpCgpMb2dpblJlcGx5Eg4KBnJlc3VsdBgBIAEoBRILCgNlaWQYAiAB",
+            "KAUiWAoJSm9pblJlcGx5Eg4KBnJlc3VsdBgBIAEoBRIuCghwb3NpdGlvbhgC",
+            "IAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2ZIAIgBAUILCglfcG9zaXRp",
+            "b24igQEKCVNraWxsSW5mbxIQCghza2lsbF9pZBgBIAEoBRIWCg5uZXh0X2Nh",
+            "c3RfdGltZRgCIAEoBRIWCgljb3N0X21hbmEYAyABKAVIAIgBARIWCgljb29s",
+            "X2Rvd24YBCABKAVIAYgBAUIMCgpfY29zdF9tYW5hQgwKCl9jb29sX2Rvd24i",
+            "VQoHQXR0clNldBIOCgZtYXhfaHAYASABKAUSCgoCaHAYAiABKAUSEAoIbWF4",
+            "X21hbmEYAyABKAUSDAoEbWFuYRgEIAEoBRIOCgZzdGF0dXMYBSABKAUipwEK",
+            "CUFvaVBsYXllchILCgNlaWQYASABKAUSDAoEbmFtZRgCIAEoCRIpCghwb3Np",
+            "dGlvbhgDIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2YSKgoJdHJhbnNm",
+            "b3JtGAQgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudBIoCghhdHRyX3Nl",
+            "dBgFIAEoCzIWLnNwYWNlX3NlcnZpY2UuQXR0clNldCI+ChFQbGF5ZXJzRW50",
+            "ZXJTaWdodBIpCgdwbGF5ZXJzGAEgAygLMhguc3BhY2Vfc2VydmljZS5Bb2lQ",
+            "bGF5ZXIiJAoRUGxheWVyc0xlYXZlU2lnaHQSDwoHcGxheWVycxgBIAMoBSJE",
+            "Cg5QbGF5ZXJNb3ZlbWVudBILCgNlaWQYASABKAUSJQoEZGF0YRgCIAEoCzIX",
+            "LnNwYWNlX3NlcnZpY2UuTW92ZW1lbnQiPwoPUGxheWVyTW92ZW1lbnRzEiwK",
+            "BWRhdGFzGAEgAygLMh0uc3BhY2Vfc2VydmljZS5QbGF5ZXJNb3ZlbWVudCIR",
+            "CgRQaW5nEgkKAXQYASABKAIiIwoEUG9uZxIJCgF0GAEgASgCEhAKCHNlcnZl",
+            "cl90GAIgASgFIh0KDE5vcm1hbEF0dGFjaxINCgVjb21ibxgBIAEoBSIfCgtT",
+            "a2lsbEF0dGFjaxIQCghza2lsbF9pZBgBIAEoBSKOAQoJQW5pbWF0aW9uEgwK",
+            "BG5hbWUYASABKAkSMgoCb3AYAiABKA4yJi5zcGFjZV9zZXJ2aWNlLkFuaW1h",
+            "dGlvbi5PcGVyYXRpb25UeXBlEg0KBXNwZWVkGAMgASgCIjAKDU9wZXJhdGlv",
+            "blR5cGUSCQoFU1RBUlQQABIICgRTVE9QEAESCgoGVVBEQVRFEAIiRgoPUGxh",
+            "eWVyQW5pbWF0aW9uEgsKA2VpZBgBIAEoBRImCgRkYXRhGAIgASgLMhguc3Bh",
+            "Y2Vfc2VydmljZS5BbmltYXRpb24iKQoKVGFrZURhbWFnZRILCgNlaWQYASAB",
+            "KAUSDgoGZGFtYWdlGAIgASgFIkIKDVBsYXllckF0dHJTZXQSCwoDZWlkGAEg",
+            "ASgFEiQKBGRhdGEYAiABKAsyFi5zcGFjZV9zZXJ2aWNlLkF0dHJTZXRiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Vector3f), global::SpaceService.Vector3f.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Movement), global::SpaceService.Movement.Parser, new[]{ "Position", "Rotation", "Velocity", "Acceleration", "AngularVelocity", "Mode", "Timestamp" }, new[]{ "Velocity", "Acceleration", "AngularVelocity" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginRequest), global::SpaceService.LoginRequest.Parser, new[]{ "Username" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginReply), global::SpaceService.LoginReply.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginReply), global::SpaceService.LoginReply.Parser, new[]{ "Result", "Eid" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.JoinReply), global::SpaceService.JoinReply.Parser, new[]{ "Result", "Position" }, new[]{ "Position" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillInfo), global::SpaceService.SkillInfo.Parser, new[]{ "SkillId", "NextCastTime", "CostMana", "CoolDown" }, new[]{ "CostMana", "CoolDown" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AttrSet), global::SpaceService.AttrSet.Parser, new[]{ "MaxHp", "Hp", "MaxMana", "Mana", "Status" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Name", "Position", "Transform", "AttrSet" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Eid", "Name", "Position", "Transform", "AttrSet" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersEnterSight), global::SpaceService.PlayersEnterSight.Parser, new[]{ "Players" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersLeaveSight), global::SpaceService.PlayersLeaveSight.Parser, new[]{ "Players" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerMovement), global::SpaceService.PlayerMovement.Parser, new[]{ "Name", "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerMovement), global::SpaceService.PlayerMovement.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerMovements), global::SpaceService.PlayerMovements.Parser, new[]{ "Datas" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Ping), global::SpaceService.Ping.Parser, new[]{ "T" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Pong), global::SpaceService.Pong.Parser, new[]{ "T", "ServerT" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.NormalAttack), global::SpaceService.NormalAttack.Parser, new[]{ "Combo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillAttack), global::SpaceService.SkillAttack.Parser, new[]{ "SkillId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Animation), global::SpaceService.Animation.Parser, new[]{ "Name", "Op", "Speed" }, null, new[]{ typeof(global::SpaceService.Animation.Types.OperationType) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAnimation), global::SpaceService.PlayerAnimation.Parser, new[]{ "Name", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.TakeDamage), global::SpaceService.TakeDamage.Parser, new[]{ "Name", "Damage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAttrSet), global::SpaceService.PlayerAttrSet.Parser, new[]{ "Name", "Data" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAnimation), global::SpaceService.PlayerAnimation.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.TakeDamage), global::SpaceService.TakeDamage.Parser, new[]{ "Eid", "Damage" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAttrSet), global::SpaceService.PlayerAttrSet.Parser, new[]{ "Eid", "Data" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1061,6 +1062,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LoginReply(LoginReply other) : this() {
       result_ = other.result_;
+      eid_ = other.eid_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1082,6 +1084,18 @@ namespace SpaceService {
       }
     }
 
+    /// <summary>Field number for the "eid" field.</summary>
+    public const int EidFieldNumber = 2;
+    private int eid_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Eid {
+      get { return eid_; }
+      set {
+        eid_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1098,6 +1112,7 @@ namespace SpaceService {
         return true;
       }
       if (Result != other.Result) return false;
+      if (Eid != other.Eid) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1106,6 +1121,7 @@ namespace SpaceService {
     public override int GetHashCode() {
       int hash = 1;
       if (Result != 0) hash ^= Result.GetHashCode();
+      if (Eid != 0) hash ^= Eid.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1128,6 +1144,10 @@ namespace SpaceService {
         output.WriteRawTag(8);
         output.WriteInt32(Result);
       }
+      if (Eid != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Eid);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1142,6 +1162,10 @@ namespace SpaceService {
         output.WriteRawTag(8);
         output.WriteInt32(Result);
       }
+      if (Eid != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Eid);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1154,6 +1178,9 @@ namespace SpaceService {
       int size = 0;
       if (Result != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
+      }
+      if (Eid != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1169,6 +1196,9 @@ namespace SpaceService {
       }
       if (other.Result != 0) {
         Result = other.Result;
+      }
+      if (other.Eid != 0) {
+        Eid = other.Eid;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1193,6 +1223,10 @@ namespace SpaceService {
             Result = input.ReadInt32();
             break;
           }
+          case 16: {
+            Eid = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -1214,6 +1248,10 @@ namespace SpaceService {
             break;
           case 8: {
             Result = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Eid = input.ReadInt32();
             break;
           }
         }
@@ -2189,6 +2227,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AoiPlayer(AoiPlayer other) : this() {
+      eid_ = other.eid_;
       name_ = other.name_;
       position_ = other.position_ != null ? other.position_.Clone() : null;
       transform_ = other.transform_ != null ? other.transform_.Clone() : null;
@@ -2202,8 +2241,20 @@ namespace SpaceService {
       return new AoiPlayer(this);
     }
 
+    /// <summary>Field number for the "eid" field.</summary>
+    public const int EidFieldNumber = 1;
+    private int eid_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Eid {
+      get { return eid_; }
+      set {
+        eid_ = value;
+      }
+    }
+
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
+    public const int NameFieldNumber = 2;
     private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2215,7 +2266,7 @@ namespace SpaceService {
     }
 
     /// <summary>Field number for the "position" field.</summary>
-    public const int PositionFieldNumber = 2;
+    public const int PositionFieldNumber = 3;
     private global::SpaceService.Vector3f position_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2227,7 +2278,7 @@ namespace SpaceService {
     }
 
     /// <summary>Field number for the "transform" field.</summary>
-    public const int TransformFieldNumber = 3;
+    public const int TransformFieldNumber = 4;
     private global::SpaceService.Movement transform_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2239,7 +2290,7 @@ namespace SpaceService {
     }
 
     /// <summary>Field number for the "attr_set" field.</summary>
-    public const int AttrSetFieldNumber = 4;
+    public const int AttrSetFieldNumber = 5;
     private global::SpaceService.AttrSet attrSet_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2265,6 +2316,7 @@ namespace SpaceService {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Eid != other.Eid) return false;
       if (Name != other.Name) return false;
       if (!object.Equals(Position, other.Position)) return false;
       if (!object.Equals(Transform, other.Transform)) return false;
@@ -2276,6 +2328,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (Eid != 0) hash ^= Eid.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (position_ != null) hash ^= Position.GetHashCode();
       if (transform_ != null) hash ^= Transform.GetHashCode();
@@ -2298,20 +2351,24 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
+      }
       if (Name.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Name);
       }
       if (position_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(Position);
       }
       if (transform_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteMessage(Transform);
       }
       if (attrSet_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(AttrSet);
       }
       if (_unknownFields != null) {
@@ -2324,20 +2381,24 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
+      }
       if (Name.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Name);
       }
       if (position_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(Position);
       }
       if (transform_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteMessage(Transform);
       }
       if (attrSet_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(AttrSet);
       }
       if (_unknownFields != null) {
@@ -2350,6 +2411,9 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (Eid != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
+      }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
@@ -2373,6 +2437,9 @@ namespace SpaceService {
     public void MergeFrom(AoiPlayer other) {
       if (other == null) {
         return;
+      }
+      if (other.Eid != 0) {
+        Eid = other.Eid;
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
@@ -2414,25 +2481,29 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
             if (position_ == null) {
               Position = new global::SpaceService.Vector3f();
             }
             input.ReadMessage(Position);
             break;
           }
-          case 26: {
+          case 34: {
             if (transform_ == null) {
               Transform = new global::SpaceService.Movement();
             }
             input.ReadMessage(Transform);
             break;
           }
-          case 34: {
+          case 42: {
             if (attrSet_ == null) {
               AttrSet = new global::SpaceService.AttrSet();
             }
@@ -2458,25 +2529,29 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
             if (position_ == null) {
               Position = new global::SpaceService.Vector3f();
             }
             input.ReadMessage(Position);
             break;
           }
-          case 26: {
+          case 34: {
             if (transform_ == null) {
               Transform = new global::SpaceService.Movement();
             }
             input.ReadMessage(Transform);
             break;
           }
-          case 34: {
+          case 42: {
             if (attrSet_ == null) {
               AttrSet = new global::SpaceService.AttrSet();
             }
@@ -2724,12 +2799,12 @@ namespace SpaceService {
 
     /// <summary>Field number for the "players" field.</summary>
     public const int PlayersFieldNumber = 1;
-    private static readonly pb::FieldCodec<string> _repeated_players_codec
-        = pb::FieldCodec.ForString(10);
-    private readonly pbc::RepeatedField<string> players_ = new pbc::RepeatedField<string>();
+    private static readonly pb::FieldCodec<int> _repeated_players_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> players_ = new pbc::RepeatedField<int>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<string> Players {
+    public pbc::RepeatedField<int> Players {
       get { return players_; }
     }
 
@@ -2830,7 +2905,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
+          case 10:
+          case 8: {
             players_.AddEntriesFrom(input, _repeated_players_codec);
             break;
           }
@@ -2853,7 +2929,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
+          case 10:
+          case 8: {
             players_.AddEntriesFrom(ref input, _repeated_players_codec);
             break;
           }
@@ -2899,7 +2976,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public PlayerMovement(PlayerMovement other) : this() {
-      name_ = other.name_;
+      eid_ = other.eid_;
       data_ = other.data_ != null ? other.data_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2910,15 +2987,15 @@ namespace SpaceService {
       return new PlayerMovement(this);
     }
 
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
-    private string name_ = "";
+    /// <summary>Field number for the "eid" field.</summary>
+    public const int EidFieldNumber = 1;
+    private int eid_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
+    public int Eid {
+      get { return eid_; }
       set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        eid_ = value;
       }
     }
 
@@ -2949,7 +3026,7 @@ namespace SpaceService {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Name != other.Name) return false;
+      if (Eid != other.Eid) return false;
       if (!object.Equals(Data, other.Data)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2958,7 +3035,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Eid != 0) hash ^= Eid.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2978,9 +3055,9 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (data_ != null) {
         output.WriteRawTag(18);
@@ -2996,9 +3073,9 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (data_ != null) {
         output.WriteRawTag(18);
@@ -3014,8 +3091,8 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      if (Eid != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
       if (data_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
@@ -3032,8 +3109,8 @@ namespace SpaceService {
       if (other == null) {
         return;
       }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
+      if (other.Eid != 0) {
+        Eid = other.Eid;
       }
       if (other.data_ != null) {
         if (data_ == null) {
@@ -3060,8 +3137,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
@@ -3090,8 +3167,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
@@ -4445,7 +4522,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public PlayerAnimation(PlayerAnimation other) : this() {
-      name_ = other.name_;
+      eid_ = other.eid_;
       data_ = other.data_ != null ? other.data_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -4456,15 +4533,15 @@ namespace SpaceService {
       return new PlayerAnimation(this);
     }
 
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
-    private string name_ = "";
+    /// <summary>Field number for the "eid" field.</summary>
+    public const int EidFieldNumber = 1;
+    private int eid_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
+    public int Eid {
+      get { return eid_; }
       set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        eid_ = value;
       }
     }
 
@@ -4495,7 +4572,7 @@ namespace SpaceService {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Name != other.Name) return false;
+      if (Eid != other.Eid) return false;
       if (!object.Equals(Data, other.Data)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -4504,7 +4581,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Eid != 0) hash ^= Eid.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -4524,9 +4601,9 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (data_ != null) {
         output.WriteRawTag(18);
@@ -4542,9 +4619,9 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (data_ != null) {
         output.WriteRawTag(18);
@@ -4560,8 +4637,8 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      if (Eid != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
       if (data_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
@@ -4578,8 +4655,8 @@ namespace SpaceService {
       if (other == null) {
         return;
       }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
+      if (other.Eid != 0) {
+        Eid = other.Eid;
       }
       if (other.data_ != null) {
         if (data_ == null) {
@@ -4606,8 +4683,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
@@ -4636,8 +4713,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
@@ -4689,7 +4766,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TakeDamage(TakeDamage other) : this() {
-      name_ = other.name_;
+      eid_ = other.eid_;
       damage_ = other.damage_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -4700,15 +4777,15 @@ namespace SpaceService {
       return new TakeDamage(this);
     }
 
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
-    private string name_ = "";
+    /// <summary>Field number for the "eid" field.</summary>
+    public const int EidFieldNumber = 1;
+    private int eid_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
+    public int Eid {
+      get { return eid_; }
       set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        eid_ = value;
       }
     }
 
@@ -4739,7 +4816,7 @@ namespace SpaceService {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Name != other.Name) return false;
+      if (Eid != other.Eid) return false;
       if (Damage != other.Damage) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -4748,7 +4825,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Eid != 0) hash ^= Eid.GetHashCode();
       if (Damage != 0) hash ^= Damage.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -4768,9 +4845,9 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (Damage != 0) {
         output.WriteRawTag(16);
@@ -4786,9 +4863,9 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (Damage != 0) {
         output.WriteRawTag(16);
@@ -4804,8 +4881,8 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      if (Eid != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
       if (Damage != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Damage);
@@ -4822,8 +4899,8 @@ namespace SpaceService {
       if (other == null) {
         return;
       }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
+      if (other.Eid != 0) {
+        Eid = other.Eid;
       }
       if (other.Damage != 0) {
         Damage = other.Damage;
@@ -4847,8 +4924,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 16: {
@@ -4874,8 +4951,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 16: {
@@ -4924,7 +5001,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public PlayerAttrSet(PlayerAttrSet other) : this() {
-      name_ = other.name_;
+      eid_ = other.eid_;
       data_ = other.data_ != null ? other.data_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -4935,15 +5012,15 @@ namespace SpaceService {
       return new PlayerAttrSet(this);
     }
 
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
-    private string name_ = "";
+    /// <summary>Field number for the "eid" field.</summary>
+    public const int EidFieldNumber = 1;
+    private int eid_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
+    public int Eid {
+      get { return eid_; }
       set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        eid_ = value;
       }
     }
 
@@ -4974,7 +5051,7 @@ namespace SpaceService {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Name != other.Name) return false;
+      if (Eid != other.Eid) return false;
       if (!object.Equals(Data, other.Data)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -4983,7 +5060,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Eid != 0) hash ^= Eid.GetHashCode();
       if (data_ != null) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -5003,9 +5080,9 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (data_ != null) {
         output.WriteRawTag(18);
@@ -5021,9 +5098,9 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Name.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Name);
+      if (Eid != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Eid);
       }
       if (data_ != null) {
         output.WriteRawTag(18);
@@ -5039,8 +5116,8 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      if (Eid != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
       if (data_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
@@ -5057,8 +5134,8 @@ namespace SpaceService {
       if (other == null) {
         return;
       }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
+      if (other.Eid != 0) {
+        Eid = other.Eid;
       }
       if (other.data_ != null) {
         if (data_ == null) {
@@ -5085,8 +5162,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
@@ -5115,8 +5192,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            Name = input.ReadString();
+          case 8: {
+            Eid = input.ReadInt32();
             break;
           }
           case 18: {
