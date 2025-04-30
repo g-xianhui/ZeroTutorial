@@ -137,7 +137,7 @@ void Player::play_animation(const std::string& name, float speed, bool sync_to_a
     std::string msg_bytes;
     player_animation.SerializeToString(&msg_bytes);
     if (sync_to_all)
-        _space->call_all("sync_animation", msg_bytes);
+        _space->call_all(get_eid(), "sync_animation", msg_bytes);
     else
-        _space->call_others(this, "sync_animation", msg_bytes);
+        _space->call_others(get_eid(), "sync_animation", msg_bytes);
 }

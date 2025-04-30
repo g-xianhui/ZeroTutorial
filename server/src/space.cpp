@@ -196,19 +196,24 @@ void Space::update()
     }
 }
 
-void Space::call_all(const std::string& msg_name, const std::string& msg_bytes)
+void Space::call_all(int eid, const std::string& msg_name, const std::string& msg_bytes)
 {
-    for (Player* player : _players) {
+    Player* player = find_player(eid);
+    if (player) {
         send_raw_msg(player->get_conn(), msg_name, msg_bytes);
     }
+
+    call_others(eid, msg_name, msg_bytes);
 }
 
-void Space::call_others(Player* player, const std::string& msg_name, const std::string& msg_bytes)
+void Space::call_others(int eid, const std::string& msg_name, const std::string& msg_bytes)
 {
-    for (Player* other : _players) {
-        if (other == player)
-            continue;
-        send_raw_msg(other->get_conn(), msg_name, msg_bytes);
+    std::vector<int> observers = _aoi->get_observers(eid);
+    for (int id : observers) {
+        Player* player = find_player(id);
+        if (player) {
+            send_raw_msg(player->get_conn(), msg_name, msg_bytes);
+        }
     }
 }
 
@@ -227,7 +232,7 @@ std::vector<Player*> Space::find_players_in_circle(float cx, float cy, float r)
 
 std::vector<Player*> Space::find_players_in_sector(float cx, float cy, float ux, float uy, float r, float theta)
 {
-    std::vector<Player*> players;
+    std::vector<Player*> players = find_players_in_circle(cx, cy, r);
     for (Player* player : _players) {
         Vector3f pos = player->get_position();
         if (is_point_in_sector(cx, cy, ux, uy, r, theta, pos.x, pos.z))

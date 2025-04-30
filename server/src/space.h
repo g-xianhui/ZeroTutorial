@@ -22,8 +22,8 @@ public:
 
     void update();
 
-    void call_all(const std::string& msg_name, const std::string& msg_bytes);
-    void call_others(Player* player, const std::string& msg_name, const std::string& msg_bytes);
+    void call_all(int eid, const std::string& msg_name, const std::string& msg_bytes);
+    void call_others(int eid, const std::string& msg_name, const std::string& msg_bytes);
 
     std::vector<Player*> find_players_in_sector(float cx, float cy, float ux, float uy, float r, float theta);
     std::vector<Player*> find_players_in_circle(float cx, float cy, float r);

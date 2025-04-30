@@ -184,7 +184,7 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
     std::string msg_bytes;
     msg.SerializeToString(&msg_bytes);
     Space* space = _owner->get_space();
-    space->call_all("take_damage", msg_bytes);
+    space->call_all(_owner->get_eid(), "take_damage", msg_bytes);
 }
 
 void CombatComponent::fill_proto_attr_set(space_service::AttrSet& msg)
@@ -206,7 +206,7 @@ void CombatComponent::sync_attr_set()
     std::string msg_bytes;
     msg.SerializeToString(&msg_bytes);
     Space* space = _owner->get_space();
-    space->call_all("update_attr_set", msg_bytes);
+    space->call_all(_owner->get_eid(), "update_attr_set", msg_bytes);
 }
 
 void CombatComponent::sync_skill_info(const SkillInfo& skill_info)
