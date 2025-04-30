@@ -2,8 +2,6 @@
 
 #include "aoi.h"
 
-#include <mutex>
-
 enum class AOIType {
     ROOM,
     GRID,

@@ -54,7 +54,6 @@ public:
 
 private:
     GridPos calc_grid_pos(float x, float y) const;
-    std::vector<GridPos> calc_grid_range(float x, float y) const;
 
     void run();
 

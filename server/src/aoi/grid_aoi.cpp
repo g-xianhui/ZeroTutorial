@@ -1,6 +1,7 @@
 #include "grid_aoi.h"
 
 #include <chrono>
+#include <cassert>
 
 GridAOI::GridAOI(size_t grid_size) {
     _grid_size = grid_size;
@@ -42,8 +43,14 @@ void GridAOI::run()
         update(grids, entities);
 
         data_lock.lock();
-        _grids.swap(grids);
-        _entities.swap(entities);
+        for (auto& iter : entities) {
+            if (_entities.contains(iter.first)) {
+                AOIEntity& entity = _entities[iter.first];
+                entity.interests.swap(iter.second.interests);
+                entity.observers.swap(iter.second.observers);
+                entity.notifies.swap(iter.second.notifies);
+            }
+        }
         data_lock.unlock();
 
         _cv.wait_for(lock, std::chrono::milliseconds(50));
@@ -76,14 +83,14 @@ void GridAOI::update(std::unordered_map<GridPos, Grid>& grids, std::unordered_ma
 
         // 对所有添加的interests，将eid注册到它们的observers中
         for (int other_eid : interests_add) {
-            AOIEntity& other_entity = _entities[other_eid];
+            AOIEntity& other_entity = entities[other_eid];
             other_entity.observers.insert(eid);
         }
 
         // 对所有删除的interests，将eid从它们的observers中删除
         for (int other_eid : interests_del) {
-            if (_entities.contains(other_eid)) {
-                AOIEntity& other_entity = _entities[other_eid];
+            if (entities.contains(other_eid)) {
+                AOIEntity& other_entity = entities[other_eid];
                 other_entity.observers.erase(eid);
             }
         }
@@ -104,7 +111,8 @@ int GridAOI::add_entity(int eid, float x, float y, float radius)
         radius = _max_view_radius;
     }
 
-    _entities.insert(std::make_pair(eid, AOIEntity{ eid, x, y, radius }));
+    auto result = _entities.insert(std::make_pair(eid, AOIEntity{ eid, x, y, radius }));
+    assert(result.second == true);
 
     GridPos new_grid_pos = calc_grid_pos(x, y);
     auto grid_iter = _grids.find(new_grid_pos);
@@ -147,30 +155,17 @@ void GridAOI::update_entity(int eid, float x, float y)
 
     // 跨格子移动
     if (old_grid_pos != new_grid_pos) {
-        std::vector<GridPos> new_grids = calc_grid_range(x, y);
-        std::unordered_set<GridPos> new_grids_set{ new_grids.begin(), new_grids.end() };
-
-        std::vector<GridPos> old_grids = calc_grid_range(entity.x, entity.y);
-        std::unordered_set<GridPos> old_grids_set{ old_grids.begin(), old_grids.end() };
-
-        std::vector<GridPos> grids_add = calc_set_add(old_grids_set, new_grids_set);
-        std::vector<GridPos> grids_del = calc_set_del(old_grids_set, new_grids_set);
-
         // 将eid添加到新进入的格子中
-        for (GridPos& grid_pos : grids_add) {
-            auto grid_iter = _grids.find(grid_pos);
-            if (grid_iter == _grids.end()) {
-                grid_iter = _grids.insert(std::make_pair(grid_pos, Grid{})).first;
-            }
-            grid_iter->second.entities.insert(eid);
+        auto grid_iter = _grids.find(new_grid_pos);
+        if (grid_iter == _grids.end()) {
+            grid_iter = _grids.insert(std::make_pair(new_grid_pos, Grid{})).first;
         }
+        grid_iter->second.entities.insert(eid);
 
         // 将eid从离开的旧格子中删除
-        for (GridPos& grid_pos : grids_del) {
-            auto grid_iter = _grids.find(grid_pos);
-            if (grid_iter != _grids.end()) {
-                grid_iter->second.entities.erase(eid);
-            }
+        grid_iter = _grids.find(old_grid_pos);
+        if (grid_iter != _grids.end()) {
+            grid_iter->second.entities.erase(eid);
         }
     }
 
@@ -252,19 +247,4 @@ GridPos GridAOI::calc_grid_pos(float x, float y) const
     int grid_x = static_cast<int>(x / _grid_size);
     int grid_y = static_cast<int>(y / _grid_size);
     return GridPos{ grid_x, grid_y };
-}
-
-std::vector<GridPos> GridAOI::calc_grid_range(float x, float y) const
-{
-    std::vector<GridPos> result;
-
-    GridPos grid_pos = calc_grid_pos(x, y);
-    for (int dx = -1; dx < 2; dx++) {
-        for (int dy = -1; dy < 2; dy++) {
-            GridPos pos{ grid_pos.x + dx, grid_pos.y + dy };
-            result.push_back(pos);
-        }
-    }
-
-    return result;
 }
