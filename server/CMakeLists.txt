@@ -14,6 +14,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
 source_group(combat ${CMAKE_CURRENT_SOURCE_DIR}/src/combat)
 source_group(skill ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill)
+source_group(aoi ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi)
 
 file(GLOB GAME_SERVER_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -21,12 +22,14 @@ file(GLOB GAME_SERVER_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/proto/*.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi/*.cpp
 )
 file(GLOB GAME_SERVER_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/network/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi/*.h
 )
 
 add_executable(game_server ${GAME_SERVER_SRCS} ${GAME_SERVER_HEADERS})

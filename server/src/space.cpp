@@ -13,13 +13,6 @@
 
 const float default_view_raidus = 10.f;
 
-float get_random()
-{
-    static std::default_random_engine e;
-    static std::uniform_real_distribution<float> dis(0.f, 1.f);
-    return dis(e);
-}
-
 void get_movement_data(Player* p, space_service::Movement* new_move)
 {
     Vector3f cur_position = p->get_position();
@@ -87,9 +80,9 @@ void Space::join(Player* player)
     player->enter_space(this);
 
     // 随机一个出生点
-    float x = get_random() * _width;
+    float x = random_01() * _width;
     float y = 3.f;
-    float z = get_random() * _height;
+    float z = random_01() * _height;
 
     player->set_position(x, y, z);
 
