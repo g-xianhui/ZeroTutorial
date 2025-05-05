@@ -599,8 +599,8 @@ public class NetworkManager : MonoBehaviour
                 networkComponent.NetRole = ENetRole.Simulate;
                 SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
                 simulateMovement.InitMovement(aoiPlayer.Transform);
-                CombatComponent combatComponent = otherPlayer.GetComponent<CombatComponent>();
-                combatComponent.UpdateAttrSet(aoiPlayer.AttrSet);
+                Entity entity = otherPlayer.GetComponent<Entity>();
+                entity.NetSerialize(aoiPlayer.Data.ToByteArray());
                 _players.Add(aoiPlayer.Eid, otherPlayer);
             }
             else

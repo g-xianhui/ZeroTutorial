@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class AttrSet
@@ -32,6 +33,15 @@ public class AttrSet
 
     // 状态（晕眩、冻结、霸体。。。）
     public int Status;
+
+    public void NetSerialize(BinaryReader br)
+    {
+        MaxHealth = br.ReadInt32();
+        Health = br.ReadInt32();
+        MaxMana = br.ReadInt32();
+        Mana = br.ReadInt32();
+        Debug.Log($"MaxHealth: {MaxHealth}, Mana: {Mana}");
+    }
 
     public void TakeDamage(AttrSet attacker, int attackDamage)
     {

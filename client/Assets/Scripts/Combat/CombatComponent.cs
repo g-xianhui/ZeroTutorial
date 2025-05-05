@@ -2,6 +2,7 @@ using Google.Protobuf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,6 +71,11 @@ public class CombatComponent : MonoBehaviour
         catch
         {
         }
+    }
+
+    public void NetSerialize(BinaryReader br)
+    {
+        _attrSet.NetSerialize(br);
     }
 
     void CreateHeadUI()
