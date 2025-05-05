@@ -35,7 +35,6 @@ private:
     int _update_timer;
 
     std::unordered_map<int, Player*> _eid_2_player;
-    std::vector<Player*> _players;
 
     std::shared_ptr<AOI> _aoi;
 };

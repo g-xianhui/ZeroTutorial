@@ -5,6 +5,7 @@
 #include "space.h"
 #include "math_utils.h"
 #include "wheel_timer.h"
+#include "bit_stream.h"
 
 #include "network/tcp_connection.h"
 #include "proto/space_service.pb.h"
@@ -15,11 +16,6 @@ constexpr const char* combo_animations[] = { "Attack01", "Attack02" };
 
 void CombatComponent::start()
 {
-    // TODO 配置
-    _attr_set.max_health = 100;
-    _attr_set.max_mana = 100;
-    _attr_set.attack = 10;
-    _attr_set.defence = 5;
     _attr_set.init();
 
     {
@@ -41,6 +37,18 @@ void CombatComponent::stop()
         _normal_attack_timer = -1;
     }
     stop_running_skill();
+}
+
+void CombatComponent::net_serialize(OutputBitStream& bs)
+{
+    _attr_set.net_serialize(bs);
+}
+
+bool CombatComponent::consume_dirty(OutputBitStream& bs)
+{
+    bool dirty = false;
+    dirty |= _attr_set.consume_dirty(bs);
+    return dirty;
 }
 
 void CombatComponent::normal_attack(int combo_seq)
@@ -101,23 +109,25 @@ void CombatComponent::cast_skill(int skill_id)
     SkillInfo& info = *iter;
     if (can_cast_skill(info)) {
         // reduce cost
-        _attr_set.mana -= info.cost_mana;
+        // _attr_set.mana -= info.cost_mana;
+        _attr_set.set_mana(_attr_set.get_mana() - info.cost_mana);
         info.next_cast_time = int(G_Timer.ms_since_start()) + info.cool_down;
 
         ISkill* skill = get_or_create_skill_instance(skill_id, info.instance_per_entity);
         skill->execute();
     }
 
-    // TODO 有个属性同步机制就好了
     // 更新客户端cd
+    // TODO 动态数组目前还需要自己去rpc同步变化
     sync_skill_info(info);
+
     // 更新客户端蓝量
-    sync_attr_set();
+    // sync_attr_set();
 }
 
 bool CombatComponent::can_cast_skill(const SkillInfo& info)
 {
-    if (_attr_set.mana < info.cost_mana)
+    if (_attr_set.get_mana() < info.cost_mana)
         return false;
 
     if (G_Timer.ms_since_start() < info.next_cast_time)
@@ -189,10 +199,10 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
 
 void CombatComponent::fill_proto_attr_set(space_service::AttrSet& msg)
 {
-    msg.set_max_hp(_attr_set.max_health);
-    msg.set_hp(_attr_set.health);
-    msg.set_max_mana(_attr_set.max_mana);
-    msg.set_mana(_attr_set.mana);
+    msg.set_max_hp(_attr_set.get_max_health());
+    msg.set_hp(_attr_set.get_health());
+    msg.set_max_mana(_attr_set.get_max_mana());
+    msg.set_mana(_attr_set.get_mana());
     msg.set_status(_attr_set.status);
 }
 

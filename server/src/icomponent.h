@@ -4,6 +4,7 @@
 #include <string>
 
 class Player;
+class OutputBitStream;
 
 class IComponent {
 public:
@@ -15,6 +16,8 @@ public:
     virtual void start() {}
     virtual void stop() {}
 
+    virtual void net_serialize(OutputBitStream& bs) {}
+    virtual bool consume_dirty(OutputBitStream& bs) { return false; }
 protected:
     Player* _owner;
 };

@@ -2,6 +2,7 @@
 #include "space.h"
 #include "wheel_timer.h"
 #include "math_utils.h"
+#include "bit_stream.h"
 
 #include "network/tcp_connection.h"
 #include "proto/space_service.pb.h"
@@ -42,6 +43,37 @@ void Player::stop()
     }
 
     _components.clear();
+}
+
+void Player::net_serialize(OutputBitStream& bs)
+{
+    bs.write(_eid);
+    bs.write(_name);
+    for (auto& [name, comp] : _components) {
+        bs.write(name);
+        comp->net_serialize(bs);
+    }
+}
+
+bool Player::consume_dirty(OutputBitStream& bs)
+{
+    bool dirty = false;
+
+    if (_dirty_flag) {
+        dirty = true;
+        bs.write(_dirty_flag);
+
+        if (_dirty_flag & (uint8_t)DirtyFlag::name) {
+            bs.write(_name);
+        }
+        _dirty_flag = 0;
+    }
+
+    for (auto& [name, comp] : _components) {
+        bs.write(name);
+        dirty |= comp->consume_dirty(bs);
+    }
+    return dirty;
 }
 
 void Player::send_msg(const char* msg_bytes, size_t n)

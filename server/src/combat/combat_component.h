@@ -29,6 +29,8 @@ public:
 
     virtual void start() override;
     virtual void stop() override;
+    virtual void net_serialize(OutputBitStream& bs) override;
+    virtual bool consume_dirty(OutputBitStream& bs) override;
 
     void normal_attack(int combo_seq);
     void cast_skill(int skill_id);

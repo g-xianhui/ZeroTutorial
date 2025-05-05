@@ -2,6 +2,7 @@
 #include "player.h"
 #include "wheel_timer.h"
 #include "math_utils.h"
+#include "bit_stream.h"
 
 #include "combat/combat_component.h"
 #include "network/tcp_connection.h"
@@ -63,7 +64,7 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
 
 Space::~Space()
 {
-    for (Player* player : _players) {
+    for (auto& [eid, player] : _eid_2_player) {
         player->send_msg("kick_out", strlen("kick_out"));
     }
 
@@ -100,8 +101,6 @@ void Space::join(Player* player)
     position->set_z(z);
     send_proto_msg(player->get_conn(), "join_reply", join_reply);
 
-    _players.push_back(player);
-
     // FIXME 同步属性给自己，目前用了call_all的接口
     CombatComponent* combat_comp = player->get_component<CombatComponent>();
     combat_comp->sync_attr_set();
@@ -109,12 +108,11 @@ void Space::join(Player* player)
 
 void Space::leave(Player* player)
 {
-    auto iter = std::find(_players.begin(), _players.end(), player);
-    if (iter != _players.end()) {
-        Player* player = *iter;
+    auto iter = _eid_2_player.find(player->get_eid());
+    if (iter != _eid_2_player.end()) {
         _aoi->del_entity(player->get_eid());
         player->leave_space();
-        _players.erase(iter);
+        _eid_2_player.erase(iter);
     }
 }
 
@@ -136,6 +134,18 @@ void Space::update_position(int eid, float x, float y, float z)
 
 void Space::update()
 {
+    std::unordered_map<int, std::string> entity_properties;
+    std::unordered_map<int, std::string> entity_dirty_properties;
+    for (auto& iter : _eid_2_player) {
+        int eid = iter.first;
+        Player* player = iter.second;
+
+        OutputBitStream bs;
+        if (player->consume_dirty(bs)) {
+            entity_dirty_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
+        }
+    }
+
     std::vector<AOIState> aoi_state = _aoi->fetch_state();
     for (auto& state : aoi_state) {
         int eid = state.eid;
@@ -156,11 +166,17 @@ void Space::update()
                     space_service::AoiPlayer* aoi_player = player_sight.add_players();
                     aoi_player->set_eid(other->get_eid());
                     aoi_player->set_name(other->get_name());
+                    if (entity_properties.contains(other_eid)) {
+                        aoi_player->set_data(entity_properties[other_eid].c_str());
+                    } else {
+                        OutputBitStream bs;
+                        other->net_serialize(bs);
+                        auto iter = entity_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
+                        aoi_player->set_data(iter.first->second.c_str());
+                    }
+
                     space_service::Movement* new_transform = aoi_player->mutable_transform();
                     get_movement_data(other, new_transform);
-                    space_service::AttrSet* new_attr_set = aoi_player->mutable_attr_set();
-                    CombatComponent* combat_comp = other->get_component<CombatComponent>();
-                    combat_comp->fill_proto_attr_set(*new_attr_set);
                 }
                 send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
             }
@@ -225,8 +241,9 @@ std::vector<Player*> Space::find_players_in_circle(float cx, float cy, float r)
 
 std::vector<Player*> Space::find_players_in_sector(float cx, float cy, float ux, float uy, float r, float theta)
 {
-    std::vector<Player*> players = find_players_in_circle(cx, cy, r);
-    for (Player* player : _players) {
+    std::vector<Player*> players;
+    std::vector<Player*> circle_players = find_players_in_circle(cx, cy, r);
+    for (Player* player : circle_players) {
         Vector3f pos = player->get_position();
         if (is_point_in_sector(cx, cy, ux, uy, r, theta, pos.x, pos.z))
             players.push_back(player);

@@ -1,11 +1,22 @@
 #pragma once
 
+#include "bit_utils.h"
+
+class OutputBitStream;
+
 struct AttrSet {
+    enum class DirtyFlag : uint16_t {
+        max_health = 1 << 0,
+        health = 1 << 1,
+        max_mana = 1 << 2,
+        mana = 1 << 3,
+    };
+
     // 基础属性
-    int max_health;
-    int health;
-    int max_mana;
-    int mana;
+    int _max_health;
+    int _health;
+    int _max_mana;
+    int _mana;
     int attack;
     int defence;
 
@@ -25,14 +36,34 @@ struct AttrSet {
 
     // 初始化方法
     void init() {
-        health = max_health;
-        mana = max_mana;
+        // TODO 配置
+        _max_health = 100;
+        _max_mana = 100;
+        _health = _max_health;
+        _mana = _max_mana;
+
+        attack = 10;
+        defence = 5;
         clamp_all_attributes();
     }
+
+    void net_serialize(OutputBitStream& bs);
+    bool consume_dirty(OutputBitStream& bs);
 
     // 受伤害逻辑
     int take_damage(AttrSet& attacker, int attack_damage);
 
     // 确保属性在合理范围内
     void clamp_all_attributes();
+
+    void add_health(int val);
+    void add_mana(int val);
+
+    INT_GETSET(max_health);
+    INT_GETSET(health);
+    INT_GETSET(max_mana);
+    INT_GETSET(mana);
+
+private:
+    uint16_t _dirty_flag = 0;
 };

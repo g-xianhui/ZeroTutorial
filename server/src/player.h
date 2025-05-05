@@ -6,6 +6,7 @@
 #include "icomponent.h"
 
 class TcpConnection;
+class OutputBitStream;
 
 struct Vector3f {
     float x = 0;
@@ -23,6 +24,10 @@ class Space;
 
 class Player {
 public:
+    enum class DirtyFlag : uint8_t {
+        name = 1 << 0,
+    };
+
     // conn的生命周期由外部管理
     Player(TcpConnection* conn, const std::string& name);
     ~Player();
@@ -30,7 +35,14 @@ public:
     void start();
     void stop();
 
+    void net_serialize(OutputBitStream& bs);
+    bool consume_dirty(OutputBitStream& bs);
+
     inline TcpConnection* get_conn() { return _conn; }
+    inline void set_name(const std::string& name) {
+        _name = name;
+        _dirty_flag |= (uint8_t)DirtyFlag::name;
+    }
     inline const std::string& get_name() const { return _name; }
 
     inline int get_eid() const { return _eid; }
@@ -119,9 +131,6 @@ public:
         return _move_timestamp;
     }
 
-    inline void set_pos_update(bool is_update) { _is_pos_update = is_update; }
-    inline bool is_pos_update() { return _is_pos_update; }
-
     void normal_attack(int combo_seq);
     void skill_attack(int skill_id);
 
@@ -129,6 +138,9 @@ public:
 
 private:
     TcpConnection* _conn;
+
+    uint8_t _dirty_flag = 0;
+
     int _eid;
     std::string _name;
 
@@ -143,6 +155,4 @@ private:
     Vector3f _angular_velocity;
     int _move_mode;
     float _move_timestamp;
-
-    bool _is_pos_update = false;
 };
