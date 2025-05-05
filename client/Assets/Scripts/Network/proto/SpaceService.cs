@@ -41,27 +41,27 @@ namespace SpaceService {
             "c3RfdGltZRgCIAEoBRIWCgljb3N0X21hbmEYAyABKAVIAIgBARIWCgljb29s",
             "X2Rvd24YBCABKAVIAYgBAUIMCgpfY29zdF9tYW5hQgwKCl9jb29sX2Rvd24i",
             "VQoHQXR0clNldBIOCgZtYXhfaHAYASABKAUSCgoCaHAYAiABKAUSEAoIbWF4",
-            "X21hbmEYAyABKAUSDAoEbWFuYRgEIAEoBRIOCgZzdGF0dXMYBSABKAUipwEK",
+            "X21hbmEYAyABKAUSDAoEbWFuYRgEIAEoBRIOCgZzdGF0dXMYBSABKAUitQEK",
             "CUFvaVBsYXllchILCgNlaWQYASABKAUSDAoEbmFtZRgCIAEoCRIpCghwb3Np",
             "dGlvbhgDIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2YSKgoJdHJhbnNm",
             "b3JtGAQgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudBIoCghhdHRyX3Nl",
-            "dBgFIAEoCzIWLnNwYWNlX3NlcnZpY2UuQXR0clNldCI+ChFQbGF5ZXJzRW50",
-            "ZXJTaWdodBIpCgdwbGF5ZXJzGAEgAygLMhguc3BhY2Vfc2VydmljZS5Bb2lQ",
-            "bGF5ZXIiJAoRUGxheWVyc0xlYXZlU2lnaHQSDwoHcGxheWVycxgBIAMoBSJE",
-            "Cg5QbGF5ZXJNb3ZlbWVudBILCgNlaWQYASABKAUSJQoEZGF0YRgCIAEoCzIX",
-            "LnNwYWNlX3NlcnZpY2UuTW92ZW1lbnQiPwoPUGxheWVyTW92ZW1lbnRzEiwK",
-            "BWRhdGFzGAEgAygLMh0uc3BhY2Vfc2VydmljZS5QbGF5ZXJNb3ZlbWVudCIR",
-            "CgRQaW5nEgkKAXQYASABKAIiIwoEUG9uZxIJCgF0GAEgASgCEhAKCHNlcnZl",
-            "cl90GAIgASgFIh0KDE5vcm1hbEF0dGFjaxINCgVjb21ibxgBIAEoBSIfCgtT",
-            "a2lsbEF0dGFjaxIQCghza2lsbF9pZBgBIAEoBSKOAQoJQW5pbWF0aW9uEgwK",
-            "BG5hbWUYASABKAkSMgoCb3AYAiABKA4yJi5zcGFjZV9zZXJ2aWNlLkFuaW1h",
-            "dGlvbi5PcGVyYXRpb25UeXBlEg0KBXNwZWVkGAMgASgCIjAKDU9wZXJhdGlv",
-            "blR5cGUSCQoFU1RBUlQQABIICgRTVE9QEAESCgoGVVBEQVRFEAIiRgoPUGxh",
-            "eWVyQW5pbWF0aW9uEgsKA2VpZBgBIAEoBRImCgRkYXRhGAIgASgLMhguc3Bh",
-            "Y2Vfc2VydmljZS5BbmltYXRpb24iKQoKVGFrZURhbWFnZRILCgNlaWQYASAB",
-            "KAUSDgoGZGFtYWdlGAIgASgFIkIKDVBsYXllckF0dHJTZXQSCwoDZWlkGAEg",
-            "ASgFEiQKBGRhdGEYAiABKAsyFi5zcGFjZV9zZXJ2aWNlLkF0dHJTZXRiBnBy",
-            "b3RvMw=="));
+            "dBgFIAEoCzIWLnNwYWNlX3NlcnZpY2UuQXR0clNldBIMCgRkYXRhGAYgASgM",
+            "Ij4KEVBsYXllcnNFbnRlclNpZ2h0EikKB3BsYXllcnMYASADKAsyGC5zcGFj",
+            "ZV9zZXJ2aWNlLkFvaVBsYXllciIkChFQbGF5ZXJzTGVhdmVTaWdodBIPCgdw",
+            "bGF5ZXJzGAEgAygFIkQKDlBsYXllck1vdmVtZW50EgsKA2VpZBgBIAEoBRIl",
+            "CgRkYXRhGAIgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudCI/Cg9QbGF5",
+            "ZXJNb3ZlbWVudHMSLAoFZGF0YXMYASADKAsyHS5zcGFjZV9zZXJ2aWNlLlBs",
+            "YXllck1vdmVtZW50IhEKBFBpbmcSCQoBdBgBIAEoAiIjCgRQb25nEgkKAXQY",
+            "ASABKAISEAoIc2VydmVyX3QYAiABKAUiHQoMTm9ybWFsQXR0YWNrEg0KBWNv",
+            "bWJvGAEgASgFIh8KC1NraWxsQXR0YWNrEhAKCHNraWxsX2lkGAEgASgFIo4B",
+            "CglBbmltYXRpb24SDAoEbmFtZRgBIAEoCRIyCgJvcBgCIAEoDjImLnNwYWNl",
+            "X3NlcnZpY2UuQW5pbWF0aW9uLk9wZXJhdGlvblR5cGUSDQoFc3BlZWQYAyAB",
+            "KAIiMAoNT3BlcmF0aW9uVHlwZRIJCgVTVEFSVBAAEggKBFNUT1AQARIKCgZV",
+            "UERBVEUQAiJGCg9QbGF5ZXJBbmltYXRpb24SCwoDZWlkGAEgASgFEiYKBGRh",
+            "dGEYAiABKAsyGC5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbiIpCgpUYWtlRGFt",
+            "YWdlEgsKA2VpZBgBIAEoBRIOCgZkYW1hZ2UYAiABKAUiQgoNUGxheWVyQXR0",
+            "clNldBILCgNlaWQYASABKAUSJAoEZGF0YRgCIAEoCzIWLnNwYWNlX3NlcnZp",
+            "Y2UuQXR0clNldGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,7 +72,7 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.JoinReply), global::SpaceService.JoinReply.Parser, new[]{ "Result", "Position" }, new[]{ "Position" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillInfo), global::SpaceService.SkillInfo.Parser, new[]{ "SkillId", "NextCastTime", "CostMana", "CoolDown" }, new[]{ "CostMana", "CoolDown" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AttrSet), global::SpaceService.AttrSet.Parser, new[]{ "MaxHp", "Hp", "MaxMana", "Mana", "Status" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Eid", "Name", "Position", "Transform", "AttrSet" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Eid", "Name", "Position", "Transform", "AttrSet", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersEnterSight), global::SpaceService.PlayersEnterSight.Parser, new[]{ "Players" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersLeaveSight), global::SpaceService.PlayersLeaveSight.Parser, new[]{ "Players" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerMovement), global::SpaceService.PlayerMovement.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
@@ -2232,6 +2232,7 @@ namespace SpaceService {
       position_ = other.position_ != null ? other.position_.Clone() : null;
       transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       attrSet_ = other.attrSet_ != null ? other.attrSet_.Clone() : null;
+      data_ = other.data_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2301,6 +2302,18 @@ namespace SpaceService {
       }
     }
 
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 6;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2321,6 +2334,7 @@ namespace SpaceService {
       if (!object.Equals(Position, other.Position)) return false;
       if (!object.Equals(Transform, other.Transform)) return false;
       if (!object.Equals(AttrSet, other.AttrSet)) return false;
+      if (Data != other.Data) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2333,6 +2347,7 @@ namespace SpaceService {
       if (position_ != null) hash ^= Position.GetHashCode();
       if (transform_ != null) hash ^= Transform.GetHashCode();
       if (attrSet_ != null) hash ^= AttrSet.GetHashCode();
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2371,6 +2386,10 @@ namespace SpaceService {
         output.WriteRawTag(42);
         output.WriteMessage(AttrSet);
       }
+      if (Data.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(Data);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2401,6 +2420,10 @@ namespace SpaceService {
         output.WriteRawTag(42);
         output.WriteMessage(AttrSet);
       }
+      if (Data.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(Data);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2425,6 +2448,9 @@ namespace SpaceService {
       }
       if (attrSet_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AttrSet);
+      }
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2461,6 +2487,9 @@ namespace SpaceService {
           AttrSet = new global::SpaceService.AttrSet();
         }
         AttrSet.MergeFrom(other.AttrSet);
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2510,6 +2539,10 @@ namespace SpaceService {
             input.ReadMessage(AttrSet);
             break;
           }
+          case 50: {
+            Data = input.ReadBytes();
+            break;
+          }
         }
       }
     #endif
@@ -2556,6 +2589,10 @@ namespace SpaceService {
               AttrSet = new global::SpaceService.AttrSet();
             }
             input.ReadMessage(AttrSet);
+            break;
+          }
+          case 50: {
+            Data = input.ReadBytes();
             break;
           }
         }

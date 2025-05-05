@@ -383,6 +383,9 @@ inline constexpr AoiPlayer::Impl_::Impl_(
         name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         position_{nullptr},
         transform_{nullptr},
         attr_set_{nullptr},
@@ -552,11 +555,13 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::space_service::AoiPlayer, _impl_.position_),
         PROTOBUF_FIELD_OFFSET(::space_service::AoiPlayer, _impl_.transform_),
         PROTOBUF_FIELD_OFFSET(::space_service::AoiPlayer, _impl_.attr_set_),
+        PROTOBUF_FIELD_OFFSET(::space_service::AoiPlayer, _impl_.data_),
         ~0u,
         ~0u,
         0,
         1,
         2,
+        ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::PlayersEnterSight, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -689,19 +694,19 @@ static const ::_pbi::MigrationSchema
         {52, 62, -1, sizeof(::space_service::JoinReply)},
         {64, 76, -1, sizeof(::space_service::SkillInfo)},
         {80, -1, -1, sizeof(::space_service::AttrSet)},
-        {93, 106, -1, sizeof(::space_service::AoiPlayer)},
-        {111, -1, -1, sizeof(::space_service::PlayersEnterSight)},
-        {120, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
-        {129, 139, -1, sizeof(::space_service::PlayerMovement)},
-        {141, -1, -1, sizeof(::space_service::PlayerMovements)},
-        {150, -1, -1, sizeof(::space_service::Ping)},
-        {159, -1, -1, sizeof(::space_service::Pong)},
-        {169, -1, -1, sizeof(::space_service::NormalAttack)},
-        {178, -1, -1, sizeof(::space_service::SkillAttack)},
-        {187, -1, -1, sizeof(::space_service::Animation)},
-        {198, 208, -1, sizeof(::space_service::PlayerAnimation)},
-        {210, -1, -1, sizeof(::space_service::TakeDamage)},
-        {220, 230, -1, sizeof(::space_service::PlayerAttrSet)},
+        {93, 107, -1, sizeof(::space_service::AoiPlayer)},
+        {113, -1, -1, sizeof(::space_service::PlayersEnterSight)},
+        {122, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
+        {131, 141, -1, sizeof(::space_service::PlayerMovement)},
+        {143, -1, -1, sizeof(::space_service::PlayerMovements)},
+        {152, -1, -1, sizeof(::space_service::Ping)},
+        {161, -1, -1, sizeof(::space_service::Pong)},
+        {171, -1, -1, sizeof(::space_service::NormalAttack)},
+        {180, -1, -1, sizeof(::space_service::SkillAttack)},
+        {189, -1, -1, sizeof(::space_service::Animation)},
+        {200, 210, -1, sizeof(::space_service::PlayerAnimation)},
+        {212, -1, -1, sizeof(::space_service::TakeDamage)},
+        {222, 232, -1, sizeof(::space_service::PlayerAttrSet)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -747,34 +752,35 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     "\030\004 \001(\005H\001\210\001\001B\014\n\n_cost_manaB\014\n\n_cool_down\""
     "U\n\007AttrSet\022\016\n\006max_hp\030\001 \001(\005\022\n\n\002hp\030\002 \001(\005\022\020"
     "\n\010max_mana\030\003 \001(\005\022\014\n\004mana\030\004 \001(\005\022\016\n\006status"
-    "\030\005 \001(\005\"\247\001\n\tAoiPlayer\022\013\n\003eid\030\001 \001(\005\022\014\n\004nam"
+    "\030\005 \001(\005\"\265\001\n\tAoiPlayer\022\013\n\003eid\030\001 \001(\005\022\014\n\004nam"
     "e\030\002 \001(\t\022)\n\010position\030\003 \001(\0132\027.space_servic"
     "e.Vector3f\022*\n\ttransform\030\004 \001(\0132\027.space_se"
     "rvice.Movement\022(\n\010attr_set\030\005 \001(\0132\026.space"
-    "_service.AttrSet\">\n\021PlayersEnterSight\022)\n"
-    "\007players\030\001 \003(\0132\030.space_service.AoiPlayer"
-    "\"$\n\021PlayersLeaveSight\022\017\n\007players\030\001 \003(\005\"D"
-    "\n\016PlayerMovement\022\013\n\003eid\030\001 \001(\005\022%\n\004data\030\002 "
-    "\001(\0132\027.space_service.Movement\"\?\n\017PlayerMo"
-    "vements\022,\n\005datas\030\001 \003(\0132\035.space_service.P"
-    "layerMovement\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"#\n\004Pong"
-    "\022\t\n\001t\030\001 \001(\002\022\020\n\010server_t\030\002 \001(\005\"\035\n\014NormalA"
-    "ttack\022\r\n\005combo\030\001 \001(\005\"\037\n\013SkillAttack\022\020\n\010s"
-    "kill_id\030\001 \001(\005\"\216\001\n\tAnimation\022\014\n\004name\030\001 \001("
-    "\t\0222\n\002op\030\002 \001(\0162&.space_service.Animation."
-    "OperationType\022\r\n\005speed\030\003 \001(\002\"0\n\rOperatio"
-    "nType\022\t\n\005START\020\000\022\010\n\004STOP\020\001\022\n\n\006UPDATE\020\002\"F"
-    "\n\017PlayerAnimation\022\013\n\003eid\030\001 \001(\005\022&\n\004data\030\002"
-    " \001(\0132\030.space_service.Animation\")\n\nTakeDa"
-    "mage\022\013\n\003eid\030\001 \001(\005\022\016\n\006damage\030\002 \001(\005\"B\n\rPla"
-    "yerAttrSet\022\013\n\003eid\030\001 \001(\005\022$\n\004data\030\002 \001(\0132\026."
-    "space_service.AttrSetb\006proto3"
+    "_service.AttrSet\022\014\n\004data\030\006 \001(\014\">\n\021Player"
+    "sEnterSight\022)\n\007players\030\001 \003(\0132\030.space_ser"
+    "vice.AoiPlayer\"$\n\021PlayersLeaveSight\022\017\n\007p"
+    "layers\030\001 \003(\005\"D\n\016PlayerMovement\022\013\n\003eid\030\001 "
+    "\001(\005\022%\n\004data\030\002 \001(\0132\027.space_service.Moveme"
+    "nt\"\?\n\017PlayerMovements\022,\n\005datas\030\001 \003(\0132\035.s"
+    "pace_service.PlayerMovement\"\021\n\004Ping\022\t\n\001t"
+    "\030\001 \001(\002\"#\n\004Pong\022\t\n\001t\030\001 \001(\002\022\020\n\010server_t\030\002 "
+    "\001(\005\"\035\n\014NormalAttack\022\r\n\005combo\030\001 \001(\005\"\037\n\013Sk"
+    "illAttack\022\020\n\010skill_id\030\001 \001(\005\"\216\001\n\tAnimatio"
+    "n\022\014\n\004name\030\001 \001(\t\0222\n\002op\030\002 \001(\0162&.space_serv"
+    "ice.Animation.OperationType\022\r\n\005speed\030\003 \001"
+    "(\002\"0\n\rOperationType\022\t\n\005START\020\000\022\010\n\004STOP\020\001"
+    "\022\n\n\006UPDATE\020\002\"F\n\017PlayerAnimation\022\013\n\003eid\030\001"
+    " \001(\005\022&\n\004data\030\002 \001(\0132\030.space_service.Anima"
+    "tion\")\n\nTakeDamage\022\013\n\003eid\030\001 \001(\005\022\016\n\006damag"
+    "e\030\002 \001(\005\"B\n\rPlayerAttrSet\022\013\n\003eid\030\001 \001(\005\022$\n"
+    "\004data\030\002 \001(\0132\026.space_service.AttrSetb\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    1669,
+    1683,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
@@ -2732,7 +2738,8 @@ inline PROTOBUF_NDEBUG_INLINE AoiPlayer::Impl_::Impl_(
     const Impl_& from, const ::space_service::AoiPlayer& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        name_(arena, from.name_) {}
+        name_(arena, from.name_),
+        data_(arena, from.data_) {}
 
 AoiPlayer::AoiPlayer(
     ::google::protobuf::Arena* arena,
@@ -2761,7 +2768,8 @@ inline PROTOBUF_NDEBUG_INLINE AoiPlayer::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        name_(arena) {}
+        name_(arena),
+        data_(arena) {}
 
 inline void AoiPlayer::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2780,6 +2788,7 @@ AoiPlayer::~AoiPlayer() {
 inline void AoiPlayer::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.name_.Destroy();
+  _impl_.data_.Destroy();
   delete _impl_.position_;
   delete _impl_.transform_;
   delete _impl_.attr_set_;
@@ -2807,15 +2816,15 @@ AoiPlayer::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 3, 36, 2> AoiPlayer::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 3, 36, 2> AoiPlayer::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(AoiPlayer, _impl_._has_bits_),
     0, // no _extensions_
-    5, 56,  // max_field_number, fast_idx_mask
+    6, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967264,  // skipmap
+    4294967232,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    5,  // num_field_entries
+    6,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     &_AoiPlayer_default_instance_._instance,
@@ -2841,7 +2850,9 @@ const ::_pbi::TcParseTable<3, 5, 3, 36, 2> AoiPlayer::_table_ = {
     // .space_service.AttrSet attr_set = 5;
     {::_pbi::TcParser::FastMtS1,
      {42, 2, 2, PROTOBUF_FIELD_OFFSET(AoiPlayer, _impl_.attr_set_)}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // bytes data = 6;
+    {::_pbi::TcParser::FastBS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(AoiPlayer, _impl_.data_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
@@ -2861,6 +2872,9 @@ const ::_pbi::TcParseTable<3, 5, 3, 36, 2> AoiPlayer::_table_ = {
     // .space_service.AttrSet attr_set = 5;
     {PROTOBUF_FIELD_OFFSET(AoiPlayer, _impl_.attr_set_), _Internal::kHasBitsOffset + 2, 2,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // bytes data = 6;
+    {PROTOBUF_FIELD_OFFSET(AoiPlayer, _impl_.data_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
     {::_pbi::TcParser::GetTable<::space_service::Movement>()},
@@ -2880,6 +2894,7 @@ PROTOBUF_NOINLINE void AoiPlayer::Clear() {
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
+  _impl_.data_.ClearToEmpty();
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     if (cached_has_bits & 0x00000001u) {
@@ -2941,6 +2956,12 @@ PROTOBUF_NOINLINE void AoiPlayer::Clear() {
         5, *_impl_.attr_set_, _impl_.attr_set_->GetCachedSize(), target, stream);
   }
 
+  // bytes data = 6;
+  if (!this->_internal_data().empty()) {
+    const std::string& _s = this->_internal_data();
+    target = stream->WriteBytesMaybeAliased(6, _s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -2963,6 +2984,12 @@ PROTOBUF_NOINLINE void AoiPlayer::Clear() {
   if (!this->_internal_name().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_name());
+  }
+
+  // bytes data = 6;
+  if (!this->_internal_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
   }
 
   cached_has_bits = _impl_._has_bits_[0];
@@ -3007,6 +3034,9 @@ void AoiPlayer::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
 
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
   }
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
@@ -3060,6 +3090,7 @@ void AoiPlayer::InternalSwap(AoiPlayer* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(AoiPlayer, _impl_.eid_)
       + sizeof(AoiPlayer::_impl_.eid_)

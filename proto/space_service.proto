@@ -54,6 +54,7 @@ message AoiPlayer {
   Movement transform = 4;
 
   AttrSet attr_set = 5;
+  bytes data = 6;
 }
 
 message PlayersEnterSight {

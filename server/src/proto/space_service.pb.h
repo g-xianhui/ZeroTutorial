@@ -3572,6 +3572,7 @@ class AoiPlayer final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNameFieldNumber = 2,
+    kDataFieldNumber = 6,
     kPositionFieldNumber = 3,
     kTransformFieldNumber = 4,
     kAttrSetFieldNumber = 5,
@@ -3591,6 +3592,22 @@ class AoiPlayer final : public ::google::protobuf::Message
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
       const std::string& value);
   std::string* _internal_mutable_name();
+
+  public:
+  // bytes data = 6;
+  void clear_data() ;
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
+
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
 
   public:
   // .space_service.Vector3f position = 3;
@@ -3653,7 +3670,7 @@ class AoiPlayer final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 3,
+      3, 6, 3,
       36, 2>
       _table_;
 
@@ -3677,6 +3694,7 @@ class AoiPlayer final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr data_;
     ::space_service::Vector3f* position_;
     ::space_service::Movement* transform_;
     ::space_service::AttrSet* attr_set_;
@@ -5457,6 +5475,56 @@ inline void AoiPlayer::set_allocated_attr_set(::space_service::AttrSet* value) {
 
   _impl_.attr_set_ = reinterpret_cast<::space_service::AttrSet*>(value);
   // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.attr_set)
+}
+
+// bytes data = 6;
+inline void AoiPlayer::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+}
+inline const std::string& AoiPlayer::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.AoiPlayer.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AoiPlayer::set_data(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:space_service.AoiPlayer.data)
+}
+inline std::string* AoiPlayer::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:space_service.AoiPlayer.data)
+  return _s;
+}
+inline const std::string& AoiPlayer::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void AoiPlayer::_internal_set_data(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline std::string* AoiPlayer::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* AoiPlayer::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.AoiPlayer.data)
+  return _impl_.data_.Release();
+}
+inline void AoiPlayer::set_allocated_data(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.data_.IsDefault()) {
+          _impl_.data_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.data)
 }
 
 // -------------------------------------------------------------------
