@@ -38,8 +38,6 @@ public:
     
     void take_damage(CombatComponent* attacker, int damage);
 
-    void fill_proto_attr_set(space_service::AttrSet& msg);
-    void sync_attr_set();
     void sync_skill_info(const SkillInfo& skill_info);
 
 private:

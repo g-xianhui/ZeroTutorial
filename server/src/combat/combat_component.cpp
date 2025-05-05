@@ -109,20 +109,20 @@ void CombatComponent::cast_skill(int skill_id)
     SkillInfo& info = *iter;
     if (can_cast_skill(info)) {
         // reduce cost
-        // _attr_set.mana -= info.cost_mana;
-        _attr_set.set_mana(_attr_set.get_mana() - info.cost_mana);
+        _attr_set.add_mana(-info.cost_mana);
         info.next_cast_time = int(G_Timer.ms_since_start()) + info.cool_down;
 
         ISkill* skill = get_or_create_skill_instance(skill_id, info.instance_per_entity);
         skill->execute();
     }
+    else {
+        // 强制更新客户端蓝量
+        _attr_set.add_mana(0);
+    }
 
     // 更新客户端cd
     // TODO 动态数组目前还需要自己去rpc同步变化
     sync_skill_info(info);
-
-    // 更新客户端蓝量
-    // sync_attr_set();
 }
 
 bool CombatComponent::can_cast_skill(const SkillInfo& info)
@@ -195,28 +195,6 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
     msg.SerializeToString(&msg_bytes);
     Space* space = _owner->get_space();
     space->call_all(_owner->get_eid(), "take_damage", msg_bytes);
-}
-
-void CombatComponent::fill_proto_attr_set(space_service::AttrSet& msg)
-{
-    msg.set_max_hp(_attr_set.get_max_health());
-    msg.set_hp(_attr_set.get_health());
-    msg.set_max_mana(_attr_set.get_max_mana());
-    msg.set_mana(_attr_set.get_mana());
-    msg.set_status(_attr_set.status);
-}
-
-void CombatComponent::sync_attr_set()
-{
-    space_service::PlayerAttrSet msg;
-    msg.set_eid(_owner->get_eid());
-    space_service::AttrSet* data = msg.mutable_data();
-    fill_proto_attr_set(*data);
-    
-    std::string msg_bytes;
-    msg.SerializeToString(&msg_bytes);
-    Space* space = _owner->get_space();
-    space->call_all(_owner->get_eid(), "update_attr_set", msg_bytes);
 }
 
 void CombatComponent::sync_skill_info(const SkillInfo& skill_info)

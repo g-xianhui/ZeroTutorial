@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class AttrSet
@@ -34,13 +36,47 @@ public class AttrSet
     // 状态（晕眩、冻结、霸体。。。）
     public int Status;
 
+    enum DirtyFlag : UInt16
+    {
+        MaxHealth = 1,
+        Health = 2,
+        MaxMana = 4,
+        Mana = 8,
+    }
+
     public void NetSerialize(BinaryReader br)
     {
         MaxHealth = br.ReadInt32();
         Health = br.ReadInt32();
         MaxMana = br.ReadInt32();
         Mana = br.ReadInt32();
-        Debug.Log($"MaxHealth: {MaxHealth}, Mana: {Mana}");
+    }
+
+    public void ConsumeDirty(BinaryReader br)
+    {
+        UInt16 dirtyFlag = br.ReadUInt16();
+        if (dirtyFlag != 0)
+        {
+            if ((dirtyFlag & (UInt16)DirtyFlag.MaxHealth) != 0)
+            {
+                MaxHealth = br.ReadInt32();
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.Health) != 0)
+            {
+                Health = br.ReadInt32();
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.MaxMana) != 0)
+            {
+                MaxMana = br.ReadInt32();
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.Mana) != 0)
+            {
+                Mana = br.ReadInt32();
+            }
+        }
     }
 
     public void TakeDamage(AttrSet attacker, int attackDamage)
@@ -49,11 +85,11 @@ public class AttrSet
         int baseDamage = Mathf.Max(1, attackDamage - this.Defence);
 
         // 2. 暴击判断
-        bool isCritical = Random.value < attacker.CriticalRate;
+        bool isCritical = UnityEngine.Random.value < attacker.CriticalRate;
         float damage = isCritical ? baseDamage * (1 + attacker.CriticalDamage) : baseDamage;
 
         // 3. 命中与闪避判断
-        bool isHit = Random.value < (attacker.Accuracy - this.DodgeRate);
+        bool isHit = UnityEngine.Random.value < (attacker.Accuracy - this.DodgeRate);
         if (!isHit)
         {
             Debug.Log("攻击未命中！");

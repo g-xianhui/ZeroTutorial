@@ -101,9 +101,13 @@ void Space::join(Player* player)
     position->set_z(z);
     send_proto_msg(player->get_conn(), "join_reply", join_reply);
 
-    // FIXME 同步属性给自己，目前用了call_all的接口
-    CombatComponent* combat_comp = player->get_component<CombatComponent>();
-    combat_comp->sync_attr_set();
+    // 同步属性给自己
+    OutputBitStream bs;
+    player->net_serialize(bs);
+    space_service::PlayerInfo player_info;
+    player_info.set_eid(player->get_eid());
+    player_info.set_data(std::string{ bs.get_buffer(), bs.tellp() });
+    send_proto_msg(player->get_conn(), "sync_full_info", player_info);
 }
 
 void Space::leave(Player* player)
@@ -142,7 +146,13 @@ void Space::update()
 
         OutputBitStream bs;
         if (player->consume_dirty(bs)) {
-            entity_dirty_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
+            auto result = entity_dirty_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
+
+            // 同步属性变化给自己
+            space_service::PlayerDeltaInfo delta_info;
+            delta_info.set_eid(eid);
+            delta_info.set_data(result.first->second);
+            send_proto_msg(player->get_conn(), "sync_delta_info", delta_info);
         }
     }
 
@@ -165,7 +175,6 @@ void Space::update()
 
                     space_service::AoiPlayer* aoi_player = player_sight.add_players();
                     aoi_player->set_eid(other->get_eid());
-                    aoi_player->set_name(other->get_name());
                     if (entity_properties.contains(other_eid)) {
                         aoi_player->set_data(entity_properties[other_eid]);
                     } else {
@@ -191,6 +200,8 @@ void Space::update()
 
         // 同步视野内玩家的移动给player
         space_service::PlayerMovements player_movements;
+        // 同步视野内玩家的属性变化给player
+        space_service::AoiUpdates aoi_updates;
         for (int interest_eid : state.interests) {
             Player* p = find_player(interest_eid);
             if (p) {
@@ -199,9 +210,17 @@ void Space::update()
 
                 space_service::Movement* new_move = data->mutable_data();
                 get_movement_data(p, new_move);
+
+                auto dirty_property_iter = entity_dirty_properties.find(interest_eid);
+                if (dirty_property_iter != entity_dirty_properties.end()) {
+                    space_service::AoiUpdate* aoi_update = aoi_updates.add_datas();
+                    aoi_update->set_eid(interest_eid);
+                    aoi_update->set_data(dirty_property_iter->second);
+                }
             }
         }
         send_proto_msg(player->get_conn(), "sync_movement", player_movements);
+        send_proto_msg(player->get_conn(), "sync_aoi_update", aoi_updates);
     }
 }
 

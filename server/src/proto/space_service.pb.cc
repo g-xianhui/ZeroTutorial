@@ -147,6 +147,50 @@ struct PlayersLeaveSightDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayersLeaveSightDefaultTypeInternal _PlayersLeaveSight_default_instance_;
 
+inline constexpr PlayerInfo::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        eid_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerInfo::PlayerInfo(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PlayerInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerInfoDefaultTypeInternal() {}
+  union {
+    PlayerInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerInfoDefaultTypeInternal _PlayerInfo_default_instance_;
+
+inline constexpr PlayerDeltaInfo::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        eid_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR PlayerDeltaInfo::PlayerDeltaInfo(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct PlayerDeltaInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PlayerDeltaInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PlayerDeltaInfoDefaultTypeInternal() {}
+  union {
+    PlayerDeltaInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PlayerDeltaInfoDefaultTypeInternal _PlayerDeltaInfo_default_instance_;
+
 inline constexpr Ping::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : t_{0},
@@ -248,6 +292,28 @@ struct AttrSetDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AttrSetDefaultTypeInternal _AttrSet_default_instance_;
+
+inline constexpr AoiUpdate::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        eid_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AoiUpdate::AoiUpdate(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AoiUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AoiUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AoiUpdateDefaultTypeInternal() {}
+  union {
+    AoiUpdate _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AoiUpdateDefaultTypeInternal _AoiUpdate_default_instance_;
 
 inline constexpr Animation::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -356,6 +422,25 @@ struct JoinReplyDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JoinReplyDefaultTypeInternal _JoinReply_default_instance_;
+
+inline constexpr AoiUpdates::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : datas_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AoiUpdates::AoiUpdates(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AoiUpdatesDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AoiUpdatesDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AoiUpdatesDefaultTypeInternal() {}
+  union {
+    AoiUpdates _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AoiUpdatesDefaultTypeInternal _AoiUpdates_default_instance_;
 
 inline constexpr PlayerMovement::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -530,6 +615,26 @@ const ::uint32_t
         0,
         1,
         ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerInfo, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerInfo, _impl_.eid_),
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerInfo, _impl_.data_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerDeltaInfo, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerDeltaInfo, _impl_.eid_),
+        PROTOBUF_FIELD_OFFSET(::space_service::PlayerDeltaInfo, _impl_.data_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::AttrSet, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -601,6 +706,25 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::PlayerMovements, _impl_.datas_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdate, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdate, _impl_.eid_),
+        PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdate, _impl_.data_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdates, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdates, _impl_.datas_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::Ping, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -693,20 +817,24 @@ static const ::_pbi::MigrationSchema
         {42, -1, -1, sizeof(::space_service::LoginReply)},
         {52, 62, -1, sizeof(::space_service::JoinReply)},
         {64, 76, -1, sizeof(::space_service::SkillInfo)},
-        {80, -1, -1, sizeof(::space_service::AttrSet)},
-        {93, 107, -1, sizeof(::space_service::AoiPlayer)},
-        {113, -1, -1, sizeof(::space_service::PlayersEnterSight)},
-        {122, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
-        {131, 141, -1, sizeof(::space_service::PlayerMovement)},
-        {143, -1, -1, sizeof(::space_service::PlayerMovements)},
-        {152, -1, -1, sizeof(::space_service::Ping)},
-        {161, -1, -1, sizeof(::space_service::Pong)},
-        {171, -1, -1, sizeof(::space_service::NormalAttack)},
-        {180, -1, -1, sizeof(::space_service::SkillAttack)},
-        {189, -1, -1, sizeof(::space_service::Animation)},
-        {200, 210, -1, sizeof(::space_service::PlayerAnimation)},
-        {212, -1, -1, sizeof(::space_service::TakeDamage)},
-        {222, 232, -1, sizeof(::space_service::PlayerAttrSet)},
+        {80, -1, -1, sizeof(::space_service::PlayerInfo)},
+        {90, -1, -1, sizeof(::space_service::PlayerDeltaInfo)},
+        {100, -1, -1, sizeof(::space_service::AttrSet)},
+        {113, 127, -1, sizeof(::space_service::AoiPlayer)},
+        {133, -1, -1, sizeof(::space_service::PlayersEnterSight)},
+        {142, -1, -1, sizeof(::space_service::PlayersLeaveSight)},
+        {151, 161, -1, sizeof(::space_service::PlayerMovement)},
+        {163, -1, -1, sizeof(::space_service::PlayerMovements)},
+        {172, -1, -1, sizeof(::space_service::AoiUpdate)},
+        {182, -1, -1, sizeof(::space_service::AoiUpdates)},
+        {191, -1, -1, sizeof(::space_service::Ping)},
+        {200, -1, -1, sizeof(::space_service::Pong)},
+        {210, -1, -1, sizeof(::space_service::NormalAttack)},
+        {219, -1, -1, sizeof(::space_service::SkillAttack)},
+        {228, -1, -1, sizeof(::space_service::Animation)},
+        {239, 249, -1, sizeof(::space_service::PlayerAnimation)},
+        {251, -1, -1, sizeof(::space_service::TakeDamage)},
+        {261, 271, -1, sizeof(::space_service::PlayerAttrSet)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -715,12 +843,16 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_LoginReply_default_instance_._instance,
     &::space_service::_JoinReply_default_instance_._instance,
     &::space_service::_SkillInfo_default_instance_._instance,
+    &::space_service::_PlayerInfo_default_instance_._instance,
+    &::space_service::_PlayerDeltaInfo_default_instance_._instance,
     &::space_service::_AttrSet_default_instance_._instance,
     &::space_service::_AoiPlayer_default_instance_._instance,
     &::space_service::_PlayersEnterSight_default_instance_._instance,
     &::space_service::_PlayersLeaveSight_default_instance_._instance,
     &::space_service::_PlayerMovement_default_instance_._instance,
     &::space_service::_PlayerMovements_default_instance_._instance,
+    &::space_service::_AoiUpdate_default_instance_._instance,
+    &::space_service::_AoiUpdates_default_instance_._instance,
     &::space_service::_Ping_default_instance_._instance,
     &::space_service::_Pong_default_instance_._instance,
     &::space_service::_NormalAttack_default_instance_._instance,
@@ -750,43 +882,47 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     "o\022\020\n\010skill_id\030\001 \001(\005\022\026\n\016next_cast_time\030\002 "
     "\001(\005\022\026\n\tcost_mana\030\003 \001(\005H\000\210\001\001\022\026\n\tcool_down"
     "\030\004 \001(\005H\001\210\001\001B\014\n\n_cost_manaB\014\n\n_cool_down\""
-    "U\n\007AttrSet\022\016\n\006max_hp\030\001 \001(\005\022\n\n\002hp\030\002 \001(\005\022\020"
-    "\n\010max_mana\030\003 \001(\005\022\014\n\004mana\030\004 \001(\005\022\016\n\006status"
-    "\030\005 \001(\005\"\265\001\n\tAoiPlayer\022\013\n\003eid\030\001 \001(\005\022\014\n\004nam"
-    "e\030\002 \001(\t\022)\n\010position\030\003 \001(\0132\027.space_servic"
-    "e.Vector3f\022*\n\ttransform\030\004 \001(\0132\027.space_se"
-    "rvice.Movement\022(\n\010attr_set\030\005 \001(\0132\026.space"
-    "_service.AttrSet\022\014\n\004data\030\006 \001(\014\">\n\021Player"
-    "sEnterSight\022)\n\007players\030\001 \003(\0132\030.space_ser"
-    "vice.AoiPlayer\"$\n\021PlayersLeaveSight\022\017\n\007p"
-    "layers\030\001 \003(\005\"D\n\016PlayerMovement\022\013\n\003eid\030\001 "
-    "\001(\005\022%\n\004data\030\002 \001(\0132\027.space_service.Moveme"
-    "nt\"\?\n\017PlayerMovements\022,\n\005datas\030\001 \003(\0132\035.s"
-    "pace_service.PlayerMovement\"\021\n\004Ping\022\t\n\001t"
-    "\030\001 \001(\002\"#\n\004Pong\022\t\n\001t\030\001 \001(\002\022\020\n\010server_t\030\002 "
-    "\001(\005\"\035\n\014NormalAttack\022\r\n\005combo\030\001 \001(\005\"\037\n\013Sk"
-    "illAttack\022\020\n\010skill_id\030\001 \001(\005\"\216\001\n\tAnimatio"
-    "n\022\014\n\004name\030\001 \001(\t\0222\n\002op\030\002 \001(\0162&.space_serv"
-    "ice.Animation.OperationType\022\r\n\005speed\030\003 \001"
-    "(\002\"0\n\rOperationType\022\t\n\005START\020\000\022\010\n\004STOP\020\001"
-    "\022\n\n\006UPDATE\020\002\"F\n\017PlayerAnimation\022\013\n\003eid\030\001"
-    " \001(\005\022&\n\004data\030\002 \001(\0132\030.space_service.Anima"
-    "tion\")\n\nTakeDamage\022\013\n\003eid\030\001 \001(\005\022\016\n\006damag"
-    "e\030\002 \001(\005\"B\n\rPlayerAttrSet\022\013\n\003eid\030\001 \001(\005\022$\n"
-    "\004data\030\002 \001(\0132\026.space_service.AttrSetb\006pro"
-    "to3"
+    "\'\n\nPlayerInfo\022\013\n\003eid\030\001 \001(\005\022\014\n\004data\030\002 \001(\014"
+    "\",\n\017PlayerDeltaInfo\022\013\n\003eid\030\001 \001(\005\022\014\n\004data"
+    "\030\002 \001(\014\"U\n\007AttrSet\022\016\n\006max_hp\030\001 \001(\005\022\n\n\002hp\030"
+    "\002 \001(\005\022\020\n\010max_mana\030\003 \001(\005\022\014\n\004mana\030\004 \001(\005\022\016\n"
+    "\006status\030\005 \001(\005\"\265\001\n\tAoiPlayer\022\013\n\003eid\030\001 \001(\005"
+    "\022\014\n\004name\030\002 \001(\t\022)\n\010position\030\003 \001(\0132\027.space"
+    "_service.Vector3f\022*\n\ttransform\030\004 \001(\0132\027.s"
+    "pace_service.Movement\022(\n\010attr_set\030\005 \001(\0132"
+    "\026.space_service.AttrSet\022\014\n\004data\030\006 \001(\014\">\n"
+    "\021PlayersEnterSight\022)\n\007players\030\001 \003(\0132\030.sp"
+    "ace_service.AoiPlayer\"$\n\021PlayersLeaveSig"
+    "ht\022\017\n\007players\030\001 \003(\005\"D\n\016PlayerMovement\022\013\n"
+    "\003eid\030\001 \001(\005\022%\n\004data\030\002 \001(\0132\027.space_service"
+    ".Movement\"\?\n\017PlayerMovements\022,\n\005datas\030\001 "
+    "\003(\0132\035.space_service.PlayerMovement\"&\n\tAo"
+    "iUpdate\022\013\n\003eid\030\001 \001(\005\022\014\n\004data\030\002 \001(\014\"5\n\nAo"
+    "iUpdates\022\'\n\005datas\030\001 \003(\0132\030.space_service."
+    "AoiUpdate\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"#\n\004Pong\022\t\n\001"
+    "t\030\001 \001(\002\022\020\n\010server_t\030\002 \001(\005\"\035\n\014NormalAttac"
+    "k\022\r\n\005combo\030\001 \001(\005\"\037\n\013SkillAttack\022\020\n\010skill"
+    "_id\030\001 \001(\005\"\216\001\n\tAnimation\022\014\n\004name\030\001 \001(\t\0222\n"
+    "\002op\030\002 \001(\0162&.space_service.Animation.Oper"
+    "ationType\022\r\n\005speed\030\003 \001(\002\"0\n\rOperationTyp"
+    "e\022\t\n\005START\020\000\022\010\n\004STOP\020\001\022\n\n\006UPDATE\020\002\"F\n\017Pl"
+    "ayerAnimation\022\013\n\003eid\030\001 \001(\005\022&\n\004data\030\002 \001(\013"
+    "2\030.space_service.Animation\")\n\nTakeDamage"
+    "\022\013\n\003eid\030\001 \001(\005\022\016\n\006damage\030\002 \001(\005\"B\n\rPlayerA"
+    "ttrSet\022\013\n\003eid\030\001 \001(\005\022$\n\004data\030\002 \001(\0132\026.spac"
+    "e_service.AttrSetb\006proto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    1683,
+    1865,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
     nullptr,
     0,
-    20,
+    24,
     schemas,
     file_default_instances,
     TableStruct_space_5fservice_2eproto::offsets,
@@ -2444,6 +2580,434 @@ void SkillInfo::InternalSwap(SkillInfo* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class PlayerInfo::_Internal {
+ public:
+};
+
+PlayerInfo::PlayerInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.PlayerInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::PlayerInfo& from_msg)
+      : data_(arena, from.data_),
+        _cached_size_{0} {}
+
+PlayerInfo::PlayerInfo(
+    ::google::protobuf::Arena* arena,
+    const PlayerInfo& from)
+    : ::google::protobuf::Message(arena) {
+  PlayerInfo* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.eid_ = from._impl_.eid_;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.PlayerInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : data_(arena),
+        _cached_size_{0} {}
+
+inline void PlayerInfo::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.eid_ = {};
+}
+PlayerInfo::~PlayerInfo() {
+  // @@protoc_insertion_point(destructor:space_service.PlayerInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PlayerInfo::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.data_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+PlayerInfo::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(PlayerInfo, _impl_._cached_size_),
+              false,
+          },
+          &PlayerInfo::MergeImpl,
+          &PlayerInfo::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> PlayerInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PlayerInfo_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::PlayerInfo>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bytes data = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInfo, _impl_.data_)}},
+    // int32 eid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerInfo, _impl_.eid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerInfo, _impl_.eid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 eid = 1;
+    {PROTOBUF_FIELD_OFFSET(PlayerInfo, _impl_.eid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bytes data = 2;
+    {PROTOBUF_FIELD_OFFSET(PlayerInfo, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PlayerInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.PlayerInfo)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.data_.ClearToEmpty();
+  _impl_.eid_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* PlayerInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.PlayerInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 eid = 1;
+  if (this->_internal_eid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_eid(), target);
+  }
+
+  // bytes data = 2;
+  if (!this->_internal_data().empty()) {
+    const std::string& _s = this->_internal_data();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.PlayerInfo)
+  return target;
+}
+
+::size_t PlayerInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.PlayerInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // bytes data = 2;
+  if (!this->_internal_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
+  }
+
+  // int32 eid = 1;
+  if (this->_internal_eid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_eid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void PlayerInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PlayerInfo*>(&to_msg);
+  auto& from = static_cast<const PlayerInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.PlayerInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
+  }
+  if (from._internal_eid() != 0) {
+    _this->_impl_.eid_ = from._impl_.eid_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayerInfo::CopyFrom(const PlayerInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.PlayerInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerInfo::InternalSwap(PlayerInfo* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+        swap(_impl_.eid_, other->_impl_.eid_);
+}
+
+::google::protobuf::Metadata PlayerInfo::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class PlayerDeltaInfo::_Internal {
+ public:
+};
+
+PlayerDeltaInfo::PlayerDeltaInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.PlayerDeltaInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerDeltaInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::PlayerDeltaInfo& from_msg)
+      : data_(arena, from.data_),
+        _cached_size_{0} {}
+
+PlayerDeltaInfo::PlayerDeltaInfo(
+    ::google::protobuf::Arena* arena,
+    const PlayerDeltaInfo& from)
+    : ::google::protobuf::Message(arena) {
+  PlayerDeltaInfo* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.eid_ = from._impl_.eid_;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.PlayerDeltaInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE PlayerDeltaInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : data_(arena),
+        _cached_size_{0} {}
+
+inline void PlayerDeltaInfo::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.eid_ = {};
+}
+PlayerDeltaInfo::~PlayerDeltaInfo() {
+  // @@protoc_insertion_point(destructor:space_service.PlayerDeltaInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void PlayerDeltaInfo::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.data_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+PlayerDeltaInfo::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(PlayerDeltaInfo, _impl_._cached_size_),
+              false,
+          },
+          &PlayerDeltaInfo::MergeImpl,
+          &PlayerDeltaInfo::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> PlayerDeltaInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_PlayerDeltaInfo_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::PlayerDeltaInfo>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bytes data = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerDeltaInfo, _impl_.data_)}},
+    // int32 eid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerDeltaInfo, _impl_.eid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(PlayerDeltaInfo, _impl_.eid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 eid = 1;
+    {PROTOBUF_FIELD_OFFSET(PlayerDeltaInfo, _impl_.eid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bytes data = 2;
+    {PROTOBUF_FIELD_OFFSET(PlayerDeltaInfo, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void PlayerDeltaInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.PlayerDeltaInfo)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.data_.ClearToEmpty();
+  _impl_.eid_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* PlayerDeltaInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.PlayerDeltaInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 eid = 1;
+  if (this->_internal_eid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_eid(), target);
+  }
+
+  // bytes data = 2;
+  if (!this->_internal_data().empty()) {
+    const std::string& _s = this->_internal_data();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.PlayerDeltaInfo)
+  return target;
+}
+
+::size_t PlayerDeltaInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.PlayerDeltaInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // bytes data = 2;
+  if (!this->_internal_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
+  }
+
+  // int32 eid = 1;
+  if (this->_internal_eid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_eid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void PlayerDeltaInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<PlayerDeltaInfo*>(&to_msg);
+  auto& from = static_cast<const PlayerDeltaInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.PlayerDeltaInfo)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
+  }
+  if (from._internal_eid() != 0) {
+    _this->_impl_.eid_ = from._impl_.eid_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void PlayerDeltaInfo::CopyFrom(const PlayerDeltaInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.PlayerDeltaInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void PlayerDeltaInfo::InternalSwap(PlayerDeltaInfo* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+        swap(_impl_.eid_, other->_impl_.eid_);
+}
+
+::google::protobuf::Metadata PlayerDeltaInfo::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class AttrSet::_Internal {
  public:
 };
@@ -3916,6 +4480,408 @@ void PlayerMovements::InternalSwap(PlayerMovements* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata PlayerMovements::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AoiUpdate::_Internal {
+ public:
+};
+
+AoiUpdate::AoiUpdate(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.AoiUpdate)
+}
+inline PROTOBUF_NDEBUG_INLINE AoiUpdate::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::AoiUpdate& from_msg)
+      : data_(arena, from.data_),
+        _cached_size_{0} {}
+
+AoiUpdate::AoiUpdate(
+    ::google::protobuf::Arena* arena,
+    const AoiUpdate& from)
+    : ::google::protobuf::Message(arena) {
+  AoiUpdate* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.eid_ = from._impl_.eid_;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.AoiUpdate)
+}
+inline PROTOBUF_NDEBUG_INLINE AoiUpdate::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : data_(arena),
+        _cached_size_{0} {}
+
+inline void AoiUpdate::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.eid_ = {};
+}
+AoiUpdate::~AoiUpdate() {
+  // @@protoc_insertion_point(destructor:space_service.AoiUpdate)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AoiUpdate::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.data_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+AoiUpdate::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_._cached_size_),
+              false,
+          },
+          &AoiUpdate::MergeImpl,
+          &AoiUpdate::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AoiUpdate::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AoiUpdate_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::AoiUpdate>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bytes data = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.data_)}},
+    // int32 eid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AoiUpdate, _impl_.eid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.eid_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // int32 eid = 1;
+    {PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.eid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bytes data = 2;
+    {PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+PROTOBUF_NOINLINE void AoiUpdate::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.AoiUpdate)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.data_.ClearToEmpty();
+  _impl_.eid_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* AoiUpdate::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.AoiUpdate)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // int32 eid = 1;
+  if (this->_internal_eid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<1>(
+            stream, this->_internal_eid(), target);
+  }
+
+  // bytes data = 2;
+  if (!this->_internal_data().empty()) {
+    const std::string& _s = this->_internal_data();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.AoiUpdate)
+  return target;
+}
+
+::size_t AoiUpdate::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.AoiUpdate)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // bytes data = 2;
+  if (!this->_internal_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
+  }
+
+  // int32 eid = 1;
+  if (this->_internal_eid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_eid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void AoiUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AoiUpdate*>(&to_msg);
+  auto& from = static_cast<const AoiUpdate&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.AoiUpdate)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
+  }
+  if (from._internal_eid() != 0) {
+    _this->_impl_.eid_ = from._impl_.eid_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AoiUpdate::CopyFrom(const AoiUpdate& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.AoiUpdate)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AoiUpdate::InternalSwap(AoiUpdate* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
+        swap(_impl_.eid_, other->_impl_.eid_);
+}
+
+::google::protobuf::Metadata AoiUpdate::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class AoiUpdates::_Internal {
+ public:
+};
+
+AoiUpdates::AoiUpdates(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.AoiUpdates)
+}
+inline PROTOBUF_NDEBUG_INLINE AoiUpdates::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::AoiUpdates& from_msg)
+      : datas_{visibility, arena, from.datas_},
+        _cached_size_{0} {}
+
+AoiUpdates::AoiUpdates(
+    ::google::protobuf::Arena* arena,
+    const AoiUpdates& from)
+    : ::google::protobuf::Message(arena) {
+  AoiUpdates* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:space_service.AoiUpdates)
+}
+inline PROTOBUF_NDEBUG_INLINE AoiUpdates::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : datas_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void AoiUpdates::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+AoiUpdates::~AoiUpdates() {
+  // @@protoc_insertion_point(destructor:space_service.AoiUpdates)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AoiUpdates::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+AoiUpdates::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(AoiUpdates, _impl_._cached_size_),
+              false,
+          },
+          &AoiUpdates::MergeImpl,
+          &AoiUpdates::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> AoiUpdates::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_AoiUpdates_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::AoiUpdates>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .space_service.AoiUpdate datas = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AoiUpdates, _impl_.datas_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .space_service.AoiUpdate datas = 1;
+    {PROTOBUF_FIELD_OFFSET(AoiUpdates, _impl_.datas_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::space_service::AoiUpdate>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void AoiUpdates::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.AoiUpdates)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.datas_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* AoiUpdates::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.AoiUpdates)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .space_service.AoiUpdate datas = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this->_internal_datas_size());
+       i < n; i++) {
+    const auto& repfield = this->_internal_datas().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.AoiUpdates)
+  return target;
+}
+
+::size_t AoiUpdates::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.AoiUpdates)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // repeated .space_service.AoiUpdate datas = 1;
+  total_size += 1UL * this->_internal_datas_size();
+  for (const auto& msg : this->_internal_datas()) {
+    total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void AoiUpdates::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<AoiUpdates*>(&to_msg);
+  auto& from = static_cast<const AoiUpdates&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.AoiUpdates)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_datas()->MergeFrom(
+      from._internal_datas());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AoiUpdates::CopyFrom(const AoiUpdates& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.AoiUpdates)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void AoiUpdates::InternalSwap(AoiUpdates* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.datas_.InternalSwap(&other->_impl_.datas_);
+}
+
+::google::protobuf::Metadata AoiUpdates::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

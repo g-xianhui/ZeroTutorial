@@ -19,6 +19,11 @@ public class Entity : MonoBehaviour
     public int Eid;
     public string Name;
 
+    enum DirtyFlag : byte
+    {
+        Name = 1 << 0,
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +42,6 @@ public class Entity : MonoBehaviour
             using (BinaryReader br = new BinaryReader(mem)) {
                 Eid = br.ReadInt32();
                 Name = NetSerializer.ReadString(br);
-                Debug.Log($"NetSerialize Eid: {Eid}, Name: {Name}");
 
                 while (mem.Position < mem.Length) {
                     string componentName = NetSerializer.ReadString(br);
@@ -49,6 +53,37 @@ public class Entity : MonoBehaviour
                     }
                 }
              }
+        }
+    }
+
+    public void ConsumeDirty(byte[] data)
+    {
+        using (MemoryStream mem = new MemoryStream(data))
+        {
+            using (BinaryReader br = new BinaryReader(mem))
+            {
+                byte dirtyFlag = br.ReadByte();
+                if (dirtyFlag != 0)
+                {
+                    if ((dirtyFlag & (byte)DirtyFlag.Name) != 0)
+                    {
+                        Name = NetSerializer.ReadString(br);
+                    }
+                }
+
+                while (mem.Position < mem.Length)
+                {
+                    string componentName = NetSerializer.ReadString(br);
+                    if (componentName == "CombatComponent")
+                    {
+                        CombatComponent comp = GetComponent<CombatComponent>();
+                        if (comp != null)
+                        {
+                            comp.ConsumeDirty(br);
+                        }
+                    }
+                }
+            }
         }
     }
 }

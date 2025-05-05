@@ -39,6 +39,16 @@ message SkillInfo {
   optional int32 cool_down = 4;
 }
 
+message PlayerInfo {
+  int32 eid = 1;
+  bytes data = 2;
+}
+
+message PlayerDeltaInfo {
+  int32 eid = 1;
+  bytes data = 2;
+}
+
 message AttrSet {
   int32 max_hp = 1;
   int32 hp = 2;
@@ -72,6 +82,15 @@ message PlayerMovement {
 
 message PlayerMovements {
   repeated PlayerMovement datas = 1;
+}
+
+message AoiUpdate {
+  int32 eid = 1;
+  bytes data = 2;
+}
+
+message AoiUpdates {
+  repeated AoiUpdate datas = 1;
 }
 
 message Ping {

@@ -57,6 +57,12 @@ extern AnimationDefaultTypeInternal _Animation_default_instance_;
 class AoiPlayer;
 struct AoiPlayerDefaultTypeInternal;
 extern AoiPlayerDefaultTypeInternal _AoiPlayer_default_instance_;
+class AoiUpdate;
+struct AoiUpdateDefaultTypeInternal;
+extern AoiUpdateDefaultTypeInternal _AoiUpdate_default_instance_;
+class AoiUpdates;
+struct AoiUpdatesDefaultTypeInternal;
+extern AoiUpdatesDefaultTypeInternal _AoiUpdates_default_instance_;
 class AttrSet;
 struct AttrSetDefaultTypeInternal;
 extern AttrSetDefaultTypeInternal _AttrSet_default_instance_;
@@ -84,6 +90,12 @@ extern PlayerAnimationDefaultTypeInternal _PlayerAnimation_default_instance_;
 class PlayerAttrSet;
 struct PlayerAttrSetDefaultTypeInternal;
 extern PlayerAttrSetDefaultTypeInternal _PlayerAttrSet_default_instance_;
+class PlayerDeltaInfo;
+struct PlayerDeltaInfoDefaultTypeInternal;
+extern PlayerDeltaInfoDefaultTypeInternal _PlayerDeltaInfo_default_instance_;
+class PlayerInfo;
+struct PlayerInfoDefaultTypeInternal;
+extern PlayerInfoDefaultTypeInternal _PlayerInfo_default_instance_;
 class PlayerMovement;
 struct PlayerMovementDefaultTypeInternal;
 extern PlayerMovementDefaultTypeInternal _PlayerMovement_default_instance_;
@@ -408,7 +420,7 @@ class TakeDamage final : public ::google::protobuf::Message
     return reinterpret_cast<const TakeDamage*>(
         &_TakeDamage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(TakeDamage& a, TakeDamage& b) { a.Swap(&b); }
   inline void Swap(TakeDamage* other) {
     if (other == this) return;
@@ -801,7 +813,7 @@ class SkillAttack final : public ::google::protobuf::Message
     return reinterpret_cast<const SkillAttack*>(
         &_SkillAttack_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(SkillAttack& a, SkillAttack& b) { a.Swap(&b); }
   inline void Swap(SkillAttack* other) {
     if (other == this) return;
@@ -972,7 +984,7 @@ class Pong final : public ::google::protobuf::Message
     return reinterpret_cast<const Pong*>(
         &_Pong_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(Pong& a, Pong& b) { a.Swap(&b); }
   inline void Swap(Pong* other) {
     if (other == this) return;
@@ -1155,7 +1167,7 @@ class PlayersLeaveSight final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayersLeaveSight*>(
         &_PlayersLeaveSight_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(PlayersLeaveSight& a, PlayersLeaveSight& b) { a.Swap(&b); }
   inline void Swap(PlayersLeaveSight* other) {
     if (other == this) return;
@@ -1280,6 +1292,384 @@ class PlayersLeaveSight final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class PlayerInfo final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.PlayerInfo) */ {
+ public:
+  inline PlayerInfo() : PlayerInfo(nullptr) {}
+  ~PlayerInfo() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PlayerInfo(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline PlayerInfo(const PlayerInfo& from) : PlayerInfo(nullptr, from) {}
+  inline PlayerInfo(PlayerInfo&& from) noexcept
+      : PlayerInfo(nullptr, std::move(from)) {}
+  inline PlayerInfo& operator=(const PlayerInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlayerInfo& operator=(PlayerInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlayerInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlayerInfo* internal_default_instance() {
+    return reinterpret_cast<const PlayerInfo*>(
+        &_PlayerInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(PlayerInfo& a, PlayerInfo& b) { a.Swap(&b); }
+  inline void Swap(PlayerInfo* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlayerInfo* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlayerInfo* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<PlayerInfo>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PlayerInfo& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PlayerInfo& from) { PlayerInfo::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(PlayerInfo* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.PlayerInfo"; }
+
+ protected:
+  explicit PlayerInfo(::google::protobuf::Arena* arena);
+  PlayerInfo(::google::protobuf::Arena* arena, const PlayerInfo& from);
+  PlayerInfo(::google::protobuf::Arena* arena, PlayerInfo&& from) noexcept
+      : PlayerInfo(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDataFieldNumber = 2,
+    kEidFieldNumber = 1,
+  };
+  // bytes data = 2;
+  void clear_data() ;
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
+
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
+
+  public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.PlayerInfo)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_PlayerInfo_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const PlayerInfo& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr data_;
+    ::int32_t eid_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PlayerDeltaInfo final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.PlayerDeltaInfo) */ {
+ public:
+  inline PlayerDeltaInfo() : PlayerDeltaInfo(nullptr) {}
+  ~PlayerDeltaInfo() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PlayerDeltaInfo(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline PlayerDeltaInfo(const PlayerDeltaInfo& from) : PlayerDeltaInfo(nullptr, from) {}
+  inline PlayerDeltaInfo(PlayerDeltaInfo&& from) noexcept
+      : PlayerDeltaInfo(nullptr, std::move(from)) {}
+  inline PlayerDeltaInfo& operator=(const PlayerDeltaInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PlayerDeltaInfo& operator=(PlayerDeltaInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PlayerDeltaInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PlayerDeltaInfo* internal_default_instance() {
+    return reinterpret_cast<const PlayerDeltaInfo*>(
+        &_PlayerDeltaInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(PlayerDeltaInfo& a, PlayerDeltaInfo& b) { a.Swap(&b); }
+  inline void Swap(PlayerDeltaInfo* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PlayerDeltaInfo* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PlayerDeltaInfo* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<PlayerDeltaInfo>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PlayerDeltaInfo& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PlayerDeltaInfo& from) { PlayerDeltaInfo::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(PlayerDeltaInfo* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.PlayerDeltaInfo"; }
+
+ protected:
+  explicit PlayerDeltaInfo(::google::protobuf::Arena* arena);
+  PlayerDeltaInfo(::google::protobuf::Arena* arena, const PlayerDeltaInfo& from);
+  PlayerDeltaInfo(::google::protobuf::Arena* arena, PlayerDeltaInfo&& from) noexcept
+      : PlayerDeltaInfo(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDataFieldNumber = 2,
+    kEidFieldNumber = 1,
+  };
+  // bytes data = 2;
+  void clear_data() ;
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
+
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
+
+  public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.PlayerDeltaInfo)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_PlayerDeltaInfo_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const PlayerDeltaInfo& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr data_;
+    ::int32_t eid_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Ping final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:space_service.Ping) */ {
  public:
@@ -1335,7 +1725,7 @@ class Ping final : public ::google::protobuf::Message
     return reinterpret_cast<const Ping*>(
         &_Ping_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(Ping& a, Ping& b) { a.Swap(&b); }
   inline void Swap(Ping* other) {
     if (other == this) return;
@@ -1506,7 +1896,7 @@ class NormalAttack final : public ::google::protobuf::Message
     return reinterpret_cast<const NormalAttack*>(
         &_NormalAttack_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(NormalAttack& a, NormalAttack& b) { a.Swap(&b); }
   inline void Swap(NormalAttack* other) {
     if (other == this) return;
@@ -2037,7 +2427,7 @@ class AttrSet final : public ::google::protobuf::Message
     return reinterpret_cast<const AttrSet*>(
         &_AttrSet_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(AttrSet& a, AttrSet& b) { a.Swap(&b); }
   inline void Swap(AttrSet* other) {
     if (other == this) return;
@@ -2201,6 +2591,195 @@ class AttrSet final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class AoiUpdate final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.AoiUpdate) */ {
+ public:
+  inline AoiUpdate() : AoiUpdate(nullptr) {}
+  ~AoiUpdate() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AoiUpdate(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AoiUpdate(const AoiUpdate& from) : AoiUpdate(nullptr, from) {}
+  inline AoiUpdate(AoiUpdate&& from) noexcept
+      : AoiUpdate(nullptr, std::move(from)) {}
+  inline AoiUpdate& operator=(const AoiUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AoiUpdate& operator=(AoiUpdate&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AoiUpdate& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AoiUpdate* internal_default_instance() {
+    return reinterpret_cast<const AoiUpdate*>(
+        &_AoiUpdate_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 14;
+  friend void swap(AoiUpdate& a, AoiUpdate& b) { a.Swap(&b); }
+  inline void Swap(AoiUpdate* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AoiUpdate* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AoiUpdate* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<AoiUpdate>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AoiUpdate& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AoiUpdate& from) { AoiUpdate::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(AoiUpdate* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.AoiUpdate"; }
+
+ protected:
+  explicit AoiUpdate(::google::protobuf::Arena* arena);
+  AoiUpdate(::google::protobuf::Arena* arena, const AoiUpdate& from);
+  AoiUpdate(::google::protobuf::Arena* arena, AoiUpdate&& from) noexcept
+      : AoiUpdate(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDataFieldNumber = 2,
+    kEidFieldNumber = 1,
+  };
+  // bytes data = 2;
+  void clear_data() ;
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
+
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
+
+  public:
+  // int32 eid = 1;
+  void clear_eid() ;
+  ::int32_t eid() const;
+  void set_eid(::int32_t value);
+
+  private:
+  ::int32_t _internal_eid() const;
+  void _internal_set_eid(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.AoiUpdate)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_AoiUpdate_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AoiUpdate& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr data_;
+    ::int32_t eid_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Animation final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:space_service.Animation) */ {
  public:
@@ -2256,7 +2835,7 @@ class Animation final : public ::google::protobuf::Message
     return reinterpret_cast<const Animation*>(
         &_Animation_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(Animation& a, Animation& b) { a.Swap(&b); }
   inline void Swap(Animation* other) {
     if (other == this) return;
@@ -2477,7 +3056,7 @@ class PlayerAttrSet final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayerAttrSet*>(
         &_PlayerAttrSet_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(PlayerAttrSet& a, PlayerAttrSet& b) { a.Swap(&b); }
   inline void Swap(PlayerAttrSet* other) {
     if (other == this) return;
@@ -2666,7 +3245,7 @@ class PlayerAnimation final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayerAnimation*>(
         &_PlayerAnimation_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(PlayerAnimation& a, PlayerAnimation& b) { a.Swap(&b); }
   inline void Swap(PlayerAnimation* other) {
     if (other == this) return;
@@ -3258,6 +3837,184 @@ class JoinReply final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class AoiUpdates final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.AoiUpdates) */ {
+ public:
+  inline AoiUpdates() : AoiUpdates(nullptr) {}
+  ~AoiUpdates() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR AoiUpdates(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline AoiUpdates(const AoiUpdates& from) : AoiUpdates(nullptr, from) {}
+  inline AoiUpdates(AoiUpdates&& from) noexcept
+      : AoiUpdates(nullptr, std::move(from)) {}
+  inline AoiUpdates& operator=(const AoiUpdates& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AoiUpdates& operator=(AoiUpdates&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const AoiUpdates& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AoiUpdates* internal_default_instance() {
+    return reinterpret_cast<const AoiUpdates*>(
+        &_AoiUpdates_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(AoiUpdates& a, AoiUpdates& b) { a.Swap(&b); }
+  inline void Swap(AoiUpdates* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AoiUpdates* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  AoiUpdates* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<AoiUpdates>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const AoiUpdates& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const AoiUpdates& from) { AoiUpdates::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(AoiUpdates* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.AoiUpdates"; }
+
+ protected:
+  explicit AoiUpdates(::google::protobuf::Arena* arena);
+  AoiUpdates(::google::protobuf::Arena* arena, const AoiUpdates& from);
+  AoiUpdates(::google::protobuf::Arena* arena, AoiUpdates&& from) noexcept
+      : AoiUpdates(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDatasFieldNumber = 1,
+  };
+  // repeated .space_service.AoiUpdate datas = 1;
+  int datas_size() const;
+  private:
+  int _internal_datas_size() const;
+
+  public:
+  void clear_datas() ;
+  ::space_service::AoiUpdate* mutable_datas(int index);
+  ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>* mutable_datas();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>& _internal_datas() const;
+  ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>* _internal_mutable_datas();
+  public:
+  const ::space_service::AoiUpdate& datas(int index) const;
+  ::space_service::AoiUpdate* add_datas();
+  const ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>& datas() const;
+  // @@protoc_insertion_point(class_scope:space_service.AoiUpdates)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_AoiUpdates_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const AoiUpdates& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::space_service::AoiUpdate > datas_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PlayerMovement final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:space_service.PlayerMovement) */ {
  public:
@@ -3313,7 +4070,7 @@ class PlayerMovement final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayerMovement*>(
         &_PlayerMovement_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(PlayerMovement& a, PlayerMovement& b) { a.Swap(&b); }
   inline void Swap(PlayerMovement* other) {
     if (other == this) return;
@@ -3502,7 +4259,7 @@ class AoiPlayer final : public ::google::protobuf::Message
     return reinterpret_cast<const AoiPlayer*>(
         &_AoiPlayer_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(AoiPlayer& a, AoiPlayer& b) { a.Swap(&b); }
   inline void Swap(AoiPlayer* other) {
     if (other == this) return;
@@ -3761,7 +4518,7 @@ class PlayersEnterSight final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayersEnterSight*>(
         &_PlayersEnterSight_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(PlayersEnterSight& a, PlayersEnterSight& b) { a.Swap(&b); }
   inline void Swap(PlayersEnterSight* other) {
     if (other == this) return;
@@ -3939,7 +4696,7 @@ class PlayerMovements final : public ::google::protobuf::Message
     return reinterpret_cast<const PlayerMovements*>(
         &_PlayerMovements_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(PlayerMovements& a, PlayerMovements& b) { a.Swap(&b); }
   inline void Swap(PlayerMovements* other) {
     if (other == this) return;
@@ -5001,6 +5758,158 @@ inline void SkillInfo::_internal_set_cool_down(::int32_t value) {
 
 // -------------------------------------------------------------------
 
+// PlayerInfo
+
+// int32 eid = 1;
+inline void PlayerInfo::clear_eid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = 0;
+}
+inline ::int32_t PlayerInfo::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.PlayerInfo.eid)
+  return _internal_eid();
+}
+inline void PlayerInfo::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.PlayerInfo.eid)
+}
+inline ::int32_t PlayerInfo::_internal_eid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.eid_;
+}
+inline void PlayerInfo::_internal_set_eid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = value;
+}
+
+// bytes data = 2;
+inline void PlayerInfo::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+}
+inline const std::string& PlayerInfo::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.PlayerInfo.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void PlayerInfo::set_data(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:space_service.PlayerInfo.data)
+}
+inline std::string* PlayerInfo::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:space_service.PlayerInfo.data)
+  return _s;
+}
+inline const std::string& PlayerInfo::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void PlayerInfo::_internal_set_data(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline std::string* PlayerInfo::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* PlayerInfo::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.PlayerInfo.data)
+  return _impl_.data_.Release();
+}
+inline void PlayerInfo::set_allocated_data(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.data_.IsDefault()) {
+          _impl_.data_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:space_service.PlayerInfo.data)
+}
+
+// -------------------------------------------------------------------
+
+// PlayerDeltaInfo
+
+// int32 eid = 1;
+inline void PlayerDeltaInfo::clear_eid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = 0;
+}
+inline ::int32_t PlayerDeltaInfo::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.PlayerDeltaInfo.eid)
+  return _internal_eid();
+}
+inline void PlayerDeltaInfo::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.PlayerDeltaInfo.eid)
+}
+inline ::int32_t PlayerDeltaInfo::_internal_eid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.eid_;
+}
+inline void PlayerDeltaInfo::_internal_set_eid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = value;
+}
+
+// bytes data = 2;
+inline void PlayerDeltaInfo::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+}
+inline const std::string& PlayerDeltaInfo::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.PlayerDeltaInfo.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void PlayerDeltaInfo::set_data(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:space_service.PlayerDeltaInfo.data)
+}
+inline std::string* PlayerDeltaInfo::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:space_service.PlayerDeltaInfo.data)
+  return _s;
+}
+inline const std::string& PlayerDeltaInfo::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void PlayerDeltaInfo::_internal_set_data(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline std::string* PlayerDeltaInfo::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* PlayerDeltaInfo::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.PlayerDeltaInfo.data)
+  return _impl_.data_.Release();
+}
+inline void PlayerDeltaInfo::set_allocated_data(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.data_.IsDefault()) {
+          _impl_.data_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:space_service.PlayerDeltaInfo.data)
+}
+
+// -------------------------------------------------------------------
+
 // AttrSet
 
 // int32 max_hp = 1;
@@ -5800,6 +6709,135 @@ PlayerMovements::_internal_datas() const {
 }
 inline ::google::protobuf::RepeatedPtrField<::space_service::PlayerMovement>*
 PlayerMovements::_internal_mutable_datas() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.datas_;
+}
+
+// -------------------------------------------------------------------
+
+// AoiUpdate
+
+// int32 eid = 1;
+inline void AoiUpdate::clear_eid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = 0;
+}
+inline ::int32_t AoiUpdate::eid() const {
+  // @@protoc_insertion_point(field_get:space_service.AoiUpdate.eid)
+  return _internal_eid();
+}
+inline void AoiUpdate::set_eid(::int32_t value) {
+  _internal_set_eid(value);
+  // @@protoc_insertion_point(field_set:space_service.AoiUpdate.eid)
+}
+inline ::int32_t AoiUpdate::_internal_eid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.eid_;
+}
+inline void AoiUpdate::_internal_set_eid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.eid_ = value;
+}
+
+// bytes data = 2;
+inline void AoiUpdate::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+}
+inline const std::string& AoiUpdate::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.AoiUpdate.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AoiUpdate::set_data(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:space_service.AoiUpdate.data)
+}
+inline std::string* AoiUpdate::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:space_service.AoiUpdate.data)
+  return _s;
+}
+inline const std::string& AoiUpdate::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void AoiUpdate::_internal_set_data(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline std::string* AoiUpdate::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* AoiUpdate::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.AoiUpdate.data)
+  return _impl_.data_.Release();
+}
+inline void AoiUpdate::set_allocated_data(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.data_.IsDefault()) {
+          _impl_.data_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:space_service.AoiUpdate.data)
+}
+
+// -------------------------------------------------------------------
+
+// AoiUpdates
+
+// repeated .space_service.AoiUpdate datas = 1;
+inline int AoiUpdates::_internal_datas_size() const {
+  return _internal_datas().size();
+}
+inline int AoiUpdates::datas_size() const {
+  return _internal_datas_size();
+}
+inline void AoiUpdates::clear_datas() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.datas_.Clear();
+}
+inline ::space_service::AoiUpdate* AoiUpdates::mutable_datas(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:space_service.AoiUpdates.datas)
+  return _internal_mutable_datas()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>* AoiUpdates::mutable_datas()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:space_service.AoiUpdates.datas)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_datas();
+}
+inline const ::space_service::AoiUpdate& AoiUpdates::datas(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.AoiUpdates.datas)
+  return _internal_datas().Get(index);
+}
+inline ::space_service::AoiUpdate* AoiUpdates::add_datas() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::space_service::AoiUpdate* _add = _internal_mutable_datas()->Add();
+  // @@protoc_insertion_point(field_add:space_service.AoiUpdates.datas)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>& AoiUpdates::datas() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:space_service.AoiUpdates.datas)
+  return _internal_datas();
+}
+inline const ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>&
+AoiUpdates::_internal_datas() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.datas_;
+}
+inline ::google::protobuf::RepeatedPtrField<::space_service::AoiUpdate>*
+AoiUpdates::_internal_mutable_datas() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.datas_;
 }

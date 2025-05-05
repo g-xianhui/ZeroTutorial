@@ -4,6 +4,7 @@
 #include <string>
 #include <cassert>
 #include <exception>
+#include <vector>
 
 class StreamException : public std::exception {
 public:

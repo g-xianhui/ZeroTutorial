@@ -14,9 +14,9 @@ void AttrSet::net_serialize(OutputBitStream& bs) {
 
 bool AttrSet::consume_dirty(OutputBitStream& bs) {
     bool dirty = false;
+    bs.write(_dirty_flag);
     if (_dirty_flag) {
         dirty = true;
-        bs.write(_dirty_flag);
 
         if (_dirty_flag & (uint16_t)DirtyFlag::max_health) {
             bs.write(_max_health);
@@ -48,7 +48,7 @@ void AttrSet::add_health(int val) {
 void AttrSet::add_mana(int val) {
     int n = _mana + val;
     n = std::max(0, std::min(_max_mana, n));
-    set_health(n);
+    set_mana(n);
 }
 
 int AttrSet::take_damage(AttrSet& attacker, int attack_damage) {

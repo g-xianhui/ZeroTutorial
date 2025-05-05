@@ -726,24 +726,52 @@ public class NetworkManager : MonoBehaviour
         combatComponent.UpdateSkillInfo(skillInfo);
     }
 
-    public void update_attr_set(byte[] msgBytes)
+    public void sync_full_info(byte[] msgBytes)
     {
-        SpaceService.PlayerAttrSet msg = SpaceService.PlayerAttrSet.Parser.ParseFrom(msgBytes);
-
-        GameObject player = null;
-        if (msg.Eid == _playerEid)
+        if (!_mainPlayer)
         {
-            player = _mainPlayer;
-        }
-        else
-        {
-            player = find_player(msg.Eid);
+            Debug.Log("sync_full_info but main character not found");
+            return;
         }
 
-        if (player != null)
+        SpaceService.PlayerInfo playerInfo = SpaceService.PlayerInfo.Parser.ParseFrom(msgBytes);
+        Entity entity = _mainPlayer.GetComponent<Entity>();
+        if (entity != null)
         {
-            CombatComponent combatComponent = player.GetComponent<CombatComponent>();
-            combatComponent.UpdateAttrSet(msg.Data);
+            entity.NetSerialize(playerInfo.Data.ToByteArray());
+        }
+    }
+
+    public void sync_delta_info(byte[] msgBytes)
+    {
+        if (!_mainPlayer)
+        {
+            Debug.Log("sync_delta_info but main character not found");
+            return;
+        }
+
+        SpaceService.PlayerDeltaInfo playerInfo = SpaceService.PlayerDeltaInfo.Parser.ParseFrom(msgBytes);
+        Entity entity = _mainPlayer.GetComponent<Entity>();
+        if (entity != null)
+        {
+            entity.ConsumeDirty(playerInfo.Data.ToByteArray());
+        }
+    }
+
+    public void sync_aoi_update(byte[] msgBytes)
+    {
+        SpaceService.AoiUpdates aoiUpdates = SpaceService.AoiUpdates.Parser.ParseFrom(msgBytes);
+        foreach (SpaceService.AoiUpdate aoiUpdate in aoiUpdates.Datas)
+        {
+            GameObject otherPlayer = find_player(aoiUpdate.Eid);
+            if (otherPlayer != null)
+            {
+                Entity entity = otherPlayer.GetComponent<Entity>();
+                if (entity != null)
+                {
+                    entity.ConsumeDirty(aoiUpdate.Data.ToByteArray());
+                }
+            }
         }
     }
 }

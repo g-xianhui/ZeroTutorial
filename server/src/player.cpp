@@ -59,9 +59,9 @@ bool Player::consume_dirty(OutputBitStream& bs)
 {
     bool dirty = false;
 
+    bs.write(_dirty_flag);
     if (_dirty_flag) {
         dirty = true;
-        bs.write(_dirty_flag);
 
         if (_dirty_flag & (uint8_t)DirtyFlag::name) {
             bs.write(_name);

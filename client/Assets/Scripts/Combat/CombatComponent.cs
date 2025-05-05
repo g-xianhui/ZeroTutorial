@@ -76,6 +76,13 @@ public class CombatComponent : MonoBehaviour
     public void NetSerialize(BinaryReader br)
     {
         _attrSet.NetSerialize(br);
+        UpdateHeadUI();
+    }
+
+    public void ConsumeDirty(BinaryReader br)
+    {
+        _attrSet.ConsumeDirty(br);
+        UpdateHeadUI();
     }
 
     void CreateHeadUI()
@@ -84,6 +91,12 @@ public class CombatComponent : MonoBehaviour
         GameObject headUIGameObject = GameObject.Instantiate(prefab);
         headUIGameObject.transform.SetParent(FindObjectOfType<Canvas>().transform, false);
         headUI = headUIGameObject.AddComponent<HeadUI>();
+    }
+
+    void UpdateHeadUI()
+    {
+        headUI.UpdateHeathSlider((_attrSet.Health * 1.0f) / _attrSet.MaxHealth);
+        headUI.UpdateManaSlider((_attrSet.Mana * 1.0f) / _attrSet.MaxMana);
     }
 
     public AttrSet GetAttrSet()
@@ -207,18 +220,6 @@ public class CombatComponent : MonoBehaviour
         }
     }
 
-    public void UpdateAttrSet(SpaceService.AttrSet attrSet)
-    {
-        _attrSet.MaxHealth = attrSet.MaxHp;
-        _attrSet.Health = attrSet.Hp;
-        _attrSet.MaxMana = attrSet.MaxMana;
-        _attrSet.Mana = attrSet.Mana;
-        _attrSet.Status = attrSet.Status;
-
-        headUI.UpdateHeathSlider((_attrSet.Health * 1.0f) / _attrSet.MaxHealth);
-        headUI.UpdateManaSlider((_attrSet.Mana * 1.0f) / _attrSet.MaxMana);
-    }
-
     // 动画过渡会把结尾的事件回调忽略掉
     public void AN_EnableNormalAttack(int enable)
     {
@@ -257,12 +258,5 @@ public class CombatComponent : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _anim.CrossFade("BeHit", 0.2f);
-
-        if (damage > _attrSet.Health)
-            _attrSet.Health = 0;
-        else
-            _attrSet.Health -= damage;
-
-        headUI.UpdateHeathSlider((_attrSet.Health * 1.0f) / _attrSet.MaxHealth);
     }
 }
