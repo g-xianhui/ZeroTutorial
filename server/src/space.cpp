@@ -167,12 +167,12 @@ void Space::update()
                     aoi_player->set_eid(other->get_eid());
                     aoi_player->set_name(other->get_name());
                     if (entity_properties.contains(other_eid)) {
-                        aoi_player->set_data(entity_properties[other_eid].c_str());
+                        aoi_player->set_data(entity_properties[other_eid]);
                     } else {
                         OutputBitStream bs;
                         other->net_serialize(bs);
                         auto iter = entity_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
-                        aoi_player->set_data(iter.first->second.c_str());
+                        aoi_player->set_data(iter.first->second);
                     }
 
                     space_service::Movement* new_transform = aoi_player->mutable_transform();
