@@ -49,22 +49,10 @@ message PlayerDeltaInfo {
   bytes data = 2;
 }
 
-message AttrSet {
-  int32 max_hp = 1;
-  int32 hp = 2;
-  int32 max_mana = 3;
-  int32 mana = 4;
-  int32 status = 5;
-}
-
 message AoiPlayer {
   int32 eid = 1;
-  string name = 2;
-  Vector3f position = 3;  
-  Movement transform = 4;
-
-  AttrSet attr_set = 5;
-  bytes data = 6;
+  bytes data = 2;
+  Movement transform = 3;
 }
 
 message PlayersEnterSight {
@@ -75,18 +63,10 @@ message PlayersLeaveSight {
   repeated int32 players = 1;
 }
 
-message PlayerMovement {
-  int32 eid = 1;
-  Movement data = 2;
-}
-
-message PlayerMovements {
-  repeated PlayerMovement datas = 1;
-}
-
 message AoiUpdate {
   int32 eid = 1;
-  bytes data = 2;
+  optional bytes data = 2;
+  optional Movement transform = 3;
 }
 
 message AoiUpdates {
@@ -130,9 +110,4 @@ message PlayerAnimation {
 message TakeDamage {
   int32 eid = 1;
   int32 damage = 2;
-}
-
-message PlayerAttrSet {
-  int32 eid = 1;
-  AttrSet data = 2;
 }

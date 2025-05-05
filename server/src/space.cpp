@@ -198,28 +198,23 @@ void Space::update()
             }
         }
 
-        // 同步视野内玩家的移动给player
-        space_service::PlayerMovements player_movements;
-        // 同步视野内玩家的属性变化给player
+        // 同步视野内玩家的变化给player
         space_service::AoiUpdates aoi_updates;
         for (int interest_eid : state.interests) {
             Player* p = find_player(interest_eid);
             if (p) {
-                space_service::PlayerMovement* data = player_movements.add_datas();
-                data->set_eid(interest_eid);
+                space_service::AoiUpdate* aoi_update = aoi_updates.add_datas();
+                aoi_update->set_eid(interest_eid);
 
-                space_service::Movement* new_move = data->mutable_data();
+                space_service::Movement* new_move = aoi_update->mutable_transform();
                 get_movement_data(p, new_move);
 
                 auto dirty_property_iter = entity_dirty_properties.find(interest_eid);
                 if (dirty_property_iter != entity_dirty_properties.end()) {
-                    space_service::AoiUpdate* aoi_update = aoi_updates.add_datas();
-                    aoi_update->set_eid(interest_eid);
                     aoi_update->set_data(dirty_property_iter->second);
                 }
             }
         }
-        send_proto_msg(player->get_conn(), "sync_movement", player_movements);
         send_proto_msg(player->get_conn(), "sync_aoi_update", aoi_updates);
     }
 }

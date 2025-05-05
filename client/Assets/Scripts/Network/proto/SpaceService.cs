@@ -41,31 +41,24 @@ namespace SpaceService {
             "c3RfdGltZRgCIAEoBRIWCgljb3N0X21hbmEYAyABKAVIAIgBARIWCgljb29s",
             "X2Rvd24YBCABKAVIAYgBAUIMCgpfY29zdF9tYW5hQgwKCl9jb29sX2Rvd24i",
             "JwoKUGxheWVySW5mbxILCgNlaWQYASABKAUSDAoEZGF0YRgCIAEoDCIsCg9Q",
-            "bGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwiVQoH",
-            "QXR0clNldBIOCgZtYXhfaHAYASABKAUSCgoCaHAYAiABKAUSEAoIbWF4X21h",
-            "bmEYAyABKAUSDAoEbWFuYRgEIAEoBRIOCgZzdGF0dXMYBSABKAUitQEKCUFv",
-            "aVBsYXllchILCgNlaWQYASABKAUSDAoEbmFtZRgCIAEoCRIpCghwb3NpdGlv",
-            "bhgDIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2YSKgoJdHJhbnNmb3Jt",
-            "GAQgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudBIoCghhdHRyX3NldBgF",
-            "IAEoCzIWLnNwYWNlX3NlcnZpY2UuQXR0clNldBIMCgRkYXRhGAYgASgMIj4K",
-            "EVBsYXllcnNFbnRlclNpZ2h0EikKB3BsYXllcnMYASADKAsyGC5zcGFjZV9z",
-            "ZXJ2aWNlLkFvaVBsYXllciIkChFQbGF5ZXJzTGVhdmVTaWdodBIPCgdwbGF5",
-            "ZXJzGAEgAygFIkQKDlBsYXllck1vdmVtZW50EgsKA2VpZBgBIAEoBRIlCgRk",
-            "YXRhGAIgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudCI/Cg9QbGF5ZXJN",
-            "b3ZlbWVudHMSLAoFZGF0YXMYASADKAsyHS5zcGFjZV9zZXJ2aWNlLlBsYXll",
-            "ck1vdmVtZW50IiYKCUFvaVVwZGF0ZRILCgNlaWQYASABKAUSDAoEZGF0YRgC",
-            "IAEoDCI1CgpBb2lVcGRhdGVzEicKBWRhdGFzGAEgAygLMhguc3BhY2Vfc2Vy",
-            "dmljZS5Bb2lVcGRhdGUiEQoEUGluZxIJCgF0GAEgASgCIiMKBFBvbmcSCQoB",
-            "dBgBIAEoAhIQCghzZXJ2ZXJfdBgCIAEoBSIdCgxOb3JtYWxBdHRhY2sSDQoF",
-            "Y29tYm8YASABKAUiHwoLU2tpbGxBdHRhY2sSEAoIc2tpbGxfaWQYASABKAUi",
-            "jgEKCUFuaW1hdGlvbhIMCgRuYW1lGAEgASgJEjIKAm9wGAIgASgOMiYuc3Bh",
-            "Y2Vfc2VydmljZS5BbmltYXRpb24uT3BlcmF0aW9uVHlwZRINCgVzcGVlZBgD",
-            "IAEoAiIwCg1PcGVyYXRpb25UeXBlEgkKBVNUQVJUEAASCAoEU1RPUBABEgoK",
-            "BlVQREFURRACIkYKD1BsYXllckFuaW1hdGlvbhILCgNlaWQYASABKAUSJgoE",
-            "ZGF0YRgCIAEoCzIYLnNwYWNlX3NlcnZpY2UuQW5pbWF0aW9uIikKClRha2VE",
-            "YW1hZ2USCwoDZWlkGAEgASgFEg4KBmRhbWFnZRgCIAEoBSJCCg1QbGF5ZXJB",
-            "dHRyU2V0EgsKA2VpZBgBIAEoBRIkCgRkYXRhGAIgASgLMhYuc3BhY2Vfc2Vy",
-            "dmljZS5BdHRyU2V0YgZwcm90bzM="));
+            "bGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwiUgoJ",
+            "QW9pUGxheWVyEgsKA2VpZBgBIAEoBRIMCgRkYXRhGAIgASgMEioKCXRyYW5z",
+            "Zm9ybRgDIAEoCzIXLnNwYWNlX3NlcnZpY2UuTW92ZW1lbnQiPgoRUGxheWVy",
+            "c0VudGVyU2lnaHQSKQoHcGxheWVycxgBIAMoCzIYLnNwYWNlX3NlcnZpY2Uu",
+            "QW9pUGxheWVyIiQKEVBsYXllcnNMZWF2ZVNpZ2h0Eg8KB3BsYXllcnMYASAD",
+            "KAUicwoJQW9pVXBkYXRlEgsKA2VpZBgBIAEoBRIRCgRkYXRhGAIgASgMSACI",
+            "AQESLwoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVu",
+            "dEgBiAEBQgcKBV9kYXRhQgwKCl90cmFuc2Zvcm0iNQoKQW9pVXBkYXRlcxIn",
+            "CgVkYXRhcxgBIAMoCzIYLnNwYWNlX3NlcnZpY2UuQW9pVXBkYXRlIhEKBFBp",
+            "bmcSCQoBdBgBIAEoAiIjCgRQb25nEgkKAXQYASABKAISEAoIc2VydmVyX3QY",
+            "AiABKAUiHQoMTm9ybWFsQXR0YWNrEg0KBWNvbWJvGAEgASgFIh8KC1NraWxs",
+            "QXR0YWNrEhAKCHNraWxsX2lkGAEgASgFIo4BCglBbmltYXRpb24SDAoEbmFt",
+            "ZRgBIAEoCRIyCgJvcBgCIAEoDjImLnNwYWNlX3NlcnZpY2UuQW5pbWF0aW9u",
+            "Lk9wZXJhdGlvblR5cGUSDQoFc3BlZWQYAyABKAIiMAoNT3BlcmF0aW9uVHlw",
+            "ZRIJCgVTVEFSVBAAEggKBFNUT1AQARIKCgZVUERBVEUQAiJGCg9QbGF5ZXJB",
+            "bmltYXRpb24SCwoDZWlkGAEgASgFEiYKBGRhdGEYAiABKAsyGC5zcGFjZV9z",
+            "ZXJ2aWNlLkFuaW1hdGlvbiIpCgpUYWtlRGFtYWdlEgsKA2VpZBgBIAEoBRIO",
+            "CgZkYW1hZ2UYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -77,13 +70,10 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillInfo), global::SpaceService.SkillInfo.Parser, new[]{ "SkillId", "NextCastTime", "CostMana", "CoolDown" }, new[]{ "CostMana", "CoolDown" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerInfo), global::SpaceService.PlayerInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerDeltaInfo), global::SpaceService.PlayerDeltaInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AttrSet), global::SpaceService.AttrSet.Parser, new[]{ "MaxHp", "Hp", "MaxMana", "Mana", "Status" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Eid", "Name", "Position", "Transform", "AttrSet", "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Eid", "Data", "Transform" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersEnterSight), global::SpaceService.PlayersEnterSight.Parser, new[]{ "Players" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersLeaveSight), global::SpaceService.PlayersLeaveSight.Parser, new[]{ "Players" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerMovement), global::SpaceService.PlayerMovement.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerMovements), global::SpaceService.PlayerMovements.Parser, new[]{ "Datas" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdate), global::SpaceService.AoiUpdate.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdate), global::SpaceService.AoiUpdate.Parser, new[]{ "Eid", "Data", "Transform" }, new[]{ "Data", "Transform" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdates), global::SpaceService.AoiUpdates.Parser, new[]{ "Datas" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Ping), global::SpaceService.Ping.Parser, new[]{ "T" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Pong), global::SpaceService.Pong.Parser, new[]{ "T", "ServerT" }, null, null, null, null),
@@ -91,8 +81,7 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillAttack), global::SpaceService.SkillAttack.Parser, new[]{ "SkillId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Animation), global::SpaceService.Animation.Parser, new[]{ "Name", "Op", "Speed" }, null, new[]{ typeof(global::SpaceService.Animation.Types.OperationType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAnimation), global::SpaceService.PlayerAnimation.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.TakeDamage), global::SpaceService.TakeDamage.Parser, new[]{ "Eid", "Damage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAttrSet), global::SpaceService.PlayerAttrSet.Parser, new[]{ "Eid", "Data" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.TakeDamage), global::SpaceService.TakeDamage.Parser, new[]{ "Eid", "Damage" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2325,352 +2314,6 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AttrSet : pb::IMessage<AttrSet>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AttrSet> _parser = new pb::MessageParser<AttrSet>(() => new AttrSet());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AttrSet> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[8]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AttrSet() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AttrSet(AttrSet other) : this() {
-      maxHp_ = other.maxHp_;
-      hp_ = other.hp_;
-      maxMana_ = other.maxMana_;
-      mana_ = other.mana_;
-      status_ = other.status_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AttrSet Clone() {
-      return new AttrSet(this);
-    }
-
-    /// <summary>Field number for the "max_hp" field.</summary>
-    public const int MaxHpFieldNumber = 1;
-    private int maxHp_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int MaxHp {
-      get { return maxHp_; }
-      set {
-        maxHp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "hp" field.</summary>
-    public const int HpFieldNumber = 2;
-    private int hp_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Hp {
-      get { return hp_; }
-      set {
-        hp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "max_mana" field.</summary>
-    public const int MaxManaFieldNumber = 3;
-    private int maxMana_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int MaxMana {
-      get { return maxMana_; }
-      set {
-        maxMana_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "mana" field.</summary>
-    public const int ManaFieldNumber = 4;
-    private int mana_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Mana {
-      get { return mana_; }
-      set {
-        mana_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "status" field.</summary>
-    public const int StatusFieldNumber = 5;
-    private int status_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Status {
-      get { return status_; }
-      set {
-        status_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AttrSet);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AttrSet other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (MaxHp != other.MaxHp) return false;
-      if (Hp != other.Hp) return false;
-      if (MaxMana != other.MaxMana) return false;
-      if (Mana != other.Mana) return false;
-      if (Status != other.Status) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (MaxHp != 0) hash ^= MaxHp.GetHashCode();
-      if (Hp != 0) hash ^= Hp.GetHashCode();
-      if (MaxMana != 0) hash ^= MaxMana.GetHashCode();
-      if (Mana != 0) hash ^= Mana.GetHashCode();
-      if (Status != 0) hash ^= Status.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (MaxHp != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(MaxHp);
-      }
-      if (Hp != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Hp);
-      }
-      if (MaxMana != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(MaxMana);
-      }
-      if (Mana != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Mana);
-      }
-      if (Status != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(Status);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (MaxHp != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(MaxHp);
-      }
-      if (Hp != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Hp);
-      }
-      if (MaxMana != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(MaxMana);
-      }
-      if (Mana != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Mana);
-      }
-      if (Status != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(Status);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (MaxHp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHp);
-      }
-      if (Hp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hp);
-      }
-      if (MaxMana != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMana);
-      }
-      if (Mana != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Mana);
-      }
-      if (Status != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AttrSet other) {
-      if (other == null) {
-        return;
-      }
-      if (other.MaxHp != 0) {
-        MaxHp = other.MaxHp;
-      }
-      if (other.Hp != 0) {
-        Hp = other.Hp;
-      }
-      if (other.MaxMana != 0) {
-        MaxMana = other.MaxMana;
-      }
-      if (other.Mana != 0) {
-        Mana = other.Mana;
-      }
-      if (other.Status != 0) {
-        Status = other.Status;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            MaxHp = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Hp = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            MaxMana = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            Mana = input.ReadInt32();
-            break;
-          }
-          case 40: {
-            Status = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            MaxHp = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Hp = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            MaxMana = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            Mana = input.ReadInt32();
-            break;
-          }
-          case 40: {
-            Status = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AoiPlayer : pb::IMessage<AoiPlayer>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2685,7 +2328,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[9]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2706,11 +2349,8 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AoiPlayer(AoiPlayer other) : this() {
       eid_ = other.eid_;
-      name_ = other.name_;
-      position_ = other.position_ != null ? other.position_.Clone() : null;
-      transform_ = other.transform_ != null ? other.transform_.Clone() : null;
-      attrSet_ = other.attrSet_ != null ? other.attrSet_.Clone() : null;
       data_ = other.data_;
+      transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2732,56 +2372,8 @@ namespace SpaceService {
       }
     }
 
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 2;
-    private string name_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
-      set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "position" field.</summary>
-    public const int PositionFieldNumber = 3;
-    private global::SpaceService.Vector3f position_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.Vector3f Position {
-      get { return position_; }
-      set {
-        position_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "transform" field.</summary>
-    public const int TransformFieldNumber = 4;
-    private global::SpaceService.Movement transform_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.Movement Transform {
-      get { return transform_; }
-      set {
-        transform_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "attr_set" field.</summary>
-    public const int AttrSetFieldNumber = 5;
-    private global::SpaceService.AttrSet attrSet_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.AttrSet AttrSet {
-      get { return attrSet_; }
-      set {
-        attrSet_ = value;
-      }
-    }
-
     /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 6;
+    public const int DataFieldNumber = 2;
     private pb::ByteString data_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2789,6 +2381,18 @@ namespace SpaceService {
       get { return data_; }
       set {
         data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "transform" field.</summary>
+    public const int TransformFieldNumber = 3;
+    private global::SpaceService.Movement transform_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Movement Transform {
+      get { return transform_; }
+      set {
+        transform_ = value;
       }
     }
 
@@ -2808,11 +2412,8 @@ namespace SpaceService {
         return true;
       }
       if (Eid != other.Eid) return false;
-      if (Name != other.Name) return false;
-      if (!object.Equals(Position, other.Position)) return false;
-      if (!object.Equals(Transform, other.Transform)) return false;
-      if (!object.Equals(AttrSet, other.AttrSet)) return false;
       if (Data != other.Data) return false;
+      if (!object.Equals(Transform, other.Transform)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2821,11 +2422,8 @@ namespace SpaceService {
     public override int GetHashCode() {
       int hash = 1;
       if (Eid != 0) hash ^= Eid.GetHashCode();
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (position_ != null) hash ^= Position.GetHashCode();
-      if (transform_ != null) hash ^= Transform.GetHashCode();
-      if (attrSet_ != null) hash ^= AttrSet.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
+      if (transform_ != null) hash ^= Transform.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2848,25 +2446,13 @@ namespace SpaceService {
         output.WriteRawTag(8);
         output.WriteInt32(Eid);
       }
-      if (Name.Length != 0) {
+      if (Data.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (position_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Position);
+        output.WriteBytes(Data);
       }
       if (transform_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(26);
         output.WriteMessage(Transform);
-      }
-      if (attrSet_ != null) {
-        output.WriteRawTag(42);
-        output.WriteMessage(AttrSet);
-      }
-      if (Data.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteBytes(Data);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2882,25 +2468,13 @@ namespace SpaceService {
         output.WriteRawTag(8);
         output.WriteInt32(Eid);
       }
-      if (Name.Length != 0) {
+      if (Data.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (position_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Position);
+        output.WriteBytes(Data);
       }
       if (transform_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(26);
         output.WriteMessage(Transform);
-      }
-      if (attrSet_ != null) {
-        output.WriteRawTag(42);
-        output.WriteMessage(AttrSet);
-      }
-      if (Data.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteBytes(Data);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2915,20 +2489,11 @@ namespace SpaceService {
       if (Eid != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
-      }
-      if (position_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
       }
       if (transform_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Transform);
-      }
-      if (attrSet_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AttrSet);
-      }
-      if (Data.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2945,29 +2510,14 @@ namespace SpaceService {
       if (other.Eid != 0) {
         Eid = other.Eid;
       }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
-      }
-      if (other.position_ != null) {
-        if (position_ == null) {
-          Position = new global::SpaceService.Vector3f();
-        }
-        Position.MergeFrom(other.Position);
+      if (other.Data.Length != 0) {
+        Data = other.Data;
       }
       if (other.transform_ != null) {
         if (transform_ == null) {
           Transform = new global::SpaceService.Movement();
         }
         Transform.MergeFrom(other.Transform);
-      }
-      if (other.attrSet_ != null) {
-        if (attrSet_ == null) {
-          AttrSet = new global::SpaceService.AttrSet();
-        }
-        AttrSet.MergeFrom(other.AttrSet);
-      }
-      if (other.Data.Length != 0) {
-        Data = other.Data;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2993,32 +2543,14 @@ namespace SpaceService {
             break;
           }
           case 18: {
-            Name = input.ReadString();
+            Data = input.ReadBytes();
             break;
           }
           case 26: {
-            if (position_ == null) {
-              Position = new global::SpaceService.Vector3f();
-            }
-            input.ReadMessage(Position);
-            break;
-          }
-          case 34: {
             if (transform_ == null) {
               Transform = new global::SpaceService.Movement();
             }
             input.ReadMessage(Transform);
-            break;
-          }
-          case 42: {
-            if (attrSet_ == null) {
-              AttrSet = new global::SpaceService.AttrSet();
-            }
-            input.ReadMessage(AttrSet);
-            break;
-          }
-          case 50: {
-            Data = input.ReadBytes();
             break;
           }
         }
@@ -3045,32 +2577,14 @@ namespace SpaceService {
             break;
           }
           case 18: {
-            Name = input.ReadString();
+            Data = input.ReadBytes();
             break;
           }
           case 26: {
-            if (position_ == null) {
-              Position = new global::SpaceService.Vector3f();
-            }
-            input.ReadMessage(Position);
-            break;
-          }
-          case 34: {
             if (transform_ == null) {
               Transform = new global::SpaceService.Movement();
             }
             input.ReadMessage(Transform);
-            break;
-          }
-          case 42: {
-            if (attrSet_ == null) {
-              AttrSet = new global::SpaceService.AttrSet();
-            }
-            input.ReadMessage(AttrSet);
-            break;
-          }
-          case 50: {
-            Data = input.ReadBytes();
             break;
           }
         }
@@ -3095,7 +2609,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[10]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3282,7 +2796,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[11]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3457,437 +2971,6 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class PlayerMovement : pb::IMessage<PlayerMovement>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<PlayerMovement> _parser = new pb::MessageParser<PlayerMovement>(() => new PlayerMovement());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<PlayerMovement> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[12]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerMovement() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerMovement(PlayerMovement other) : this() {
-      eid_ = other.eid_;
-      data_ = other.data_ != null ? other.data_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerMovement Clone() {
-      return new PlayerMovement(this);
-    }
-
-    /// <summary>Field number for the "eid" field.</summary>
-    public const int EidFieldNumber = 1;
-    private int eid_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Eid {
-      get { return eid_; }
-      set {
-        eid_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 2;
-    private global::SpaceService.Movement data_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.Movement Data {
-      get { return data_; }
-      set {
-        data_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as PlayerMovement);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(PlayerMovement other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Eid != other.Eid) return false;
-      if (!object.Equals(Data, other.Data)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Eid != 0) hash ^= Eid.GetHashCode();
-      if (data_ != null) hash ^= Data.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (Eid != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Eid);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Data);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Eid != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Eid);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Data);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Eid != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
-      }
-      if (data_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(PlayerMovement other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Eid != 0) {
-        Eid = other.Eid;
-      }
-      if (other.data_ != null) {
-        if (data_ == null) {
-          Data = new global::SpaceService.Movement();
-        }
-        Data.MergeFrom(other.Data);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            Eid = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            if (data_ == null) {
-              Data = new global::SpaceService.Movement();
-            }
-            input.ReadMessage(Data);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            Eid = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            if (data_ == null) {
-              Data = new global::SpaceService.Movement();
-            }
-            input.ReadMessage(Data);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class PlayerMovements : pb::IMessage<PlayerMovements>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<PlayerMovements> _parser = new pb::MessageParser<PlayerMovements>(() => new PlayerMovements());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<PlayerMovements> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[13]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerMovements() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerMovements(PlayerMovements other) : this() {
-      datas_ = other.datas_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerMovements Clone() {
-      return new PlayerMovements(this);
-    }
-
-    /// <summary>Field number for the "datas" field.</summary>
-    public const int DatasFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::SpaceService.PlayerMovement> _repeated_datas_codec
-        = pb::FieldCodec.ForMessage(10, global::SpaceService.PlayerMovement.Parser);
-    private readonly pbc::RepeatedField<global::SpaceService.PlayerMovement> datas_ = new pbc::RepeatedField<global::SpaceService.PlayerMovement>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::SpaceService.PlayerMovement> Datas {
-      get { return datas_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as PlayerMovements);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(PlayerMovements other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!datas_.Equals(other.datas_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= datas_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      datas_.WriteTo(output, _repeated_datas_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      datas_.WriteTo(ref output, _repeated_datas_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      size += datas_.CalculateSize(_repeated_datas_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(PlayerMovements other) {
-      if (other == null) {
-        return;
-      }
-      datas_.Add(other.datas_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            datas_.AddEntriesFrom(input, _repeated_datas_codec);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            datas_.AddEntriesFrom(ref input, _repeated_datas_codec);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AoiUpdate : pb::IMessage<AoiUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3902,7 +2985,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[14]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3924,6 +3007,7 @@ namespace SpaceService {
     public AoiUpdate(AoiUpdate other) : this() {
       eid_ = other.eid_;
       data_ = other.data_;
+      transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3947,13 +3031,39 @@ namespace SpaceService {
 
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 2;
-    private pb::ByteString data_ = pb::ByteString.Empty;
+    private readonly static pb::ByteString DataDefaultValue = pb::ByteString.Empty;
+
+    private pb::ByteString data_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public pb::ByteString Data {
-      get { return data_; }
+      get { return data_ ?? DataDefaultValue; }
       set {
         data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "data" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasData {
+      get { return data_ != null; }
+    }
+    /// <summary>Clears the value of the "data" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearData() {
+      data_ = null;
+    }
+
+    /// <summary>Field number for the "transform" field.</summary>
+    public const int TransformFieldNumber = 3;
+    private global::SpaceService.Movement transform_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Movement Transform {
+      get { return transform_; }
+      set {
+        transform_ = value;
       }
     }
 
@@ -3974,6 +3084,7 @@ namespace SpaceService {
       }
       if (Eid != other.Eid) return false;
       if (Data != other.Data) return false;
+      if (!object.Equals(Transform, other.Transform)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3982,7 +3093,8 @@ namespace SpaceService {
     public override int GetHashCode() {
       int hash = 1;
       if (Eid != 0) hash ^= Eid.GetHashCode();
-      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      if (HasData) hash ^= Data.GetHashCode();
+      if (transform_ != null) hash ^= Transform.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4005,9 +3117,13 @@ namespace SpaceService {
         output.WriteRawTag(8);
         output.WriteInt32(Eid);
       }
-      if (Data.Length != 0) {
+      if (HasData) {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
+      }
+      if (transform_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Transform);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4023,9 +3139,13 @@ namespace SpaceService {
         output.WriteRawTag(8);
         output.WriteInt32(Eid);
       }
-      if (Data.Length != 0) {
+      if (HasData) {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
+      }
+      if (transform_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Transform);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4040,8 +3160,11 @@ namespace SpaceService {
       if (Eid != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
       }
-      if (Data.Length != 0) {
+      if (HasData) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      if (transform_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Transform);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4058,8 +3181,14 @@ namespace SpaceService {
       if (other.Eid != 0) {
         Eid = other.Eid;
       }
-      if (other.Data.Length != 0) {
+      if (other.HasData) {
         Data = other.Data;
+      }
+      if (other.transform_ != null) {
+        if (transform_ == null) {
+          Transform = new global::SpaceService.Movement();
+        }
+        Transform.MergeFrom(other.Transform);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4088,6 +3217,13 @@ namespace SpaceService {
             Data = input.ReadBytes();
             break;
           }
+          case 26: {
+            if (transform_ == null) {
+              Transform = new global::SpaceService.Movement();
+            }
+            input.ReadMessage(Transform);
+            break;
+          }
         }
       }
     #endif
@@ -4113,6 +3249,13 @@ namespace SpaceService {
           }
           case 18: {
             Data = input.ReadBytes();
+            break;
+          }
+          case 26: {
+            if (transform_ == null) {
+              Transform = new global::SpaceService.Movement();
+            }
+            input.ReadMessage(Transform);
             break;
           }
         }
@@ -4137,7 +3280,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[15]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4324,7 +3467,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[16]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4522,7 +3665,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[17]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4757,7 +3900,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[18]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4955,7 +4098,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[19]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5153,7 +4296,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[20]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5439,7 +4582,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[21]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5683,7 +4826,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[22]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5894,250 +5037,6 @@ namespace SpaceService {
           }
           case 16: {
             Damage = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class PlayerAttrSet : pb::IMessage<PlayerAttrSet>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<PlayerAttrSet> _parser = new pb::MessageParser<PlayerAttrSet>(() => new PlayerAttrSet());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<PlayerAttrSet> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[23]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerAttrSet() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerAttrSet(PlayerAttrSet other) : this() {
-      eid_ = other.eid_;
-      data_ = other.data_ != null ? other.data_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayerAttrSet Clone() {
-      return new PlayerAttrSet(this);
-    }
-
-    /// <summary>Field number for the "eid" field.</summary>
-    public const int EidFieldNumber = 1;
-    private int eid_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Eid {
-      get { return eid_; }
-      set {
-        eid_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 2;
-    private global::SpaceService.AttrSet data_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.AttrSet Data {
-      get { return data_; }
-      set {
-        data_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as PlayerAttrSet);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(PlayerAttrSet other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Eid != other.Eid) return false;
-      if (!object.Equals(Data, other.Data)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Eid != 0) hash ^= Eid.GetHashCode();
-      if (data_ != null) hash ^= Data.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (Eid != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Eid);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Data);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Eid != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Eid);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Data);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (Eid != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
-      }
-      if (data_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(PlayerAttrSet other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Eid != 0) {
-        Eid = other.Eid;
-      }
-      if (other.data_ != null) {
-        if (data_ == null) {
-          Data = new global::SpaceService.AttrSet();
-        }
-        Data.MergeFrom(other.Data);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            Eid = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            if (data_ == null) {
-              Data = new global::SpaceService.AttrSet();
-            }
-            input.ReadMessage(Data);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            Eid = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            if (data_ == null) {
-              Data = new global::SpaceService.AttrSet();
-            }
-            input.ReadMessage(Data);
             break;
           }
         }

@@ -589,7 +589,6 @@ public class NetworkManager : MonoBehaviour
             SpaceService.Vector3f aoiRotation = aoiPlayer.Transform.Rotation;
             Vector3 position = new Vector3(aoiPosition.X, aoiPosition.Y, aoiPosition.Z);
             Quaternion rotation = Quaternion.Euler(aoiRotation.X, aoiRotation.Y, aoiRotation.Z);
-            Debug.Log($"player enter sight, eid: {aoiPlayer.Eid}, name: {aoiPlayer.Name}, position: {position}, rotation: {rotation.eulerAngles}");
 
             GameObject prefab = Resources.Load<GameObject>("Character/OtherCharacter");
             if (prefab != null)
@@ -626,30 +625,6 @@ public class NetworkManager : MonoBehaviour
     public GameObject find_player(int eid)
     {
         return _players.GetValueOrDefault(eid);
-    }
-
-    public void sync_movement(byte[] msgBytes)
-    {
-        SpaceService.PlayerMovements playerMovements = SpaceService.PlayerMovements.Parser.ParseFrom(msgBytes);
-        foreach (SpaceService.PlayerMovement playerMovement in playerMovements.Datas)
-        {
-            GameObject otherPlayer = find_player(playerMovement.Eid);
-            if (otherPlayer != null)
-            {
-                ServerMovePack serverMovePack = new ServerMovePack
-                {
-                    Position = new Vector3(playerMovement.Data.Position.X, playerMovement.Data.Position.Y, playerMovement.Data.Position.Z),
-                    Rotation = Quaternion.Euler(playerMovement.Data.Rotation.X, playerMovement.Data.Rotation.Y, playerMovement.Data.Rotation.Z),
-                    Velocity = new Vector3(playerMovement.Data.Velocity.X, playerMovement.Data.Velocity.Y, playerMovement.Data.Velocity.Z),
-                    Acceleration = new Vector3(playerMovement.Data.Acceleration.X, playerMovement.Data.Acceleration.Y, playerMovement.Data.Acceleration.Z),
-                    AngularVelocity = new Vector3(playerMovement.Data.AngularVelocity.X, playerMovement.Data.AngularVelocity.Y, playerMovement.Data.AngularVelocity.Z),
-                    Mode = playerMovement.Data.Mode,
-                    TimeStamp = playerMovement.Data.Timestamp,
-                };
-                SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
-                simulateMovement.SyncMovement(serverMovePack);
-            }
-        }
     }
 
     public void pong(byte[] msgBytes)
@@ -766,10 +741,29 @@ public class NetworkManager : MonoBehaviour
             GameObject otherPlayer = find_player(aoiUpdate.Eid);
             if (otherPlayer != null)
             {
-                Entity entity = otherPlayer.GetComponent<Entity>();
-                if (entity != null)
+                if (aoiUpdate.HasData)
                 {
-                    entity.ConsumeDirty(aoiUpdate.Data.ToByteArray());
+                    Entity entity = otherPlayer.GetComponent<Entity>();
+                    if (entity != null)
+                    {
+                        entity.ConsumeDirty(aoiUpdate.Data.ToByteArray());
+                    }
+                }
+
+                ServerMovePack serverMovePack = new ServerMovePack
+                {
+                    Position = new Vector3(aoiUpdate.Transform.Position.X, aoiUpdate.Transform.Position.Y, aoiUpdate.Transform.Position.Z),
+                    Rotation = Quaternion.Euler(aoiUpdate.Transform.Rotation.X, aoiUpdate.Transform.Rotation.Y, aoiUpdate.Transform.Rotation.Z),
+                    Velocity = new Vector3(aoiUpdate.Transform.Velocity.X, aoiUpdate.Transform.Velocity.Y, aoiUpdate.Transform.Velocity.Z),
+                    Acceleration = new Vector3(aoiUpdate.Transform.Acceleration.X, aoiUpdate.Transform.Acceleration.Y, aoiUpdate.Transform.Acceleration.Z),
+                    AngularVelocity = new Vector3(aoiUpdate.Transform.AngularVelocity.X, aoiUpdate.Transform.AngularVelocity.Y, aoiUpdate.Transform.AngularVelocity.Z),
+                    Mode = aoiUpdate.Transform.Mode,
+                    TimeStamp = aoiUpdate.Transform.Timestamp,
+                };
+                SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
+                if (simulateMovement != null)
+                {
+                    simulateMovement.SyncMovement(serverMovePack);
                 }
             }
         }
