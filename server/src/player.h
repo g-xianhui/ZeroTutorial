@@ -4,6 +4,7 @@
 #include <unordered_map>
 
 #include "icomponent.h"
+#include "bit_utils.h"
 
 class TcpConnection;
 class OutputBitStream;
@@ -28,6 +29,8 @@ public:
         name = 1 << 0,
     };
 
+    STR_GETSET(name)
+
     // conn的生命周期由外部管理
     Player(TcpConnection* conn, const std::string& name);
     ~Player();
@@ -39,11 +42,6 @@ public:
     bool consume_dirty(OutputBitStream& bs);
 
     inline TcpConnection* get_conn() { return _conn; }
-    inline void set_name(const std::string& name) {
-        _name = name;
-        _dirty_flag |= (uint8_t)DirtyFlag::name;
-    }
-    inline const std::string& get_name() const { return _name; }
 
     inline int get_eid() const { return _eid; }
     inline void set_eid(int eid) { _eid = eid; }

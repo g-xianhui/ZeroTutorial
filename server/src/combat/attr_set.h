@@ -59,10 +59,10 @@ struct AttrSet {
     void add_health(int val);
     void add_mana(int val);
 
-    INT_GETSET(max_health);
-    INT_GETSET(health);
-    INT_GETSET(max_mana);
-    INT_GETSET(mana);
+    INT_GETSET(max_health)
+    INT_GETSET(health)
+    INT_GETSET(max_mana)
+    INT_GETSET(mana)
 
 private:
     uint16_t _dirty_flag = 0;
