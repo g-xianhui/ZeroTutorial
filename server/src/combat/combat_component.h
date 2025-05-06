@@ -51,7 +51,38 @@ public:
     }
     
     bool net_delta_serialize(OutputBitStream& bs) {
-        return false;
+        bool dirty = false;
+        bs.write(_dirty_flag);
+        if (_dirty_flag) {
+            dirty = true;
+
+            if (_dirty_flag & (uint8_t)DirtyFlag::skill_id) {
+                bs.write(_skill_id);
+            }
+
+            if (_dirty_flag & (uint8_t)DirtyFlag::anmimator_state) {
+                bs.write(_anmimator_state);
+            }
+
+            if (_dirty_flag & (uint8_t)DirtyFlag::cost_mana) {
+                bs.write(_cost_mana);
+            }
+
+            if (_dirty_flag & (uint8_t)DirtyFlag::cool_down) {
+                bs.write(_cool_down);
+            }
+
+            if (_dirty_flag & (uint8_t)DirtyFlag::next_cast_time) {
+                bs.write(_next_cast_time);
+            }
+
+            if (_dirty_flag & (uint8_t)DirtyFlag::local_predicated) {
+                bs.write(_local_predicated);
+            }
+
+            _dirty_flag = 0;
+        }
+        return dirty;
     }
 
 private:
@@ -82,8 +113,6 @@ public:
     bool can_cast_skill(const SkillInfo& info);
     
     void take_damage(CombatComponent* attacker, int damage);
-
-    // void sync_skill_info(const SkillInfo& skill_info);
 
 private:
     ISkill* get_or_create_skill_instance(int skill_id, bool instance_per_entity = true);

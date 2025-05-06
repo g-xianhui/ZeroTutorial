@@ -15,7 +15,6 @@ enum SyncArrayOperation : Byte
     erase,
     clear,
     resize,
-    resize_with_value,
     replace
 };
 
@@ -66,7 +65,8 @@ public class TSyncArray<T>
                     case SyncArrayOperation.update:
                         {
                             UInt16 pos = br.ReadUInt16();
-                            object element = NetSerializer.Read(br, t);
+                            object element = array[pos];
+                            NetSerializer.Update(br, ref element);
                             array[pos] = element;
                         }
                         break;
@@ -92,6 +92,11 @@ public class TSyncArray<T>
                         {
                             UInt16 pos = br.ReadUInt16();
                             array.RemoveAt(pos);
+                        }
+                        break;
+                    case SyncArrayOperation.clear:
+                        {
+                            vec.Clear();
                         }
                         break;
                     case SyncArrayOperation.resize:

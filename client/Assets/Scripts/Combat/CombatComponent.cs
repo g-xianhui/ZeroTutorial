@@ -16,6 +16,16 @@ public class SkillInfo
     // 本地先行
     public bool LocalPredicted = false;
 
+    enum DirtyFlag : byte
+    {
+        SkillId = 1,
+        AnimatorState = 2,
+        CostMana = 4,
+        CoolDown = 8,
+        NextCastTime = 16,
+        LocalPredicted = 32
+    }
+
     public void NetSerialize(BinaryReader br)
     {
         SkillId = br.ReadInt32();
@@ -24,6 +34,44 @@ public class SkillInfo
         CoolDown = br.ReadInt32();
         NextCastTime = br.ReadInt32();
         LocalPredicted = br.ReadBoolean();
+    }
+
+    public void NetDeltaSerialize(BinaryReader br)
+    {
+        byte dirtyFlag = br.ReadByte();
+        if (dirtyFlag != 0)
+        {
+            if ((dirtyFlag & (byte)DirtyFlag.SkillId) != 0)
+            {
+                SkillId = br.ReadInt32();
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.AnimatorState) != 0)
+            {
+                AnimatorState = NetSerializer.ReadString(br);
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.CostMana) != 0)
+            {
+                CostMana = br.ReadInt32();
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.CoolDown) != 0)
+            {
+                CoolDown = br.ReadInt32();
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.NextCastTime) != 0)
+            {
+                NextCastTime = br.ReadInt32();
+                Debug.Log($"on update next cast time: {NextCastTime}");
+            }
+
+            if ((dirtyFlag & (UInt16)DirtyFlag.LocalPredicted) != 0)
+            {
+                LocalPredicted = br.ReadBoolean();
+            }
+        }
     }
 }
 

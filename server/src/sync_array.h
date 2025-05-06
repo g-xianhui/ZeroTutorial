@@ -13,7 +13,6 @@ enum class SyncArrayOperation : uint8_t {
     erase,
     clear,
     resize,
-    resize_with_value,
     replace
 };
 
@@ -183,14 +182,6 @@ public:
         _vec.resize(count);
     }
 
-    void resize(size_type count, const value_type& value) {
-        _dirty_log.write((uint8_t)SyncArrayOperation::resize_with_value);
-        _dirty_log.write((uint16_t)count);
-        _dirty_log.write(value);
-
-        _vec.resize(count, value);
-    }
-
     void swap(TSyncArray& other) {
         _vec.swap(other._vec);
 
@@ -201,7 +192,8 @@ public:
     void mark_dirty(size_type pos) {
         _dirty_log.write((uint8_t)SyncArrayOperation::update);
         _dirty_log.write((uint16_t)pos);
-        _dirty_log.write(_vec[pos]);
+        // _dirty_log.write(_vec[pos]);
+        _dirty_log.net_delta_serialize(_vec[pos]);
     }
 
     void mark_dirty(iterator pos) {
@@ -263,12 +255,6 @@ public:
                 {
                     uint16_t new_size = bs.read<uint16_t>();
                     _vec.resize(new_size);
-                }
-                break;
-                case SyncArrayOperation::resize_with_value:
-                {
-                    uint16_t new_size = bs.read<uint16_t>();
-                    _vec.resize(new_size, bs.read<T>());
                 }
                 break;
                 case SyncArrayOperation::replace:

@@ -194,11 +194,3 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
     Space* space = _owner->get_space();
     space->call_all(_owner->get_eid(), "take_damage", msg_bytes);
 }
-
-//void CombatComponent::sync_skill_info(const SkillInfo& skill_info)
-//{
-//    space_service::SkillInfo msg;
-//    msg.set_skill_id(skill_info.skill_id);
-//    msg.set_next_cast_time(skill_info.next_cast_time);
-//    send_proto_msg(_owner->get_conn(), "update_skill_info", msg);
-//}

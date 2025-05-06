@@ -95,6 +95,16 @@ public:
         }
     }
 
+    template<typename T>
+    void net_delta_serialize(T& data) {
+        write(data);
+    }
+
+    template<NetSerializable T>
+    void net_delta_serialize(T& data) {
+        data.net_delta_serialize(*this);
+    }
+
 private:
     void realloc_buffer(size_t new_lenght);
 
