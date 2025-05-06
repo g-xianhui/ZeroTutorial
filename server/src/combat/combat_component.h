@@ -6,21 +6,66 @@
 
 #include "proto/space_service.pb.h"
 
+#include "sync_array.h"
+#include "bit_utils.h"
+
 #include <vector>
 #include <map>
 
-struct SkillInfo
+class SkillInfo
 {
-    int skill_id;
-    std::string anmimator_state;
+public:
+    void init(int skill_id, const std::string& anim, int cost_mana, int cool_down, bool local_predicated) {
+        _skill_id = skill_id;
+        _anmimator_state = anim;
+        _cost_mana = cost_mana;
+        _cool_down = cool_down;
+        _local_predicated = local_predicated;
+    }
 
-    int cost_mana = 0;
-    // ms
-    int cool_down = 0;
-    int next_cast_time = 0;
-
-    bool local_predicated = false;
     bool instance_per_entity = true;
+
+    enum class DirtyFlag : uint8_t {
+        skill_id = 1,
+        anmimator_state = 2,
+        cost_mana = 4,
+        cool_down = 8,
+        next_cast_time = 16,
+        local_predicated = 32,
+    };
+
+    INT_GETSET(skill_id)
+    STR_GETSET(anmimator_state)
+    INT_GETSET(cost_mana)
+    INT_GETSET(cool_down)
+    INT_GETSET(next_cast_time)
+    BOOL_GETSET(local_predicated)
+
+    void net_serialize(OutputBitStream& bs) const {
+        bs.write(_skill_id);
+        bs.write(_anmimator_state);
+        bs.write(_cost_mana);
+        bs.write(_cool_down);
+        bs.write(_next_cast_time);
+        bs.write(_local_predicated);
+    }
+    
+    bool net_delta_serialize(OutputBitStream& bs) {
+        return false;
+    }
+
+private:
+    int _skill_id;
+    std::string _anmimator_state;
+
+    int _cost_mana = 0;
+    // ms
+    int _cool_down = 0;
+    int _next_cast_time = 0;
+
+    bool _local_predicated = false;
+
+    uint8_t _dirty_flag = 0;
 };
 
 class CombatComponent : public IComponent {
@@ -29,8 +74,8 @@ public:
 
     virtual void start() override;
     virtual void stop() override;
-    virtual void net_serialize(OutputBitStream& bs) override;
-    virtual bool consume_dirty(OutputBitStream& bs) override;
+    virtual void net_serialize(OutputBitStream& bs) const override;
+    virtual bool net_delta_serialize(OutputBitStream& bs) override;
 
     void normal_attack(int combo_seq);
     void cast_skill(int skill_id);
@@ -38,7 +83,7 @@ public:
     
     void take_damage(CombatComponent* attacker, int damage);
 
-    void sync_skill_info(const SkillInfo& skill_info);
+    // void sync_skill_info(const SkillInfo& skill_info);
 
 private:
     ISkill* get_or_create_skill_instance(int skill_id, bool instance_per_entity = true);
@@ -48,7 +93,7 @@ private:
 private:
     AttrSet _attr_set;
 
-    std::vector<SkillInfo> _skill_infos;
+    TSyncArray<SkillInfo> _skill_infos;
     std::map<int, ISkill*> _running_skills;
 
     size_t _next_normal_attack_time = 0;

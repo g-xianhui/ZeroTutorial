@@ -16,8 +16,8 @@ public:
     virtual void start() {}
     virtual void stop() {}
 
-    virtual void net_serialize(OutputBitStream& bs) {}
-    virtual bool consume_dirty(OutputBitStream& bs) { return false; }
+    virtual void net_serialize(OutputBitStream& bs) const {}
+    virtual bool net_delta_serialize(OutputBitStream& bs) { return false; }
 protected:
     Player* _owner;
 };

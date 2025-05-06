@@ -45,7 +45,7 @@ void Player::stop()
     _components.clear();
 }
 
-void Player::net_serialize(OutputBitStream& bs)
+void Player::net_serialize(OutputBitStream& bs) const
 {
     bs.write(_eid);
     bs.write(_name);
@@ -55,7 +55,7 @@ void Player::net_serialize(OutputBitStream& bs)
     }
 }
 
-bool Player::consume_dirty(OutputBitStream& bs)
+bool Player::net_delta_serialize(OutputBitStream& bs)
 {
     bool dirty = false;
 
@@ -71,7 +71,7 @@ bool Player::consume_dirty(OutputBitStream& bs)
 
     for (auto& [name, comp] : _components) {
         bs.write(name);
-        dirty |= comp->consume_dirty(bs);
+        dirty |= comp->net_delta_serialize(bs);
     }
     return dirty;
 }

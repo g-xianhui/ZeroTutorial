@@ -19,12 +19,8 @@ void CombatComponent::start()
     _attr_set.init();
 
     {
-        SkillInfo skill_info{
-            .skill_id = 1,
-            .anmimator_state = "Skill1",
-            .cost_mana = 2,
-            .cool_down = 5000
-        };
+        SkillInfo skill_info;
+        skill_info.init(1, "Skill1", 2, 5000, false);
         _skill_infos.push_back(skill_info);
     }
 }
@@ -39,15 +35,17 @@ void CombatComponent::stop()
     stop_running_skill();
 }
 
-void CombatComponent::net_serialize(OutputBitStream& bs)
+void CombatComponent::net_serialize(OutputBitStream& bs) const
 {
     _attr_set.net_serialize(bs);
+    _skill_infos.net_serialize(bs);
 }
 
-bool CombatComponent::consume_dirty(OutputBitStream& bs)
+bool CombatComponent::net_delta_serialize(OutputBitStream& bs)
 {
     bool dirty = false;
-    dirty |= _attr_set.consume_dirty(bs);
+    dirty |= _attr_set.net_delta_serialize(bs);
+    dirty |= _skill_infos.net_delta_serialize(bs);
     return dirty;
 }
 
@@ -99,7 +97,7 @@ void CombatComponent::normal_attack(int combo_seq)
 void CombatComponent::cast_skill(int skill_id)
 {
     auto iter = std::find_if(_skill_infos.begin(), _skill_infos.end(), [skill_id](const SkillInfo& info) {
-        return info.skill_id == skill_id;
+        return info.get_skill_id() == skill_id;
     });
     if (iter == _skill_infos.end()) {
         spdlog::error("cast skill but skill {} not found!", skill_id);
@@ -109,32 +107,32 @@ void CombatComponent::cast_skill(int skill_id)
     SkillInfo& info = *iter;
     if (can_cast_skill(info)) {
         // reduce cost
-        _attr_set.add_mana(-info.cost_mana);
-        info.next_cast_time = int(G_Timer.ms_since_start()) + info.cool_down;
+        _attr_set.add_mana(-info.get_cost_mana());
+        // update cool down
+        info.set_next_cast_time(int(G_Timer.ms_since_start()) + info.get_cool_down());
+        _skill_infos.mark_dirty(iter);
 
         ISkill* skill = get_or_create_skill_instance(skill_id, info.instance_per_entity);
         skill->execute();
     }
     else {
-        // 强制更新客户端蓝量
+        // 强制更新客户端蓝量和cd
         _attr_set.add_mana(0);
+        info.set_next_cast_time(info.get_next_cast_time());
+        _skill_infos.mark_dirty(iter);
     }
-
-    // 更新客户端cd
-    // TODO 动态数组目前还需要自己去rpc同步变化
-    sync_skill_info(info);
 }
 
 bool CombatComponent::can_cast_skill(const SkillInfo& info)
 {
-    if (_attr_set.get_mana() < info.cost_mana)
+    if (_attr_set.get_mana() < info.get_cost_mana())
         return false;
 
-    if (G_Timer.ms_since_start() < info.next_cast_time)
+    if (G_Timer.ms_since_start() < info.get_next_cast_time())
         return false;
 
-    if (_running_skills.contains(info.skill_id)) {
-        ISkill* skill = _running_skills[info.skill_id];
+    if (_running_skills.contains(info.get_skill_id())) {
+        ISkill* skill = _running_skills[info.get_skill_id()];
         assert(skill);
         if (skill->is_active())
             return false;
@@ -197,10 +195,10 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
     space->call_all(_owner->get_eid(), "take_damage", msg_bytes);
 }
 
-void CombatComponent::sync_skill_info(const SkillInfo& skill_info)
-{
-    space_service::SkillInfo msg;
-    msg.set_skill_id(skill_info.skill_id);
-    msg.set_next_cast_time(skill_info.next_cast_time);
-    send_proto_msg(_owner->get_conn(), "update_skill_info", msg);
-}
+//void CombatComponent::sync_skill_info(const SkillInfo& skill_info)
+//{
+//    space_service::SkillInfo msg;
+//    msg.set_skill_id(skill_info.skill_id);
+//    msg.set_next_cast_time(skill_info.next_cast_time);
+//    send_proto_msg(_owner->get_conn(), "update_skill_info", msg);
+//}

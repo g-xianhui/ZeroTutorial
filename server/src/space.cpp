@@ -145,7 +145,7 @@ void Space::update()
         Player* player = iter.second;
 
         OutputBitStream bs;
-        if (player->consume_dirty(bs)) {
+        if (player->net_delta_serialize(bs)) {
             auto result = entity_dirty_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
 
             // 同步属性变化给自己

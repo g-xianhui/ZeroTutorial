@@ -38,8 +38,8 @@ public:
     void start();
     void stop();
 
-    void net_serialize(OutputBitStream& bs);
-    bool consume_dirty(OutputBitStream& bs);
+    void net_serialize(OutputBitStream& bs) const;
+    bool net_delta_serialize(OutputBitStream& bs);
 
     inline TcpConnection* get_conn() { return _conn; }
 

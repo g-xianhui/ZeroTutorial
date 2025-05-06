@@ -47,8 +47,8 @@ struct AttrSet {
         clamp_all_attributes();
     }
 
-    void net_serialize(OutputBitStream& bs);
-    bool consume_dirty(OutputBitStream& bs);
+    void net_serialize(OutputBitStream& bs) const;
+    bool net_delta_serialize(OutputBitStream& bs);
 
     // 受伤害逻辑
     int take_damage(AttrSet& attacker, int attack_damage);

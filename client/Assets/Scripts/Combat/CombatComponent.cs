@@ -10,11 +10,21 @@ public class SkillInfo
 {
     public int SkillId;
     public string AnimatorState;
-    public int CoolDown = 0;
     public int CostMana = 0;
+    public int CoolDown = 0;
     public int NextCastTime = 0;
     // 本地先行
     public bool LocalPredicted = false;
+
+    public void NetSerialize(BinaryReader br)
+    {
+        SkillId = br.ReadInt32();
+        AnimatorState = NetSerializer.ReadString(br);
+        CostMana = br.ReadInt32();
+        CoolDown = br.ReadInt32();
+        NextCastTime = br.ReadInt32();
+        LocalPredicted = br.ReadBoolean();
+    }
 }
 
 [RequireComponent(typeof(Animator))]
@@ -25,9 +35,9 @@ public class CombatComponent : MonoBehaviour
     private Animator _anim;
     private CharacterMovement _characterMovement;
     private NetworkComponent _networkComponent;
-    private AttrSet _attrSet = new AttrSet();
 
-    private List<SkillInfo> skillInfos = new List<SkillInfo>();
+    private AttrSet attrSet = new AttrSet();
+    private TSyncArray<SkillInfo> skillInfos = new TSyncArray<SkillInfo>();
 
     // 普攻相关属性
     private int comboSeq = 0;
@@ -75,13 +85,15 @@ public class CombatComponent : MonoBehaviour
 
     public void NetSerialize(BinaryReader br)
     {
-        _attrSet.NetSerialize(br);
+        attrSet.NetSerialize(br);
+        skillInfos.NetSerialize(br);
         UpdateHeadUI();
     }
 
-    public void ConsumeDirty(BinaryReader br)
+    public void NetDeltaSerialize(BinaryReader br)
     {
-        _attrSet.ConsumeDirty(br);
+        attrSet.NetDeltaSerialize(br);
+        skillInfos.NetDeltaSerialize(br);
         UpdateHeadUI();
     }
 
@@ -95,13 +107,13 @@ public class CombatComponent : MonoBehaviour
 
     void UpdateHeadUI()
     {
-        headUI.UpdateHeathSlider((_attrSet.Health * 1.0f) / _attrSet.MaxHealth);
-        headUI.UpdateManaSlider((_attrSet.Mana * 1.0f) / _attrSet.MaxMana);
+        headUI.UpdateHeathSlider((attrSet.Health * 1.0f) / attrSet.MaxHealth);
+        headUI.UpdateManaSlider((attrSet.Mana * 1.0f) / attrSet.MaxMana);
     }
 
     public AttrSet GetAttrSet()
     {
-        return _attrSet;
+        return attrSet;
     }
 
     public SkillInfo GetSkillInfo(int skillId)
@@ -117,6 +129,9 @@ public class CombatComponent : MonoBehaviour
 
     private void initSkill()
     {
+        if (!NetworkManager.Instance.IsOfflineMode)
+            return;
+
         // TODO 配置
         {
             // 技能1
@@ -141,7 +156,7 @@ public class CombatComponent : MonoBehaviour
         if (NetworkManager.Instance.GetServerTime() < skillInfo.NextCastTime)
             return false;
 
-        if (_attrSet.Mana < skillInfo.CostMana)
+        if (attrSet.Mana < skillInfo.CostMana)
             return false;
 
         return true;
@@ -159,7 +174,7 @@ public class CombatComponent : MonoBehaviour
         {
             // 目前回滚仅涉及cd和mana，因此服务端在收到请求时，无论是否成功，都下发最新的cd与mana即可。
             skillInfo.NextCastTime = NetworkManager.Instance.GetServerTime() + skillInfo.CoolDown;
-            _attrSet.Mana -= skillInfo.CostMana;
+            attrSet.Mana -= skillInfo.CostMana;
             _anim.CrossFade(skillInfo.AnimatorState, 0.2f);
         }
 
@@ -184,10 +199,10 @@ public class CombatComponent : MonoBehaviour
             return;
         }
 
-        float interval = 1.0f / (_attrSet.AttackSpeed + _attrSet.AdditionalAttackSpeed);
+        float interval = 1.0f / (attrSet.AttackSpeed + attrSet.AdditionalAttackSpeed);
         nextNormalAttackTime = Time.time + interval;
 
-        float playRate = (_attrSet.AttackSpeed + _attrSet.AdditionalAttackSpeed) / _attrSet.AttackSpeed;
+        float playRate = (attrSet.AttackSpeed + attrSet.AdditionalAttackSpeed) / attrSet.AttackSpeed;
         _anim.speed = playRate;
 
         string animClip = ComboClips[comboSeq];

@@ -5,6 +5,7 @@
 #include <cassert>
 #include <exception>
 #include <vector>
+#include <concepts>
 
 class StreamException : public std::exception {
 public:
@@ -14,6 +15,17 @@ public:
     }
 private:
     std::string message_;
+};
+
+class OutputBitStream;
+class InputBitStream;
+
+template <typename T>
+concept NetSerializable =
+std::is_class_v<T> &&
+    requires (T t, OutputBitStream & bs) {
+        { t.net_serialize(bs) } -> std::same_as<void>;
+        { t.net_delta_serialize(bs) } -> std::same_as<bool>;
 };
 
 class OutputBitStream {
@@ -55,13 +67,14 @@ public:
     void write(const void* data, size_t bytes);
     void write(const std::string& str);
 
-    template<typename T>
-    void write(T data, std::enable_if_t<std::is_arithmetic_v<T>>* tag = nullptr) {
-        write(&data, sizeof(T));
+    template<NetSerializable T>
+    void write(const T& data) {
+        data.net_serialize(*this);
     }
 
     template<typename T>
-    void write(T data, std::enable_if_t<std::is_enum_v<T>>* tag = nullptr) {
+        requires std::is_arithmetic_v<T>
+    void write(T data) {
         write(&data, sizeof(T));
     }
 
@@ -72,6 +85,13 @@ public:
         write((unsigned short)n);
         for (auto& item : v) {
             write(item);
+        }
+    }
+
+    template<typename T, std::size_t N>
+    void write(const std::array<T, N>& v) {
+        for (size_t i = 0; i < N; i++) {
+            write(v[i]);
         }
     }
 
@@ -100,27 +120,29 @@ public:
 
     std::string read_string();
 
+    template<NetSerializable T>
+    T read() {
+        T ref;
+        ref.net_serialize(*this);
+        return ref;
+    }
+
+    template<NetSerializable T>
+    void read(T& ref) {
+        ref.net_serialize(*this);
+    }
+
     template<typename T>
-    T read(std::enable_if_t<std::is_arithmetic_v<T>>* tag = nullptr) {
+        requires std::is_arithmetic_v<T>
+    T read() {
         T ref;
         read(&ref, sizeof(T));
         return ref;
     }
 
     template<typename T>
-    void read(T& ref, std::enable_if_t<std::is_arithmetic_v<T>>* tag = nullptr) {
-        read(&ref, sizeof(T));
-    }
-
-    template<typename T>
-    T read(std::enable_if_t<std::is_enum_v<T>>* tag = nullptr) {
-        T ref;
-        read(&ref, sizeof(T));
-        return ref;
-    }
-
-    template<typename T>
-    void read(T& ref, std::enable_if_t<std::is_enum_v<T>>* tag = nullptr) {
+        requires std::is_arithmetic_v<T>
+    void read(T& ref) {
         read(&ref, sizeof(T));
     }
 

@@ -4,15 +4,6 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class NetSerializer
-{
-    public static string ReadString(BinaryReader br) {
-        UInt16 len = br.ReadUInt16();
-        byte[] chars = br.ReadBytes(len);
-        return System.Text.Encoding.UTF8.GetString(chars);
-    }
-}
-
 public class Entity : MonoBehaviour
 {
     public int CharacterId;
@@ -56,7 +47,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public void ConsumeDirty(byte[] data)
+    public void NetDeltaSerialize(byte[] data)
     {
         using (MemoryStream mem = new MemoryStream(data))
         {
@@ -79,7 +70,7 @@ public class Entity : MonoBehaviour
                         CombatComponent comp = GetComponent<CombatComponent>();
                         if (comp != null)
                         {
-                            comp.ConsumeDirty(br);
+                            comp.NetDeltaSerialize(br);
                         }
                     }
                 }

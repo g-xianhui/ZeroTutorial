@@ -52,7 +52,7 @@ public class AttrSet
         Mana = br.ReadInt32();
     }
 
-    public void ConsumeDirty(BinaryReader br)
+    public void NetDeltaSerialize(BinaryReader br)
     {
         UInt16 dirtyFlag = br.ReadUInt16();
         if (dirtyFlag != 0)
