@@ -273,6 +273,5 @@ public:
 
 private:
     std::vector<T> _vec;
-    int _dirty_count = 0;
     OutputBitStream _dirty_log;
 };
