@@ -64,7 +64,6 @@ public class SkillInfo
             if ((dirtyFlag & (UInt16)DirtyFlag.NextCastTime) != 0)
             {
                 NextCastTime = br.ReadInt32();
-                Debug.Log($"on update next cast time: {NextCastTime}");
             }
 
             if ((dirtyFlag & (UInt16)DirtyFlag.LocalPredicted) != 0)

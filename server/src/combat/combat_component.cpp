@@ -115,8 +115,8 @@ void CombatComponent::cast_skill(int skill_id)
         ISkill* skill = get_or_create_skill_instance(skill_id, info.instance_per_entity);
         skill->execute();
     }
-    else {
-        // 强制更新客户端蓝量和cd
+    else if (info.get_local_predicated()) {
+        // 客户端本地先行的技能启动失败，强制回滚客户端蓝量和cd
         _attr_set.add_mana(0);
         info.set_next_cast_time(info.get_next_cast_time());
         _skill_infos.mark_dirty(iter);

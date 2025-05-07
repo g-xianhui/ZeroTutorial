@@ -192,7 +192,6 @@ public:
     void mark_dirty(size_type pos) {
         _dirty_log.write((uint8_t)SyncArrayOperation::update);
         _dirty_log.write((uint16_t)pos);
-        // _dirty_log.write(_vec[pos]);
         _dirty_log.net_delta_serialize(_vec[pos]);
     }
 
