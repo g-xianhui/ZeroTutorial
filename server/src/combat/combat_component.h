@@ -21,6 +21,7 @@ public:
         _cost_mana = cost_mana;
         _cool_down = cool_down;
         _local_predicated = local_predicated;
+        _next_cast_time = 0;
     }
 
     bool instance_per_entity = true;
