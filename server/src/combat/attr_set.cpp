@@ -18,21 +18,10 @@ bool AttrSet::net_delta_serialize(OutputBitStream& bs) {
     if (_dirty_flag) {
         dirty = true;
 
-        if (_dirty_flag & (uint16_t)DirtyFlag::max_health) {
-            bs.write(_max_health);
-        }
-
-        if (_dirty_flag & (uint16_t)DirtyFlag::health) {
-            bs.write(_health);
-        }
-
-        if (_dirty_flag & (uint16_t)DirtyFlag::max_mana) {
-            bs.write(_max_mana);
-        }
-
-        if (_dirty_flag & (uint16_t)DirtyFlag::mana) {
-            bs.write(_mana);
-        }
+        WRITE_IF_DIRTY(max_health);
+        WRITE_IF_DIRTY(health);
+        WRITE_IF_DIRTY(max_mana);
+        WRITE_IF_DIRTY(mana);
 
         _dirty_flag = 0;
     }

@@ -4,7 +4,7 @@
 #include <unordered_map>
 
 #include "icomponent.h"
-#include "bit_utils.h"
+#include "property.h"
 
 class TcpConnection;
 class OutputBitStream;
@@ -25,12 +25,6 @@ class Space;
 
 class Player {
 public:
-    enum class DirtyFlag : uint8_t {
-        name = 1 << 0,
-    };
-
-    STR_GETSET(name)
-
     // conn的生命周期由外部管理
     Player(TcpConnection* conn, const std::string& name);
     ~Player();
@@ -136,11 +130,7 @@ public:
 
 private:
     TcpConnection* _conn;
-
-    uint8_t _dirty_flag = 0;
-
     int _eid;
-    std::string _name;
 
     Space* _space = nullptr;
 
@@ -153,4 +143,13 @@ private:
     Vector3f _angular_velocity;
     int _move_mode;
     float _move_timestamp;
+
+public:
+    enum class DirtyFlag {
+        name = 1,
+    };
+
+private:
+    uint32_t _dirty_flag = 0;
+    STR_PROPERTY(name);
 };

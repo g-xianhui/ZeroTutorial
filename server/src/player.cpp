@@ -63,9 +63,8 @@ bool Player::net_delta_serialize(OutputBitStream& bs)
     if (_dirty_flag) {
         dirty = true;
 
-        if (_dirty_flag & (uint8_t)DirtyFlag::name) {
-            bs.write(_name);
-        }
+        WRITE_IF_DIRTY(name);
+
         _dirty_flag = 0;
     }
 

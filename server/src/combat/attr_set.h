@@ -1,22 +1,11 @@
 #pragma once
 
-#include "bit_utils.h"
+#include "property.h"
 
 class OutputBitStream;
 
 struct AttrSet {
-    enum class DirtyFlag : uint16_t {
-        max_health = 1 << 0,
-        health = 1 << 1,
-        max_mana = 1 << 2,
-        mana = 1 << 3,
-    };
-
     // 基础属性
-    int _max_health;
-    int _health;
-    int _max_mana;
-    int _mana;
     int attack;
     int defence;
 
@@ -59,11 +48,19 @@ struct AttrSet {
     void add_health(int val);
     void add_mana(int val);
 
-    INT_GETSET(max_health)
-    INT_GETSET(health)
-    INT_GETSET(max_mana)
-    INT_GETSET(mana)
+public:
+    enum class DirtyFlag {
+        max_health = 1 << 0,
+        health = 1 << 1,
+        max_mana = 1 << 2,
+        mana = 1 << 3,
+    };
 
 private:
-    uint16_t _dirty_flag = 0;
+    uint32_t _dirty_flag = 0;
+
+    INT_PROPERTY(max_health);
+    INT_PROPERTY(health);
+    INT_PROPERTY(max_mana);
+    INT_PROPERTY(mana);
 };
