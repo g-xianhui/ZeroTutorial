@@ -5,14 +5,14 @@
 #include <algorithm>
 #include <spdlog/spdlog.h>
 
-void AttrSet::net_serialize(OutputBitStream& bs) const {
+void AttrSet::net_serialize(OutputBitStream& bs, bool to_self) const {
     bs.write(_max_health);
     bs.write(_health);
     bs.write(_max_mana);
     bs.write(_mana);
 }
 
-bool AttrSet::net_delta_serialize(OutputBitStream& bs) {
+bool AttrSet::net_delta_serialize(OutputBitStream& bs, bool to_self) {
     bool dirty = false;
     bs.write(_dirty_flag);
     if (_dirty_flag) {
@@ -22,8 +22,6 @@ bool AttrSet::net_delta_serialize(OutputBitStream& bs) {
         WRITE_IF_DIRTY(health);
         WRITE_IF_DIRTY(max_mana);
         WRITE_IF_DIRTY(mana);
-
-        _dirty_flag = 0;
     }
     return dirty;
 }

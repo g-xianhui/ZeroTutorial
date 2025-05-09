@@ -49,18 +49,18 @@ message PlayerDeltaInfo {
   bytes data = 2;
 }
 
-message AoiPlayer {
-  int32 eid = 1;
+message AoiEntity {
+  string entity_type = 1;
   bytes data = 2;
   Movement transform = 3;
 }
 
-message PlayersEnterSight {
-  repeated AoiPlayer players = 1;
+message EntitiesEnterSight {
+  repeated AoiEntity entities = 1;
 }
 
-message PlayersLeaveSight {
-  repeated int32 players = 1;
+message EntitiesLeaveSight {
+  repeated int32 entities = 1;
 }
 
 message AoiUpdate {

@@ -246,7 +246,9 @@ public class NetworkManager : MonoBehaviour
     private RecvBuffer _recvBuffer = null;
 
     private ConcurrentQueue<byte[]> _msgQueue = new ConcurrentQueue<byte[]>();
-    private Dictionary<int, GameObject> _players = new Dictionary<int, GameObject>();
+
+    private Dictionary<string, string> _entityPrefabs = new Dictionary<string, string>();
+    private Dictionary<int, GameObject> _entities = new Dictionary<int, GameObject>();
 
     private int _playerEid = -1;
     private string _playerName = null;
@@ -274,6 +276,8 @@ public class NetworkManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        _entityPrefabs.Add("Player", "Character/OtherCharacter");
     }
 
     // Start is called before the first frame update
@@ -569,7 +573,7 @@ public class NetworkManager : MonoBehaviour
                 NetworkComponent networkComponent = MainPlayer.GetComponent<NetworkComponent>();
                 networkComponent.NetRole = ENetRole.Autonomous;
 
-                _players.Add(_playerEid, MainPlayer);
+                _entities.Add(_playerEid, MainPlayer);
             }
             else
             {
@@ -582,51 +586,53 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public void players_enter_sight(byte[] msgBytes)
+    public void entities_enter_sight(byte[] msgBytes)
     {
-        SpaceService.PlayersEnterSight sight = SpaceService.PlayersEnterSight.Parser.ParseFrom(msgBytes);
-        foreach (SpaceService.AoiPlayer aoiPlayer in sight.Players)
+        SpaceService.EntitiesEnterSight sight = SpaceService.EntitiesEnterSight.Parser.ParseFrom(msgBytes);
+        foreach (SpaceService.AoiEntity aoiEntity in sight.Entities)
         {
-            SpaceService.Vector3f aoiPosition = aoiPlayer.Transform.Position;
-            SpaceService.Vector3f aoiRotation = aoiPlayer.Transform.Rotation;
-            Vector3 position = new Vector3(aoiPosition.X, aoiPosition.Y, aoiPosition.Z);
-            Quaternion rotation = Quaternion.Euler(aoiRotation.X, aoiRotation.Y, aoiRotation.Z);
+            string entityType = aoiEntity.EntityType;
+            string prefabLocation = _entityPrefabs.GetValueOrDefault(entityType);
+            if (prefabLocation != null)
+            {
+                GameObject prefab = Resources.Load<GameObject>(prefabLocation);
+                if (prefab != null)
+                {
+                    byte[] initData = aoiEntity.Data.ToByteArray();
+                    GameObject obj = GameObject.Instantiate(prefab);
 
-            GameObject prefab = Resources.Load<GameObject>("Character/OtherCharacter");
-            if (prefab != null)
-            {
-                GameObject otherPlayer = GameObject.Instantiate(prefab, position, rotation);
-                NetworkComponent networkComponent = otherPlayer.GetComponent<NetworkComponent>();
-                networkComponent.NetRole = ENetRole.Simulate;
-                SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
-                simulateMovement.InitMovement(aoiPlayer.Transform);
-                Entity entity = otherPlayer.GetComponent<Entity>();
-                entity.NetSerialize(aoiPlayer.Data.ToByteArray());
-                _players.Add(aoiPlayer.Eid, otherPlayer);
-            }
-            else
-            {
-                Debug.Log("other character prefab not found");
+                    NetworkComponent networkComponent = obj.GetComponent<NetworkComponent>();
+                    networkComponent.NetRole = ENetRole.Simulate;
+
+                    Entity entity = obj.GetComponent<Entity>();
+                    entity.EntityNetSerialize(initData);
+
+                    _entities.Add(entity.Eid, obj);
+                }
+                else
+                {
+                    Debug.Log("other character prefab not found");
+                }
             }
         }
     }
 
-    public void players_leave_sight(byte[] msgBytes)
+    public void entities_leave_sight(byte[] msgBytes)
     {
-        SpaceService.PlayersLeaveSight sight = SpaceService.PlayersLeaveSight.Parser.ParseFrom(msgBytes);
-        foreach (int eid in sight.Players)
+        SpaceService.EntitiesLeaveSight sight = SpaceService.EntitiesLeaveSight.Parser.ParseFrom(msgBytes);
+        foreach (int eid in sight.Entities)
         {
             GameObject player = null;
-            if (_players.Remove(eid, out player))
+            if (_entities.Remove(eid, out player))
             {
                 GameObject.Destroy(player);
             }
         }
     }
 
-    public GameObject find_player(int eid)
+    public GameObject FindEntity(int eid)
     {
-        return _players.GetValueOrDefault(eid);
+        return _entities.GetValueOrDefault(eid);
     }
 
     public void pong(byte[] msgBytes)
@@ -647,7 +653,7 @@ public class NetworkManager : MonoBehaviour
     public void sync_animation(byte[] msgBytes)
     {
         SpaceService.PlayerAnimation playerAnimation = SpaceService.PlayerAnimation.Parser.ParseFrom(msgBytes);
-        GameObject player = find_player(playerAnimation.Eid);
+        GameObject player = FindEntity(playerAnimation.Eid);
 
         if (player != null)
         {
@@ -666,7 +672,7 @@ public class NetworkManager : MonoBehaviour
     public void take_damage(byte[] msgBytes)
     {
         SpaceService.TakeDamage msg = SpaceService.TakeDamage.Parser.ParseFrom(msgBytes);
-        GameObject player = find_player(msg.Eid);
+        GameObject player = FindEntity(msg.Eid);
         if (player != null)
         {
             CombatComponent combatComponent = player.GetComponent<CombatComponent>();
@@ -696,7 +702,7 @@ public class NetworkManager : MonoBehaviour
         Entity entity = _mainPlayer.GetComponent<Entity>();
         if (entity != null)
         {
-            entity.NetSerialize(playerInfo.Data.ToByteArray());
+            entity.EntityNetSerialize(playerInfo.Data.ToByteArray());
         }
     }
 
@@ -712,7 +718,7 @@ public class NetworkManager : MonoBehaviour
         Entity entity = _mainPlayer.GetComponent<Entity>();
         if (entity != null)
         {
-            entity.NetDeltaSerialize(playerInfo.Data.ToByteArray());
+            entity.EntityNetDeltaSerialize(playerInfo.Data.ToByteArray());
         }
     }
 
@@ -721,7 +727,7 @@ public class NetworkManager : MonoBehaviour
         SpaceService.AoiUpdates aoiUpdates = SpaceService.AoiUpdates.Parser.ParseFrom(msgBytes);
         foreach (SpaceService.AoiUpdate aoiUpdate in aoiUpdates.Datas)
         {
-            GameObject otherPlayer = find_player(aoiUpdate.Eid);
+            GameObject otherPlayer = FindEntity(aoiUpdate.Eid);
             if (otherPlayer != null)
             {
                 if (aoiUpdate.HasData)
@@ -729,24 +735,8 @@ public class NetworkManager : MonoBehaviour
                     Entity entity = otherPlayer.GetComponent<Entity>();
                     if (entity != null)
                     {
-                        entity.NetDeltaSerialize(aoiUpdate.Data.ToByteArray());
+                        entity.EntityNetDeltaSerialize(aoiUpdate.Data.ToByteArray());
                     }
-                }
-
-                ServerMovePack serverMovePack = new ServerMovePack
-                {
-                    Position = new Vector3(aoiUpdate.Transform.Position.X, aoiUpdate.Transform.Position.Y, aoiUpdate.Transform.Position.Z),
-                    Rotation = Quaternion.Euler(aoiUpdate.Transform.Rotation.X, aoiUpdate.Transform.Rotation.Y, aoiUpdate.Transform.Rotation.Z),
-                    Velocity = new Vector3(aoiUpdate.Transform.Velocity.X, aoiUpdate.Transform.Velocity.Y, aoiUpdate.Transform.Velocity.Z),
-                    Acceleration = new Vector3(aoiUpdate.Transform.Acceleration.X, aoiUpdate.Transform.Acceleration.Y, aoiUpdate.Transform.Acceleration.Z),
-                    AngularVelocity = new Vector3(aoiUpdate.Transform.AngularVelocity.X, aoiUpdate.Transform.AngularVelocity.Y, aoiUpdate.Transform.AngularVelocity.Z),
-                    Mode = aoiUpdate.Transform.Mode,
-                    TimeStamp = aoiUpdate.Transform.Timestamp,
-                };
-                SimulateMovement simulateMovement = otherPlayer.GetComponent<SimulateMovement>();
-                if (simulateMovement != null)
-                {
-                    simulateMovement.SyncMovement(serverMovePack);
                 }
             }
         }

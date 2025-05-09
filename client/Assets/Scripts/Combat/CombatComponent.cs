@@ -77,7 +77,7 @@ public class SkillInfo
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterMovement))]
 [RequireComponent(typeof(NetworkComponent))]
-public class CombatComponent : MonoBehaviour
+public class CombatComponent : IComponent
 {
     private Animator _anim;
     private CharacterMovement _characterMovement;
@@ -100,16 +100,16 @@ public class CombatComponent : MonoBehaviour
 
     private void Awake()
     {
+        _anim = GetComponent<Animator>();
+        _characterMovement = GetComponent<CharacterMovement>();
+        _networkComponent = GetComponent<NetworkComponent>();
+
         CreateHeadUI();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _anim = GetComponent<Animator>();
-        _characterMovement = GetComponent<CharacterMovement>();
-        _networkComponent = GetComponent<NetworkComponent>();
-
         initSkill();
     }
 
@@ -130,17 +130,23 @@ public class CombatComponent : MonoBehaviour
         }
     }
 
-    public void NetSerialize(BinaryReader br)
+    public override void NetSerialize(BinaryReader br)
     {
         attrSet.NetSerialize(br);
-        skillInfos.NetSerialize(br);
+
+        if (!_networkComponent.IsSimulate())
+            skillInfos.NetSerialize(br);
+
         UpdateHeadUI();
     }
 
-    public void NetDeltaSerialize(BinaryReader br)
+    public override void NetDeltaSerialize(BinaryReader br)
     {
         attrSet.NetDeltaSerialize(br);
-        skillInfos.NetDeltaSerialize(br);
+
+        if (!_networkComponent.IsSimulate())
+            skillInfos.NetDeltaSerialize(br);
+
         UpdateHeadUI();
     }
 

@@ -14,6 +14,13 @@ public class NetSerializer
         return System.Text.Encoding.UTF8.GetString(chars);
     }
 
+    public static byte[] ReadBytes(BinaryReader br)
+    {
+        UInt16 len = br.ReadUInt16();
+        byte[] chars = br.ReadBytes(len);
+        return chars;
+    }
+
     public static bool IsGenericList(Type t)
     {
         return (t.IsGenericType && (t.GetGenericTypeDefinition() == typeof(List<>)));
@@ -42,9 +49,7 @@ public class NetSerializer
         }
         else if (t == typeof(byte[]))
         {
-            UInt32 len = binaryReader.ReadUInt32();
-            byte[] chars = binaryReader.ReadBytes((int)len);
-            return chars;
+            return ReadBytes(binaryReader);
         }
         else if (t.IsArray)
         {

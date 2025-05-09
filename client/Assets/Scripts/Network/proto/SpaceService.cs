@@ -41,24 +41,24 @@ namespace SpaceService {
             "c3RfdGltZRgCIAEoBRIWCgljb3N0X21hbmEYAyABKAVIAIgBARIWCgljb29s",
             "X2Rvd24YBCABKAVIAYgBAUIMCgpfY29zdF9tYW5hQgwKCl9jb29sX2Rvd24i",
             "JwoKUGxheWVySW5mbxILCgNlaWQYASABKAUSDAoEZGF0YRgCIAEoDCIsCg9Q",
-            "bGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwiUgoJ",
-            "QW9pUGxheWVyEgsKA2VpZBgBIAEoBRIMCgRkYXRhGAIgASgMEioKCXRyYW5z",
-            "Zm9ybRgDIAEoCzIXLnNwYWNlX3NlcnZpY2UuTW92ZW1lbnQiPgoRUGxheWVy",
-            "c0VudGVyU2lnaHQSKQoHcGxheWVycxgBIAMoCzIYLnNwYWNlX3NlcnZpY2Uu",
-            "QW9pUGxheWVyIiQKEVBsYXllcnNMZWF2ZVNpZ2h0Eg8KB3BsYXllcnMYASAD",
-            "KAUicwoJQW9pVXBkYXRlEgsKA2VpZBgBIAEoBRIRCgRkYXRhGAIgASgMSACI",
-            "AQESLwoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVu",
-            "dEgBiAEBQgcKBV9kYXRhQgwKCl90cmFuc2Zvcm0iNQoKQW9pVXBkYXRlcxIn",
-            "CgVkYXRhcxgBIAMoCzIYLnNwYWNlX3NlcnZpY2UuQW9pVXBkYXRlIhEKBFBp",
-            "bmcSCQoBdBgBIAEoAiIjCgRQb25nEgkKAXQYASABKAISEAoIc2VydmVyX3QY",
-            "AiABKAUiHQoMTm9ybWFsQXR0YWNrEg0KBWNvbWJvGAEgASgFIh8KC1NraWxs",
-            "QXR0YWNrEhAKCHNraWxsX2lkGAEgASgFIo4BCglBbmltYXRpb24SDAoEbmFt",
-            "ZRgBIAEoCRIyCgJvcBgCIAEoDjImLnNwYWNlX3NlcnZpY2UuQW5pbWF0aW9u",
-            "Lk9wZXJhdGlvblR5cGUSDQoFc3BlZWQYAyABKAIiMAoNT3BlcmF0aW9uVHlw",
-            "ZRIJCgVTVEFSVBAAEggKBFNUT1AQARIKCgZVUERBVEUQAiJGCg9QbGF5ZXJB",
-            "bmltYXRpb24SCwoDZWlkGAEgASgFEiYKBGRhdGEYAiABKAsyGC5zcGFjZV9z",
-            "ZXJ2aWNlLkFuaW1hdGlvbiIpCgpUYWtlRGFtYWdlEgsKA2VpZBgBIAEoBRIO",
-            "CgZkYW1hZ2UYAiABKAViBnByb3RvMw=="));
+            "bGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwiWgoJ",
+            "QW9pRW50aXR5EhMKC2VudGl0eV90eXBlGAEgASgJEgwKBGRhdGEYAiABKAwS",
+            "KgoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudCJA",
+            "ChJFbnRpdGllc0VudGVyU2lnaHQSKgoIZW50aXRpZXMYASADKAsyGC5zcGFj",
+            "ZV9zZXJ2aWNlLkFvaUVudGl0eSImChJFbnRpdGllc0xlYXZlU2lnaHQSEAoI",
+            "ZW50aXRpZXMYASADKAUicwoJQW9pVXBkYXRlEgsKA2VpZBgBIAEoBRIRCgRk",
+            "YXRhGAIgASgMSACIAQESLwoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2Vy",
+            "dmljZS5Nb3ZlbWVudEgBiAEBQgcKBV9kYXRhQgwKCl90cmFuc2Zvcm0iNQoK",
+            "QW9pVXBkYXRlcxInCgVkYXRhcxgBIAMoCzIYLnNwYWNlX3NlcnZpY2UuQW9p",
+            "VXBkYXRlIhEKBFBpbmcSCQoBdBgBIAEoAiIjCgRQb25nEgkKAXQYASABKAIS",
+            "EAoIc2VydmVyX3QYAiABKAUiHQoMTm9ybWFsQXR0YWNrEg0KBWNvbWJvGAEg",
+            "ASgFIh8KC1NraWxsQXR0YWNrEhAKCHNraWxsX2lkGAEgASgFIo4BCglBbmlt",
+            "YXRpb24SDAoEbmFtZRgBIAEoCRIyCgJvcBgCIAEoDjImLnNwYWNlX3NlcnZp",
+            "Y2UuQW5pbWF0aW9uLk9wZXJhdGlvblR5cGUSDQoFc3BlZWQYAyABKAIiMAoN",
+            "T3BlcmF0aW9uVHlwZRIJCgVTVEFSVBAAEggKBFNUT1AQARIKCgZVUERBVEUQ",
+            "AiJGCg9QbGF5ZXJBbmltYXRpb24SCwoDZWlkGAEgASgFEiYKBGRhdGEYAiAB",
+            "KAsyGC5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbiIpCgpUYWtlRGFtYWdlEgsK",
+            "A2VpZBgBIAEoBRIOCgZkYW1hZ2UYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -70,9 +70,9 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillInfo), global::SpaceService.SkillInfo.Parser, new[]{ "SkillId", "NextCastTime", "CostMana", "CoolDown" }, new[]{ "CostMana", "CoolDown" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerInfo), global::SpaceService.PlayerInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerDeltaInfo), global::SpaceService.PlayerDeltaInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiPlayer), global::SpaceService.AoiPlayer.Parser, new[]{ "Eid", "Data", "Transform" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersEnterSight), global::SpaceService.PlayersEnterSight.Parser, new[]{ "Players" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayersLeaveSight), global::SpaceService.PlayersLeaveSight.Parser, new[]{ "Players" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiEntity), global::SpaceService.AoiEntity.Parser, new[]{ "EntityType", "Data", "Transform" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.EntitiesEnterSight), global::SpaceService.EntitiesEnterSight.Parser, new[]{ "Entities" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.EntitiesLeaveSight), global::SpaceService.EntitiesLeaveSight.Parser, new[]{ "Entities" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdate), global::SpaceService.AoiUpdate.Parser, new[]{ "Eid", "Data", "Transform" }, new[]{ "Data", "Transform" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdates), global::SpaceService.AoiUpdates.Parser, new[]{ "Datas" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Ping), global::SpaceService.Ping.Parser, new[]{ "T" }, null, null, null, null),
@@ -2314,16 +2314,16 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AoiPlayer : pb::IMessage<AoiPlayer>
+  public sealed partial class AoiEntity : pb::IMessage<AoiEntity>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<AoiPlayer> _parser = new pb::MessageParser<AoiPlayer>(() => new AoiPlayer());
+    private static readonly pb::MessageParser<AoiEntity> _parser = new pb::MessageParser<AoiEntity>(() => new AoiEntity());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AoiPlayer> Parser { get { return _parser; } }
+    public static pb::MessageParser<AoiEntity> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2339,7 +2339,7 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AoiPlayer() {
+    public AoiEntity() {
       OnConstruction();
     }
 
@@ -2347,8 +2347,8 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AoiPlayer(AoiPlayer other) : this() {
-      eid_ = other.eid_;
+    public AoiEntity(AoiEntity other) : this() {
+      entityType_ = other.entityType_;
       data_ = other.data_;
       transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -2356,19 +2356,19 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AoiPlayer Clone() {
-      return new AoiPlayer(this);
+    public AoiEntity Clone() {
+      return new AoiEntity(this);
     }
 
-    /// <summary>Field number for the "eid" field.</summary>
-    public const int EidFieldNumber = 1;
-    private int eid_;
+    /// <summary>Field number for the "entity_type" field.</summary>
+    public const int EntityTypeFieldNumber = 1;
+    private string entityType_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Eid {
-      get { return eid_; }
+    public string EntityType {
+      get { return entityType_; }
       set {
-        eid_ = value;
+        entityType_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -2399,19 +2399,19 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as AoiPlayer);
+      return Equals(other as AoiEntity);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AoiPlayer other) {
+    public bool Equals(AoiEntity other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Eid != other.Eid) return false;
+      if (EntityType != other.EntityType) return false;
       if (Data != other.Data) return false;
       if (!object.Equals(Transform, other.Transform)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -2421,7 +2421,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Eid != 0) hash ^= Eid.GetHashCode();
+      if (EntityType.Length != 0) hash ^= EntityType.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
       if (transform_ != null) hash ^= Transform.GetHashCode();
       if (_unknownFields != null) {
@@ -2442,9 +2442,9 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Eid != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Eid);
+      if (EntityType.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(EntityType);
       }
       if (Data.Length != 0) {
         output.WriteRawTag(18);
@@ -2464,9 +2464,9 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Eid != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Eid);
+      if (EntityType.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(EntityType);
       }
       if (Data.Length != 0) {
         output.WriteRawTag(18);
@@ -2486,8 +2486,8 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Eid != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Eid);
+      if (EntityType.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityType);
       }
       if (Data.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
@@ -2503,12 +2503,12 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AoiPlayer other) {
+    public void MergeFrom(AoiEntity other) {
       if (other == null) {
         return;
       }
-      if (other.Eid != 0) {
-        Eid = other.Eid;
+      if (other.EntityType.Length != 0) {
+        EntityType = other.EntityType;
       }
       if (other.Data.Length != 0) {
         Data = other.Data;
@@ -2538,8 +2538,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            Eid = input.ReadInt32();
+          case 10: {
+            EntityType = input.ReadString();
             break;
           }
           case 18: {
@@ -2572,8 +2572,8 @@ namespace SpaceService {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            Eid = input.ReadInt32();
+          case 10: {
+            EntityType = input.ReadString();
             break;
           }
           case 18: {
@@ -2595,16 +2595,16 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class PlayersEnterSight : pb::IMessage<PlayersEnterSight>
+  public sealed partial class EntitiesEnterSight : pb::IMessage<EntitiesEnterSight>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<PlayersEnterSight> _parser = new pb::MessageParser<PlayersEnterSight>(() => new PlayersEnterSight());
+    private static readonly pb::MessageParser<EntitiesEnterSight> _parser = new pb::MessageParser<EntitiesEnterSight>(() => new EntitiesEnterSight());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<PlayersEnterSight> Parser { get { return _parser; } }
+    public static pb::MessageParser<EntitiesEnterSight> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2620,7 +2620,7 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayersEnterSight() {
+    public EntitiesEnterSight() {
       OnConstruction();
     }
 
@@ -2628,44 +2628,44 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayersEnterSight(PlayersEnterSight other) : this() {
-      players_ = other.players_.Clone();
+    public EntitiesEnterSight(EntitiesEnterSight other) : this() {
+      entities_ = other.entities_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayersEnterSight Clone() {
-      return new PlayersEnterSight(this);
+    public EntitiesEnterSight Clone() {
+      return new EntitiesEnterSight(this);
     }
 
-    /// <summary>Field number for the "players" field.</summary>
-    public const int PlayersFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::SpaceService.AoiPlayer> _repeated_players_codec
-        = pb::FieldCodec.ForMessage(10, global::SpaceService.AoiPlayer.Parser);
-    private readonly pbc::RepeatedField<global::SpaceService.AoiPlayer> players_ = new pbc::RepeatedField<global::SpaceService.AoiPlayer>();
+    /// <summary>Field number for the "entities" field.</summary>
+    public const int EntitiesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::SpaceService.AoiEntity> _repeated_entities_codec
+        = pb::FieldCodec.ForMessage(10, global::SpaceService.AoiEntity.Parser);
+    private readonly pbc::RepeatedField<global::SpaceService.AoiEntity> entities_ = new pbc::RepeatedField<global::SpaceService.AoiEntity>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::SpaceService.AoiPlayer> Players {
-      get { return players_; }
+    public pbc::RepeatedField<global::SpaceService.AoiEntity> Entities {
+      get { return entities_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as PlayersEnterSight);
+      return Equals(other as EntitiesEnterSight);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(PlayersEnterSight other) {
+    public bool Equals(EntitiesEnterSight other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!players_.Equals(other.players_)) return false;
+      if(!entities_.Equals(other.entities_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2673,7 +2673,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= players_.GetHashCode();
+      hash ^= entities_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2692,7 +2692,7 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      players_.WriteTo(output, _repeated_players_codec);
+      entities_.WriteTo(output, _repeated_entities_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2703,7 +2703,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      players_.WriteTo(ref output, _repeated_players_codec);
+      entities_.WriteTo(ref output, _repeated_entities_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2714,7 +2714,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      size += players_.CalculateSize(_repeated_players_codec);
+      size += entities_.CalculateSize(_repeated_entities_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2723,11 +2723,11 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(PlayersEnterSight other) {
+    public void MergeFrom(EntitiesEnterSight other) {
       if (other == null) {
         return;
       }
-      players_.Add(other.players_);
+      entities_.Add(other.entities_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2748,7 +2748,7 @@ namespace SpaceService {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            players_.AddEntriesFrom(input, _repeated_players_codec);
+            entities_.AddEntriesFrom(input, _repeated_entities_codec);
             break;
           }
         }
@@ -2771,7 +2771,7 @@ namespace SpaceService {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            players_.AddEntriesFrom(ref input, _repeated_players_codec);
+            entities_.AddEntriesFrom(ref input, _repeated_entities_codec);
             break;
           }
         }
@@ -2782,16 +2782,16 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class PlayersLeaveSight : pb::IMessage<PlayersLeaveSight>
+  public sealed partial class EntitiesLeaveSight : pb::IMessage<EntitiesLeaveSight>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<PlayersLeaveSight> _parser = new pb::MessageParser<PlayersLeaveSight>(() => new PlayersLeaveSight());
+    private static readonly pb::MessageParser<EntitiesLeaveSight> _parser = new pb::MessageParser<EntitiesLeaveSight>(() => new EntitiesLeaveSight());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<PlayersLeaveSight> Parser { get { return _parser; } }
+    public static pb::MessageParser<EntitiesLeaveSight> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2807,7 +2807,7 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayersLeaveSight() {
+    public EntitiesLeaveSight() {
       OnConstruction();
     }
 
@@ -2815,44 +2815,44 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayersLeaveSight(PlayersLeaveSight other) : this() {
-      players_ = other.players_.Clone();
+    public EntitiesLeaveSight(EntitiesLeaveSight other) : this() {
+      entities_ = other.entities_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PlayersLeaveSight Clone() {
-      return new PlayersLeaveSight(this);
+    public EntitiesLeaveSight Clone() {
+      return new EntitiesLeaveSight(this);
     }
 
-    /// <summary>Field number for the "players" field.</summary>
-    public const int PlayersFieldNumber = 1;
-    private static readonly pb::FieldCodec<int> _repeated_players_codec
+    /// <summary>Field number for the "entities" field.</summary>
+    public const int EntitiesFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_entities_codec
         = pb::FieldCodec.ForInt32(10);
-    private readonly pbc::RepeatedField<int> players_ = new pbc::RepeatedField<int>();
+    private readonly pbc::RepeatedField<int> entities_ = new pbc::RepeatedField<int>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<int> Players {
-      get { return players_; }
+    public pbc::RepeatedField<int> Entities {
+      get { return entities_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as PlayersLeaveSight);
+      return Equals(other as EntitiesLeaveSight);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(PlayersLeaveSight other) {
+    public bool Equals(EntitiesLeaveSight other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!players_.Equals(other.players_)) return false;
+      if(!entities_.Equals(other.entities_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2860,7 +2860,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= players_.GetHashCode();
+      hash ^= entities_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2879,7 +2879,7 @@ namespace SpaceService {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      players_.WriteTo(output, _repeated_players_codec);
+      entities_.WriteTo(output, _repeated_entities_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2890,7 +2890,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      players_.WriteTo(ref output, _repeated_players_codec);
+      entities_.WriteTo(ref output, _repeated_entities_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2901,7 +2901,7 @@ namespace SpaceService {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      size += players_.CalculateSize(_repeated_players_codec);
+      size += entities_.CalculateSize(_repeated_entities_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2910,11 +2910,11 @@ namespace SpaceService {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(PlayersLeaveSight other) {
+    public void MergeFrom(EntitiesLeaveSight other) {
       if (other == null) {
         return;
       }
-      players_.Add(other.players_);
+      entities_.Add(other.entities_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2936,7 +2936,7 @@ namespace SpaceService {
             break;
           case 10:
           case 8: {
-            players_.AddEntriesFrom(input, _repeated_players_codec);
+            entities_.AddEntriesFrom(input, _repeated_entities_codec);
             break;
           }
         }
@@ -2960,7 +2960,7 @@ namespace SpaceService {
             break;
           case 10:
           case 8: {
-            players_.AddEntriesFrom(ref input, _repeated_players_codec);
+            entities_.AddEntriesFrom(ref input, _repeated_entities_codec);
             break;
           }
         }

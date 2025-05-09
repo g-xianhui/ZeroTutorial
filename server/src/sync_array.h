@@ -161,7 +161,7 @@ public:
 
     template< class... Args >
     reference emplace_back(Args&&... args) {
-        auto& ret = _vec.emplace_back(std::forward<Args...>(args...));
+        auto& ret = _vec.emplace_back(std::forward<Args>(args)...);
 
         _dirty_log.write((uint8_t)SyncArrayOperation::push_back);
         _dirty_log.write(ret);
@@ -199,20 +199,23 @@ public:
         mark_dirty(pos - begin());
     }
 
-    void net_serialize(OutputBitStream& bs) const {
+    void net_serialize(OutputBitStream& bs, bool to_self) const {
         bs.write(_vec);
     }
 
-    bool net_delta_serialize(OutputBitStream& bs) {
+    bool net_delta_serialize(OutputBitStream& bs, bool to_self) {
         size_t dirty_size = _dirty_log.tellp();
         bs.write((uint32_t)dirty_size);
         if (dirty_size) {
             bs.write(_dirty_log.get_buffer(), dirty_size);
-            _dirty_log.seekp(0);
 
             return true;
         }
         return false;
+    }
+
+    void reset_dirty() {
+        _dirty_log.seekp(0);
     }
 
     void net_delta_serialize(InputBitStream& bs) {

@@ -1,5 +1,5 @@
 #include "space.h"
-#include "player.h"
+#include "entity.h"
 #include "wheel_timer.h"
 #include "math_utils.h"
 #include "bit_stream.h"
@@ -9,48 +9,14 @@
 #include "proto/space_service.pb.h"
 #include "aoi/aoi_factory.h"
 
+#include "movement_component.h"
+#include "space_component.h"
+#include "connection_component.h"
+
 #include <random>
 #include <sstream>
 
 const float default_view_raidus = 10.f;
-
-void get_movement_data(Player* p, space_service::Movement* new_move)
-{
-    Vector3f cur_position = p->get_position();
-    Rotation cur_rotation = p->get_rotation();
-    Vector3f cur_velocity = p->get_velocity();
-    Vector3f cur_acceleration = p->get_acceleration();
-    Vector3f cur_angular_velocity = p->get_angular_velocity();
-
-    space_service::Vector3f* position = new_move->mutable_position();
-    position->set_x(cur_position.x);
-    position->set_y(cur_position.y);
-    position->set_z(cur_position.z);
-
-    space_service::Vector3f* rotation = new_move->mutable_rotation();
-    rotation->set_x(cur_rotation.pitch);
-    rotation->set_y(cur_rotation.yaw);
-    rotation->set_z(cur_rotation.roll);
-
-    space_service::Vector3f* velocity = new_move->mutable_velocity();
-    velocity->set_x(cur_velocity.x);
-    velocity->set_y(cur_velocity.y);
-    velocity->set_z(cur_velocity.z);
-
-    space_service::Vector3f* acceleration = new_move->mutable_acceleration();
-    acceleration->set_x(cur_acceleration.x);
-    acceleration->set_y(cur_acceleration.y);
-    acceleration->set_z(cur_acceleration.z);
-
-    space_service::Vector3f* angular_velocity = new_move->mutable_angular_velocity();
-    angular_velocity->set_x(cur_angular_velocity.x);
-    angular_velocity->set_y(cur_angular_velocity.y);
-    angular_velocity->set_z(cur_angular_velocity.z);
-
-    new_move->set_mode(p->get_move_mode());
-    new_move->set_timestamp(p->get_move_timestamp());
-}
-
 
 Space::Space(size_t w, size_t h) : _width(w), _height(h)
 {
@@ -64,8 +30,10 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
 
 Space::~Space()
 {
-    for (auto& [eid, player] : _eid_2_player) {
-        player->send_msg("kick_out", strlen("kick_out"));
+    for (auto& [eid, entity] : _eid_2_entity) {
+        ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
+        if (connection_comp)
+            connection_comp->send_msg("kick_out", strlen("kick_out"));
     }
 
     G_Timer.del_timer(_update_timer);
@@ -73,25 +41,29 @@ Space::~Space()
     _aoi->stop();
 }
 
-void Space::join(Player* player)
+// TODO 改成Entity
+void Space::join(Entity* entity)
 {
-    if (has_player(player))
+    if (has_entity(entity))
         return;
 
-    player->enter_space(this);
+    SpaceComponent* space_comp = entity->get_component<SpaceComponent>();
+    space_comp->enter_space(this);
 
     // 随机一个出生点
     float x = random_01() * _width;
     float y = 3.f;
     float z = random_01() * _height;
 
-    player->set_position(x, y, z);
+    MovementComponent* movement_comp = entity->get_component<MovementComponent>();
+    movement_comp->set_position(x, y, z);
 
-    int eid = player->get_eid();
-    _eid_2_player.insert(std::make_pair(eid, player));
+    int eid = entity->get_eid();
+    _eid_2_entity.insert(std::make_pair(eid, entity));
 
     _aoi->add_entity(eid, x, z, default_view_raidus);
 
+    ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
     // 告知玩家加入场景成功，并附带初始坐标
     space_service::JoinReply join_reply;
     join_reply.set_result(0);
@@ -99,36 +71,38 @@ void Space::join(Player* player)
     position->set_x(x);
     position->set_y(y);
     position->set_z(z);
-    send_proto_msg(player->get_conn(), "join_reply", join_reply);
+    send_proto_msg(connection_comp->get_conn(), "join_reply", join_reply);
 
     // 同步属性给自己
     OutputBitStream bs;
-    player->net_serialize(bs);
-    space_service::PlayerInfo player_info;
-    player_info.set_eid(player->get_eid());
-    player_info.set_data(std::string{ bs.get_buffer(), bs.tellp() });
-    send_proto_msg(player->get_conn(), "sync_full_info", player_info);
+    entity->entity_net_serialize(bs, true);
+    space_service::PlayerInfo entity_info;
+    entity_info.set_eid(entity->get_eid());
+    entity_info.set_data(std::string{ bs.get_buffer(), bs.tellp() });
+    send_proto_msg(connection_comp->get_conn(), "sync_full_info", entity_info);
 }
 
-void Space::leave(Player* player)
+void Space::leave(Entity* entity)
 {
-    auto iter = _eid_2_player.find(player->get_eid());
-    if (iter != _eid_2_player.end()) {
-        _aoi->del_entity(player->get_eid());
-        player->leave_space();
-        _eid_2_player.erase(iter);
+    auto iter = _eid_2_entity.find(entity->get_eid());
+    if (iter != _eid_2_entity.end()) {
+        _aoi->del_entity(entity->get_eid());
+
+        SpaceComponent* space_comp = entity->get_component<SpaceComponent>();
+        space_comp->leave_space();
+        _eid_2_entity.erase(iter);
     }
 }
 
-bool Space::has_player(Player* player)
+bool Space::has_entity(Entity* entity)
 {
-    return _eid_2_player.contains(player->get_eid());
+    return _eid_2_entity.contains(entity->get_eid());
 }
 
-Player* Space::find_player(int eid)
+Entity* Space::find_entity(int eid)
 {
-    auto iter = _eid_2_player.find(eid);
-    return (iter == _eid_2_player.end()) ? nullptr : iter->second;
+    auto iter = _eid_2_entity.find(eid);
+    return (iter == _eid_2_entity.end()) ? nullptr : iter->second;
 }
 
 void Space::update_position(int eid, float x, float y, float z)
@@ -140,90 +114,116 @@ void Space::update()
 {
     std::unordered_map<int, std::string> entity_properties;
     std::unordered_map<int, std::string> entity_dirty_properties;
-    for (auto& iter : _eid_2_player) {
+    for (auto& iter : _eid_2_entity) {
         int eid = iter.first;
-        Player* player = iter.second;
+        Entity* entity = iter.second;
 
         OutputBitStream bs;
-        if (player->net_delta_serialize(bs)) {
-            auto result = entity_dirty_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
-
+        if (entity->entity_net_delta_serialize(bs, true)) {
             // 同步属性变化给自己
-            space_service::PlayerDeltaInfo delta_info;
-            delta_info.set_eid(eid);
-            delta_info.set_data(result.first->second);
-            send_proto_msg(player->get_conn(), "sync_delta_info", delta_info);
+            if (entity->has_component<ConnectionComponent>()) {
+                space_service::PlayerDeltaInfo delta_info;
+                delta_info.set_eid(eid);
+                delta_info.set_data(std::string{ bs.get_buffer(), bs.tellp() });
+
+                ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
+                send_proto_msg(connection_comp->get_conn(), "sync_delta_info", delta_info);
+            }
         }
+
+        // 准备同步给其他人的数据
+        bs.seekp(0);
+        if (entity->entity_net_delta_serialize(bs, false)) {
+            entity_dirty_properties.insert(std::make_pair(eid, std::string{ bs.get_buffer(), bs.tellp() }));
+        }
+
+        // 重置状态
+        entity->reset_dirty();
     }
 
     std::vector<AOIState> aoi_state = _aoi->fetch_state();
     for (auto& state : aoi_state) {
         int eid = state.eid;
 
-        Player* player = find_player(eid);
-        if (!player)
+        Entity* entity = find_entity(eid);
+        if (!entity)
             continue;
+        
+        ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
 
-        // 同步新进入或退出自己视野的玩家给player
+        // 同步新进入或退出自己视野的玩家给entity
         for (const TriggerNotify& notify : state.notifies) {
             if (notify.is_add) {
-                space_service::PlayersEnterSight player_sight;
-                for (int other_eid : notify.entities) {
-                    Player* other = find_player(other_eid);
-                    if (!other)
-                        continue;
+                // TODO monster needs this
+                // entity->on_others_enter_sight(notify.entities);
 
-                    space_service::AoiPlayer* aoi_player = player_sight.add_players();
-                    aoi_player->set_eid(other->get_eid());
-                    if (entity_properties.contains(other_eid)) {
-                        aoi_player->set_data(entity_properties[other_eid]);
-                    } else {
-                        OutputBitStream bs;
-                        other->net_serialize(bs);
-                        auto iter = entity_properties.insert(std::make_pair(eid, std::string{bs.get_buffer(), bs.tellp()}));
-                        aoi_player->set_data(iter.first->second);
+                if (connection_comp)
+                {
+                    space_service::EntitiesEnterSight entity_sight;
+                    for (int other_eid : notify.entities) {
+                        assert(other_eid != eid);
+                        Entity* other = find_entity(other_eid);
+                        if (!other)
+                            continue;
+
+                        space_service::AoiEntity* aoi_entity = entity_sight.add_entities();
+                        aoi_entity->set_entity_type(other->get_type());
+
+                        if (entity_properties.contains(other_eid)) {
+                            aoi_entity->set_data(entity_properties[other_eid]);
+                        }
+                        else {
+                            OutputBitStream bs;
+                            other->entity_net_serialize(bs, false);
+                            auto iter = entity_properties.insert(std::make_pair(other_eid, std::string{ bs.get_buffer(), bs.tellp() }));
+                            aoi_entity->set_data(iter.first->second);
+                        }
                     }
-
-                    space_service::Movement* new_transform = aoi_player->mutable_transform();
-                    get_movement_data(other, new_transform);
+                    send_proto_msg(connection_comp->get_conn(), "entities_enter_sight", entity_sight);
                 }
-                send_proto_msg(player->get_conn(), "players_enter_sight", player_sight);
+
             }
             else {
-                space_service::PlayersLeaveSight player_sight;
-                for (int other_eid : notify.entities) {
-                    player_sight.add_players(other_eid);
-                }
-                send_proto_msg(player->get_conn(), "players_leave_sight", player_sight);
-            }
-        }
+                // TODO monster needs this
+                // entity->on_others_leave_sight(notify.entities);
 
-        // 同步视野内玩家的变化给player
-        space_service::AoiUpdates aoi_updates;
-        for (int interest_eid : state.interests) {
-            Player* p = find_player(interest_eid);
-            if (p) {
-                space_service::AoiUpdate* aoi_update = aoi_updates.add_datas();
-                aoi_update->set_eid(interest_eid);
-
-                space_service::Movement* new_move = aoi_update->mutable_transform();
-                get_movement_data(p, new_move);
-
-                auto dirty_property_iter = entity_dirty_properties.find(interest_eid);
-                if (dirty_property_iter != entity_dirty_properties.end()) {
-                    aoi_update->set_data(dirty_property_iter->second);
+                if (connection_comp) {
+                    space_service::EntitiesLeaveSight entity_sight;
+                    for (int other_eid : notify.entities) {
+                        entity_sight.add_entities(other_eid);
+                    }
+                    send_proto_msg(connection_comp->get_conn(), "entities_leave_sight", entity_sight);
                 }
             }
         }
-        send_proto_msg(player->get_conn(), "sync_aoi_update", aoi_updates);
+
+        // 同步视野内玩家的变化给entity
+        if (connection_comp) {
+            space_service::AoiUpdates aoi_updates;
+            for (int interest_eid : state.interests) {
+                Entity* p = find_entity(interest_eid);
+                if (p) {
+                    auto dirty_property_iter = entity_dirty_properties.find(interest_eid);
+                    if (dirty_property_iter != entity_dirty_properties.end()) {
+                        space_service::AoiUpdate* aoi_update = aoi_updates.add_datas();
+                        aoi_update->set_eid(interest_eid);
+                        aoi_update->set_data(dirty_property_iter->second);
+                    }
+                }
+            }
+            send_proto_msg(connection_comp->get_conn(), "sync_aoi_update", aoi_updates);
+        }
     }
 }
 
 void Space::call_all(int eid, const std::string& msg_name, const std::string& msg_bytes)
 {
-    Player* player = find_player(eid);
-    if (player) {
-        send_raw_msg(player->get_conn(), msg_name, msg_bytes);
+    Entity* entity = find_entity(eid);
+    if (entity) {
+        ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
+        if (connection_comp) {
+            send_raw_msg(connection_comp->get_conn(), msg_name, msg_bytes);
+        }
     }
 
     call_others(eid, msg_name, msg_bytes);
@@ -233,34 +233,38 @@ void Space::call_others(int eid, const std::string& msg_name, const std::string&
 {
     std::vector<int> observers = _aoi->get_observers(eid);
     for (int id : observers) {
-        Player* player = find_player(id);
-        if (player) {
-            send_raw_msg(player->get_conn(), msg_name, msg_bytes);
+        Entity* entity = find_entity(id);
+        if (entity) {
+            ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
+            if (connection_comp) {
+                send_raw_msg(connection_comp->get_conn(), msg_name, msg_bytes);
+            }
         }
     }
 }
 
-std::vector<Player*> Space::find_players_in_circle(float cx, float cy, float r)
+std::vector<Entity*> Space::find_entities_in_circle(float cx, float cy, float r)
 {
-    std::vector<Player*> players;
+    std::vector<Entity*> entitys;
     std::vector<int> eids = _aoi->get_entities_in_circle(cx, cy, r);
     for (int eid : eids) {
-        auto iter = _eid_2_player.find(eid);
-        if (iter != _eid_2_player.end()) {
-            players.push_back(iter->second);
+        auto iter = _eid_2_entity.find(eid);
+        if (iter != _eid_2_entity.end()) {
+            entitys.push_back(iter->second);
         }
     }
-    return players;
+    return entitys;
 }
 
-std::vector<Player*> Space::find_players_in_sector(float cx, float cy, float ux, float uy, float r, float theta)
+std::vector<Entity*> Space::find_entities_in_sector(float cx, float cy, float ux, float uy, float r, float theta)
 {
-    std::vector<Player*> players;
-    std::vector<Player*> circle_players = find_players_in_circle(cx, cy, r);
-    for (Player* player : circle_players) {
-        Vector3f pos = player->get_position();
+    std::vector<Entity*> entitys;
+    std::vector<Entity*> circle_entitys = find_entities_in_circle(cx, cy, r);
+    for (Entity* entity : circle_entitys) {
+        MovementComponent* movement_comp = entity->get_component<MovementComponent>();
+        Vector3f pos = movement_comp->get_position();
         if (is_point_in_sector(cx, cy, ux, uy, r, theta, pos.x, pos.z))
-            players.push_back(player);
+            entitys.push_back(entity);
     }
-    return players;
+    return entitys;
 }

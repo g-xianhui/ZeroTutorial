@@ -54,15 +54,21 @@ namespace space_service {
 class Animation;
 struct AnimationDefaultTypeInternal;
 extern AnimationDefaultTypeInternal _Animation_default_instance_;
-class AoiPlayer;
-struct AoiPlayerDefaultTypeInternal;
-extern AoiPlayerDefaultTypeInternal _AoiPlayer_default_instance_;
+class AoiEntity;
+struct AoiEntityDefaultTypeInternal;
+extern AoiEntityDefaultTypeInternal _AoiEntity_default_instance_;
 class AoiUpdate;
 struct AoiUpdateDefaultTypeInternal;
 extern AoiUpdateDefaultTypeInternal _AoiUpdate_default_instance_;
 class AoiUpdates;
 struct AoiUpdatesDefaultTypeInternal;
 extern AoiUpdatesDefaultTypeInternal _AoiUpdates_default_instance_;
+class EntitiesEnterSight;
+struct EntitiesEnterSightDefaultTypeInternal;
+extern EntitiesEnterSightDefaultTypeInternal _EntitiesEnterSight_default_instance_;
+class EntitiesLeaveSight;
+struct EntitiesLeaveSightDefaultTypeInternal;
+extern EntitiesLeaveSightDefaultTypeInternal _EntitiesLeaveSight_default_instance_;
 class JoinReply;
 struct JoinReplyDefaultTypeInternal;
 extern JoinReplyDefaultTypeInternal _JoinReply_default_instance_;
@@ -90,12 +96,6 @@ extern PlayerDeltaInfoDefaultTypeInternal _PlayerDeltaInfo_default_instance_;
 class PlayerInfo;
 struct PlayerInfoDefaultTypeInternal;
 extern PlayerInfoDefaultTypeInternal _PlayerInfo_default_instance_;
-class PlayersEnterSight;
-struct PlayersEnterSightDefaultTypeInternal;
-extern PlayersEnterSightDefaultTypeInternal _PlayersEnterSight_default_instance_;
-class PlayersLeaveSight;
-struct PlayersLeaveSightDefaultTypeInternal;
-extern PlayersLeaveSightDefaultTypeInternal _PlayersLeaveSight_default_instance_;
 class Pong;
 struct PongDefaultTypeInternal;
 extern PongDefaultTypeInternal _Pong_default_instance_;
@@ -1092,186 +1092,6 @@ class Pong final : public ::google::protobuf::Message
                           const Pong& from_msg);
     float t_;
     ::int32_t server_t_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_space_5fservice_2eproto;
-};
-// -------------------------------------------------------------------
-
-class PlayersLeaveSight final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:space_service.PlayersLeaveSight) */ {
- public:
-  inline PlayersLeaveSight() : PlayersLeaveSight(nullptr) {}
-  ~PlayersLeaveSight() override;
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR PlayersLeaveSight(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline PlayersLeaveSight(const PlayersLeaveSight& from) : PlayersLeaveSight(nullptr, from) {}
-  inline PlayersLeaveSight(PlayersLeaveSight&& from) noexcept
-      : PlayersLeaveSight(nullptr, std::move(from)) {}
-  inline PlayersLeaveSight& operator=(const PlayersLeaveSight& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline PlayersLeaveSight& operator=(PlayersLeaveSight&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const PlayersLeaveSight& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const PlayersLeaveSight* internal_default_instance() {
-    return reinterpret_cast<const PlayersLeaveSight*>(
-        &_PlayersLeaveSight_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 10;
-  friend void swap(PlayersLeaveSight& a, PlayersLeaveSight& b) { a.Swap(&b); }
-  inline void Swap(PlayersLeaveSight* other) {
-    if (other == this) return;
-#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
-#else   // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(PlayersLeaveSight* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  PlayersLeaveSight* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<PlayersLeaveSight>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const PlayersLeaveSight& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const PlayersLeaveSight& from) { PlayersLeaveSight::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(PlayersLeaveSight* other);
- private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "space_service.PlayersLeaveSight"; }
-
- protected:
-  explicit PlayersLeaveSight(::google::protobuf::Arena* arena);
-  PlayersLeaveSight(::google::protobuf::Arena* arena, const PlayersLeaveSight& from);
-  PlayersLeaveSight(::google::protobuf::Arena* arena, PlayersLeaveSight&& from) noexcept
-      : PlayersLeaveSight(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::Message::ClassData* GetClassData() const final;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kPlayersFieldNumber = 1,
-  };
-  // repeated int32 players = 1;
-  int players_size() const;
-  private:
-  int _internal_players_size() const;
-
-  public:
-  void clear_players() ;
-  ::int32_t players(int index) const;
-  void set_players(int index, ::int32_t value);
-  void add_players(::int32_t value);
-  const ::google::protobuf::RepeatedField<::int32_t>& players() const;
-  ::google::protobuf::RepeatedField<::int32_t>* mutable_players();
-
-  private:
-  const ::google::protobuf::RepeatedField<::int32_t>& _internal_players() const;
-  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_players();
-
-  public:
-  // @@protoc_insertion_point(class_scope:space_service.PlayersLeaveSight)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
-      _table_;
-
-  static constexpr const void* _raw_default_instance_ =
-      &_PlayersLeaveSight_default_instance_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const PlayersLeaveSight& from_msg);
-    ::google::protobuf::RepeatedField<::int32_t> players_;
-    mutable ::google::protobuf::internal::CachedSize _players_cached_byte_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2360,6 +2180,186 @@ class LoginReply final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class EntitiesLeaveSight final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.EntitiesLeaveSight) */ {
+ public:
+  inline EntitiesLeaveSight() : EntitiesLeaveSight(nullptr) {}
+  ~EntitiesLeaveSight() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EntitiesLeaveSight(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline EntitiesLeaveSight(const EntitiesLeaveSight& from) : EntitiesLeaveSight(nullptr, from) {}
+  inline EntitiesLeaveSight(EntitiesLeaveSight&& from) noexcept
+      : EntitiesLeaveSight(nullptr, std::move(from)) {}
+  inline EntitiesLeaveSight& operator=(const EntitiesLeaveSight& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EntitiesLeaveSight& operator=(EntitiesLeaveSight&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EntitiesLeaveSight& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EntitiesLeaveSight* internal_default_instance() {
+    return reinterpret_cast<const EntitiesLeaveSight*>(
+        &_EntitiesLeaveSight_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 10;
+  friend void swap(EntitiesLeaveSight& a, EntitiesLeaveSight& b) { a.Swap(&b); }
+  inline void Swap(EntitiesLeaveSight* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EntitiesLeaveSight* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EntitiesLeaveSight* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<EntitiesLeaveSight>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EntitiesLeaveSight& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EntitiesLeaveSight& from) { EntitiesLeaveSight::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(EntitiesLeaveSight* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.EntitiesLeaveSight"; }
+
+ protected:
+  explicit EntitiesLeaveSight(::google::protobuf::Arena* arena);
+  EntitiesLeaveSight(::google::protobuf::Arena* arena, const EntitiesLeaveSight& from);
+  EntitiesLeaveSight(::google::protobuf::Arena* arena, EntitiesLeaveSight&& from) noexcept
+      : EntitiesLeaveSight(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEntitiesFieldNumber = 1,
+  };
+  // repeated int32 entities = 1;
+  int entities_size() const;
+  private:
+  int _internal_entities_size() const;
+
+  public:
+  void clear_entities() ;
+  ::int32_t entities(int index) const;
+  void set_entities(int index, ::int32_t value);
+  void add_entities(::int32_t value);
+  const ::google::protobuf::RepeatedField<::int32_t>& entities() const;
+  ::google::protobuf::RepeatedField<::int32_t>* mutable_entities();
+
+  private:
+  const ::google::protobuf::RepeatedField<::int32_t>& _internal_entities() const;
+  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_entities();
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.EntitiesLeaveSight)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_EntitiesLeaveSight_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const EntitiesLeaveSight& from_msg);
+    ::google::protobuf::RepeatedField<::int32_t> entities_;
+    mutable ::google::protobuf::internal::CachedSize _entities_cached_byte_size_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Animation final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:space_service.Animation) */ {
  public:
@@ -3436,23 +3436,23 @@ class AoiUpdate final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class AoiPlayer final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:space_service.AoiPlayer) */ {
+class AoiEntity final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.AoiEntity) */ {
  public:
-  inline AoiPlayer() : AoiPlayer(nullptr) {}
-  ~AoiPlayer() override;
+  inline AoiEntity() : AoiEntity(nullptr) {}
+  ~AoiEntity() override;
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AoiPlayer(
+  explicit PROTOBUF_CONSTEXPR AoiEntity(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline AoiPlayer(const AoiPlayer& from) : AoiPlayer(nullptr, from) {}
-  inline AoiPlayer(AoiPlayer&& from) noexcept
-      : AoiPlayer(nullptr, std::move(from)) {}
-  inline AoiPlayer& operator=(const AoiPlayer& from) {
+  inline AoiEntity(const AoiEntity& from) : AoiEntity(nullptr, from) {}
+  inline AoiEntity(AoiEntity&& from) noexcept
+      : AoiEntity(nullptr, std::move(from)) {}
+  inline AoiEntity& operator=(const AoiEntity& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AoiPlayer& operator=(AoiPlayer&& from) noexcept {
+  inline AoiEntity& operator=(AoiEntity&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
 #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -3484,16 +3484,16 @@ class AoiPlayer final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AoiPlayer& default_instance() {
+  static const AoiEntity& default_instance() {
     return *internal_default_instance();
   }
-  static inline const AoiPlayer* internal_default_instance() {
-    return reinterpret_cast<const AoiPlayer*>(
-        &_AoiPlayer_default_instance_);
+  static inline const AoiEntity* internal_default_instance() {
+    return reinterpret_cast<const AoiEntity*>(
+        &_AoiEntity_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 8;
-  friend void swap(AoiPlayer& a, AoiPlayer& b) { a.Swap(&b); }
-  inline void Swap(AoiPlayer* other) {
+  friend void swap(AoiEntity& a, AoiEntity& b) { a.Swap(&b); }
+  inline void Swap(AoiEntity* other) {
     if (other == this) return;
 #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr && GetArena() == other->GetArena()) {
@@ -3505,7 +3505,7 @@ class AoiPlayer final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AoiPlayer* other) {
+  void UnsafeArenaSwap(AoiEntity* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -3513,13 +3513,13 @@ class AoiPlayer final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AoiPlayer* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<AoiPlayer>(arena);
+  AoiEntity* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<AoiEntity>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AoiPlayer& from);
+  void CopyFrom(const AoiEntity& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AoiPlayer& from) { AoiPlayer::MergeImpl(*this, from); }
+  void MergeFrom(const AoiEntity& from) { AoiEntity::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -3540,16 +3540,16 @@ class AoiPlayer final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(AoiPlayer* other);
+  void InternalSwap(AoiEntity* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "space_service.AoiPlayer"; }
+  static ::absl::string_view FullMessageName() { return "space_service.AoiEntity"; }
 
  protected:
-  explicit AoiPlayer(::google::protobuf::Arena* arena);
-  AoiPlayer(::google::protobuf::Arena* arena, const AoiPlayer& from);
-  AoiPlayer(::google::protobuf::Arena* arena, AoiPlayer&& from) noexcept
-      : AoiPlayer(arena) {
+  explicit AoiEntity(::google::protobuf::Arena* arena);
+  AoiEntity(::google::protobuf::Arena* arena, const AoiEntity& from);
+  AoiEntity(::google::protobuf::Arena* arena, AoiEntity&& from) noexcept
+      : AoiEntity(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::Message::ClassData* GetClassData() const final;
@@ -3560,10 +3560,26 @@ class AoiPlayer final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kEntityTypeFieldNumber = 1,
     kDataFieldNumber = 2,
     kTransformFieldNumber = 3,
-    kEidFieldNumber = 1,
   };
+  // string entity_type = 1;
+  void clear_entity_type() ;
+  const std::string& entity_type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_entity_type(Arg_&& arg, Args_... args);
+  std::string* mutable_entity_type();
+  PROTOBUF_NODISCARD std::string* release_entity_type();
+  void set_allocated_entity_type(std::string* value);
+
+  private:
+  const std::string& _internal_entity_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_entity_type(
+      const std::string& value);
+  std::string* _internal_mutable_entity_type();
+
+  public:
   // bytes data = 2;
   void clear_data() ;
   const std::string& data() const;
@@ -3595,27 +3611,17 @@ class AoiPlayer final : public ::google::protobuf::Message
   ::space_service::Movement* _internal_mutable_transform();
 
   public:
-  // int32 eid = 1;
-  void clear_eid() ;
-  ::int32_t eid() const;
-  void set_eid(::int32_t value);
-
-  private:
-  ::int32_t _internal_eid() const;
-  void _internal_set_eid(::int32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:space_service.AoiPlayer)
+  // @@protoc_insertion_point(class_scope:space_service.AoiEntity)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 1,
-      0, 2>
+      43, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
-      &_AoiPlayer_default_instance_;
+      &_AoiEntity_default_instance_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3630,12 +3636,12 @@ class AoiPlayer final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const AoiPlayer& from_msg);
+                          const AoiEntity& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr entity_type_;
     ::google::protobuf::internal::ArenaStringPtr data_;
     ::space_service::Movement* transform_;
-    ::int32_t eid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3643,23 +3649,23 @@ class AoiPlayer final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class PlayersEnterSight final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:space_service.PlayersEnterSight) */ {
+class EntitiesEnterSight final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.EntitiesEnterSight) */ {
  public:
-  inline PlayersEnterSight() : PlayersEnterSight(nullptr) {}
-  ~PlayersEnterSight() override;
+  inline EntitiesEnterSight() : EntitiesEnterSight(nullptr) {}
+  ~EntitiesEnterSight() override;
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR PlayersEnterSight(
+  explicit PROTOBUF_CONSTEXPR EntitiesEnterSight(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline PlayersEnterSight(const PlayersEnterSight& from) : PlayersEnterSight(nullptr, from) {}
-  inline PlayersEnterSight(PlayersEnterSight&& from) noexcept
-      : PlayersEnterSight(nullptr, std::move(from)) {}
-  inline PlayersEnterSight& operator=(const PlayersEnterSight& from) {
+  inline EntitiesEnterSight(const EntitiesEnterSight& from) : EntitiesEnterSight(nullptr, from) {}
+  inline EntitiesEnterSight(EntitiesEnterSight&& from) noexcept
+      : EntitiesEnterSight(nullptr, std::move(from)) {}
+  inline EntitiesEnterSight& operator=(const EntitiesEnterSight& from) {
     CopyFrom(from);
     return *this;
   }
-  inline PlayersEnterSight& operator=(PlayersEnterSight&& from) noexcept {
+  inline EntitiesEnterSight& operator=(EntitiesEnterSight&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
 #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -3691,16 +3697,16 @@ class PlayersEnterSight final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const PlayersEnterSight& default_instance() {
+  static const EntitiesEnterSight& default_instance() {
     return *internal_default_instance();
   }
-  static inline const PlayersEnterSight* internal_default_instance() {
-    return reinterpret_cast<const PlayersEnterSight*>(
-        &_PlayersEnterSight_default_instance_);
+  static inline const EntitiesEnterSight* internal_default_instance() {
+    return reinterpret_cast<const EntitiesEnterSight*>(
+        &_EntitiesEnterSight_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 9;
-  friend void swap(PlayersEnterSight& a, PlayersEnterSight& b) { a.Swap(&b); }
-  inline void Swap(PlayersEnterSight* other) {
+  friend void swap(EntitiesEnterSight& a, EntitiesEnterSight& b) { a.Swap(&b); }
+  inline void Swap(EntitiesEnterSight* other) {
     if (other == this) return;
 #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr && GetArena() == other->GetArena()) {
@@ -3712,7 +3718,7 @@ class PlayersEnterSight final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(PlayersEnterSight* other) {
+  void UnsafeArenaSwap(EntitiesEnterSight* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -3720,13 +3726,13 @@ class PlayersEnterSight final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  PlayersEnterSight* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return ::google::protobuf::Message::DefaultConstruct<PlayersEnterSight>(arena);
+  EntitiesEnterSight* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<EntitiesEnterSight>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const PlayersEnterSight& from);
+  void CopyFrom(const EntitiesEnterSight& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const PlayersEnterSight& from) { PlayersEnterSight::MergeImpl(*this, from); }
+  void MergeFrom(const EntitiesEnterSight& from) { EntitiesEnterSight::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -3747,16 +3753,16 @@ class PlayersEnterSight final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(PlayersEnterSight* other);
+  void InternalSwap(EntitiesEnterSight* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "space_service.PlayersEnterSight"; }
+  static ::absl::string_view FullMessageName() { return "space_service.EntitiesEnterSight"; }
 
  protected:
-  explicit PlayersEnterSight(::google::protobuf::Arena* arena);
-  PlayersEnterSight(::google::protobuf::Arena* arena, const PlayersEnterSight& from);
-  PlayersEnterSight(::google::protobuf::Arena* arena, PlayersEnterSight&& from) noexcept
-      : PlayersEnterSight(arena) {
+  explicit EntitiesEnterSight(::google::protobuf::Arena* arena);
+  EntitiesEnterSight(::google::protobuf::Arena* arena, const EntitiesEnterSight& from);
+  EntitiesEnterSight(::google::protobuf::Arena* arena, EntitiesEnterSight&& from) noexcept
+      : EntitiesEnterSight(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::Message::ClassData* GetClassData() const final;
@@ -3767,26 +3773,26 @@ class PlayersEnterSight final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kPlayersFieldNumber = 1,
+    kEntitiesFieldNumber = 1,
   };
-  // repeated .space_service.AoiPlayer players = 1;
-  int players_size() const;
+  // repeated .space_service.AoiEntity entities = 1;
+  int entities_size() const;
   private:
-  int _internal_players_size() const;
+  int _internal_entities_size() const;
 
   public:
-  void clear_players() ;
-  ::space_service::AoiPlayer* mutable_players(int index);
-  ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>* mutable_players();
+  void clear_entities() ;
+  ::space_service::AoiEntity* mutable_entities(int index);
+  ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>* mutable_entities();
 
   private:
-  const ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>& _internal_players() const;
-  ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>* _internal_mutable_players();
+  const ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>& _internal_entities() const;
+  ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>* _internal_mutable_entities();
   public:
-  const ::space_service::AoiPlayer& players(int index) const;
-  ::space_service::AoiPlayer* add_players();
-  const ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>& players() const;
-  // @@protoc_insertion_point(class_scope:space_service.PlayersEnterSight)
+  const ::space_service::AoiEntity& entities(int index) const;
+  ::space_service::AoiEntity* add_entities();
+  const ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>& entities() const;
+  // @@protoc_insertion_point(class_scope:space_service.EntitiesEnterSight)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -3796,7 +3802,7 @@ class PlayersEnterSight final : public ::google::protobuf::Message
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
-      &_PlayersEnterSight_default_instance_;
+      &_EntitiesEnterSight_default_instance_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3811,8 +3817,8 @@ class PlayersEnterSight final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const PlayersEnterSight& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::space_service::AoiPlayer > players_;
+                          const EntitiesEnterSight& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::space_service::AoiEntity > entities_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5090,70 +5096,98 @@ inline void PlayerDeltaInfo::set_allocated_data(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// AoiPlayer
+// AoiEntity
 
-// int32 eid = 1;
-inline void AoiPlayer::clear_eid() {
+// string entity_type = 1;
+inline void AoiEntity::clear_entity_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.eid_ = 0;
+  _impl_.entity_type_.ClearToEmpty();
 }
-inline ::int32_t AoiPlayer::eid() const {
-  // @@protoc_insertion_point(field_get:space_service.AoiPlayer.eid)
-  return _internal_eid();
+inline const std::string& AoiEntity::entity_type() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.AoiEntity.entity_type)
+  return _internal_entity_type();
 }
-inline void AoiPlayer::set_eid(::int32_t value) {
-  _internal_set_eid(value);
-  // @@protoc_insertion_point(field_set:space_service.AoiPlayer.eid)
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void AoiEntity::set_entity_type(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entity_type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:space_service.AoiEntity.entity_type)
 }
-inline ::int32_t AoiPlayer::_internal_eid() const {
+inline std::string* AoiEntity::mutable_entity_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_entity_type();
+  // @@protoc_insertion_point(field_mutable:space_service.AoiEntity.entity_type)
+  return _s;
+}
+inline const std::string& AoiEntity::_internal_entity_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.eid_;
+  return _impl_.entity_type_.Get();
 }
-inline void AoiPlayer::_internal_set_eid(::int32_t value) {
+inline void AoiEntity::_internal_set_entity_type(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.eid_ = value;
+  _impl_.entity_type_.Set(value, GetArena());
+}
+inline std::string* AoiEntity::_internal_mutable_entity_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.entity_type_.Mutable( GetArena());
+}
+inline std::string* AoiEntity::release_entity_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.AoiEntity.entity_type)
+  return _impl_.entity_type_.Release();
+}
+inline void AoiEntity::set_allocated_entity_type(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entity_type_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.entity_type_.IsDefault()) {
+          _impl_.entity_type_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:space_service.AoiEntity.entity_type)
 }
 
 // bytes data = 2;
-inline void AoiPlayer::clear_data() {
+inline void AoiEntity::clear_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.data_.ClearToEmpty();
 }
-inline const std::string& AoiPlayer::data() const
+inline const std::string& AoiEntity::data() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.AoiPlayer.data)
+  // @@protoc_insertion_point(field_get:space_service.AoiEntity.data)
   return _internal_data();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void AoiPlayer::set_data(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void AoiEntity::set_data(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:space_service.AoiPlayer.data)
+  // @@protoc_insertion_point(field_set:space_service.AoiEntity.data)
 }
-inline std::string* AoiPlayer::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* AoiEntity::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_data();
-  // @@protoc_insertion_point(field_mutable:space_service.AoiPlayer.data)
+  // @@protoc_insertion_point(field_mutable:space_service.AoiEntity.data)
   return _s;
 }
-inline const std::string& AoiPlayer::_internal_data() const {
+inline const std::string& AoiEntity::_internal_data() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.data_.Get();
 }
-inline void AoiPlayer::_internal_set_data(const std::string& value) {
+inline void AoiEntity::_internal_set_data(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.data_.Set(value, GetArena());
 }
-inline std::string* AoiPlayer::_internal_mutable_data() {
+inline std::string* AoiEntity::_internal_mutable_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.data_.Mutable( GetArena());
 }
-inline std::string* AoiPlayer::release_data() {
+inline std::string* AoiEntity::release_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:space_service.AoiPlayer.data)
+  // @@protoc_insertion_point(field_release:space_service.AoiEntity.data)
   return _impl_.data_.Release();
 }
-inline void AoiPlayer::set_allocated_data(std::string* value) {
+inline void AoiEntity::set_allocated_data(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.data_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5161,30 +5195,30 @@ inline void AoiPlayer::set_allocated_data(std::string* value) {
           _impl_.data_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.data)
+  // @@protoc_insertion_point(field_set_allocated:space_service.AoiEntity.data)
 }
 
 // .space_service.Movement transform = 3;
-inline bool AoiPlayer::has_transform() const {
+inline bool AoiEntity::has_transform() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.transform_ != nullptr);
   return value;
 }
-inline void AoiPlayer::clear_transform() {
+inline void AoiEntity::clear_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.transform_ != nullptr) _impl_.transform_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::space_service::Movement& AoiPlayer::_internal_transform() const {
+inline const ::space_service::Movement& AoiEntity::_internal_transform() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::space_service::Movement* p = _impl_.transform_;
   return p != nullptr ? *p : reinterpret_cast<const ::space_service::Movement&>(::space_service::_Movement_default_instance_);
 }
-inline const ::space_service::Movement& AoiPlayer::transform() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.AoiPlayer.transform)
+inline const ::space_service::Movement& AoiEntity::transform() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.AoiEntity.transform)
   return _internal_transform();
 }
-inline void AoiPlayer::unsafe_arena_set_allocated_transform(::space_service::Movement* value) {
+inline void AoiEntity::unsafe_arena_set_allocated_transform(::space_service::Movement* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.transform_);
@@ -5195,9 +5229,9 @@ inline void AoiPlayer::unsafe_arena_set_allocated_transform(::space_service::Mov
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.AoiPlayer.transform)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.AoiEntity.transform)
 }
-inline ::space_service::Movement* AoiPlayer::release_transform() {
+inline ::space_service::Movement* AoiEntity::release_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
@@ -5216,16 +5250,16 @@ inline ::space_service::Movement* AoiPlayer::release_transform() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::space_service::Movement* AoiPlayer::unsafe_arena_release_transform() {
+inline ::space_service::Movement* AoiEntity::unsafe_arena_release_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:space_service.AoiPlayer.transform)
+  // @@protoc_insertion_point(field_release:space_service.AoiEntity.transform)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
   ::space_service::Movement* temp = _impl_.transform_;
   _impl_.transform_ = nullptr;
   return temp;
 }
-inline ::space_service::Movement* AoiPlayer::_internal_mutable_transform() {
+inline ::space_service::Movement* AoiEntity::_internal_mutable_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.transform_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Movement>(GetArena());
@@ -5233,13 +5267,13 @@ inline ::space_service::Movement* AoiPlayer::_internal_mutable_transform() {
   }
   return _impl_.transform_;
 }
-inline ::space_service::Movement* AoiPlayer::mutable_transform() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::space_service::Movement* AoiEntity::mutable_transform() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
   ::space_service::Movement* _msg = _internal_mutable_transform();
-  // @@protoc_insertion_point(field_mutable:space_service.AoiPlayer.transform)
+  // @@protoc_insertion_point(field_mutable:space_service.AoiEntity.transform)
   return _msg;
 }
-inline void AoiPlayer::set_allocated_transform(::space_service::Movement* value) {
+inline void AoiEntity::set_allocated_transform(::space_service::Movement* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -5257,109 +5291,109 @@ inline void AoiPlayer::set_allocated_transform(::space_service::Movement* value)
   }
 
   _impl_.transform_ = reinterpret_cast<::space_service::Movement*>(value);
-  // @@protoc_insertion_point(field_set_allocated:space_service.AoiPlayer.transform)
+  // @@protoc_insertion_point(field_set_allocated:space_service.AoiEntity.transform)
 }
 
 // -------------------------------------------------------------------
 
-// PlayersEnterSight
+// EntitiesEnterSight
 
-// repeated .space_service.AoiPlayer players = 1;
-inline int PlayersEnterSight::_internal_players_size() const {
-  return _internal_players().size();
+// repeated .space_service.AoiEntity entities = 1;
+inline int EntitiesEnterSight::_internal_entities_size() const {
+  return _internal_entities().size();
 }
-inline int PlayersEnterSight::players_size() const {
-  return _internal_players_size();
+inline int EntitiesEnterSight::entities_size() const {
+  return _internal_entities_size();
 }
-inline void PlayersEnterSight::clear_players() {
+inline void EntitiesEnterSight::clear_entities() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.players_.Clear();
+  _impl_.entities_.Clear();
 }
-inline ::space_service::AoiPlayer* PlayersEnterSight::mutable_players(int index)
+inline ::space_service::AoiEntity* EntitiesEnterSight::mutable_entities(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:space_service.PlayersEnterSight.players)
-  return _internal_mutable_players()->Mutable(index);
+  // @@protoc_insertion_point(field_mutable:space_service.EntitiesEnterSight.entities)
+  return _internal_mutable_entities()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>* PlayersEnterSight::mutable_players()
+inline ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>* EntitiesEnterSight::mutable_entities()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:space_service.PlayersEnterSight.players)
+  // @@protoc_insertion_point(field_mutable_list:space_service.EntitiesEnterSight.entities)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_players();
+  return _internal_mutable_entities();
 }
-inline const ::space_service::AoiPlayer& PlayersEnterSight::players(int index) const
+inline const ::space_service::AoiEntity& EntitiesEnterSight::entities(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:space_service.PlayersEnterSight.players)
-  return _internal_players().Get(index);
+  // @@protoc_insertion_point(field_get:space_service.EntitiesEnterSight.entities)
+  return _internal_entities().Get(index);
 }
-inline ::space_service::AoiPlayer* PlayersEnterSight::add_players() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::space_service::AoiEntity* EntitiesEnterSight::add_entities() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::space_service::AoiPlayer* _add = _internal_mutable_players()->Add();
-  // @@protoc_insertion_point(field_add:space_service.PlayersEnterSight.players)
+  ::space_service::AoiEntity* _add = _internal_mutable_entities()->Add();
+  // @@protoc_insertion_point(field_add:space_service.EntitiesEnterSight.entities)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>& PlayersEnterSight::players() const
+inline const ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>& EntitiesEnterSight::entities() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:space_service.PlayersEnterSight.players)
-  return _internal_players();
+  // @@protoc_insertion_point(field_list:space_service.EntitiesEnterSight.entities)
+  return _internal_entities();
 }
-inline const ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>&
-PlayersEnterSight::_internal_players() const {
+inline const ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>&
+EntitiesEnterSight::_internal_entities() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.players_;
+  return _impl_.entities_;
 }
-inline ::google::protobuf::RepeatedPtrField<::space_service::AoiPlayer>*
-PlayersEnterSight::_internal_mutable_players() {
+inline ::google::protobuf::RepeatedPtrField<::space_service::AoiEntity>*
+EntitiesEnterSight::_internal_mutable_entities() {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.players_;
+  return &_impl_.entities_;
 }
 
 // -------------------------------------------------------------------
 
-// PlayersLeaveSight
+// EntitiesLeaveSight
 
-// repeated int32 players = 1;
-inline int PlayersLeaveSight::_internal_players_size() const {
-  return _internal_players().size();
+// repeated int32 entities = 1;
+inline int EntitiesLeaveSight::_internal_entities_size() const {
+  return _internal_entities().size();
 }
-inline int PlayersLeaveSight::players_size() const {
-  return _internal_players_size();
+inline int EntitiesLeaveSight::entities_size() const {
+  return _internal_entities_size();
 }
-inline void PlayersLeaveSight::clear_players() {
+inline void EntitiesLeaveSight::clear_entities() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.players_.Clear();
+  _impl_.entities_.Clear();
 }
-inline ::int32_t PlayersLeaveSight::players(int index) const {
-  // @@protoc_insertion_point(field_get:space_service.PlayersLeaveSight.players)
-  return _internal_players().Get(index);
+inline ::int32_t EntitiesLeaveSight::entities(int index) const {
+  // @@protoc_insertion_point(field_get:space_service.EntitiesLeaveSight.entities)
+  return _internal_entities().Get(index);
 }
-inline void PlayersLeaveSight::set_players(int index, ::int32_t value) {
-  _internal_mutable_players()->Set(index, value);
-  // @@protoc_insertion_point(field_set:space_service.PlayersLeaveSight.players)
+inline void EntitiesLeaveSight::set_entities(int index, ::int32_t value) {
+  _internal_mutable_entities()->Set(index, value);
+  // @@protoc_insertion_point(field_set:space_service.EntitiesLeaveSight.entities)
 }
-inline void PlayersLeaveSight::add_players(::int32_t value) {
+inline void EntitiesLeaveSight::add_entities(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _internal_mutable_players()->Add(value);
-  // @@protoc_insertion_point(field_add:space_service.PlayersLeaveSight.players)
+  _internal_mutable_entities()->Add(value);
+  // @@protoc_insertion_point(field_add:space_service.EntitiesLeaveSight.entities)
 }
-inline const ::google::protobuf::RepeatedField<::int32_t>& PlayersLeaveSight::players() const
+inline const ::google::protobuf::RepeatedField<::int32_t>& EntitiesLeaveSight::entities() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:space_service.PlayersLeaveSight.players)
-  return _internal_players();
+  // @@protoc_insertion_point(field_list:space_service.EntitiesLeaveSight.entities)
+  return _internal_entities();
 }
-inline ::google::protobuf::RepeatedField<::int32_t>* PlayersLeaveSight::mutable_players()
+inline ::google::protobuf::RepeatedField<::int32_t>* EntitiesLeaveSight::mutable_entities()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:space_service.PlayersLeaveSight.players)
+  // @@protoc_insertion_point(field_mutable_list:space_service.EntitiesLeaveSight.entities)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _internal_mutable_players();
+  return _internal_mutable_entities();
 }
 inline const ::google::protobuf::RepeatedField<::int32_t>&
-PlayersLeaveSight::_internal_players() const {
+EntitiesLeaveSight::_internal_entities() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.players_;
+  return _impl_.entities_;
 }
-inline ::google::protobuf::RepeatedField<::int32_t>* PlayersLeaveSight::_internal_mutable_players() {
+inline ::google::protobuf::RepeatedField<::int32_t>* EntitiesLeaveSight::_internal_mutable_entities() {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return &_impl_.players_;
+  return &_impl_.entities_;
 }
 
 // -------------------------------------------------------------------

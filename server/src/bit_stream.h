@@ -23,9 +23,9 @@ class InputBitStream;
 template <typename T>
 concept NetSerializable =
 std::is_class_v<T> &&
-    requires (T t, OutputBitStream & bs) {
-        { t.net_serialize(bs) } -> std::same_as<void>;
-        { t.net_delta_serialize(bs) } -> std::same_as<bool>;
+    requires (T t, OutputBitStream & bs, bool to_self) {
+        { t.net_serialize(bs, to_self) } -> std::same_as<void>;
+        { t.net_delta_serialize(bs, to_self) } -> std::same_as<bool>;
 };
 
 class OutputBitStream {
@@ -69,7 +69,7 @@ public:
 
     template<NetSerializable T>
     void write(const T& data) {
-        data.net_serialize(*this);
+        data.net_serialize(*this, true);
     }
 
     template<typename T>
@@ -102,7 +102,7 @@ public:
 
     template<NetSerializable T>
     void net_delta_serialize(T& data) {
-        data.net_delta_serialize(*this);
+        data.net_delta_serialize(*this, true);
     }
 
 private:

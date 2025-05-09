@@ -9,6 +9,9 @@
 
 #include "proto/space_service.pb.h"
 
+#include "movement_component.h"
+#include "combat/combat_component.h"
+
 #include <spdlog/spdlog.h>
 
 #define REG_MSG_HANDLER(msg_name) name_2_handler.insert(std::make_pair(#msg_name, &SpaceService::msg_name))
@@ -155,13 +158,15 @@ void SpaceService::upload_movement(TcpConnection* conn, const std::string& msg_b
     space_service::Movement movement;
     movement.ParseFromString(msg_bytes);
 
-    player->set_position(movement.position().x(), movement.position().y(), movement.position().z());
-    player->set_rotation(movement.rotation().x(), movement.rotation().y(), movement.rotation().z());
-    player->set_velocity(movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
-    player->set_acceleration(movement.acceleration().x(), movement.acceleration().y(), movement.acceleration().z());
-    player->set_angular_velocity(movement.angular_velocity().x(), movement.angular_velocity().y(), movement.angular_velocity().z());
-    player->set_move_mode(movement.mode());
-    player->set_move_timestamp(movement.timestamp());
+    MovementComponent* movement_comp = player->get_component<MovementComponent>();
+
+    movement_comp->set_position(movement.position().x(), movement.position().y(), movement.position().z());
+    movement_comp->set_rotation(movement.rotation().x(), movement.rotation().y(), movement.rotation().z());
+    movement_comp->set_velocity(movement.velocity().x(), movement.velocity().y(), movement.velocity().z());
+    movement_comp->set_acceleration(movement.acceleration().x(), movement.acceleration().y(), movement.acceleration().z());
+    movement_comp->set_angular_velocity(movement.angular_velocity().x(), movement.angular_velocity().y(), movement.angular_velocity().z());
+    movement_comp->set_move_mode(movement.mode());
+    movement_comp->set_move_timestamp(movement.timestamp());
 }
 
 void SpaceService::ping(TcpConnection* conn, const std::string& msg_bytes)
@@ -190,7 +195,11 @@ void SpaceService::normal_attack(TcpConnection* conn, const std::string& msg_byt
     req.ParseFromString(msg_bytes);
 
     int combo_seq = req.combo();
-    player->normal_attack(combo_seq);
+
+    CombatComponent* comp = player->get_component<CombatComponent>();
+    if (comp != nullptr) {
+        comp->normal_attack(combo_seq);
+    }
 }
 
 void SpaceService::skill_attack(TcpConnection* conn, const std::string& msg_bytes)
@@ -203,5 +212,8 @@ void SpaceService::skill_attack(TcpConnection* conn, const std::string& msg_byte
     req.ParseFromString(msg_bytes);
 
     int skill_id = req.skill_id();
-    player->skill_attack(skill_id);
+    CombatComponent* comp = player->get_component<CombatComponent>();
+    if (comp != nullptr) {
+        comp->cast_skill(skill_id);
+    }
 }

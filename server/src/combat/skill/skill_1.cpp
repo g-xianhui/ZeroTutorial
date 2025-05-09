@@ -1,5 +1,7 @@
 #include "combat/skill/skill_1.h"
 #include "combat/combat_component.h"
+#include "space_component.h"
+#include "movement_component.h"
 
 #include "player.h"
 #include "space.h"
@@ -21,21 +23,29 @@ void Skill_1::destroy()
 void Skill_1::execute() {
     CombatComponent* combat_comp = get_owner();
     assert(combat_comp);
-    Player* player = combat_comp->get_owner();
-    assert(player);
 
+    // FIXME 可能是其他entity
+    Player* player = static_cast<Player*>(combat_comp->get_owner());
+    assert(player);
     player->play_animation("Skill1", 1.f, true);
 
     _effect_timer = G_Timer.add_timer(1500, [this]() {
         CombatComponent* combat_comp = get_owner();
         assert(combat_comp);
-        Player* player = combat_comp->get_owner();
+
+        Entity* player = combat_comp->get_owner();
         assert(player);
 
-        Vector3f center = player->get_position();
-        Space* space = player->get_space();
-        std::vector<Player*> others = space->find_players_in_circle(center.x, center.z, 2.f);
-        for (Player* other : others) {
+        SpaceComponent* space_comp = player->get_component<SpaceComponent>();
+        assert(space_comp);
+        MovementComponent* movement_comp = player->get_component<MovementComponent>();
+        assert(movement_comp);
+
+        Vector3f center = movement_comp->get_position();
+        Space* space = space_comp->get_space();
+
+        std::vector<Entity*> others = space->find_entities_in_circle(center.x, center.z, 2.f);
+        for (Entity* other : others) {
             if (other == player)
                 continue;
 

@@ -63,4 +63,9 @@ public class NetworkComponent : MonoBehaviour
         float rate = 0.8f;
         NetworkManager.Instance.RTT = NetworkManager.Instance.RTT * rate + (1 - rate) * curRtt;
     }
+
+    public bool IsSimulate()
+    {
+        return NetRole == ENetRole.Simulate;
+    }
 }

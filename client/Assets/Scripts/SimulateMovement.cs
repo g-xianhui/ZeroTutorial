@@ -1,6 +1,9 @@
+using SpaceService;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using static UnityEngine.PlayerLoop.PreUpdate;
 
 public class ServerMovePack
 {
@@ -21,7 +24,7 @@ public enum ESyncMovementMode
 }
 
 [RequireComponent(typeof(CharacterMovement))]
-public class SimulateMovement : MonoBehaviour
+public class SimulateMovement : IComponent
 {
     private CharacterController _characterController;
     private CharacterMovement _characterMovement;
@@ -232,7 +235,10 @@ public class SimulateMovement : MonoBehaviour
         transform.position = serverMovePack.Position;
         transform.rotation = serverMovePack.Rotation;
 
-        _characterMovement.UpdateMoveMode(serverMovePack.Mode);
+        if (_characterController != null)
+        {
+            _characterMovement.UpdateMoveMode(serverMovePack.Mode);
+        }
     }
 
     private void InterpolateMovement()
@@ -369,5 +375,43 @@ public class SimulateMovement : MonoBehaviour
     private Quaternion ForwardPredicteRotation(Quaternion rotation, Vector3 velocity, float t)
     {
         return rotation * Quaternion.Euler(velocity * t);
+    }
+
+    public override void NetSerialize(BinaryReader br)
+    {
+        byte[] data = NetSerializer.ReadBytes(br);
+        SpaceService.Movement newMove = SpaceService.Movement.Parser.ParseFrom(data);
+
+        ServerMovePack serverMovePack = new ServerMovePack
+        {
+            Position = new Vector3(newMove.Position.X, newMove.Position.Y, newMove.Position.Z),
+            Rotation = Quaternion.Euler(newMove.Rotation.X, newMove.Rotation.Y, newMove.Rotation.Z),
+            Velocity = new Vector3(newMove.Velocity.X, newMove.Velocity.Y, newMove.Velocity.Z),
+            Acceleration = new Vector3(newMove.Acceleration.X, newMove.Acceleration.Y, newMove.Acceleration.Z),
+            AngularVelocity = new Vector3(newMove.AngularVelocity.X, newMove.AngularVelocity.Y, newMove.AngularVelocity.Z),
+            Mode = newMove.Mode,
+            TimeStamp = newMove.Timestamp,
+        };
+
+        ApplyMovementFromServer(serverMovePack);
+    }
+
+    public override void NetDeltaSerialize(BinaryReader br)
+    {
+        byte[] data = NetSerializer.ReadBytes(br);
+        SpaceService.Movement newMove = SpaceService.Movement.Parser.ParseFrom(data);
+
+        ServerMovePack serverMovePack = new ServerMovePack
+        {
+            Position = new Vector3(newMove.Position.X, newMove.Position.Y, newMove.Position.Z),
+            Rotation = Quaternion.Euler(newMove.Rotation.X, newMove.Rotation.Y, newMove.Rotation.Z),
+            Velocity = new Vector3(newMove.Velocity.X, newMove.Velocity.Y, newMove.Velocity.Z),
+            Acceleration = new Vector3(newMove.Acceleration.X, newMove.Acceleration.Y, newMove.Acceleration.Z),
+            AngularVelocity = new Vector3(newMove.AngularVelocity.X, newMove.AngularVelocity.Y, newMove.AngularVelocity.Z),
+            Mode = newMove.Mode,
+            TimeStamp = newMove.Timestamp,
+        };
+
+        SyncMovement(serverMovePack);
     }
 }

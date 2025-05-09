@@ -36,8 +36,9 @@ struct AttrSet {
         clamp_all_attributes();
     }
 
-    void net_serialize(OutputBitStream& bs) const;
-    bool net_delta_serialize(OutputBitStream& bs);
+    void net_serialize(OutputBitStream& bs, bool to_self) const;
+    bool net_delta_serialize(OutputBitStream& bs, bool to_self);
+    void reset_dirty() { _dirty_flag = 0; }
 
     // 受伤害逻辑
     int take_damage(AttrSet& attacker, int attack_damage);

@@ -10,11 +10,14 @@
 #include "network/tcp_connection.h"
 #include "proto/space_service.pb.h"
 
+#include "space_component.h"
+#include "movement_component.h"
+
 #include <spdlog/spdlog.h>
 
 constexpr const char* combo_animations[] = { "Attack01", "Attack02" };
 
-void CombatComponent::start()
+void CombatComponent::init()
 {
     _attr_set.init();
 
@@ -25,7 +28,7 @@ void CombatComponent::start()
     }
 }
 
-void CombatComponent::stop()
+void CombatComponent::destroy()
 {
     if (_normal_attack_timer != -1)
     {
@@ -35,18 +38,27 @@ void CombatComponent::stop()
     stop_running_skill();
 }
 
-void CombatComponent::net_serialize(OutputBitStream& bs) const
+void CombatComponent::net_serialize(OutputBitStream& bs, bool to_self) const
 {
-    _attr_set.net_serialize(bs);
-    _skill_infos.net_serialize(bs);
+    _attr_set.net_serialize(bs, to_self);
+    if (to_self)
+        _skill_infos.net_serialize(bs, to_self);
 }
 
-bool CombatComponent::net_delta_serialize(OutputBitStream& bs)
+bool CombatComponent::net_delta_serialize(OutputBitStream& bs, bool to_self)
 {
     bool dirty = false;
-    dirty |= _attr_set.net_delta_serialize(bs);
-    dirty |= _skill_infos.net_delta_serialize(bs);
+    dirty |= _attr_set.net_delta_serialize(bs, to_self);
+    if (to_self)
+        dirty |= _skill_infos.net_delta_serialize(bs, to_self);
     return dirty;
+}
+
+void CombatComponent::reset_dirty()
+{
+    IComponent::reset_dirty();
+    _attr_set.reset_dirty();
+    _skill_infos.reset_dirty();
 }
 
 void CombatComponent::normal_attack(int combo_seq)
@@ -68,20 +80,27 @@ void CombatComponent::normal_attack(int combo_seq)
     // 另一方面，技能动画可能是带root motion的，如果后面想要做精确的同步，则动画同步也是必须的事。
     // 倒是普通的受击、死亡之类的，直接修改一个状态，然后同步给客户端就好了。
     float play_rate = (_attr_set.attack_speed + _attr_set.additional_attack_speed) / _attr_set.attack_speed;
-    _owner->play_animation(combo_animations[combo_seq], play_rate);
+
+    // FIXME
+    Player* player = static_cast<Player*>(_owner);
+    player->play_animation(combo_animations[combo_seq], play_rate);
 
     // TODO 普攻效果暂定为: 0.5秒后对处于面前2米60度扇形区域内的敌人造成10点伤害
     _normal_attack_timer = G_Timer.add_timer(500, [this]() {
-        // FIXME 指针安全
-        Vector3f center = _owner->get_position();
-        Rotation rot = _owner->get_rotation();
+        SpaceComponent* space_comp = _owner->get_component<SpaceComponent>();
+        assert(space_comp);
+        MovementComponent* movement_comp = _owner->get_component<MovementComponent>();
+        assert(movement_comp);
+
+        Vector3f center = movement_comp->get_position();
+        Rotation rot = movement_comp->get_rotation();
         float ux = sinf(rot.yaw * DEG2RAD);
         float uz = cosf(rot.yaw * DEG2RAD);
 
-        Space* space = _owner->get_space();
+        Space* space = space_comp->get_space();
 
-        std::vector<Player*> others = space->find_players_in_sector(center.x, center.z, ux, uz, 2.f, 30.f * DEG2RAD);
-        for (Player* other : others) {
+        std::vector<Entity*> others = space->find_entities_in_sector(center.x, center.z, ux, uz, 2.f, 30.f * DEG2RAD);
+        for (Entity* other : others) {
             if (other == _owner)
                 continue;
 
@@ -191,6 +210,8 @@ void CombatComponent::take_damage(CombatComponent* attacker, int damage)
 
     std::string msg_bytes;
     msg.SerializeToString(&msg_bytes);
-    Space* space = _owner->get_space();
+    Player* player = static_cast<Player*>(_owner);
+    SpaceComponent* space_comp = player->get_component<SpaceComponent>();
+    Space* space = space_comp->get_space();
     space->call_all(_owner->get_eid(), "take_damage", msg_bytes);
 }

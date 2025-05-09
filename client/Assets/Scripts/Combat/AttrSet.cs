@@ -36,7 +36,7 @@ public class AttrSet
     // 状态（晕眩、冻结、霸体。。。）
     public int Status;
 
-    enum DirtyFlag : UInt16
+    enum DirtyFlag : UInt32
     {
         MaxHealth = 1,
         Health = 2,
@@ -54,25 +54,25 @@ public class AttrSet
 
     public void NetDeltaSerialize(BinaryReader br)
     {
-        UInt16 dirtyFlag = br.ReadUInt16();
+        UInt32 dirtyFlag = br.ReadUInt32();
         if (dirtyFlag != 0)
         {
-            if ((dirtyFlag & (UInt16)DirtyFlag.MaxHealth) != 0)
+            if ((dirtyFlag & (UInt32)DirtyFlag.MaxHealth) != 0)
             {
                 MaxHealth = br.ReadInt32();
             }
 
-            if ((dirtyFlag & (UInt16)DirtyFlag.Health) != 0)
+            if ((dirtyFlag & (UInt32)DirtyFlag.Health) != 0)
             {
                 Health = br.ReadInt32();
             }
 
-            if ((dirtyFlag & (UInt16)DirtyFlag.MaxMana) != 0)
+            if ((dirtyFlag & (UInt32)DirtyFlag.MaxMana) != 0)
             {
                 MaxMana = br.ReadInt32();
             }
 
-            if ((dirtyFlag & (UInt16)DirtyFlag.Mana) != 0)
+            if ((dirtyFlag & (UInt32)DirtyFlag.Mana) != 0)
             {
                 Mana = br.ReadInt32();
             }

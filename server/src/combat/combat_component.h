@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <map>
+#include <string_view>
 
 class SkillInfo
 {
@@ -26,7 +27,7 @@ public:
 
     bool instance_per_entity = true;
 
-    void net_serialize(OutputBitStream& bs) const {
+    void net_serialize(OutputBitStream& bs, bool to_self) const {
         bs.write(_skill_id);
         bs.write(_anmimator_state);
         bs.write(_cost_mana);
@@ -35,7 +36,7 @@ public:
         bs.write(_local_predicated);
     }
 
-    bool net_delta_serialize(OutputBitStream& bs) {
+    bool net_delta_serialize(OutputBitStream& bs, bool to_self) {
         bool dirty = false;
         bs.write(_dirty_flag);
         if (_dirty_flag) {
@@ -79,10 +80,13 @@ class CombatComponent : public IComponent {
 public:
     static inline const char* COMPONENT_NAME = "CombatComponent";
 
-    virtual void start() override;
-    virtual void stop() override;
-    virtual void net_serialize(OutputBitStream& bs) const override;
-    virtual bool net_delta_serialize(OutputBitStream& bs) override;
+    CombatComponent(Entity* entity) : IComponent(entity) {}
+
+    void init() override;
+    void destroy() override;
+    void net_serialize(OutputBitStream& bs, bool to_self) const override;
+    bool net_delta_serialize(OutputBitStream& bs, bool to_self) override;
+    void reset_dirty() override;
 
     void normal_attack(int combo_seq);
     void cast_skill(int skill_id);

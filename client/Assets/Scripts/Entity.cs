@@ -6,14 +6,9 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public int CharacterId;
     public int Eid;
-    public string Name;
 
-    enum DirtyFlag : byte
-    {
-        Name = 1 << 0,
-    }
+    private Dictionary<string, IComponent> _components = new Dictionary<string, IComponent>();
 
     // Start is called before the first frame update
     void Start()
@@ -27,51 +22,61 @@ public class Entity : MonoBehaviour
         
     }
 
-    public void NetSerialize(byte[] data)
+    public void AddComponentByName(string name, IComponent component)
+    {
+        _components.Add(name, component);
+    }
+
+    public IComponent GetComponentByName(string name)
+    {
+        return _components.GetValueOrDefault(name);
+    }
+
+    public virtual void NetSerialize(BinaryReader br)
+    {
+
+    }
+
+    public virtual void NetDeltaSerialize(BinaryReader br)
+    {
+
+    }
+
+    public void EntityNetSerialize(byte[] data)
     {
         using (MemoryStream mem = new MemoryStream(data)) {
             using (BinaryReader br = new BinaryReader(mem)) {
                 Eid = br.ReadInt32();
-                Name = NetSerializer.ReadString(br);
+
+                NetSerialize(br);
 
                 while (mem.Position < mem.Length) {
                     string componentName = NetSerializer.ReadString(br);
-                    if (componentName == "CombatComponent") {
-                        CombatComponent comp = GetComponent<CombatComponent>();
-                        if (comp != null) {
-                            comp.NetSerialize(br);
-                        }
+                    IComponent component = _components.GetValueOrDefault(componentName);
+                    if (component != null)
+                    {
+                        component.NetSerialize(br);
                     }
                 }
              }
         }
     }
 
-    public void NetDeltaSerialize(byte[] data)
+    public void EntityNetDeltaSerialize(byte[] data)
     {
         using (MemoryStream mem = new MemoryStream(data))
         {
             using (BinaryReader br = new BinaryReader(mem))
             {
-                byte dirtyFlag = br.ReadByte();
-                if (dirtyFlag != 0)
-                {
-                    if ((dirtyFlag & (byte)DirtyFlag.Name) != 0)
-                    {
-                        Name = NetSerializer.ReadString(br);
-                    }
-                }
+                NetDeltaSerialize(br);
 
                 while (mem.Position < mem.Length)
                 {
                     string componentName = NetSerializer.ReadString(br);
-                    if (componentName == "CombatComponent")
+                    IComponent component = _components.GetValueOrDefault(componentName);
+                    if (component != null)
                     {
-                        CombatComponent comp = GetComponent<CombatComponent>();
-                        if (comp != null)
-                        {
-                            comp.NetDeltaSerialize(br);
-                        }
+                        component.NetDeltaSerialize(br);
                     }
                 }
             }
