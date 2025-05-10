@@ -37,28 +37,23 @@ namespace SpaceService {
             "IAEoCSIpCgpMb2dpblJlcGx5Eg4KBnJlc3VsdBgBIAEoBRILCgNlaWQYAiAB",
             "KAUiWAoJSm9pblJlcGx5Eg4KBnJlc3VsdBgBIAEoBRIuCghwb3NpdGlvbhgC",
             "IAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2ZIAIgBAUILCglfcG9zaXRp",
-            "b24igQEKCVNraWxsSW5mbxIQCghza2lsbF9pZBgBIAEoBRIWCg5uZXh0X2Nh",
-            "c3RfdGltZRgCIAEoBRIWCgljb3N0X21hbmEYAyABKAVIAIgBARIWCgljb29s",
-            "X2Rvd24YBCABKAVIAYgBAUIMCgpfY29zdF9tYW5hQgwKCl9jb29sX2Rvd24i",
-            "JwoKUGxheWVySW5mbxILCgNlaWQYASABKAUSDAoEZGF0YRgCIAEoDCIsCg9Q",
-            "bGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwiWgoJ",
-            "QW9pRW50aXR5EhMKC2VudGl0eV90eXBlGAEgASgJEgwKBGRhdGEYAiABKAwS",
-            "KgoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2VydmljZS5Nb3ZlbWVudCJA",
-            "ChJFbnRpdGllc0VudGVyU2lnaHQSKgoIZW50aXRpZXMYASADKAsyGC5zcGFj",
-            "ZV9zZXJ2aWNlLkFvaUVudGl0eSImChJFbnRpdGllc0xlYXZlU2lnaHQSEAoI",
-            "ZW50aXRpZXMYASADKAUicwoJQW9pVXBkYXRlEgsKA2VpZBgBIAEoBRIRCgRk",
-            "YXRhGAIgASgMSACIAQESLwoJdHJhbnNmb3JtGAMgASgLMhcuc3BhY2Vfc2Vy",
-            "dmljZS5Nb3ZlbWVudEgBiAEBQgcKBV9kYXRhQgwKCl90cmFuc2Zvcm0iNQoK",
-            "QW9pVXBkYXRlcxInCgVkYXRhcxgBIAMoCzIYLnNwYWNlX3NlcnZpY2UuQW9p",
-            "VXBkYXRlIhEKBFBpbmcSCQoBdBgBIAEoAiIjCgRQb25nEgkKAXQYASABKAIS",
-            "EAoIc2VydmVyX3QYAiABKAUiHQoMTm9ybWFsQXR0YWNrEg0KBWNvbWJvGAEg",
-            "ASgFIh8KC1NraWxsQXR0YWNrEhAKCHNraWxsX2lkGAEgASgFIo4BCglBbmlt",
-            "YXRpb24SDAoEbmFtZRgBIAEoCRIyCgJvcBgCIAEoDjImLnNwYWNlX3NlcnZp",
-            "Y2UuQW5pbWF0aW9uLk9wZXJhdGlvblR5cGUSDQoFc3BlZWQYAyABKAIiMAoN",
-            "T3BlcmF0aW9uVHlwZRIJCgVTVEFSVBAAEggKBFNUT1AQARIKCgZVUERBVEUQ",
-            "AiJGCg9QbGF5ZXJBbmltYXRpb24SCwoDZWlkGAEgASgFEiYKBGRhdGEYAiAB",
-            "KAsyGC5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbiIpCgpUYWtlRGFtYWdlEgsK",
-            "A2VpZBgBIAEoBRIOCgZkYW1hZ2UYAiABKAViBnByb3RvMw=="));
+            "b24iJwoKUGxheWVySW5mbxILCgNlaWQYASABKAUSDAoEZGF0YRgCIAEoDCIs",
+            "Cg9QbGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwi",
+            "LgoJQW9pRW50aXR5EhMKC2VudGl0eV90eXBlGAEgASgJEgwKBGRhdGEYAiAB",
+            "KAwiQAoSRW50aXRpZXNFbnRlclNpZ2h0EioKCGVudGl0aWVzGAEgAygLMhgu",
+            "c3BhY2Vfc2VydmljZS5Bb2lFbnRpdHkiJgoSRW50aXRpZXNMZWF2ZVNpZ2h0",
+            "EhAKCGVudGl0aWVzGAEgAygFIjQKCUFvaVVwZGF0ZRILCgNlaWQYASABKAUS",
+            "EQoEZGF0YRgCIAEoDEgAiAEBQgcKBV9kYXRhIjUKCkFvaVVwZGF0ZXMSJwoF",
+            "ZGF0YXMYASADKAsyGC5zcGFjZV9zZXJ2aWNlLkFvaVVwZGF0ZSIRCgRQaW5n",
+            "EgkKAXQYASABKAIiIwoEUG9uZxIJCgF0GAEgASgCEhAKCHNlcnZlcl90GAIg",
+            "ASgFIh0KDE5vcm1hbEF0dGFjaxINCgVjb21ibxgBIAEoBSIfCgtTa2lsbEF0",
+            "dGFjaxIQCghza2lsbF9pZBgBIAEoBSKOAQoJQW5pbWF0aW9uEgwKBG5hbWUY",
+            "ASABKAkSMgoCb3AYAiABKA4yJi5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbi5P",
+            "cGVyYXRpb25UeXBlEg0KBXNwZWVkGAMgASgCIjAKDU9wZXJhdGlvblR5cGUS",
+            "CQoFU1RBUlQQABIICgRTVE9QEAESCgoGVVBEQVRFEAIiRgoPUGxheWVyQW5p",
+            "bWF0aW9uEgsKA2VpZBgBIAEoBRImCgRkYXRhGAIgASgLMhguc3BhY2Vfc2Vy",
+            "dmljZS5BbmltYXRpb24iKQoKVGFrZURhbWFnZRILCgNlaWQYASABKAUSDgoG",
+            "ZGFtYWdlGAIgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -67,13 +62,12 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginRequest), global::SpaceService.LoginRequest.Parser, new[]{ "Username" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.LoginReply), global::SpaceService.LoginReply.Parser, new[]{ "Result", "Eid" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.JoinReply), global::SpaceService.JoinReply.Parser, new[]{ "Result", "Position" }, new[]{ "Position" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.SkillInfo), global::SpaceService.SkillInfo.Parser, new[]{ "SkillId", "NextCastTime", "CostMana", "CoolDown" }, new[]{ "CostMana", "CoolDown" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerInfo), global::SpaceService.PlayerInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerDeltaInfo), global::SpaceService.PlayerDeltaInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiEntity), global::SpaceService.AoiEntity.Parser, new[]{ "EntityType", "Data", "Transform" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiEntity), global::SpaceService.AoiEntity.Parser, new[]{ "EntityType", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.EntitiesEnterSight), global::SpaceService.EntitiesEnterSight.Parser, new[]{ "Entities" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.EntitiesLeaveSight), global::SpaceService.EntitiesLeaveSight.Parser, new[]{ "Entities" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdate), global::SpaceService.AoiUpdate.Parser, new[]{ "Eid", "Data", "Transform" }, new[]{ "Data", "Transform" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdate), global::SpaceService.AoiUpdate.Parser, new[]{ "Eid", "Data" }, new[]{ "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdates), global::SpaceService.AoiUpdates.Parser, new[]{ "Datas" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Ping), global::SpaceService.Ping.Parser, new[]{ "T" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.Pong), global::SpaceService.Pong.Parser, new[]{ "T", "ServerT" }, null, null, null, null),
@@ -1503,347 +1497,6 @@ namespace SpaceService {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class SkillInfo : pb::IMessage<SkillInfo>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<SkillInfo> _parser = new pb::MessageParser<SkillInfo>(() => new SkillInfo());
-    private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<SkillInfo> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkillInfo() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkillInfo(SkillInfo other) : this() {
-      _hasBits0 = other._hasBits0;
-      skillId_ = other.skillId_;
-      nextCastTime_ = other.nextCastTime_;
-      costMana_ = other.costMana_;
-      coolDown_ = other.coolDown_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkillInfo Clone() {
-      return new SkillInfo(this);
-    }
-
-    /// <summary>Field number for the "skill_id" field.</summary>
-    public const int SkillIdFieldNumber = 1;
-    private int skillId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int SkillId {
-      get { return skillId_; }
-      set {
-        skillId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "next_cast_time" field.</summary>
-    public const int NextCastTimeFieldNumber = 2;
-    private int nextCastTime_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int NextCastTime {
-      get { return nextCastTime_; }
-      set {
-        nextCastTime_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "cost_mana" field.</summary>
-    public const int CostManaFieldNumber = 3;
-    private readonly static int CostManaDefaultValue = 0;
-
-    private int costMana_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CostMana {
-      get { if ((_hasBits0 & 1) != 0) { return costMana_; } else { return CostManaDefaultValue; } }
-      set {
-        _hasBits0 |= 1;
-        costMana_ = value;
-      }
-    }
-    /// <summary>Gets whether the "cost_mana" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasCostMana {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "cost_mana" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearCostMana() {
-      _hasBits0 &= ~1;
-    }
-
-    /// <summary>Field number for the "cool_down" field.</summary>
-    public const int CoolDownFieldNumber = 4;
-    private readonly static int CoolDownDefaultValue = 0;
-
-    private int coolDown_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CoolDown {
-      get { if ((_hasBits0 & 2) != 0) { return coolDown_; } else { return CoolDownDefaultValue; } }
-      set {
-        _hasBits0 |= 2;
-        coolDown_ = value;
-      }
-    }
-    /// <summary>Gets whether the "cool_down" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasCoolDown {
-      get { return (_hasBits0 & 2) != 0; }
-    }
-    /// <summary>Clears the value of the "cool_down" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearCoolDown() {
-      _hasBits0 &= ~2;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as SkillInfo);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(SkillInfo other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (SkillId != other.SkillId) return false;
-      if (NextCastTime != other.NextCastTime) return false;
-      if (CostMana != other.CostMana) return false;
-      if (CoolDown != other.CoolDown) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (SkillId != 0) hash ^= SkillId.GetHashCode();
-      if (NextCastTime != 0) hash ^= NextCastTime.GetHashCode();
-      if (HasCostMana) hash ^= CostMana.GetHashCode();
-      if (HasCoolDown) hash ^= CoolDown.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (SkillId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(SkillId);
-      }
-      if (NextCastTime != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(NextCastTime);
-      }
-      if (HasCostMana) {
-        output.WriteRawTag(24);
-        output.WriteInt32(CostMana);
-      }
-      if (HasCoolDown) {
-        output.WriteRawTag(32);
-        output.WriteInt32(CoolDown);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (SkillId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(SkillId);
-      }
-      if (NextCastTime != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(NextCastTime);
-      }
-      if (HasCostMana) {
-        output.WriteRawTag(24);
-        output.WriteInt32(CostMana);
-      }
-      if (HasCoolDown) {
-        output.WriteRawTag(32);
-        output.WriteInt32(CoolDown);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (SkillId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
-      }
-      if (NextCastTime != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(NextCastTime);
-      }
-      if (HasCostMana) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CostMana);
-      }
-      if (HasCoolDown) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CoolDown);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(SkillInfo other) {
-      if (other == null) {
-        return;
-      }
-      if (other.SkillId != 0) {
-        SkillId = other.SkillId;
-      }
-      if (other.NextCastTime != 0) {
-        NextCastTime = other.NextCastTime;
-      }
-      if (other.HasCostMana) {
-        CostMana = other.CostMana;
-      }
-      if (other.HasCoolDown) {
-        CoolDown = other.CoolDown;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            SkillId = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            NextCastTime = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            CostMana = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            CoolDown = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            SkillId = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            NextCastTime = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            CostMana = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            CoolDown = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class PlayerInfo : pb::IMessage<PlayerInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1858,7 +1511,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[6]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2093,7 +1746,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[7]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2328,7 +1981,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[8]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2350,7 +2003,6 @@ namespace SpaceService {
     public AoiEntity(AoiEntity other) : this() {
       entityType_ = other.entityType_;
       data_ = other.data_;
-      transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2384,18 +2036,6 @@ namespace SpaceService {
       }
     }
 
-    /// <summary>Field number for the "transform" field.</summary>
-    public const int TransformFieldNumber = 3;
-    private global::SpaceService.Movement transform_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.Movement Transform {
-      get { return transform_; }
-      set {
-        transform_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2413,7 +2053,6 @@ namespace SpaceService {
       }
       if (EntityType != other.EntityType) return false;
       if (Data != other.Data) return false;
-      if (!object.Equals(Transform, other.Transform)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2423,7 +2062,6 @@ namespace SpaceService {
       int hash = 1;
       if (EntityType.Length != 0) hash ^= EntityType.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
-      if (transform_ != null) hash ^= Transform.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2450,10 +2088,6 @@ namespace SpaceService {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
       }
-      if (transform_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Transform);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2472,10 +2106,6 @@ namespace SpaceService {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
       }
-      if (transform_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Transform);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2491,9 +2121,6 @@ namespace SpaceService {
       }
       if (Data.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
-      }
-      if (transform_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Transform);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2512,12 +2139,6 @@ namespace SpaceService {
       }
       if (other.Data.Length != 0) {
         Data = other.Data;
-      }
-      if (other.transform_ != null) {
-        if (transform_ == null) {
-          Transform = new global::SpaceService.Movement();
-        }
-        Transform.MergeFrom(other.Transform);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2544,13 +2165,6 @@ namespace SpaceService {
           }
           case 18: {
             Data = input.ReadBytes();
-            break;
-          }
-          case 26: {
-            if (transform_ == null) {
-              Transform = new global::SpaceService.Movement();
-            }
-            input.ReadMessage(Transform);
             break;
           }
         }
@@ -2580,13 +2194,6 @@ namespace SpaceService {
             Data = input.ReadBytes();
             break;
           }
-          case 26: {
-            if (transform_ == null) {
-              Transform = new global::SpaceService.Movement();
-            }
-            input.ReadMessage(Transform);
-            break;
-          }
         }
       }
     }
@@ -2609,7 +2216,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[9]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2796,7 +2403,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[10]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2985,7 +2592,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[11]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3007,7 +2614,6 @@ namespace SpaceService {
     public AoiUpdate(AoiUpdate other) : this() {
       eid_ = other.eid_;
       data_ = other.data_;
-      transform_ = other.transform_ != null ? other.transform_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3055,18 +2661,6 @@ namespace SpaceService {
       data_ = null;
     }
 
-    /// <summary>Field number for the "transform" field.</summary>
-    public const int TransformFieldNumber = 3;
-    private global::SpaceService.Movement transform_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::SpaceService.Movement Transform {
-      get { return transform_; }
-      set {
-        transform_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3084,7 +2678,6 @@ namespace SpaceService {
       }
       if (Eid != other.Eid) return false;
       if (Data != other.Data) return false;
-      if (!object.Equals(Transform, other.Transform)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3094,7 +2687,6 @@ namespace SpaceService {
       int hash = 1;
       if (Eid != 0) hash ^= Eid.GetHashCode();
       if (HasData) hash ^= Data.GetHashCode();
-      if (transform_ != null) hash ^= Transform.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3121,10 +2713,6 @@ namespace SpaceService {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
       }
-      if (transform_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Transform);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3143,10 +2731,6 @@ namespace SpaceService {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
       }
-      if (transform_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Transform);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3162,9 +2746,6 @@ namespace SpaceService {
       }
       if (HasData) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
-      }
-      if (transform_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Transform);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3183,12 +2764,6 @@ namespace SpaceService {
       }
       if (other.HasData) {
         Data = other.Data;
-      }
-      if (other.transform_ != null) {
-        if (transform_ == null) {
-          Transform = new global::SpaceService.Movement();
-        }
-        Transform.MergeFrom(other.Transform);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3215,13 +2790,6 @@ namespace SpaceService {
           }
           case 18: {
             Data = input.ReadBytes();
-            break;
-          }
-          case 26: {
-            if (transform_ == null) {
-              Transform = new global::SpaceService.Movement();
-            }
-            input.ReadMessage(Transform);
             break;
           }
         }
@@ -3251,13 +2819,6 @@ namespace SpaceService {
             Data = input.ReadBytes();
             break;
           }
-          case 26: {
-            if (transform_ == null) {
-              Transform = new global::SpaceService.Movement();
-            }
-            input.ReadMessage(Transform);
-            break;
-          }
         }
       }
     }
@@ -3280,7 +2841,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[12]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3467,7 +3028,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[13]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3665,7 +3226,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[14]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3900,7 +3461,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[15]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4098,7 +3659,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[16]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4296,7 +3857,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[17]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4582,7 +4143,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[18]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4826,7 +4387,7 @@ namespace SpaceService {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[19]; }
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

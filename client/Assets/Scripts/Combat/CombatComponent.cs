@@ -277,17 +277,6 @@ public class CombatComponent : IComponent
         CastSkill(skillIndex);
     }
 
-    public void UpdateSkillInfo(SpaceService.SkillInfo skillInfo)
-    {
-        SkillInfo curSkillInfo = GetSkillInfo(skillInfo.SkillId);
-        if (curSkillInfo != null)
-        {
-            curSkillInfo.CostMana = skillInfo.CostMana;
-            curSkillInfo.CoolDown = skillInfo.CoolDown;
-            curSkillInfo.NextCastTime = skillInfo.NextCastTime;
-        }
-    }
-
     // 动画过渡会把结尾的事件回调忽略掉
     public void AN_EnableNormalAttack(int enable)
     {

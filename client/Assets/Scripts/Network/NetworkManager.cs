@@ -683,13 +683,6 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public void update_skill_info(byte[] msgBytes)
-    {
-        SpaceService.SkillInfo skillInfo = SpaceService.SkillInfo.Parser.ParseFrom(msgBytes);
-        CombatComponent combatComponent = _mainPlayer.GetComponent<CombatComponent>();
-        combatComponent.UpdateSkillInfo(skillInfo);
-    }
-
     public void sync_full_info(byte[] msgBytes)
     {
         if (!_mainPlayer)

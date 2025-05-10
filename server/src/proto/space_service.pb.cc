@@ -66,28 +66,6 @@ struct TakeDamageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TakeDamageDefaultTypeInternal _TakeDamage_default_instance_;
 
-inline constexpr SkillInfo::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        skill_id_{0},
-        next_cast_time_{0},
-        cost_mana_{0},
-        cool_down_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR SkillInfo::SkillInfo(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct SkillInfoDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SkillInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SkillInfoDefaultTypeInternal() {}
-  union {
-    SkillInfo _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SkillInfoDefaultTypeInternal _SkillInfo_default_instance_;
-
 inline constexpr SkillAttack::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : skill_id_{0},
@@ -270,6 +248,52 @@ struct EntitiesLeaveSightDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EntitiesLeaveSightDefaultTypeInternal _EntitiesLeaveSight_default_instance_;
 
+inline constexpr AoiUpdate::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        eid_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AoiUpdate::AoiUpdate(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AoiUpdateDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AoiUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AoiUpdateDefaultTypeInternal() {}
+  union {
+    AoiUpdate _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AoiUpdateDefaultTypeInternal _AoiUpdate_default_instance_;
+
+inline constexpr AoiEntity::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : entity_type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AoiEntity::AoiEntity(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AoiEntityDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AoiEntityDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AoiEntityDefaultTypeInternal() {}
+  union {
+    AoiEntity _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AoiEntityDefaultTypeInternal _AoiEntity_default_instance_;
+
 inline constexpr Animation::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : name_(
@@ -357,54 +381,6 @@ struct JoinReplyDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JoinReplyDefaultTypeInternal _JoinReply_default_instance_;
-
-inline constexpr AoiUpdate::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        data_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        transform_{nullptr},
-        eid_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR AoiUpdate::AoiUpdate(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct AoiUpdateDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AoiUpdateDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AoiUpdateDefaultTypeInternal() {}
-  union {
-    AoiUpdate _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AoiUpdateDefaultTypeInternal _AoiUpdate_default_instance_;
-
-inline constexpr AoiEntity::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        entity_type_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        data_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        transform_{nullptr} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR AoiEntity::AoiEntity(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct AoiEntityDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AoiEntityDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AoiEntityDefaultTypeInternal() {}
-  union {
-    AoiEntity _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AoiEntityDefaultTypeInternal _AoiEntity_default_instance_;
 
 inline constexpr EntitiesEnterSight::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -514,22 +490,6 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::space_service::JoinReply, _impl_.position_),
         ~0u,
         0,
-        PROTOBUF_FIELD_OFFSET(::space_service::SkillInfo, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::space_service::SkillInfo, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::space_service::SkillInfo, _impl_.skill_id_),
-        PROTOBUF_FIELD_OFFSET(::space_service::SkillInfo, _impl_.next_cast_time_),
-        PROTOBUF_FIELD_OFFSET(::space_service::SkillInfo, _impl_.cost_mana_),
-        PROTOBUF_FIELD_OFFSET(::space_service::SkillInfo, _impl_.cool_down_),
-        ~0u,
-        ~0u,
-        0,
-        1,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::PlayerInfo, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -550,7 +510,7 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::PlayerDeltaInfo, _impl_.eid_),
         PROTOBUF_FIELD_OFFSET(::space_service::PlayerDeltaInfo, _impl_.data_),
-        PROTOBUF_FIELD_OFFSET(::space_service::AoiEntity, _impl_._has_bits_),
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::AoiEntity, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
@@ -560,10 +520,6 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::AoiEntity, _impl_.entity_type_),
         PROTOBUF_FIELD_OFFSET(::space_service::AoiEntity, _impl_.data_),
-        PROTOBUF_FIELD_OFFSET(::space_service::AoiEntity, _impl_.transform_),
-        ~0u,
-        ~0u,
-        0,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::EntitiesEnterSight, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -592,10 +548,8 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdate, _impl_.eid_),
         PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdate, _impl_.data_),
-        PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdate, _impl_.transform_),
         ~0u,
         0,
-        1,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::space_service::AoiUpdates, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -684,21 +638,20 @@ static const ::_pbi::MigrationSchema
         {33, -1, -1, sizeof(::space_service::LoginRequest)},
         {42, -1, -1, sizeof(::space_service::LoginReply)},
         {52, 62, -1, sizeof(::space_service::JoinReply)},
-        {64, 76, -1, sizeof(::space_service::SkillInfo)},
-        {80, -1, -1, sizeof(::space_service::PlayerInfo)},
-        {90, -1, -1, sizeof(::space_service::PlayerDeltaInfo)},
-        {100, 111, -1, sizeof(::space_service::AoiEntity)},
-        {114, -1, -1, sizeof(::space_service::EntitiesEnterSight)},
-        {123, -1, -1, sizeof(::space_service::EntitiesLeaveSight)},
-        {132, 143, -1, sizeof(::space_service::AoiUpdate)},
-        {146, -1, -1, sizeof(::space_service::AoiUpdates)},
-        {155, -1, -1, sizeof(::space_service::Ping)},
-        {164, -1, -1, sizeof(::space_service::Pong)},
-        {174, -1, -1, sizeof(::space_service::NormalAttack)},
-        {183, -1, -1, sizeof(::space_service::SkillAttack)},
-        {192, -1, -1, sizeof(::space_service::Animation)},
-        {203, 213, -1, sizeof(::space_service::PlayerAnimation)},
-        {215, -1, -1, sizeof(::space_service::TakeDamage)},
+        {64, -1, -1, sizeof(::space_service::PlayerInfo)},
+        {74, -1, -1, sizeof(::space_service::PlayerDeltaInfo)},
+        {84, -1, -1, sizeof(::space_service::AoiEntity)},
+        {94, -1, -1, sizeof(::space_service::EntitiesEnterSight)},
+        {103, -1, -1, sizeof(::space_service::EntitiesLeaveSight)},
+        {112, 122, -1, sizeof(::space_service::AoiUpdate)},
+        {124, -1, -1, sizeof(::space_service::AoiUpdates)},
+        {133, -1, -1, sizeof(::space_service::Ping)},
+        {142, -1, -1, sizeof(::space_service::Pong)},
+        {152, -1, -1, sizeof(::space_service::NormalAttack)},
+        {161, -1, -1, sizeof(::space_service::SkillAttack)},
+        {170, -1, -1, sizeof(::space_service::Animation)},
+        {181, 191, -1, sizeof(::space_service::PlayerAnimation)},
+        {193, -1, -1, sizeof(::space_service::TakeDamage)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -706,7 +659,6 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_LoginRequest_default_instance_._instance,
     &::space_service::_LoginReply_default_instance_._instance,
     &::space_service::_JoinReply_default_instance_._instance,
-    &::space_service::_SkillInfo_default_instance_._instance,
     &::space_service::_PlayerInfo_default_instance_._instance,
     &::space_service::_PlayerDeltaInfo_default_instance_._instance,
     &::space_service::_AoiEntity_default_instance_._instance,
@@ -738,44 +690,38 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     "username\030\001 \001(\t\")\n\nLoginReply\022\016\n\006result\030\001"
     " \001(\005\022\013\n\003eid\030\002 \001(\005\"X\n\tJoinReply\022\016\n\006result"
     "\030\001 \001(\005\022.\n\010position\030\002 \001(\0132\027.space_service"
-    ".Vector3fH\000\210\001\001B\013\n\t_position\"\201\001\n\tSkillInf"
-    "o\022\020\n\010skill_id\030\001 \001(\005\022\026\n\016next_cast_time\030\002 "
-    "\001(\005\022\026\n\tcost_mana\030\003 \001(\005H\000\210\001\001\022\026\n\tcool_down"
-    "\030\004 \001(\005H\001\210\001\001B\014\n\n_cost_manaB\014\n\n_cool_down\""
-    "\'\n\nPlayerInfo\022\013\n\003eid\030\001 \001(\005\022\014\n\004data\030\002 \001(\014"
-    "\",\n\017PlayerDeltaInfo\022\013\n\003eid\030\001 \001(\005\022\014\n\004data"
-    "\030\002 \001(\014\"Z\n\tAoiEntity\022\023\n\013entity_type\030\001 \001(\t"
-    "\022\014\n\004data\030\002 \001(\014\022*\n\ttransform\030\003 \001(\0132\027.spac"
-    "e_service.Movement\"@\n\022EntitiesEnterSight"
-    "\022*\n\010entities\030\001 \003(\0132\030.space_service.AoiEn"
-    "tity\"&\n\022EntitiesLeaveSight\022\020\n\010entities\030\001"
-    " \003(\005\"s\n\tAoiUpdate\022\013\n\003eid\030\001 \001(\005\022\021\n\004data\030\002"
-    " \001(\014H\000\210\001\001\022/\n\ttransform\030\003 \001(\0132\027.space_ser"
-    "vice.MovementH\001\210\001\001B\007\n\005_dataB\014\n\n_transfor"
-    "m\"5\n\nAoiUpdates\022\'\n\005datas\030\001 \003(\0132\030.space_s"
-    "ervice.AoiUpdate\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"#\n\004P"
-    "ong\022\t\n\001t\030\001 \001(\002\022\020\n\010server_t\030\002 \001(\005\"\035\n\014Norm"
-    "alAttack\022\r\n\005combo\030\001 \001(\005\"\037\n\013SkillAttack\022\020"
-    "\n\010skill_id\030\001 \001(\005\"\216\001\n\tAnimation\022\014\n\004name\030\001"
-    " \001(\t\0222\n\002op\030\002 \001(\0162&.space_service.Animati"
-    "on.OperationType\022\r\n\005speed\030\003 \001(\002\"0\n\rOpera"
-    "tionType\022\t\n\005START\020\000\022\010\n\004STOP\020\001\022\n\n\006UPDATE\020"
-    "\002\"F\n\017PlayerAnimation\022\013\n\003eid\030\001 \001(\005\022&\n\004dat"
-    "a\030\002 \001(\0132\030.space_service.Animation\")\n\nTak"
-    "eDamage\022\013\n\003eid\030\001 \001(\005\022\016\n\006damage\030\002 \001(\005b\006pr"
-    "oto3"
+    ".Vector3fH\000\210\001\001B\013\n\t_position\"\'\n\nPlayerInf"
+    "o\022\013\n\003eid\030\001 \001(\005\022\014\n\004data\030\002 \001(\014\",\n\017PlayerDe"
+    "ltaInfo\022\013\n\003eid\030\001 \001(\005\022\014\n\004data\030\002 \001(\014\".\n\tAo"
+    "iEntity\022\023\n\013entity_type\030\001 \001(\t\022\014\n\004data\030\002 \001"
+    "(\014\"@\n\022EntitiesEnterSight\022*\n\010entities\030\001 \003"
+    "(\0132\030.space_service.AoiEntity\"&\n\022Entities"
+    "LeaveSight\022\020\n\010entities\030\001 \003(\005\"4\n\tAoiUpdat"
+    "e\022\013\n\003eid\030\001 \001(\005\022\021\n\004data\030\002 \001(\014H\000\210\001\001B\007\n\005_da"
+    "ta\"5\n\nAoiUpdates\022\'\n\005datas\030\001 \003(\0132\030.space_"
+    "service.AoiUpdate\"\021\n\004Ping\022\t\n\001t\030\001 \001(\002\"#\n\004"
+    "Pong\022\t\n\001t\030\001 \001(\002\022\020\n\010server_t\030\002 \001(\005\"\035\n\014Nor"
+    "malAttack\022\r\n\005combo\030\001 \001(\005\"\037\n\013SkillAttack\022"
+    "\020\n\010skill_id\030\001 \001(\005\"\216\001\n\tAnimation\022\014\n\004name\030"
+    "\001 \001(\t\0222\n\002op\030\002 \001(\0162&.space_service.Animat"
+    "ion.OperationType\022\r\n\005speed\030\003 \001(\002\"0\n\rOper"
+    "ationType\022\t\n\005START\020\000\022\010\n\004STOP\020\001\022\n\n\006UPDATE"
+    "\020\002\"F\n\017PlayerAnimation\022\013\n\003eid\030\001 \001(\005\022&\n\004da"
+    "ta\030\002 \001(\0132\030.space_service.Animation\")\n\nTa"
+    "keDamage\022\013\n\003eid\030\001 \001(\005\022\016\n\006damage\030\002 \001(\005b\006p"
+    "roto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    1564,
+    1325,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
     nullptr,
     0,
-    20,
+    19,
     schemas,
     file_default_instances,
     TableStruct_space_5fservice_2eproto::offsets,
@@ -2162,277 +2108,6 @@ void JoinReply::InternalSwap(JoinReply* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class SkillInfo::_Internal {
- public:
-  using HasBits =
-      decltype(std::declval<SkillInfo>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_._has_bits_);
-};
-
-SkillInfo::SkillInfo(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:space_service.SkillInfo)
-}
-SkillInfo::SkillInfo(
-    ::google::protobuf::Arena* arena, const SkillInfo& from)
-    : SkillInfo(arena) {
-  MergeFrom(from);
-}
-inline PROTOBUF_NDEBUG_INLINE SkillInfo::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void SkillInfo::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, skill_id_),
-           0,
-           offsetof(Impl_, cool_down_) -
-               offsetof(Impl_, skill_id_) +
-               sizeof(Impl_::cool_down_));
-}
-SkillInfo::~SkillInfo() {
-  // @@protoc_insertion_point(destructor:space_service.SkillInfo)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void SkillInfo::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.~Impl_();
-}
-
-const ::google::protobuf::MessageLite::ClassData*
-SkillInfo::GetClassData() const {
-  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
-      ClassDataFull _data_ = {
-          {
-              &_table_.header,
-              nullptr,  // OnDemandRegisterArenaDtor
-              nullptr,  // IsInitialized
-              PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_._cached_size_),
-              false,
-          },
-          &SkillInfo::MergeImpl,
-          &SkillInfo::kDescriptorMethods,
-          &descriptor_table_space_5fservice_2eproto,
-          nullptr,  // tracker
-      };
-  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
-  return _data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 0, 2> SkillInfo::_table_ = {
-  {
-    PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_._has_bits_),
-    0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_SkillInfo_default_instance_._instance,
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::space_service::SkillInfo>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // optional int32 cool_down = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SkillInfo, _impl_.cool_down_), 1>(),
-     {32, 1, 0, PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.cool_down_)}},
-    // int32 skill_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SkillInfo, _impl_.skill_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.skill_id_)}},
-    // int32 next_cast_time = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SkillInfo, _impl_.next_cast_time_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.next_cast_time_)}},
-    // optional int32 cost_mana = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SkillInfo, _impl_.cost_mana_), 0>(),
-     {24, 0, 0, PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.cost_mana_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // int32 skill_id = 1;
-    {PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.skill_id_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 next_cast_time = 2;
-    {PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.next_cast_time_), -1, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // optional int32 cost_mana = 3;
-    {PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.cost_mana_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-    // optional int32 cool_down = 4;
-    {PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.cool_down_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-
-PROTOBUF_NOINLINE void SkillInfo::Clear() {
-// @@protoc_insertion_point(message_clear_start:space_service.SkillInfo)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::memset(&_impl_.skill_id_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.next_cast_time_) -
-      reinterpret_cast<char*>(&_impl_.skill_id_)) + sizeof(_impl_.next_cast_time_));
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    ::memset(&_impl_.cost_mana_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.cool_down_) -
-        reinterpret_cast<char*>(&_impl_.cost_mana_)) + sizeof(_impl_.cool_down_));
-  }
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-::uint8_t* SkillInfo::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:space_service.SkillInfo)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // int32 skill_id = 1;
-  if (this->_internal_skill_id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_skill_id(), target);
-  }
-
-  // int32 next_cast_time = 2;
-  if (this->_internal_next_cast_time() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<2>(
-            stream, this->_internal_next_cast_time(), target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // optional int32 cost_mana = 3;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_cost_mana(), target);
-  }
-
-  // optional int32 cool_down = 4;
-  if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<4>(
-            stream, this->_internal_cool_down(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:space_service.SkillInfo)
-  return target;
-}
-
-::size_t SkillInfo::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:space_service.SkillInfo)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
-  // int32 skill_id = 1;
-  if (this->_internal_skill_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_skill_id());
-  }
-
-  // int32 next_cast_time = 2;
-  if (this->_internal_next_cast_time() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_next_cast_time());
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // optional int32 cost_mana = 3;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-          this->_internal_cost_mana());
-    }
-
-    // optional int32 cool_down = 4;
-    if (cached_has_bits & 0x00000002u) {
-      total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-          this->_internal_cool_down());
-    }
-
-  }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-
-void SkillInfo::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<SkillInfo*>(&to_msg);
-  auto& from = static_cast<const SkillInfo&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.SkillInfo)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_skill_id() != 0) {
-    _this->_impl_.skill_id_ = from._impl_.skill_id_;
-  }
-  if (from._internal_next_cast_time() != 0) {
-    _this->_impl_.next_cast_time_ = from._impl_.next_cast_time_;
-  }
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _this->_impl_.cost_mana_ = from._impl_.cost_mana_;
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.cool_down_ = from._impl_.cool_down_;
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void SkillInfo::CopyFrom(const SkillInfo& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:space_service.SkillInfo)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void SkillInfo::InternalSwap(SkillInfo* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.cool_down_)
-      + sizeof(SkillInfo::_impl_.cool_down_)
-      - PROTOBUF_FIELD_OFFSET(SkillInfo, _impl_.skill_id_)>(
-          reinterpret_cast<char*>(&_impl_.skill_id_),
-          reinterpret_cast<char*>(&other->_impl_.skill_id_));
-}
-
-::google::protobuf::Metadata SkillInfo::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
 class PlayerInfo::_Internal {
  public:
 };
@@ -2863,10 +2538,6 @@ void PlayerDeltaInfo::InternalSwap(PlayerDeltaInfo* PROTOBUF_RESTRICT other) {
 
 class AoiEntity::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<AoiEntity>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_._has_bits_);
 };
 
 AoiEntity::AoiEntity(::google::protobuf::Arena* arena)
@@ -2877,10 +2548,9 @@ AoiEntity::AoiEntity(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE AoiEntity::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::space_service::AoiEntity& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        entity_type_(arena, from.entity_type_),
-        data_(arena, from.data_) {}
+      : entity_type_(arena, from.entity_type_),
+        data_(arena, from.data_),
+        _cached_size_{0} {}
 
 AoiEntity::AoiEntity(
     ::google::protobuf::Arena* arena,
@@ -2891,23 +2561,18 @@ AoiEntity::AoiEntity(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.transform_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Movement>(
-                              arena, *from._impl_.transform_)
-                        : nullptr;
 
   // @@protoc_insertion_point(copy_constructor:space_service.AoiEntity)
 }
 inline PROTOBUF_NDEBUG_INLINE AoiEntity::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        entity_type_(arena),
-        data_(arena) {}
+      : entity_type_(arena),
+        data_(arena),
+        _cached_size_{0} {}
 
 inline void AoiEntity::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.transform_ = {};
 }
 AoiEntity::~AoiEntity() {
   // @@protoc_insertion_point(destructor:space_service.AoiEntity)
@@ -2918,7 +2583,6 @@ inline void AoiEntity::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.entity_type_.Destroy();
   _impl_.data_.Destroy();
-  delete _impl_.transform_;
   _impl_.~Impl_();
 }
 
@@ -2943,17 +2607,17 @@ AoiEntity::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 43, 2> AoiEntity::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 43, 2> AoiEntity::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     &_AoiEntity_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -2961,31 +2625,24 @@ const ::_pbi::TcParseTable<2, 3, 1, 43, 2> AoiEntity::_table_ = {
     ::_pbi::TcParser::GetTable<::space_service::AoiEntity>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string entity_type = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.entity_type_)}},
     // bytes data = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.data_)}},
-    // .space_service.Movement transform = 3;
-    {::_pbi::TcParser::FastMtS1,
-     {26, 0, 0, PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.transform_)}},
+    // string entity_type = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.entity_type_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string entity_type = 1;
-    {PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.entity_type_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.entity_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // bytes data = 2;
-    {PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.data_), -1, 0,
+    {PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.data_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // .space_service.Movement transform = 3;
-    {PROTOBUF_FIELD_OFFSET(AoiEntity, _impl_.transform_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::space_service::Movement>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
     "\27\13\0\0\0\0\0\0"
     "space_service.AoiEntity"
     "entity_type"
@@ -3001,12 +2658,6 @@ PROTOBUF_NOINLINE void AoiEntity::Clear() {
 
   _impl_.entity_type_.ClearToEmpty();
   _impl_.data_.ClearToEmpty();
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(_impl_.transform_ != nullptr);
-    _impl_.transform_->Clear();
-  }
-  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3029,13 +2680,6 @@ PROTOBUF_NOINLINE void AoiEntity::Clear() {
   if (!this->_internal_data().empty()) {
     const std::string& _s = this->_internal_data();
     target = stream->WriteBytesMaybeAliased(2, _s, target);
-  }
-
-  cached_has_bits = _impl_._has_bits_[0];
-  // .space_service.Movement transform = 3;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        3, *_impl_.transform_, _impl_.transform_->GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3068,13 +2712,6 @@ PROTOBUF_NOINLINE void AoiEntity::Clear() {
                                     this->_internal_data());
   }
 
-  // .space_service.Movement transform = 3;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size +=
-        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.transform_);
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3082,7 +2719,6 @@ PROTOBUF_NOINLINE void AoiEntity::Clear() {
 void AoiEntity::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<AoiEntity*>(&to_msg);
   auto& from = static_cast<const AoiEntity&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:space_service.AoiEntity)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
@@ -3094,17 +2730,6 @@ void AoiEntity::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   if (!from._internal_data().empty()) {
     _this->_internal_set_data(from._internal_data());
   }
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    ABSL_DCHECK(from._impl_.transform_ != nullptr);
-    if (_this->_impl_.transform_ == nullptr) {
-      _this->_impl_.transform_ =
-          ::google::protobuf::Message::CopyConstruct<::space_service::Movement>(arena, *from._impl_.transform_);
-    } else {
-      _this->_impl_.transform_->MergeFrom(*from._impl_.transform_);
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3121,10 +2746,8 @@ void AoiEntity::InternalSwap(AoiEntity* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entity_type_, &other->_impl_.entity_type_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
-  swap(_impl_.transform_, other->_impl_.transform_);
 }
 
 ::google::protobuf::Metadata AoiEntity::GetMetadata() const {
@@ -3544,10 +3167,6 @@ AoiUpdate::AoiUpdate(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.transform_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Movement>(
-                              arena, *from._impl_.transform_)
-                        : nullptr;
   _impl_.eid_ = from._impl_.eid_;
 
   // @@protoc_insertion_point(copy_constructor:space_service.AoiUpdate)
@@ -3560,12 +3179,7 @@ inline PROTOBUF_NDEBUG_INLINE AoiUpdate::Impl_::Impl_(
 
 inline void AoiUpdate::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, transform_),
-           0,
-           offsetof(Impl_, eid_) -
-               offsetof(Impl_, transform_) +
-               sizeof(Impl_::eid_));
+  _impl_.eid_ = {};
 }
 AoiUpdate::~AoiUpdate() {
   // @@protoc_insertion_point(destructor:space_service.AoiUpdate)
@@ -3575,7 +3189,6 @@ AoiUpdate::~AoiUpdate() {
 inline void AoiUpdate::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.data_.Destroy();
-  delete _impl_.transform_;
   _impl_.~Impl_();
 }
 
@@ -3600,17 +3213,17 @@ AoiUpdate::GetClassData() const {
   return _data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 0, 2> AoiUpdate::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> AoiUpdate::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
     &_AoiUpdate_default_instance_._instance,
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
@@ -3618,16 +3231,12 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> AoiUpdate::_table_ = {
     ::_pbi::TcParser::GetTable<::space_service::AoiUpdate>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // int32 eid = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AoiUpdate, _impl_.eid_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.eid_)}},
     // optional bytes data = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 0, 0, PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.data_)}},
-    // optional .space_service.Movement transform = 3;
-    {::_pbi::TcParser::FastMtS1,
-     {26, 1, 0, PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.transform_)}},
+    // int32 eid = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AoiUpdate, _impl_.eid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.eid_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -3637,12 +3246,9 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> AoiUpdate::_table_ = {
     // optional bytes data = 2;
     {PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.data_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
-    // optional .space_service.Movement transform = 3;
-    {PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.transform_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-  }}, {{
-    {::_pbi::TcParser::GetTable<::space_service::Movement>()},
-  }}, {{
+  }},
+  // no aux_entries
+  {{
   }},
 };
 
@@ -3654,14 +3260,8 @@ PROTOBUF_NOINLINE void AoiUpdate::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _impl_.data_.ClearNonDefaultToEmpty();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(_impl_.transform_ != nullptr);
-      _impl_.transform_->Clear();
-    }
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.data_.ClearNonDefaultToEmpty();
   }
   _impl_.eid_ = 0;
   _impl_._has_bits_.Clear();
@@ -3689,12 +3289,6 @@ PROTOBUF_NOINLINE void AoiUpdate::Clear() {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // optional .space_service.Movement transform = 3;
-  if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        3, *_impl_.transform_, _impl_.transform_->GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3713,21 +3307,13 @@ PROTOBUF_NOINLINE void AoiUpdate::Clear() {
   (void) cached_has_bits;
 
   ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // optional bytes data = 2;
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // optional bytes data = 2;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                      this->_internal_data());
-    }
-
-    // optional .space_service.Movement transform = 3;
-    if (cached_has_bits & 0x00000002u) {
-      total_size +=
-          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.transform_);
-    }
-
+  if (cached_has_bits & 0x00000001u) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_data());
   }
+
   // int32 eid = 1;
   if (this->_internal_eid() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -3741,26 +3327,14 @@ PROTOBUF_NOINLINE void AoiUpdate::Clear() {
 void AoiUpdate::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<AoiUpdate*>(&to_msg);
   auto& from = static_cast<const AoiUpdate&>(from_msg);
-  ::google::protobuf::Arena* arena = _this->GetArena();
   // @@protoc_insertion_point(class_specific_merge_from_start:space_service.AoiUpdate)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_data(from._internal_data());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      ABSL_DCHECK(from._impl_.transform_ != nullptr);
-      if (_this->_impl_.transform_ == nullptr) {
-        _this->_impl_.transform_ =
-            ::google::protobuf::Message::CopyConstruct<::space_service::Movement>(arena, *from._impl_.transform_);
-      } else {
-        _this->_impl_.transform_->MergeFrom(*from._impl_.transform_);
-      }
-    }
+  if (cached_has_bits & 0x00000001u) {
+    _this->_internal_set_data(from._internal_data());
   }
   if (from._internal_eid() != 0) {
     _this->_impl_.eid_ = from._impl_.eid_;
@@ -3784,12 +3358,7 @@ void AoiUpdate::InternalSwap(AoiUpdate* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.data_, &other->_impl_.data_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.eid_)
-      + sizeof(AoiUpdate::_impl_.eid_)
-      - PROTOBUF_FIELD_OFFSET(AoiUpdate, _impl_.transform_)>(
-          reinterpret_cast<char*>(&_impl_.transform_),
-          reinterpret_cast<char*>(&other->_impl_.transform_));
+        swap(_impl_.eid_, other->_impl_.eid_);
 }
 
 ::google::protobuf::Metadata AoiUpdate::GetMetadata() const {
