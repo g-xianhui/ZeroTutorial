@@ -45,6 +45,8 @@ message PlayerDeltaInfo {
 message AoiEntity {
   string entity_type = 1;
   bytes data = 2;
+  Vector3f position = 3;
+  Vector3f rotation = 4;
 }
 
 message EntitiesEnterSight {

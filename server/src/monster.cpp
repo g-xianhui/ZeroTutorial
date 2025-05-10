@@ -3,7 +3,7 @@
 #include "movement_component.h"
 #include "space_component.h"
 
-Monster::Monster() : Entity()
+Monster::Monster(int character_id) : Entity(), _character_id(character_id)
 {
     add_component<MovementComponent>();
     add_component<SpaceComponent>();

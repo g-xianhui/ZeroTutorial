@@ -13,6 +13,8 @@
 #include "space_component.h"
 #include "connection_component.h"
 
+#include "monster.h"
+
 #include <random>
 #include <sstream>
 
@@ -26,6 +28,11 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
 
     _aoi = create_aoi(AOIType::GRID, 30);
     _aoi->start();
+
+    // monster test
+    // TODO 地图出生点
+    Monster* m = new Monster(1);
+    join(m);
 }
 
 Space::~Space()
@@ -41,7 +48,6 @@ Space::~Space()
     _aoi->stop();
 }
 
-// TODO 改成Entity
 void Space::join(Entity* entity)
 {
     if (has_entity(entity))
@@ -62,24 +68,6 @@ void Space::join(Entity* entity)
     _eid_2_entity.insert(std::make_pair(eid, entity));
 
     _aoi->add_entity(eid, x, z, default_view_raidus);
-
-    ConnectionComponent* connection_comp = entity->get_component<ConnectionComponent>();
-    // 告知玩家加入场景成功，并附带初始坐标
-    space_service::JoinReply join_reply;
-    join_reply.set_result(0);
-    space_service::Vector3f* position = join_reply.mutable_position();
-    position->set_x(x);
-    position->set_y(y);
-    position->set_z(z);
-    send_proto_msg(connection_comp->get_conn(), "join_reply", join_reply);
-
-    // 同步属性给自己
-    OutputBitStream bs;
-    entity->entity_net_serialize(bs, true);
-    space_service::PlayerInfo entity_info;
-    entity_info.set_eid(entity->get_eid());
-    entity_info.set_data(std::string{ bs.get_buffer(), bs.tellp() });
-    send_proto_msg(connection_comp->get_conn(), "sync_full_info", entity_info);
 }
 
 void Space::leave(Entity* entity)
@@ -178,6 +166,19 @@ void Space::update()
                             auto iter = entity_properties.insert(std::make_pair(other_eid, std::string{ bs.get_buffer(), bs.tellp() }));
                             aoi_entity->set_data(iter.first->second);
                         }
+
+                        space_service::Vector3f* position = aoi_entity->mutable_position();
+                        space_service::Vector3f* rotation = aoi_entity->mutable_rotation();
+                        MovementComponent* movement_comp = other->get_component<MovementComponent>();
+                        float x, y, z;
+                        movement_comp->get_position(x, y, z);
+                        position->set_x(x);
+                        position->set_y(y);
+                        position->set_z(z);
+                        Rotation r = movement_comp->get_rotation();
+                        rotation->set_x(r.pitch);
+                        rotation->set_y(r.yaw);
+                        rotation->set_z(r.roll);
                     }
                     send_proto_msg(connection_comp->get_conn(), "entities_enter_sight", entity_sight);
                 }

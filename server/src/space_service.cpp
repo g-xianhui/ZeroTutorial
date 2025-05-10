@@ -10,6 +10,7 @@
 #include "proto/space_service.pb.h"
 
 #include "movement_component.h"
+#include "space_component.h"
 #include "combat/combat_component.h"
 
 #include <spdlog/spdlog.h>
@@ -132,6 +133,26 @@ void SpaceService::join(TcpConnection* conn, const std::string&)
         return;
 
     _space->join(player);
+
+    // 告知玩家加入场景成功，并附带初始坐标
+    space_service::JoinReply join_reply;
+    join_reply.set_result(0);
+    space_service::Vector3f* position = join_reply.mutable_position();
+    MovementComponent* movement_comp = player->get_component<MovementComponent>();
+    float x, y, z;
+    movement_comp->get_position(x, y, z);
+    position->set_x(x);
+    position->set_y(y);
+    position->set_z(z);
+    send_proto_msg(conn, "join_reply", join_reply);
+
+    // 同步属性给自己
+    OutputBitStream bs;
+    player->entity_net_serialize(bs, true);
+    space_service::PlayerInfo entity_info;
+    entity_info.set_eid(player->get_eid());
+    entity_info.set_data(std::string{ bs.get_buffer(), bs.tellp() });
+    send_proto_msg(conn, "sync_full_info", entity_info);
 }
 
 void SpaceService::leave(TcpConnection* conn, const std::string&)

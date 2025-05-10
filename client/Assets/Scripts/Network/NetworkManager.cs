@@ -278,6 +278,7 @@ public class NetworkManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _entityPrefabs.Add("Player", "Character/OtherCharacter");
+        _entityPrefabs.Add("Monster", "Character/OtherCharacter");
     }
 
     // Start is called before the first frame update
@@ -599,7 +600,10 @@ public class NetworkManager : MonoBehaviour
                 if (prefab != null)
                 {
                     byte[] initData = aoiEntity.Data.ToByteArray();
-                    GameObject obj = GameObject.Instantiate(prefab);
+
+                    Vector3 position = new Vector3(aoiEntity.Position.X, aoiEntity.Position.Y, aoiEntity.Position.Z);
+                    Quaternion rotation = Quaternion.Euler(aoiEntity.Rotation.X, aoiEntity.Rotation.Y, aoiEntity.Rotation.Z);
+                    GameObject obj = GameObject.Instantiate(prefab, position, rotation);
 
                     NetworkComponent networkComponent = obj.GetComponent<NetworkComponent>();
                     networkComponent.NetRole = ENetRole.Simulate;

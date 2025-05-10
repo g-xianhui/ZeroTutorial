@@ -4,9 +4,9 @@
 
 class Space;
 
-class Monster : Entity {
+class Monster : public Entity {
 public:
-    Monster();
+    Monster(int character_id);
 
     void net_serialize(OutputBitStream& bs, bool to_self) const override;
     bool net_delta_serialize(OutputBitStream& bs, bool to_self) override;

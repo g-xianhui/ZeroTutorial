@@ -39,21 +39,23 @@ namespace SpaceService {
             "IAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2ZIAIgBAUILCglfcG9zaXRp",
             "b24iJwoKUGxheWVySW5mbxILCgNlaWQYASABKAUSDAoEZGF0YRgCIAEoDCIs",
             "Cg9QbGF5ZXJEZWx0YUluZm8SCwoDZWlkGAEgASgFEgwKBGRhdGEYAiABKAwi",
-            "LgoJQW9pRW50aXR5EhMKC2VudGl0eV90eXBlGAEgASgJEgwKBGRhdGEYAiAB",
-            "KAwiQAoSRW50aXRpZXNFbnRlclNpZ2h0EioKCGVudGl0aWVzGAEgAygLMhgu",
-            "c3BhY2Vfc2VydmljZS5Bb2lFbnRpdHkiJgoSRW50aXRpZXNMZWF2ZVNpZ2h0",
-            "EhAKCGVudGl0aWVzGAEgAygFIjQKCUFvaVVwZGF0ZRILCgNlaWQYASABKAUS",
-            "EQoEZGF0YRgCIAEoDEgAiAEBQgcKBV9kYXRhIjUKCkFvaVVwZGF0ZXMSJwoF",
-            "ZGF0YXMYASADKAsyGC5zcGFjZV9zZXJ2aWNlLkFvaVVwZGF0ZSIRCgRQaW5n",
-            "EgkKAXQYASABKAIiIwoEUG9uZxIJCgF0GAEgASgCEhAKCHNlcnZlcl90GAIg",
-            "ASgFIh0KDE5vcm1hbEF0dGFjaxINCgVjb21ibxgBIAEoBSIfCgtTa2lsbEF0",
-            "dGFjaxIQCghza2lsbF9pZBgBIAEoBSKOAQoJQW5pbWF0aW9uEgwKBG5hbWUY",
-            "ASABKAkSMgoCb3AYAiABKA4yJi5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbi5P",
-            "cGVyYXRpb25UeXBlEg0KBXNwZWVkGAMgASgCIjAKDU9wZXJhdGlvblR5cGUS",
-            "CQoFU1RBUlQQABIICgRTVE9QEAESCgoGVVBEQVRFEAIiRgoPUGxheWVyQW5p",
-            "bWF0aW9uEgsKA2VpZBgBIAEoBRImCgRkYXRhGAIgASgLMhguc3BhY2Vfc2Vy",
-            "dmljZS5BbmltYXRpb24iKQoKVGFrZURhbWFnZRILCgNlaWQYASABKAUSDgoG",
-            "ZGFtYWdlGAIgASgFYgZwcm90bzM="));
+            "hAEKCUFvaUVudGl0eRITCgtlbnRpdHlfdHlwZRgBIAEoCRIMCgRkYXRhGAIg",
+            "ASgMEikKCHBvc2l0aW9uGAMgASgLMhcuc3BhY2Vfc2VydmljZS5WZWN0b3Iz",
+            "ZhIpCghyb3RhdGlvbhgEIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2Yi",
+            "QAoSRW50aXRpZXNFbnRlclNpZ2h0EioKCGVudGl0aWVzGAEgAygLMhguc3Bh",
+            "Y2Vfc2VydmljZS5Bb2lFbnRpdHkiJgoSRW50aXRpZXNMZWF2ZVNpZ2h0EhAK",
+            "CGVudGl0aWVzGAEgAygFIjQKCUFvaVVwZGF0ZRILCgNlaWQYASABKAUSEQoE",
+            "ZGF0YRgCIAEoDEgAiAEBQgcKBV9kYXRhIjUKCkFvaVVwZGF0ZXMSJwoFZGF0",
+            "YXMYASADKAsyGC5zcGFjZV9zZXJ2aWNlLkFvaVVwZGF0ZSIRCgRQaW5nEgkK",
+            "AXQYASABKAIiIwoEUG9uZxIJCgF0GAEgASgCEhAKCHNlcnZlcl90GAIgASgF",
+            "Ih0KDE5vcm1hbEF0dGFjaxINCgVjb21ibxgBIAEoBSIfCgtTa2lsbEF0dGFj",
+            "axIQCghza2lsbF9pZBgBIAEoBSKOAQoJQW5pbWF0aW9uEgwKBG5hbWUYASAB",
+            "KAkSMgoCb3AYAiABKA4yJi5zcGFjZV9zZXJ2aWNlLkFuaW1hdGlvbi5PcGVy",
+            "YXRpb25UeXBlEg0KBXNwZWVkGAMgASgCIjAKDU9wZXJhdGlvblR5cGUSCQoF",
+            "U1RBUlQQABIICgRTVE9QEAESCgoGVVBEQVRFEAIiRgoPUGxheWVyQW5pbWF0",
+            "aW9uEgsKA2VpZBgBIAEoBRImCgRkYXRhGAIgASgLMhguc3BhY2Vfc2Vydmlj",
+            "ZS5BbmltYXRpb24iKQoKVGFrZURhbWFnZRILCgNlaWQYASABKAUSDgoGZGFt",
+            "YWdlGAIgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -64,7 +66,7 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.JoinReply), global::SpaceService.JoinReply.Parser, new[]{ "Result", "Position" }, new[]{ "Position" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerInfo), global::SpaceService.PlayerInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerDeltaInfo), global::SpaceService.PlayerDeltaInfo.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiEntity), global::SpaceService.AoiEntity.Parser, new[]{ "EntityType", "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiEntity), global::SpaceService.AoiEntity.Parser, new[]{ "EntityType", "Data", "Position", "Rotation" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.EntitiesEnterSight), global::SpaceService.EntitiesEnterSight.Parser, new[]{ "Entities" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.EntitiesLeaveSight), global::SpaceService.EntitiesLeaveSight.Parser, new[]{ "Entities" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.AoiUpdate), global::SpaceService.AoiUpdate.Parser, new[]{ "Eid", "Data" }, new[]{ "Data" }, null, null, null),
@@ -2003,6 +2005,8 @@ namespace SpaceService {
     public AoiEntity(AoiEntity other) : this() {
       entityType_ = other.entityType_;
       data_ = other.data_;
+      position_ = other.position_ != null ? other.position_.Clone() : null;
+      rotation_ = other.rotation_ != null ? other.rotation_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2036,6 +2040,30 @@ namespace SpaceService {
       }
     }
 
+    /// <summary>Field number for the "position" field.</summary>
+    public const int PositionFieldNumber = 3;
+    private global::SpaceService.Vector3f position_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Vector3f Position {
+      get { return position_; }
+      set {
+        position_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rotation" field.</summary>
+    public const int RotationFieldNumber = 4;
+    private global::SpaceService.Vector3f rotation_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Vector3f Rotation {
+      get { return rotation_; }
+      set {
+        rotation_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2053,6 +2081,8 @@ namespace SpaceService {
       }
       if (EntityType != other.EntityType) return false;
       if (Data != other.Data) return false;
+      if (!object.Equals(Position, other.Position)) return false;
+      if (!object.Equals(Rotation, other.Rotation)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2062,6 +2092,8 @@ namespace SpaceService {
       int hash = 1;
       if (EntityType.Length != 0) hash ^= EntityType.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
+      if (position_ != null) hash ^= Position.GetHashCode();
+      if (rotation_ != null) hash ^= Rotation.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2088,6 +2120,14 @@ namespace SpaceService {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
       }
+      if (position_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Position);
+      }
+      if (rotation_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Rotation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2106,6 +2146,14 @@ namespace SpaceService {
         output.WriteRawTag(18);
         output.WriteBytes(Data);
       }
+      if (position_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Position);
+      }
+      if (rotation_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Rotation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2121,6 +2169,12 @@ namespace SpaceService {
       }
       if (Data.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      if (position_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
+      }
+      if (rotation_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Rotation);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2139,6 +2193,18 @@ namespace SpaceService {
       }
       if (other.Data.Length != 0) {
         Data = other.Data;
+      }
+      if (other.position_ != null) {
+        if (position_ == null) {
+          Position = new global::SpaceService.Vector3f();
+        }
+        Position.MergeFrom(other.Position);
+      }
+      if (other.rotation_ != null) {
+        if (rotation_ == null) {
+          Rotation = new global::SpaceService.Vector3f();
+        }
+        Rotation.MergeFrom(other.Rotation);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2167,6 +2233,20 @@ namespace SpaceService {
             Data = input.ReadBytes();
             break;
           }
+          case 26: {
+            if (position_ == null) {
+              Position = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(Position);
+            break;
+          }
+          case 34: {
+            if (rotation_ == null) {
+              Rotation = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(Rotation);
+            break;
+          }
         }
       }
     #endif
@@ -2192,6 +2272,20 @@ namespace SpaceService {
           }
           case 18: {
             Data = input.ReadBytes();
+            break;
+          }
+          case 26: {
+            if (position_ == null) {
+              Position = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(Position);
+            break;
+          }
+          case 34: {
+            if (rotation_ == null) {
+              Rotation = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(Rotation);
             break;
           }
         }
