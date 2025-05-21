@@ -12,13 +12,103 @@
 #include "movement_component.h"
 #include "space_component.h"
 #include "connection_component.h"
+#include "navigation_component.h"
 
 #include "monster.h"
+
+#include <spdlog/spdlog.h>
 
 #include <random>
 #include <sstream>
 
 const float default_view_raidus = 10.f;
+
+static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';
+static const int NAVMESHSET_VERSION = 1;
+
+struct NavMeshSetHeader
+{
+    int magic;
+    int version;
+    int numTiles;
+    dtNavMeshParams params;
+};
+
+struct NavMeshTileHeader
+{
+    dtTileRef tileRef;
+    int dataSize;
+};
+
+dtNavMesh* loadAll(const char* path)
+{
+    FILE* fp = fopen(path, "rb");
+    if (!fp) return 0;
+
+    // Read header.
+    NavMeshSetHeader header;
+    size_t readLen = fread(&header, sizeof(NavMeshSetHeader), 1, fp);
+    if (readLen != 1)
+    {
+        fclose(fp);
+        return 0;
+    }
+    if (header.magic != NAVMESHSET_MAGIC)
+    {
+        fclose(fp);
+        return 0;
+    }
+    if (header.version != NAVMESHSET_VERSION)
+    {
+        fclose(fp);
+        return 0;
+    }
+
+    dtNavMesh* mesh = dtAllocNavMesh();
+    if (!mesh)
+    {
+        fclose(fp);
+        return 0;
+    }
+    dtStatus status = mesh->init(&header.params);
+    if (dtStatusFailed(status))
+    {
+        fclose(fp);
+        return 0;
+    }
+
+    // Read tiles.
+    for (int i = 0; i < header.numTiles; ++i)
+    {
+        NavMeshTileHeader tileHeader;
+        readLen = fread(&tileHeader, sizeof(tileHeader), 1, fp);
+        if (readLen != 1)
+        {
+            fclose(fp);
+            return 0;
+        }
+
+        if (!tileHeader.tileRef || !tileHeader.dataSize)
+            break;
+
+        unsigned char* data = (unsigned char*)dtAlloc(tileHeader.dataSize, DT_ALLOC_PERM);
+        if (!data) break;
+        memset(data, 0, tileHeader.dataSize);
+        readLen = fread(data, tileHeader.dataSize, 1, fp);
+        if (readLen != 1)
+        {
+            dtFree(data);
+            fclose(fp);
+            return 0;
+        }
+
+        mesh->addTile(data, tileHeader.dataSize, DT_TILE_FREE_DATA, tileHeader.tileRef, 0);
+    }
+
+    fclose(fp);
+
+    return mesh;
+}
 
 Space::Space(size_t w, size_t h) : _width(w), _height(h)
 {
@@ -29,10 +119,25 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
     _aoi = create_aoi(AOIType::GRID, 30);
     _aoi->start();
 
+    _nav_mesh = dtAllocNavMesh();
+    _nav_mesh = loadAll("DemoScene.bin");
+    assert(_nav_mesh);
+
+    _nav_query = dtAllocNavMeshQuery();
+    dtStatus status = _nav_query->init(_nav_mesh, 2048);
+    if (dtStatusFailed(status)) {
+        spdlog::error("nav query  init failed\n");
+        assert(0);
+    }
+
+    _nav_filter.setIncludeFlags(0xFFFF);
+    _nav_filter.setExcludeFlags(0);
+
     // monster test
-    // TODO 地图出生点
-    Monster* m = new Monster(1);
-    join(m);
+    _m = new Monster(1);
+    join(_m);
+    MovementComponent* movement_comp = _m->get_component<MovementComponent>();
+    movement_comp->set_position(4.37f, 0.45f, 14.026f);
 }
 
 Space::~Space()
@@ -255,6 +360,48 @@ std::vector<Entity*> Space::find_entities_in_circle(float cx, float cy, float r)
         }
     }
     return entitys;
+}
+
+std::vector<Vector3f> Space::find_path(const Vector3f& start_pos, const Vector3f& end_pos)
+{
+    // 设置起点和终点
+    float startPos[3] = { -start_pos.x, start_pos.y, start_pos.z };
+    float endPos[3] = { -end_pos.x, end_pos.y, end_pos.z };
+
+    float halfExtents[3] = { 2.0f, 4.0f, 2.0f };
+
+    // 查找最近的可行走点
+    dtPolyRef startRef, endRef;
+    _nav_query->findNearestPoly(startPos, halfExtents, &_nav_filter, &startRef, 0);
+    _nav_query->findNearestPoly(endPos, halfExtents, &_nav_filter, &endRef, 0);
+
+    // 计算路径
+    dtPolyRef pathPolys[512];  // 存储路径多边形
+    int pathCount = 0;
+    _nav_query->findPath(startRef, endRef, startPos, endPos, &_nav_filter, pathPolys, &pathCount, 512);
+
+    float epos[3] = { endPos[0], endPos[1], endPos[2] };
+    if (pathPolys[pathCount - 1] != endRef)
+        _nav_query->closestPointOnPoly(pathPolys[pathCount - 1], endPos, epos, 0);
+
+    // 平滑路径（可选）
+    float smoothPath[512 * 3];
+    int smoothPathCount = 0;
+    _nav_query->findStraightPath(startPos, epos, pathPolys, pathCount, smoothPath, 0, 0, &smoothPathCount, 512);
+
+    std::vector<Vector3f> result;
+    for (int i = 0; i < smoothPathCount; i++) {
+        result.emplace_back(-smoothPath[i * 3], smoothPath[i * 3 + 1], smoothPath[i * 3 + 2]);
+    }
+
+    return result;
+}
+
+std::vector<Vector3f> Space::navigation_test(const Vector3f& start_pos, const Vector3f& end_pos)
+{
+    NavigationComponent* nav_comp = _m->get_component<NavigationComponent>();
+    nav_comp->move_to(end_pos);
+    return nav_comp->get_path();
 }
 
 std::vector<Entity*> Space::find_entities_in_sector(float cx, float cy, float ux, float uy, float r, float theta)

@@ -5,6 +5,11 @@
 #include <vector>
 #include <unordered_map>
 
+#include "DetourNavMesh.h"
+#include "DetourNavMeshQuery.h"
+
+#include "math_utils.h"
+
 class Entity;
 class AOI;
 
@@ -28,6 +33,9 @@ public:
     std::vector<Entity*> find_entities_in_sector(float cx, float cy, float ux, float uy, float r, float theta);
     std::vector<Entity*> find_entities_in_circle(float cx, float cy, float r);
 
+    std::vector<Vector3f> find_path(const Vector3f& start_pos, const Vector3f& end_pos);
+    std::vector<Vector3f> navigation_test(const Vector3f& start_pos, const Vector3f& end_pos);
+
 private:
     size_t _width;
     size_t _height;
@@ -37,4 +45,10 @@ private:
     std::unordered_map<int, Entity*> _eid_2_entity;
 
     std::shared_ptr<AOI> _aoi;
+
+    dtNavMesh* _nav_mesh = nullptr;
+    dtNavMeshQuery* _nav_query = nullptr;
+    dtQueryFilter _nav_filter;
+
+    class Monster* _m = nullptr;
 };

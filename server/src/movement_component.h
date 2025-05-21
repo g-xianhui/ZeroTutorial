@@ -3,17 +3,7 @@
 #include "icomponent.h"
 #include "proto/space_service.pb.h"
 
-struct Vector3f {
-    float x = 0;
-    float y = 0;
-    float z = 0;
-};
-
-struct Rotation {
-    float pitch = 0;
-    float yaw = 0;
-    float roll = 0;
-};
+#include "math_utils.h"
 
 class MovementComponent : public IComponent {
 public:
@@ -32,6 +22,10 @@ public:
         z = _position.z;
     }
 
+    inline void set_position(const Vector3f& pos) {
+        set_position(pos.x, pos.y, pos.z);
+    }
+
     inline Vector3f get_position() const {
         return _position;
     }
@@ -42,9 +36,15 @@ public:
         _rotation.roll = z;
     }
 
+    inline void set_rotation(const Rotation& rot) {
+        set_rotation(rot.pitch, rot.yaw, rot.roll);
+    }
+
     inline Rotation get_rotation() const {
         return _rotation;
     }
+
+    void look_at(const Vector3f& pos);
 
     inline void set_velocity(float x, float y, float z) {
         _velocity.x = x;
@@ -100,6 +100,6 @@ private:
     Vector3f _acceleration;
     Vector3f _angular_velocity;
 
-    int _move_mode = 0;
+    int _move_mode = 16;
     float _move_timestamp = 0.f;
 };

@@ -1,5 +1,5 @@
 #include "math_utils.h"
-#include <math.h>
+
 #include <random>
 
 float random_01()
@@ -40,4 +40,13 @@ bool is_point_in_sector(float cx, float cy, float ux, float uy, float r, float t
 
     // acos(D dot U) < theta
     return acos(dx * ux + dy * uy) < theta;
+}
+
+Rotation quaternion_to_euler(const Quaternion& q)
+{
+    Rotation angles;
+    angles.pitch = std::atan2(2 * (q.w * q.x + q.y * q.z), 1 - 2 * (q.x * q.x + q.y * q.y)) / DEG2RAD;
+    angles.yaw = std::asin(2 * (q.w * q.y - q.z * q.x)) / DEG2RAD;
+    angles.roll = std::atan2(2 * (q.w * q.z + q.x * q.y), 1 - 2 * (q.y * q.y + q.z * q.z)) / DEG2RAD;
+    return angles;
 }

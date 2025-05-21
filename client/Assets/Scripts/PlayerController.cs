@@ -1,9 +1,13 @@
+using Google.Protobuf;
+using SpaceService;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
     CombatComponent combatComponent;
     Animator _anim;
+    NavMeshAgent _agent;
 
     void Awake()
     {
@@ -15,6 +19,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         combatComponent = GetComponent<CombatComponent>();
         _anim = GetComponent<Animator>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -26,6 +31,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
         CheckCombatInput();
+        CheckNavInput();
     }
 
     void CheckCombatInput()
@@ -40,6 +46,27 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.Q))
         {
             combatComponent.SkillAttack(0);
+        }
+    }
+
+    void CheckNavInput()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.Log($"hit pos: {hit.point}");
+                // _agent.destination = hit.point;
+
+                SpaceService.QueryPath queryPath = new SpaceService.QueryPath
+                {
+                    StartPos = new SpaceService.Vector3f { X = transform.position.x, Y = transform.position.y, Z = transform.position.z },
+                    EndPos = new SpaceService.Vector3f { X = hit.point.x, Y = hit.point.y, Z = hit.point.z }
+                };
+                NetworkManager.Instance.Send("query_path", queryPath.ToByteArray());
+            }
         }
     }
 

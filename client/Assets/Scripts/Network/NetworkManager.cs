@@ -738,4 +738,18 @@ public class NetworkManager : MonoBehaviour
             }
         }
     }
+
+    public void query_path_result(byte[] msgBytes)
+    {
+        
+        SpaceService.QueryPathResult queryPathResult = SpaceService.QueryPathResult.Parser.ParseFrom(msgBytes);
+        Debug.Log("query_path_result:");
+        for (int i = 0; i < queryPathResult.Paths.Count - 1; i++)
+        {
+            Vector3 startPos = new Vector3 { x = queryPathResult.Paths[i].X, y = queryPathResult.Paths[i].Y, z = queryPathResult.Paths[i].Z };
+            Vector3 endPos = new Vector3 { x = queryPathResult.Paths[i+1].X, y = queryPathResult.Paths[i+1].Y, z = queryPathResult.Paths[i+1].Z };
+            Debug.DrawLine(startPos, endPos, Color.red, 5f, false);
+            Debug.Log($"{startPos} -> {endPos}");
+        }
+    }
 }

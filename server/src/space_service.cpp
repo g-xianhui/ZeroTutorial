@@ -3,6 +3,7 @@
 #include "player.h"
 
 #include "bit_utils.h"
+#include "math_utils.h"
 #include "wheel_timer.h"
 
 #include "network/tcp_connection.h"
@@ -34,6 +35,7 @@ std::map<std::string, SpaceService::MsgHandlerFunc> SpaceService::register_msg_h
     REG_MSG_HANDLER(ping);
     REG_MSG_HANDLER(normal_attack);
     REG_MSG_HANDLER(skill_attack);
+    REG_MSG_HANDLER(query_path);
     return name_2_handler;
 }
 
@@ -237,4 +239,25 @@ void SpaceService::skill_attack(TcpConnection* conn, const std::string& msg_byte
     if (comp != nullptr) {
         comp->cast_skill(skill_id);
     }
+}
+
+void SpaceService::query_path(TcpConnection* conn, const std::string& msg_bytes)
+{
+    space_service::QueryPath req;
+    req.ParseFromString(msg_bytes);
+
+    Vector3f start_pos{ req.start_pos().x(), req.start_pos().y(), req.start_pos().z() };
+    Vector3f end_pos{ req.end_pos().x(), req.end_pos().y(), req.end_pos().z() };
+
+    // std::vector<Vector3f> result = _space->find_path(start_pos, end_pos);
+    std::vector<Vector3f> result = _space->navigation_test(start_pos, end_pos);
+    space_service::QueryPathResult response;
+
+    for (Vector3f& pos : result) {
+        space_service::Vector3f* new_pos = response.add_paths();
+        new_pos->set_x(pos.x);
+        new_pos->set_y(pos.y);
+        new_pos->set_z(pos.z);
+    }
+    send_proto_msg(conn, "query_path_result", response);
 }

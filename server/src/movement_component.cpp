@@ -5,6 +5,8 @@
 
 #include "bit_stream.h"
 
+#include <spdlog/spdlog.h>
+
 void MovementComponent::net_serialize(OutputBitStream& bs, bool to_self) const
 {
     if (to_self)
@@ -40,6 +42,18 @@ void MovementComponent::set_position(float x, float y, float z)
         if (space)
             space->update_position(_owner->get_eid(), x, y, z);
     }
+}
+
+void MovementComponent::look_at(const Vector3f& pos)
+{
+    Vector3f dir = pos - _position;
+    dir.y = 0;
+
+    float yaw = std::atan2(dir.x, dir.z) / DEG2RAD;
+    Rotation r{ 0, yaw, 0 };
+
+    spdlog::debug("dir: ({}, {}, {}), rotation: ({}, {}, {})", dir.x, dir.y, dir.z, r.pitch, r.yaw, r.roll);
+    set_rotation(r);
 }
 
 void MovementComponent::fill_movement_data(space_service::Movement* new_move) const

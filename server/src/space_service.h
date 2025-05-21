@@ -43,6 +43,8 @@ public:
 
     void normal_attack(TcpConnection*, const std::string&);
     void skill_attack(TcpConnection*, const std::string&);
+
+    void query_path(TcpConnection*, const std::string&);
 private:
     Space* _space = nullptr;
 

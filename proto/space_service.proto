@@ -104,3 +104,12 @@ message TakeDamage {
   int32 eid = 1;
   int32 damage = 2;
 }
+
+message QueryPath {
+  Vector3f start_pos = 1;
+  Vector3f end_pos = 2;
+}
+
+message QueryPathResult {
+  repeated Vector3f paths = 1;
+}

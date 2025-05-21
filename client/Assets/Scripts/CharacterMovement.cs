@@ -151,9 +151,9 @@ public class CharacterMovement : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
-        //Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-        //Gizmos.color = Color.yellow;
-        //Gizmos.DrawSphere(spherePosition, GroundedRadius);
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(spherePosition, GroundedRadius);
     }
 
     private void JumpAndGravity()

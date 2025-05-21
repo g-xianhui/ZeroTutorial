@@ -99,6 +99,12 @@ extern PlayerInfoDefaultTypeInternal _PlayerInfo_default_instance_;
 class Pong;
 struct PongDefaultTypeInternal;
 extern PongDefaultTypeInternal _Pong_default_instance_;
+class QueryPath;
+struct QueryPathDefaultTypeInternal;
+extern QueryPathDefaultTypeInternal _QueryPath_default_instance_;
+class QueryPathResult;
+struct QueryPathResultDefaultTypeInternal;
+extern QueryPathResultDefaultTypeInternal _QueryPathResult_default_instance_;
 class SkillAttack;
 struct SkillAttackDefaultTypeInternal;
 extern SkillAttackDefaultTypeInternal _SkillAttack_default_instance_;
@@ -2552,6 +2558,378 @@ class Animation final : public ::google::protobuf::Message
     int op_;
     float speed_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class QueryPathResult final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.QueryPathResult) */ {
+ public:
+  inline QueryPathResult() : QueryPathResult(nullptr) {}
+  ~QueryPathResult() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR QueryPathResult(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline QueryPathResult(const QueryPathResult& from) : QueryPathResult(nullptr, from) {}
+  inline QueryPathResult(QueryPathResult&& from) noexcept
+      : QueryPathResult(nullptr, std::move(from)) {}
+  inline QueryPathResult& operator=(const QueryPathResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QueryPathResult& operator=(QueryPathResult&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QueryPathResult& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QueryPathResult* internal_default_instance() {
+    return reinterpret_cast<const QueryPathResult*>(
+        &_QueryPathResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 20;
+  friend void swap(QueryPathResult& a, QueryPathResult& b) { a.Swap(&b); }
+  inline void Swap(QueryPathResult* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QueryPathResult* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QueryPathResult* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<QueryPathResult>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const QueryPathResult& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const QueryPathResult& from) { QueryPathResult::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(QueryPathResult* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.QueryPathResult"; }
+
+ protected:
+  explicit QueryPathResult(::google::protobuf::Arena* arena);
+  QueryPathResult(::google::protobuf::Arena* arena, const QueryPathResult& from);
+  QueryPathResult(::google::protobuf::Arena* arena, QueryPathResult&& from) noexcept
+      : QueryPathResult(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPathsFieldNumber = 1,
+  };
+  // repeated .space_service.Vector3f paths = 1;
+  int paths_size() const;
+  private:
+  int _internal_paths_size() const;
+
+  public:
+  void clear_paths() ;
+  ::space_service::Vector3f* mutable_paths(int index);
+  ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>* mutable_paths();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>& _internal_paths() const;
+  ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>* _internal_mutable_paths();
+  public:
+  const ::space_service::Vector3f& paths(int index) const;
+  ::space_service::Vector3f* add_paths();
+  const ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>& paths() const;
+  // @@protoc_insertion_point(class_scope:space_service.QueryPathResult)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_QueryPathResult_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const QueryPathResult& from_msg);
+    ::google::protobuf::RepeatedPtrField< ::space_service::Vector3f > paths_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class QueryPath final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.QueryPath) */ {
+ public:
+  inline QueryPath() : QueryPath(nullptr) {}
+  ~QueryPath() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR QueryPath(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline QueryPath(const QueryPath& from) : QueryPath(nullptr, from) {}
+  inline QueryPath(QueryPath&& from) noexcept
+      : QueryPath(nullptr, std::move(from)) {}
+  inline QueryPath& operator=(const QueryPath& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QueryPath& operator=(QueryPath&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QueryPath& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QueryPath* internal_default_instance() {
+    return reinterpret_cast<const QueryPath*>(
+        &_QueryPath_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(QueryPath& a, QueryPath& b) { a.Swap(&b); }
+  inline void Swap(QueryPath* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QueryPath* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QueryPath* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<QueryPath>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const QueryPath& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const QueryPath& from) { QueryPath::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(QueryPath* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.QueryPath"; }
+
+ protected:
+  explicit QueryPath(::google::protobuf::Arena* arena);
+  QueryPath(::google::protobuf::Arena* arena, const QueryPath& from);
+  QueryPath(::google::protobuf::Arena* arena, QueryPath&& from) noexcept
+      : QueryPath(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kStartPosFieldNumber = 1,
+    kEndPosFieldNumber = 2,
+  };
+  // .space_service.Vector3f start_pos = 1;
+  bool has_start_pos() const;
+  void clear_start_pos() ;
+  const ::space_service::Vector3f& start_pos() const;
+  PROTOBUF_NODISCARD ::space_service::Vector3f* release_start_pos();
+  ::space_service::Vector3f* mutable_start_pos();
+  void set_allocated_start_pos(::space_service::Vector3f* value);
+  void unsafe_arena_set_allocated_start_pos(::space_service::Vector3f* value);
+  ::space_service::Vector3f* unsafe_arena_release_start_pos();
+
+  private:
+  const ::space_service::Vector3f& _internal_start_pos() const;
+  ::space_service::Vector3f* _internal_mutable_start_pos();
+
+  public:
+  // .space_service.Vector3f end_pos = 2;
+  bool has_end_pos() const;
+  void clear_end_pos() ;
+  const ::space_service::Vector3f& end_pos() const;
+  PROTOBUF_NODISCARD ::space_service::Vector3f* release_end_pos();
+  ::space_service::Vector3f* mutable_end_pos();
+  void set_allocated_end_pos(::space_service::Vector3f* value);
+  void unsafe_arena_set_allocated_end_pos(::space_service::Vector3f* value);
+  ::space_service::Vector3f* unsafe_arena_release_end_pos();
+
+  private:
+  const ::space_service::Vector3f& _internal_end_pos() const;
+  ::space_service::Vector3f* _internal_mutable_end_pos();
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.QueryPath)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 2,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_QueryPath_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const QueryPath& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::space_service::Vector3f* start_pos_;
+    ::space_service::Vector3f* end_pos_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -5717,6 +6095,255 @@ inline ::int32_t TakeDamage::_internal_damage() const {
 inline void TakeDamage::_internal_set_damage(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.damage_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// QueryPath
+
+// .space_service.Vector3f start_pos = 1;
+inline bool QueryPath::has_start_pos() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_pos_ != nullptr);
+  return value;
+}
+inline void QueryPath::clear_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_pos_ != nullptr) _impl_.start_pos_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::space_service::Vector3f& QueryPath::_internal_start_pos() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::space_service::Vector3f* p = _impl_.start_pos_;
+  return p != nullptr ? *p : reinterpret_cast<const ::space_service::Vector3f&>(::space_service::_Vector3f_default_instance_);
+}
+inline const ::space_service::Vector3f& QueryPath::start_pos() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryPath.start_pos)
+  return _internal_start_pos();
+}
+inline void QueryPath::unsafe_arena_set_allocated_start_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_pos_);
+  }
+  _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.QueryPath.start_pos)
+}
+inline ::space_service::Vector3f* QueryPath::release_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::space_service::Vector3f* released = _impl_.start_pos_;
+  _impl_.start_pos_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::space_service::Vector3f* QueryPath::unsafe_arena_release_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.QueryPath.start_pos)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::space_service::Vector3f* temp = _impl_.start_pos_;
+  _impl_.start_pos_ = nullptr;
+  return temp;
+}
+inline ::space_service::Vector3f* QueryPath::_internal_mutable_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_pos_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Vector3f>(GetArena());
+    _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(p);
+  }
+  return _impl_.start_pos_;
+}
+inline ::space_service::Vector3f* QueryPath::mutable_start_pos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::space_service::Vector3f* _msg = _internal_mutable_start_pos();
+  // @@protoc_insertion_point(field_mutable:space_service.QueryPath.start_pos)
+  return _msg;
+}
+inline void QueryPath::set_allocated_start_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.start_pos_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  // @@protoc_insertion_point(field_set_allocated:space_service.QueryPath.start_pos)
+}
+
+// .space_service.Vector3f end_pos = 2;
+inline bool QueryPath::has_end_pos() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.end_pos_ != nullptr);
+  return value;
+}
+inline void QueryPath::clear_end_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.end_pos_ != nullptr) _impl_.end_pos_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::space_service::Vector3f& QueryPath::_internal_end_pos() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::space_service::Vector3f* p = _impl_.end_pos_;
+  return p != nullptr ? *p : reinterpret_cast<const ::space_service::Vector3f&>(::space_service::_Vector3f_default_instance_);
+}
+inline const ::space_service::Vector3f& QueryPath::end_pos() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryPath.end_pos)
+  return _internal_end_pos();
+}
+inline void QueryPath::unsafe_arena_set_allocated_end_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.end_pos_);
+  }
+  _impl_.end_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.QueryPath.end_pos)
+}
+inline ::space_service::Vector3f* QueryPath::release_end_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::space_service::Vector3f* released = _impl_.end_pos_;
+  _impl_.end_pos_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::space_service::Vector3f* QueryPath::unsafe_arena_release_end_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.QueryPath.end_pos)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::space_service::Vector3f* temp = _impl_.end_pos_;
+  _impl_.end_pos_ = nullptr;
+  return temp;
+}
+inline ::space_service::Vector3f* QueryPath::_internal_mutable_end_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.end_pos_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Vector3f>(GetArena());
+    _impl_.end_pos_ = reinterpret_cast<::space_service::Vector3f*>(p);
+  }
+  return _impl_.end_pos_;
+}
+inline ::space_service::Vector3f* QueryPath::mutable_end_pos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::space_service::Vector3f* _msg = _internal_mutable_end_pos();
+  // @@protoc_insertion_point(field_mutable:space_service.QueryPath.end_pos)
+  return _msg;
+}
+inline void QueryPath::set_allocated_end_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.end_pos_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.end_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  // @@protoc_insertion_point(field_set_allocated:space_service.QueryPath.end_pos)
+}
+
+// -------------------------------------------------------------------
+
+// QueryPathResult
+
+// repeated .space_service.Vector3f paths = 1;
+inline int QueryPathResult::_internal_paths_size() const {
+  return _internal_paths().size();
+}
+inline int QueryPathResult::paths_size() const {
+  return _internal_paths_size();
+}
+inline void QueryPathResult::clear_paths() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.paths_.Clear();
+}
+inline ::space_service::Vector3f* QueryPathResult::mutable_paths(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:space_service.QueryPathResult.paths)
+  return _internal_mutable_paths()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>* QueryPathResult::mutable_paths()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:space_service.QueryPathResult.paths)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_paths();
+}
+inline const ::space_service::Vector3f& QueryPathResult::paths(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryPathResult.paths)
+  return _internal_paths().Get(index);
+}
+inline ::space_service::Vector3f* QueryPathResult::add_paths() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::space_service::Vector3f* _add = _internal_mutable_paths()->Add();
+  // @@protoc_insertion_point(field_add:space_service.QueryPathResult.paths)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>& QueryPathResult::paths() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:space_service.QueryPathResult.paths)
+  return _internal_paths();
+}
+inline const ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>&
+QueryPathResult::_internal_paths() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.paths_;
+}
+inline ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>*
+QueryPathResult::_internal_mutable_paths() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.paths_;
 }
 
 #ifdef __GNUC__

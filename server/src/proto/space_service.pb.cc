@@ -293,6 +293,45 @@ struct AnimationDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnimationDefaultTypeInternal _Animation_default_instance_;
 
+inline constexpr QueryPathResult::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : paths_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR QueryPathResult::QueryPathResult(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct QueryPathResultDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QueryPathResultDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QueryPathResultDefaultTypeInternal() {}
+  union {
+    QueryPathResult _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QueryPathResultDefaultTypeInternal _QueryPathResult_default_instance_;
+
+inline constexpr QueryPath::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        start_pos_{nullptr},
+        end_pos_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR QueryPath::QueryPath(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct QueryPathDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR QueryPathDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~QueryPathDefaultTypeInternal() {}
+  union {
+    QueryPath _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 QueryPathDefaultTypeInternal _QueryPath_default_instance_;
+
 inline constexpr PlayerAnimation::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -637,6 +676,27 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::space_service::TakeDamage, _impl_.eid_),
         PROTOBUF_FIELD_OFFSET(::space_service::TakeDamage, _impl_.damage_),
+        PROTOBUF_FIELD_OFFSET(::space_service::QueryPath, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::space_service::QueryPath, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::QueryPath, _impl_.start_pos_),
+        PROTOBUF_FIELD_OFFSET(::space_service::QueryPath, _impl_.end_pos_),
+        0,
+        1,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::space_service::QueryPathResult, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::space_service::QueryPathResult, _impl_.paths_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -660,6 +720,8 @@ static const ::_pbi::MigrationSchema
         {176, -1, -1, sizeof(::space_service::Animation)},
         {187, 197, -1, sizeof(::space_service::PlayerAnimation)},
         {199, -1, -1, sizeof(::space_service::TakeDamage)},
+        {209, 219, -1, sizeof(::space_service::QueryPath)},
+        {221, -1, -1, sizeof(::space_service::QueryPathResult)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Vector3f_default_instance_._instance,
@@ -681,6 +743,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::space_service::_Animation_default_instance_._instance,
     &::space_service::_PlayerAnimation_default_instance_._instance,
     &::space_service::_TakeDamage_default_instance_._instance,
+    &::space_service::_QueryPath_default_instance_._instance,
+    &::space_service::_QueryPathResult_default_instance_._instance,
 };
 const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -719,19 +783,23 @@ const char descriptor_table_protodef_space_5fservice_2eproto[] ABSL_ATTRIBUTE_SE
     "\006UPDATE\020\002\"F\n\017PlayerAnimation\022\013\n\003eid\030\001 \001("
     "\005\022&\n\004data\030\002 \001(\0132\030.space_service.Animatio"
     "n\")\n\nTakeDamage\022\013\n\003eid\030\001 \001(\005\022\016\n\006damage\030\002"
-    " \001(\005b\006proto3"
+    " \001(\005\"a\n\tQueryPath\022*\n\tstart_pos\030\001 \001(\0132\027.s"
+    "pace_service.Vector3f\022(\n\007end_pos\030\002 \001(\0132\027"
+    ".space_service.Vector3f\"9\n\017QueryPathResu"
+    "lt\022&\n\005paths\030\001 \003(\0132\027.space_service.Vector"
+    "3fb\006proto3"
 };
 static ::absl::once_flag descriptor_table_space_5fservice_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_space_5fservice_2eproto = {
     false,
     false,
-    1412,
+    1570,
     descriptor_table_protodef_space_5fservice_2eproto,
     "space_service.proto",
     &descriptor_table_space_5fservice_2eproto_once,
     nullptr,
     0,
-    19,
+    21,
     schemas,
     file_default_instances,
     TableStruct_space_5fservice_2eproto::offsets,
@@ -5140,6 +5208,457 @@ void TakeDamage::InternalSwap(TakeDamage* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata TakeDamage::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class QueryPath::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<QueryPath>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(QueryPath, _impl_._has_bits_);
+};
+
+QueryPath::QueryPath(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.QueryPath)
+}
+inline PROTOBUF_NDEBUG_INLINE QueryPath::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::QueryPath& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+QueryPath::QueryPath(
+    ::google::protobuf::Arena* arena,
+    const QueryPath& from)
+    : ::google::protobuf::Message(arena) {
+  QueryPath* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.start_pos_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(
+                              arena, *from._impl_.start_pos_)
+                        : nullptr;
+  _impl_.end_pos_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(
+                              arena, *from._impl_.end_pos_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:space_service.QueryPath)
+}
+inline PROTOBUF_NDEBUG_INLINE QueryPath::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void QueryPath::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, start_pos_),
+           0,
+           offsetof(Impl_, end_pos_) -
+               offsetof(Impl_, start_pos_) +
+               sizeof(Impl_::end_pos_));
+}
+QueryPath::~QueryPath() {
+  // @@protoc_insertion_point(destructor:space_service.QueryPath)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void QueryPath::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.start_pos_;
+  delete _impl_.end_pos_;
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+QueryPath::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(QueryPath, _impl_._cached_size_),
+              false,
+          },
+          &QueryPath::MergeImpl,
+          &QueryPath::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 2, 0, 2> QueryPath::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(QueryPath, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_QueryPath_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::QueryPath>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .space_service.Vector3f end_pos = 2;
+    {::_pbi::TcParser::FastMtS1,
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(QueryPath, _impl_.end_pos_)}},
+    // .space_service.Vector3f start_pos = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(QueryPath, _impl_.start_pos_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .space_service.Vector3f start_pos = 1;
+    {PROTOBUF_FIELD_OFFSET(QueryPath, _impl_.start_pos_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .space_service.Vector3f end_pos = 2;
+    {PROTOBUF_FIELD_OFFSET(QueryPath, _impl_.end_pos_), _Internal::kHasBitsOffset + 1, 1,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
+    {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void QueryPath::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.QueryPath)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(_impl_.start_pos_ != nullptr);
+      _impl_.start_pos_->Clear();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(_impl_.end_pos_ != nullptr);
+      _impl_.end_pos_->Clear();
+    }
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* QueryPath::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.QueryPath)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .space_service.Vector3f start_pos = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *_impl_.start_pos_, _impl_.start_pos_->GetCachedSize(), target, stream);
+  }
+
+  // .space_service.Vector3f end_pos = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        2, *_impl_.end_pos_, _impl_.end_pos_->GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.QueryPath)
+  return target;
+}
+
+::size_t QueryPath::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.QueryPath)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // .space_service.Vector3f start_pos = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.start_pos_);
+    }
+
+    // .space_service.Vector3f end_pos = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size +=
+          1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.end_pos_);
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void QueryPath::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<QueryPath*>(&to_msg);
+  auto& from = static_cast<const QueryPath&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.QueryPath)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      ABSL_DCHECK(from._impl_.start_pos_ != nullptr);
+      if (_this->_impl_.start_pos_ == nullptr) {
+        _this->_impl_.start_pos_ =
+            ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(arena, *from._impl_.start_pos_);
+      } else {
+        _this->_impl_.start_pos_->MergeFrom(*from._impl_.start_pos_);
+      }
+    }
+    if (cached_has_bits & 0x00000002u) {
+      ABSL_DCHECK(from._impl_.end_pos_ != nullptr);
+      if (_this->_impl_.end_pos_ == nullptr) {
+        _this->_impl_.end_pos_ =
+            ::google::protobuf::Message::CopyConstruct<::space_service::Vector3f>(arena, *from._impl_.end_pos_);
+      } else {
+        _this->_impl_.end_pos_->MergeFrom(*from._impl_.end_pos_);
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void QueryPath::CopyFrom(const QueryPath& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.QueryPath)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void QueryPath::InternalSwap(QueryPath* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(QueryPath, _impl_.end_pos_)
+      + sizeof(QueryPath::_impl_.end_pos_)
+      - PROTOBUF_FIELD_OFFSET(QueryPath, _impl_.start_pos_)>(
+          reinterpret_cast<char*>(&_impl_.start_pos_),
+          reinterpret_cast<char*>(&other->_impl_.start_pos_));
+}
+
+::google::protobuf::Metadata QueryPath::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class QueryPathResult::_Internal {
+ public:
+};
+
+QueryPathResult::QueryPathResult(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:space_service.QueryPathResult)
+}
+inline PROTOBUF_NDEBUG_INLINE QueryPathResult::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::space_service::QueryPathResult& from_msg)
+      : paths_{visibility, arena, from.paths_},
+        _cached_size_{0} {}
+
+QueryPathResult::QueryPathResult(
+    ::google::protobuf::Arena* arena,
+    const QueryPathResult& from)
+    : ::google::protobuf::Message(arena) {
+  QueryPathResult* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:space_service.QueryPathResult)
+}
+inline PROTOBUF_NDEBUG_INLINE QueryPathResult::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : paths_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void QueryPathResult::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+QueryPathResult::~QueryPathResult() {
+  // @@protoc_insertion_point(destructor:space_service.QueryPathResult)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void QueryPathResult::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+QueryPathResult::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              &_table_.header,
+              nullptr,  // OnDemandRegisterArenaDtor
+              nullptr,  // IsInitialized
+              PROTOBUF_FIELD_OFFSET(QueryPathResult, _impl_._cached_size_),
+              false,
+          },
+          &QueryPathResult::MergeImpl,
+          &QueryPathResult::kDescriptorMethods,
+          &descriptor_table_space_5fservice_2eproto,
+          nullptr,  // tracker
+      };
+  ::google::protobuf::internal::PrefetchToLocalCache(&_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_data_.tc_table);
+  return _data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> QueryPathResult::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_QueryPathResult_default_instance_._instance,
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::space_service::QueryPathResult>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .space_service.Vector3f paths = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(QueryPathResult, _impl_.paths_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .space_service.Vector3f paths = 1;
+    {PROTOBUF_FIELD_OFFSET(QueryPathResult, _impl_.paths_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::space_service::Vector3f>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void QueryPathResult::Clear() {
+// @@protoc_insertion_point(message_clear_start:space_service.QueryPathResult)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.paths_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+::uint8_t* QueryPathResult::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:space_service.QueryPathResult)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .space_service.Vector3f paths = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this->_internal_paths_size());
+       i < n; i++) {
+    const auto& repfield = this->_internal_paths().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:space_service.QueryPathResult)
+  return target;
+}
+
+::size_t QueryPathResult::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:space_service.QueryPathResult)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(reinterpret_cast<const void*>(this));
+  // repeated .space_service.Vector3f paths = 1;
+  total_size += 1UL * this->_internal_paths_size();
+  for (const auto& msg : this->_internal_paths()) {
+    total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void QueryPathResult::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<QueryPathResult*>(&to_msg);
+  auto& from = static_cast<const QueryPathResult&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:space_service.QueryPathResult)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_paths()->MergeFrom(
+      from._internal_paths());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void QueryPathResult::CopyFrom(const QueryPathResult& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:space_service.QueryPathResult)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void QueryPathResult::InternalSwap(QueryPathResult* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.paths_.InternalSwap(&other->_impl_.paths_);
+}
+
+::google::protobuf::Metadata QueryPathResult::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

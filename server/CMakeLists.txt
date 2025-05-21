@@ -35,16 +35,19 @@ file(GLOB GAME_SERVER_HEADERS
 add_executable(game_server ${GAME_SERVER_SRCS} ${GAME_SERVER_HEADERS})
 target_link_libraries(game_server ${THIRDPARTY_LIBS} ${SYSTEM_LIBS})
 
+add_subdirectory(src/Detour)
+
 find_package(protobuf)
 find_package(absl REQUIRED)
 find_package(Libevent REQUIRED)
 find_package(spdlog REQUIRED)
 
-target_include_directories(game_server PUBLIC ${protobuf_INCLUDE_DIR} ${absl_INCLUDE_DIR} ${Libevent_INCLUDE_DIR})
+target_include_directories(game_server PUBLIC ${protobuf_INCLUDE_DIR} ${absl_INCLUDE_DIR} ${Libevent_INCLUDE_DIR} ${Detour_INCLUDE_DIR})
 target_link_libraries(game_server protobuf::protobuf)
 target_link_libraries(game_server abseil::abseil)
 target_link_libraries(game_server libevent::libevent)
 target_link_libraries(game_server spdlog::spdlog)
+target_link_libraries(game_server RecastNavigation::Detour)
 
 IF (MSVC)
     # set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")

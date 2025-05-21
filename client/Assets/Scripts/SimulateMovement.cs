@@ -290,6 +290,8 @@ public class SimulateMovement : IComponent
                 _curVelocity = (_endPos - _startPos) / realInterval;
                 _characterMovement.UpdateMoveMode(serverMovePack.Mode);
 
+                Debug.Log($"_curVelocity: {_curVelocity}, realInterval: {realInterval}, dist: {dist}");
+
                 _isInterpolating = true;
             }
             else
@@ -297,7 +299,12 @@ public class SimulateMovement : IComponent
                 _isInterpolating = false;
                 _lerpTimePass = 0;
                 _curVelocity = Vector3.zero;
+
+                transform.rotation = serverMovePack.Rotation;
+
                 _characterMovement.UpdateMoveMode(serverMovePack.Mode);
+
+                Debug.Log($"dist less than 0.1f: {dist}");
             }
         }
         else
@@ -305,6 +312,8 @@ public class SimulateMovement : IComponent
             _isInterpolating = false;
             _lerpTimePass = 0;
             _curVelocity = Vector3.zero;
+
+            Debug.Log("no interpolate");
         }
     }
 
