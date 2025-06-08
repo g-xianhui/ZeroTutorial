@@ -151,6 +151,9 @@ Space::~Space()
     G_Timer.del_timer(_update_timer);
 
     _aoi->stop();
+
+    dtFreeNavMeshQuery(_nav_query);
+    dtFreeNavMesh(_nav_mesh);
 }
 
 void Space::join(Entity* entity)
