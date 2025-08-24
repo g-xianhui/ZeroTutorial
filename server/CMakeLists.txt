@@ -15,7 +15,7 @@ source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
 source_group(combat ${CMAKE_CURRENT_SOURCE_DIR}/src/combat)
 source_group(skill ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill)
 source_group(aoi ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi)
-source_group(physics ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi)
+source_group(physics ${CMAKE_CURRENT_SOURCE_DIR}/src/physics)
 
 file(GLOB GAME_SERVER_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
