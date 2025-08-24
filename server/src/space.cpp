@@ -8,6 +8,7 @@
 #include "network/tcp_connection.h"
 #include "proto/space_service.pb.h"
 #include "aoi/aoi_factory.h"
+#include "physics/physics_mgr.h"
 
 #include "movement_component.h"
 #include "space_component.h"
@@ -40,7 +41,7 @@ struct NavMeshTileHeader
     int dataSize;
 };
 
-dtNavMesh* loadAll(const char* path)
+dtNavMesh* loadNavMesh(const char* path)
 {
     FILE* fp = fopen(path, "rb");
     if (!fp) return 0;
@@ -119,8 +120,7 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
     _aoi = create_aoi(AOIType::GRID, 30);
     _aoi->start();
 
-    _nav_mesh = dtAllocNavMesh();
-    _nav_mesh = loadAll("DemoScene.bin");
+    _nav_mesh = loadNavMesh("DemoScene.bin");
     assert(_nav_mesh);
 
     _nav_query = dtAllocNavMeshQuery();
@@ -132,6 +132,9 @@ Space::Space(size_t w, size_t h) : _width(w), _height(h)
 
     _nav_filter.setIncludeFlags(0xFFFF);
     _nav_filter.setExcludeFlags(0);
+
+    _px_scene = G_PhysicsMgr.load_px_scene("DemoScene");
+    assert(_px_scene);
 
     // monster test
     _m = new Monster(1);
@@ -154,6 +157,8 @@ Space::~Space()
 
     dtFreeNavMeshQuery(_nav_query);
     dtFreeNavMesh(_nav_mesh);
+
+    _px_scene->release();
 }
 
 void Space::join(Entity* entity)
@@ -208,6 +213,8 @@ void Space::update_position(int eid, float x, float y, float z)
 
 void Space::update()
 {
+    _px_scene->simulate(0.1f);
+
     std::unordered_map<int, std::string> entity_properties;
     std::unordered_map<int, std::string> entity_dirty_properties;
     for (auto& iter : _eid_2_entity) {
@@ -323,6 +330,8 @@ void Space::update()
             send_proto_msg(connection_comp->get_conn(), "sync_aoi_update", aoi_updates);
         }
     }
+
+    _px_scene->fetchResults(true);
 }
 
 void Space::call_all(int eid, const std::string& msg_name, const std::string& msg_bytes)

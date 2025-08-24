@@ -2,6 +2,8 @@
 protobuf/5.27.0
 libevent/2.1.12
 spdlog/1.14.1
+physx/4.1.2
+nlohmann_json/3.11.3
 
 [generators]
 CMakeDeps

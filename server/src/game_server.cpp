@@ -2,13 +2,16 @@
 #include "echo_service.h"
 #include "space_service.h"
 #include "wheel_timer.h"
+#include "physics/physics_mgr.h"
 
 #include <google/protobuf/stubs/common.h>
 #include <event2/event.h>
 #include <spdlog/spdlog.h>
 
 struct event_base* EVENT_BASE = nullptr;
+
 WheelTimer G_Timer{ 33, 1024 };
+PhysicsMgr G_PhysicsMgr;
 
 const char* HOST = "0.0.0.0";
 const int PORT = 1988;
@@ -30,6 +33,12 @@ int main(int argc, char** argv) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     spdlog::set_level(spdlog::level::debug);
+
+    int ret = G_PhysicsMgr.init();
+    if (0 != ret) {
+        spdlog::error("init_physx failed!");
+        return ret;
+    }
 
 #ifdef _WIN32
     WSADATA wsa_data;
@@ -61,5 +70,7 @@ int main(int argc, char** argv) {
     space_service.start(HOST, PORT);
 
     event_base_dispatch(EVENT_BASE);
+
+    G_PhysicsMgr.fini();
     return 0;
 }

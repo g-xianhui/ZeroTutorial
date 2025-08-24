@@ -10,6 +10,10 @@
 
 #include "math_utils.h"
 
+namespace physx {
+    class PxScene;
+}
+
 class Entity;
 class AOI;
 
@@ -49,6 +53,8 @@ private:
     dtNavMesh* _nav_mesh = nullptr;
     dtNavMeshQuery* _nav_query = nullptr;
     dtQueryFilter _nav_filter;
+
+    physx::PxScene* _px_scene = nullptr;
 
     class Monster* _m = nullptr;
 };
