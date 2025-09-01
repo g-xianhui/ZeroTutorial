@@ -36,6 +36,7 @@ std::map<std::string, SpaceService::MsgHandlerFunc> SpaceService::register_msg_h
     REG_MSG_HANDLER(normal_attack);
     REG_MSG_HANDLER(skill_attack);
     REG_MSG_HANDLER(query_path);
+    REG_MSG_HANDLER(query_raycast);
     return name_2_handler;
 }
 
@@ -92,6 +93,7 @@ void SpaceService::handle_msg(TcpConnection* conn, const std::string& msg)
     pos += (size_t)msg_name_lenght;
     std::string msg_bytes = msg.substr(pos);
 
+    // TODO 放到任务队列中
     MsgHandlerFunc msg_handler = find_msg_handler(msg_name);
     if (msg_handler) {
         (this->*msg_handler)(conn, msg_bytes);
@@ -249,7 +251,6 @@ void SpaceService::query_path(TcpConnection* conn, const std::string& msg_bytes)
     Vector3f start_pos{ req.start_pos().x(), req.start_pos().y(), req.start_pos().z() };
     Vector3f end_pos{ req.end_pos().x(), req.end_pos().y(), req.end_pos().z() };
 
-    // std::vector<Vector3f> result = _space->find_path(start_pos, end_pos);
     std::vector<Vector3f> result = _space->navigation_test(start_pos, end_pos);
     space_service::QueryPathResult response;
 
@@ -260,4 +261,29 @@ void SpaceService::query_path(TcpConnection* conn, const std::string& msg_bytes)
         new_pos->set_z(pos.z);
     }
     send_proto_msg(conn, "query_path_result", response);
+}
+
+void SpaceService::query_raycast(TcpConnection* conn, const std::string& msg_bytes)
+{
+    space_service::QueryRaycast req;
+    req.ParseFromString(msg_bytes);
+
+    Vector3f start_pos{ req.start_pos().x(), req.start_pos().y(), req.start_pos().z() };
+    Vector3f dir{ req.dir().x(), req.dir().y(), req.dir().z() };
+    float distance = req.distance();
+
+    Vector3f hit_pos;
+    bool is_hit = _space->raycast_test(start_pos, dir, distance, hit_pos);
+    space_service::QueryRaycastResult response;
+    response.set_hit(is_hit);
+    if (is_hit) {
+        space_service::Vector3f& proto_start_pos = *response.mutable_start_pos();
+        proto_start_pos.CopyFrom(req.start_pos());
+
+        space_service::Vector3f& proto_hit_pos = *response.mutable_hit_pos();
+        proto_hit_pos.set_x(hit_pos.x);
+        proto_hit_pos.set_y(hit_pos.y);
+        proto_hit_pos.set_z(hit_pos.z);
+    }
+    send_proto_msg(conn, "query_raycast_result", response);
 }

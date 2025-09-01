@@ -105,6 +105,12 @@ extern QueryPathDefaultTypeInternal _QueryPath_default_instance_;
 class QueryPathResult;
 struct QueryPathResultDefaultTypeInternal;
 extern QueryPathResultDefaultTypeInternal _QueryPathResult_default_instance_;
+class QueryRaycast;
+struct QueryRaycastDefaultTypeInternal;
+extern QueryRaycastDefaultTypeInternal _QueryRaycast_default_instance_;
+class QueryRaycastResult;
+struct QueryRaycastResultDefaultTypeInternal;
+extern QueryRaycastResultDefaultTypeInternal _QueryRaycastResult_default_instance_;
 class SkillAttack;
 struct SkillAttackDefaultTypeInternal;
 extern SkillAttackDefaultTypeInternal _SkillAttack_default_instance_;
@@ -2558,6 +2564,418 @@ class Animation final : public ::google::protobuf::Message
     int op_;
     float speed_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class QueryRaycastResult final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.QueryRaycastResult) */ {
+ public:
+  inline QueryRaycastResult() : QueryRaycastResult(nullptr) {}
+  ~QueryRaycastResult() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR QueryRaycastResult(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline QueryRaycastResult(const QueryRaycastResult& from) : QueryRaycastResult(nullptr, from) {}
+  inline QueryRaycastResult(QueryRaycastResult&& from) noexcept
+      : QueryRaycastResult(nullptr, std::move(from)) {}
+  inline QueryRaycastResult& operator=(const QueryRaycastResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QueryRaycastResult& operator=(QueryRaycastResult&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QueryRaycastResult& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QueryRaycastResult* internal_default_instance() {
+    return reinterpret_cast<const QueryRaycastResult*>(
+        &_QueryRaycastResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 22;
+  friend void swap(QueryRaycastResult& a, QueryRaycastResult& b) { a.Swap(&b); }
+  inline void Swap(QueryRaycastResult* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QueryRaycastResult* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QueryRaycastResult* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<QueryRaycastResult>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const QueryRaycastResult& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const QueryRaycastResult& from) { QueryRaycastResult::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(QueryRaycastResult* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.QueryRaycastResult"; }
+
+ protected:
+  explicit QueryRaycastResult(::google::protobuf::Arena* arena);
+  QueryRaycastResult(::google::protobuf::Arena* arena, const QueryRaycastResult& from);
+  QueryRaycastResult(::google::protobuf::Arena* arena, QueryRaycastResult&& from) noexcept
+      : QueryRaycastResult(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kStartPosFieldNumber = 2,
+    kHitPosFieldNumber = 3,
+    kHitFieldNumber = 1,
+  };
+  // .space_service.Vector3f start_pos = 2;
+  bool has_start_pos() const;
+  void clear_start_pos() ;
+  const ::space_service::Vector3f& start_pos() const;
+  PROTOBUF_NODISCARD ::space_service::Vector3f* release_start_pos();
+  ::space_service::Vector3f* mutable_start_pos();
+  void set_allocated_start_pos(::space_service::Vector3f* value);
+  void unsafe_arena_set_allocated_start_pos(::space_service::Vector3f* value);
+  ::space_service::Vector3f* unsafe_arena_release_start_pos();
+
+  private:
+  const ::space_service::Vector3f& _internal_start_pos() const;
+  ::space_service::Vector3f* _internal_mutable_start_pos();
+
+  public:
+  // .space_service.Vector3f hit_pos = 3;
+  bool has_hit_pos() const;
+  void clear_hit_pos() ;
+  const ::space_service::Vector3f& hit_pos() const;
+  PROTOBUF_NODISCARD ::space_service::Vector3f* release_hit_pos();
+  ::space_service::Vector3f* mutable_hit_pos();
+  void set_allocated_hit_pos(::space_service::Vector3f* value);
+  void unsafe_arena_set_allocated_hit_pos(::space_service::Vector3f* value);
+  ::space_service::Vector3f* unsafe_arena_release_hit_pos();
+
+  private:
+  const ::space_service::Vector3f& _internal_hit_pos() const;
+  ::space_service::Vector3f* _internal_mutable_hit_pos();
+
+  public:
+  // bool hit = 1;
+  void clear_hit() ;
+  bool hit() const;
+  void set_hit(bool value);
+
+  private:
+  bool _internal_hit() const;
+  void _internal_set_hit(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.QueryRaycastResult)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 2,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_QueryRaycastResult_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const QueryRaycastResult& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::space_service::Vector3f* start_pos_;
+    ::space_service::Vector3f* hit_pos_;
+    bool hit_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_space_5fservice_2eproto;
+};
+// -------------------------------------------------------------------
+
+class QueryRaycast final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:space_service.QueryRaycast) */ {
+ public:
+  inline QueryRaycast() : QueryRaycast(nullptr) {}
+  ~QueryRaycast() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR QueryRaycast(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline QueryRaycast(const QueryRaycast& from) : QueryRaycast(nullptr, from) {}
+  inline QueryRaycast(QueryRaycast&& from) noexcept
+      : QueryRaycast(nullptr, std::move(from)) {}
+  inline QueryRaycast& operator=(const QueryRaycast& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline QueryRaycast& operator=(QueryRaycast&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const QueryRaycast& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const QueryRaycast* internal_default_instance() {
+    return reinterpret_cast<const QueryRaycast*>(
+        &_QueryRaycast_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 21;
+  friend void swap(QueryRaycast& a, QueryRaycast& b) { a.Swap(&b); }
+  inline void Swap(QueryRaycast* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(QueryRaycast* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  QueryRaycast* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<QueryRaycast>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const QueryRaycast& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const QueryRaycast& from) { QueryRaycast::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(QueryRaycast* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "space_service.QueryRaycast"; }
+
+ protected:
+  explicit QueryRaycast(::google::protobuf::Arena* arena);
+  QueryRaycast(::google::protobuf::Arena* arena, const QueryRaycast& from);
+  QueryRaycast(::google::protobuf::Arena* arena, QueryRaycast&& from) noexcept
+      : QueryRaycast(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::Message::ClassData* GetClassData() const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kStartPosFieldNumber = 1,
+    kDirFieldNumber = 2,
+    kDistanceFieldNumber = 3,
+  };
+  // .space_service.Vector3f start_pos = 1;
+  bool has_start_pos() const;
+  void clear_start_pos() ;
+  const ::space_service::Vector3f& start_pos() const;
+  PROTOBUF_NODISCARD ::space_service::Vector3f* release_start_pos();
+  ::space_service::Vector3f* mutable_start_pos();
+  void set_allocated_start_pos(::space_service::Vector3f* value);
+  void unsafe_arena_set_allocated_start_pos(::space_service::Vector3f* value);
+  ::space_service::Vector3f* unsafe_arena_release_start_pos();
+
+  private:
+  const ::space_service::Vector3f& _internal_start_pos() const;
+  ::space_service::Vector3f* _internal_mutable_start_pos();
+
+  public:
+  // .space_service.Vector3f dir = 2;
+  bool has_dir() const;
+  void clear_dir() ;
+  const ::space_service::Vector3f& dir() const;
+  PROTOBUF_NODISCARD ::space_service::Vector3f* release_dir();
+  ::space_service::Vector3f* mutable_dir();
+  void set_allocated_dir(::space_service::Vector3f* value);
+  void unsafe_arena_set_allocated_dir(::space_service::Vector3f* value);
+  ::space_service::Vector3f* unsafe_arena_release_dir();
+
+  private:
+  const ::space_service::Vector3f& _internal_dir() const;
+  ::space_service::Vector3f* _internal_mutable_dir();
+
+  public:
+  // float distance = 3;
+  void clear_distance() ;
+  float distance() const;
+  void set_distance(float value);
+
+  private:
+  float _internal_distance() const;
+  void _internal_set_distance(float value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:space_service.QueryRaycast)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 2,
+      0, 2>
+      _table_;
+
+  static constexpr const void* _raw_default_instance_ =
+      &_QueryRaycast_default_instance_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const QueryRaycast& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::space_service::Vector3f* start_pos_;
+    ::space_service::Vector3f* dir_;
+    float distance_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6344,6 +6762,442 @@ inline ::google::protobuf::RepeatedPtrField<::space_service::Vector3f>*
 QueryPathResult::_internal_mutable_paths() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.paths_;
+}
+
+// -------------------------------------------------------------------
+
+// QueryRaycast
+
+// .space_service.Vector3f start_pos = 1;
+inline bool QueryRaycast::has_start_pos() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_pos_ != nullptr);
+  return value;
+}
+inline void QueryRaycast::clear_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_pos_ != nullptr) _impl_.start_pos_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::space_service::Vector3f& QueryRaycast::_internal_start_pos() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::space_service::Vector3f* p = _impl_.start_pos_;
+  return p != nullptr ? *p : reinterpret_cast<const ::space_service::Vector3f&>(::space_service::_Vector3f_default_instance_);
+}
+inline const ::space_service::Vector3f& QueryRaycast::start_pos() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryRaycast.start_pos)
+  return _internal_start_pos();
+}
+inline void QueryRaycast::unsafe_arena_set_allocated_start_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_pos_);
+  }
+  _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.QueryRaycast.start_pos)
+}
+inline ::space_service::Vector3f* QueryRaycast::release_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::space_service::Vector3f* released = _impl_.start_pos_;
+  _impl_.start_pos_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::space_service::Vector3f* QueryRaycast::unsafe_arena_release_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.QueryRaycast.start_pos)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::space_service::Vector3f* temp = _impl_.start_pos_;
+  _impl_.start_pos_ = nullptr;
+  return temp;
+}
+inline ::space_service::Vector3f* QueryRaycast::_internal_mutable_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_pos_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Vector3f>(GetArena());
+    _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(p);
+  }
+  return _impl_.start_pos_;
+}
+inline ::space_service::Vector3f* QueryRaycast::mutable_start_pos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::space_service::Vector3f* _msg = _internal_mutable_start_pos();
+  // @@protoc_insertion_point(field_mutable:space_service.QueryRaycast.start_pos)
+  return _msg;
+}
+inline void QueryRaycast::set_allocated_start_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.start_pos_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  // @@protoc_insertion_point(field_set_allocated:space_service.QueryRaycast.start_pos)
+}
+
+// .space_service.Vector3f dir = 2;
+inline bool QueryRaycast::has_dir() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.dir_ != nullptr);
+  return value;
+}
+inline void QueryRaycast::clear_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.dir_ != nullptr) _impl_.dir_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::space_service::Vector3f& QueryRaycast::_internal_dir() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::space_service::Vector3f* p = _impl_.dir_;
+  return p != nullptr ? *p : reinterpret_cast<const ::space_service::Vector3f&>(::space_service::_Vector3f_default_instance_);
+}
+inline const ::space_service::Vector3f& QueryRaycast::dir() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryRaycast.dir)
+  return _internal_dir();
+}
+inline void QueryRaycast::unsafe_arena_set_allocated_dir(::space_service::Vector3f* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.dir_);
+  }
+  _impl_.dir_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.QueryRaycast.dir)
+}
+inline ::space_service::Vector3f* QueryRaycast::release_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::space_service::Vector3f* released = _impl_.dir_;
+  _impl_.dir_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::space_service::Vector3f* QueryRaycast::unsafe_arena_release_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.QueryRaycast.dir)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::space_service::Vector3f* temp = _impl_.dir_;
+  _impl_.dir_ = nullptr;
+  return temp;
+}
+inline ::space_service::Vector3f* QueryRaycast::_internal_mutable_dir() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.dir_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Vector3f>(GetArena());
+    _impl_.dir_ = reinterpret_cast<::space_service::Vector3f*>(p);
+  }
+  return _impl_.dir_;
+}
+inline ::space_service::Vector3f* QueryRaycast::mutable_dir() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::space_service::Vector3f* _msg = _internal_mutable_dir();
+  // @@protoc_insertion_point(field_mutable:space_service.QueryRaycast.dir)
+  return _msg;
+}
+inline void QueryRaycast::set_allocated_dir(::space_service::Vector3f* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.dir_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.dir_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  // @@protoc_insertion_point(field_set_allocated:space_service.QueryRaycast.dir)
+}
+
+// float distance = 3;
+inline void QueryRaycast::clear_distance() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.distance_ = 0;
+}
+inline float QueryRaycast::distance() const {
+  // @@protoc_insertion_point(field_get:space_service.QueryRaycast.distance)
+  return _internal_distance();
+}
+inline void QueryRaycast::set_distance(float value) {
+  _internal_set_distance(value);
+  // @@protoc_insertion_point(field_set:space_service.QueryRaycast.distance)
+}
+inline float QueryRaycast::_internal_distance() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.distance_;
+}
+inline void QueryRaycast::_internal_set_distance(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.distance_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// QueryRaycastResult
+
+// bool hit = 1;
+inline void QueryRaycastResult::clear_hit() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.hit_ = false;
+}
+inline bool QueryRaycastResult::hit() const {
+  // @@protoc_insertion_point(field_get:space_service.QueryRaycastResult.hit)
+  return _internal_hit();
+}
+inline void QueryRaycastResult::set_hit(bool value) {
+  _internal_set_hit(value);
+  // @@protoc_insertion_point(field_set:space_service.QueryRaycastResult.hit)
+}
+inline bool QueryRaycastResult::_internal_hit() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.hit_;
+}
+inline void QueryRaycastResult::_internal_set_hit(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.hit_ = value;
+}
+
+// .space_service.Vector3f start_pos = 2;
+inline bool QueryRaycastResult::has_start_pos() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.start_pos_ != nullptr);
+  return value;
+}
+inline void QueryRaycastResult::clear_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_pos_ != nullptr) _impl_.start_pos_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::space_service::Vector3f& QueryRaycastResult::_internal_start_pos() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::space_service::Vector3f* p = _impl_.start_pos_;
+  return p != nullptr ? *p : reinterpret_cast<const ::space_service::Vector3f&>(::space_service::_Vector3f_default_instance_);
+}
+inline const ::space_service::Vector3f& QueryRaycastResult::start_pos() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryRaycastResult.start_pos)
+  return _internal_start_pos();
+}
+inline void QueryRaycastResult::unsafe_arena_set_allocated_start_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.start_pos_);
+  }
+  _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.QueryRaycastResult.start_pos)
+}
+inline ::space_service::Vector3f* QueryRaycastResult::release_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::space_service::Vector3f* released = _impl_.start_pos_;
+  _impl_.start_pos_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::space_service::Vector3f* QueryRaycastResult::unsafe_arena_release_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.QueryRaycastResult.start_pos)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::space_service::Vector3f* temp = _impl_.start_pos_;
+  _impl_.start_pos_ = nullptr;
+  return temp;
+}
+inline ::space_service::Vector3f* QueryRaycastResult::_internal_mutable_start_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.start_pos_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Vector3f>(GetArena());
+    _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(p);
+  }
+  return _impl_.start_pos_;
+}
+inline ::space_service::Vector3f* QueryRaycastResult::mutable_start_pos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::space_service::Vector3f* _msg = _internal_mutable_start_pos();
+  // @@protoc_insertion_point(field_mutable:space_service.QueryRaycastResult.start_pos)
+  return _msg;
+}
+inline void QueryRaycastResult::set_allocated_start_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.start_pos_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.start_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  // @@protoc_insertion_point(field_set_allocated:space_service.QueryRaycastResult.start_pos)
+}
+
+// .space_service.Vector3f hit_pos = 3;
+inline bool QueryRaycastResult::has_hit_pos() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.hit_pos_ != nullptr);
+  return value;
+}
+inline void QueryRaycastResult::clear_hit_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.hit_pos_ != nullptr) _impl_.hit_pos_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::space_service::Vector3f& QueryRaycastResult::_internal_hit_pos() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::space_service::Vector3f* p = _impl_.hit_pos_;
+  return p != nullptr ? *p : reinterpret_cast<const ::space_service::Vector3f&>(::space_service::_Vector3f_default_instance_);
+}
+inline const ::space_service::Vector3f& QueryRaycastResult::hit_pos() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:space_service.QueryRaycastResult.hit_pos)
+  return _internal_hit_pos();
+}
+inline void QueryRaycastResult::unsafe_arena_set_allocated_hit_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.hit_pos_);
+  }
+  _impl_.hit_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:space_service.QueryRaycastResult.hit_pos)
+}
+inline ::space_service::Vector3f* QueryRaycastResult::release_hit_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::space_service::Vector3f* released = _impl_.hit_pos_;
+  _impl_.hit_pos_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::space_service::Vector3f* QueryRaycastResult::unsafe_arena_release_hit_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:space_service.QueryRaycastResult.hit_pos)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::space_service::Vector3f* temp = _impl_.hit_pos_;
+  _impl_.hit_pos_ = nullptr;
+  return temp;
+}
+inline ::space_service::Vector3f* QueryRaycastResult::_internal_mutable_hit_pos() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.hit_pos_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::space_service::Vector3f>(GetArena());
+    _impl_.hit_pos_ = reinterpret_cast<::space_service::Vector3f*>(p);
+  }
+  return _impl_.hit_pos_;
+}
+inline ::space_service::Vector3f* QueryRaycastResult::mutable_hit_pos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::space_service::Vector3f* _msg = _internal_mutable_hit_pos();
+  // @@protoc_insertion_point(field_mutable:space_service.QueryRaycastResult.hit_pos)
+  return _msg;
+}
+inline void QueryRaycastResult::set_allocated_hit_pos(::space_service::Vector3f* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.hit_pos_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.hit_pos_ = reinterpret_cast<::space_service::Vector3f*>(value);
+  // @@protoc_insertion_point(field_set_allocated:space_service.QueryRaycastResult.hit_pos)
 }
 
 #ifdef __GNUC__

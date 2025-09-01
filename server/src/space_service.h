@@ -45,6 +45,7 @@ public:
     void skill_attack(TcpConnection*, const std::string&);
 
     void query_path(TcpConnection*, const std::string&);
+    void query_raycast(TcpConnection*, const std::string&);
 private:
     Space* _space = nullptr;
 

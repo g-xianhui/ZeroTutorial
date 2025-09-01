@@ -128,7 +128,7 @@ bool UnityPhysicsLoader::CreatePhysXScene(physx::PxPhysics* physics, physx::PxSc
     }
 
     int successCount = 0;
-    int totalCount = sceneData_.bodies.size();
+    size_t totalCount = sceneData_.bodies.size();
 
     // 创建所有物理体
     for (const auto& bodyData : sceneData_.bodies) {
@@ -136,7 +136,6 @@ bool UnityPhysicsLoader::CreatePhysXScene(physx::PxPhysics* physics, physx::PxSc
         if (actor) {
             scene->addActor(*actor);
             successCount++;
-            std::cout << "Created body: " << bodyData.name << std::endl;
         }
         else {
             std::cerr << "Failed to create body: " << bodyData.name << std::endl;
@@ -158,7 +157,6 @@ physx::PxRigidActor* UnityPhysicsLoader::CreateBodyFromData(physx::PxPhysics* ph
     physx::PxRigidActor* actor = nullptr;
 
     if (bodyData.isStatic) {
-        std::cout << "create static" << std::endl;
         actor = physics->createRigidStatic(transform);
     }
     else {
@@ -266,9 +264,12 @@ physx::PxShape* UnityPhysicsLoader::CreateMeshShape(physx::PxPhysics* physics, c
 physx::PxTriangleMesh* UnityPhysicsLoader::LoadTriangleMesh(physx::PxPhysics* physics,
     const std::string& meshPath) {
     // 创建烹饪工具
+    physx::PxCookingParams params(physics->getTolerancesScale());
+    params.meshPreprocessParams |= physx::PxMeshPreprocessingFlag::eWELD_VERTICES;
+    params.meshWeldTolerance = 0.01f;
     physx::PxCooking* cooking = PxCreateCooking(PX_PHYSICS_VERSION,
         physics->getFoundation(),
-        physx::PxCookingParams(physics->getTolerancesScale()));
+        params);
 
     if (!cooking) {
         std::cerr << "Failed to create cooking interface" << std::endl;
@@ -298,46 +299,81 @@ physx::PxTriangleMesh* UnityPhysicsLoader::LoadTriangleMesh(physx::PxPhysics* ph
 }
 
 bool UnityPhysicsLoader::LoadMeshFromFile(const std::string& meshPath, physx::PxTriangleMeshDesc& meshDesc) {
-    // 这里需要实现具体的网格文件解析
-    // 以下是伪代码示例
-    std::ifstream file(meshPath);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open mesh file: " << meshPath << std::endl;
-        return false;
+    auto iter = mesh_triangle_map_.find(meshPath);
+    if (iter == mesh_triangle_map_.end()) {
+        std::ifstream file(meshPath);
+        if (!file.is_open()) {
+            std::cerr << "Failed to open mesh file: " << meshPath << std::endl;
+            return false;
+        }
+
+        MeshTriangleData mesh_triangle_data;
+
+        // 解析 OBJ 文件或其他格式
+        std::string line;
+        while (std::getline(file, line)) {
+            if (line.substr(0, 2) == "v ") {
+                // 解析顶点
+                std::istringstream s(line.substr(2));
+                float x, y, z;
+                s >> x >> y >> z;
+                mesh_triangle_data.vertices.push_back(physx::PxVec3(x, y, z));
+            }
+            else if (line.substr(0, 2) == "f ") {
+                // 解析面
+                std::istringstream s(line.substr(2));
+                physx::PxU32 i1, i2, i3;
+                s >> i1 >> i2 >> i3;
+                mesh_triangle_data.indices.push_back(i1 - 1); // OBJ 索引从1开始
+                mesh_triangle_data.indices.push_back(i2 - 1);
+                mesh_triangle_data.indices.push_back(i3 - 1);
+            }
+        }
+
+        mesh_triangle_map_[meshPath] = mesh_triangle_data;
     }
 
-    std::vector<physx::PxVec3> vertices;
-    std::vector<physx::PxU32> indices;
-
-    // 解析 OBJ 文件或其他格式
-    std::string line;
-    while (std::getline(file, line)) {
-        if (line.substr(0, 2) == "v ") {
-            // 解析顶点
-            std::istringstream s(line.substr(2));
-            float x, y, z;
-            s >> x >> y >> z;
-            vertices.push_back(physx::PxVec3(x, y, z));
-        }
-        else if (line.substr(0, 2) == "f ") {
-            // 解析面
-            std::istringstream s(line.substr(2));
-            physx::PxU32 i1, i2, i3;
-            s >> i1 >> i2 >> i3;
-            indices.push_back(i1 - 1); // OBJ 索引从1开始
-            indices.push_back(i2 - 1);
-            indices.push_back(i3 - 1);
-        }
-    }
+    MeshTriangleData& data = mesh_triangle_map_[meshPath];
 
     // 填充网格描述
-    meshDesc.points.count = vertices.size();
+    meshDesc.points.count = static_cast<physx::PxU32>(data.vertices.size());
     meshDesc.points.stride = sizeof(physx::PxVec3);
-    meshDesc.points.data = vertices.data();
+    meshDesc.points.data = data.vertices.data();
 
-    meshDesc.triangles.count = indices.size() / 3;
+    meshDesc.triangles.count = static_cast<physx::PxU32>(data.indices.size() / 3);
     meshDesc.triangles.stride = 3 * sizeof(physx::PxU32);
-    meshDesc.triangles.data = indices.data();
+    meshDesc.triangles.data = data.indices.data();
 
     return true;
+}
+
+void UnityPhysicsLoader::DebugMeshValidation(const physx::PxTriangleMeshDesc& meshDesc) {
+    std::cout << "=== Mesh Validation Debug ===" << std::endl;
+    std::cout << "Points count: " << meshDesc.points.count << std::endl;
+    std::cout << "Points stride: " << meshDesc.points.stride << std::endl;
+    std::cout << "Triangles count: " << meshDesc.triangles.count << std::endl;
+    std::cout << "Triangles stride: " << meshDesc.triangles.stride << std::endl;
+
+    if (meshDesc.points.count > 0 && meshDesc.points.data) {
+        const physx::PxVec3* vertices = static_cast<const physx::PxVec3*>(meshDesc.points.data);
+        std::cout << "First 3 vertices:" << std::endl;
+        for (int i = 0; i < std::min(3, (int)meshDesc.points.count); ++i) {
+            std::cout << "  v" << i << ": (" << vertices[i].x << ", "
+                << vertices[i].y << ", " << vertices[i].z << ")" << std::endl;
+        }
+    }
+
+    if (meshDesc.triangles.count > 0 && meshDesc.triangles.data) {
+        const physx::PxU32* indices = static_cast<const physx::PxU32*>(meshDesc.triangles.data);
+        std::cout << "First 3 triangles:" << std::endl;
+        for (int i = 0; i < std::min(3, (int)meshDesc.triangles.count); ++i) {
+            std::cout << "  t" << i << ": (" << indices[i * 3] << ", "
+                << indices[i * 3 + 1] << ", " << indices[i * 3 + 2] << ")" << std::endl;
+        }
+    }
+
+    // 检查内存对齐
+    std::cout << "Points data alignment: " << ((uintptr_t)meshDesc.points.data % alignof(physx::PxVec3)) << std::endl;
+    std::cout << "Triangles data alignment: " << ((uintptr_t)meshDesc.triangles.data % alignof(physx::PxU32)) << std::endl;
+    std::cout << "============================" << std::endl;
 }

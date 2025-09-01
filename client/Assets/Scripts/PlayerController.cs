@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
         CheckCombatInput();
         CheckNavInput();
+        CheckRaycastInput();
     }
 
     void CheckCombatInput()
@@ -66,6 +67,27 @@ public class PlayerController : MonoBehaviour
                     EndPos = new SpaceService.Vector3f { X = hit.point.x, Y = hit.point.y, Z = hit.point.z }
                 };
                 NetworkManager.Instance.Send("query_path", queryPath.ToByteArray());
+            }
+        }
+    }
+
+    void CheckRaycastInput()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            float distance = 50;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, distance))
+            {
+                Debug.Log($"client hit pos: {hit.point}");
+                SpaceService.QueryRaycast queryRaycast = new SpaceService.QueryRaycast
+                {
+                    StartPos = new SpaceService.Vector3f { X = ray.origin.x, Y = ray.origin.y, Z = ray.origin.z },
+                    Dir = new SpaceService.Vector3f { X = ray.direction.x, Y = ray.direction.y, Z = ray.direction.z },
+                    Distance = distance,
+                };
+                NetworkManager.Instance.Send("query_raycast", queryRaycast.ToByteArray());
             }
         }
     }

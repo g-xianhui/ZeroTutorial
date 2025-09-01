@@ -113,3 +113,15 @@ message QueryPath {
 message QueryPathResult {
   repeated Vector3f paths = 1;
 }
+
+message QueryRaycast {
+  Vector3f start_pos = 1;
+  Vector3f dir = 2;
+  float distance = 3;
+}
+
+message QueryRaycastResult {
+  bool hit = 1;
+  Vector3f start_pos = 2;
+  Vector3f hit_pos = 3;
+}

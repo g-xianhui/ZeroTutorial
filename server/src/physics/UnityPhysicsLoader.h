@@ -3,6 +3,12 @@
 #include <PxPhysicsAPI.h>
 #include <string>
 #include <memory>
+#include <map>
+
+struct MeshTriangleData {
+    std::vector<physx::PxVec3> vertices;
+    std::vector<physx::PxU32> indices;
+};
 
 class UnityPhysicsLoader {
 public:
@@ -19,9 +25,6 @@ private:
     physx::PxTriangleMesh* LoadTriangleMesh(physx::PxPhysics* physics, const std::string& meshPath);
     bool LoadMeshFromFile(const std::string& meshPath, physx::PxTriangleMeshDesc& meshDesc);
 
-private:
-    PhysicsSceneData sceneData_;
-
     physx::PxShape* CreateShapeFromData(physx::PxPhysics* physics,
         const PhysicsShapeData& shapeData,
         physx::PxMaterial* material);
@@ -29,4 +32,10 @@ private:
     physx::PxRigidActor* CreateBodyFromData(physx::PxPhysics* physics,
         const PhysicsBodyData& bodyData,
         physx::PxMaterial* material);
+
+    void DebugMeshValidation(const physx::PxTriangleMeshDesc& meshDesc);
+
+private:
+    PhysicsSceneData sceneData_;
+    std::map<std::string, MeshTriangleData> mesh_triangle_map_;
 };

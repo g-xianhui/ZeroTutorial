@@ -40,6 +40,8 @@ public:
     std::vector<Vector3f> find_path(const Vector3f& start_pos, const Vector3f& end_pos);
     std::vector<Vector3f> navigation_test(const Vector3f& start_pos, const Vector3f& end_pos);
 
+    bool raycast_test(const Vector3f& start_pos, const Vector3f& dir, float distance, Vector3f& hit_pos);
+
 private:
     size_t _width;
     size_t _height;

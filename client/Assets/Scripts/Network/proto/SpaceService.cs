@@ -58,7 +58,13 @@ namespace SpaceService {
             "YWdlGAIgASgFImEKCVF1ZXJ5UGF0aBIqCglzdGFydF9wb3MYASABKAsyFy5z",
             "cGFjZV9zZXJ2aWNlLlZlY3RvcjNmEigKB2VuZF9wb3MYAiABKAsyFy5zcGFj",
             "ZV9zZXJ2aWNlLlZlY3RvcjNmIjkKD1F1ZXJ5UGF0aFJlc3VsdBImCgVwYXRo",
-            "cxgBIAMoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2ZiBnByb3RvMw=="));
+            "cxgBIAMoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2YicgoMUXVlcnlSYXlj",
+            "YXN0EioKCXN0YXJ0X3BvcxgBIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9y",
+            "M2YSJAoDZGlyGAIgASgLMhcuc3BhY2Vfc2VydmljZS5WZWN0b3IzZhIQCghk",
+            "aXN0YW5jZRgDIAEoAiJ3ChJRdWVyeVJheWNhc3RSZXN1bHQSCwoDaGl0GAEg",
+            "ASgIEioKCXN0YXJ0X3BvcxgCIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9y",
+            "M2YSKAoHaGl0X3BvcxgDIAEoCzIXLnNwYWNlX3NlcnZpY2UuVmVjdG9yM2Zi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,7 +88,9 @@ namespace SpaceService {
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.PlayerAnimation), global::SpaceService.PlayerAnimation.Parser, new[]{ "Eid", "Data" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.TakeDamage), global::SpaceService.TakeDamage.Parser, new[]{ "Eid", "Damage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.QueryPath), global::SpaceService.QueryPath.Parser, new[]{ "StartPos", "EndPos" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.QueryPathResult), global::SpaceService.QueryPathResult.Parser, new[]{ "Paths" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.QueryPathResult), global::SpaceService.QueryPathResult.Parser, new[]{ "Paths" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.QueryRaycast), global::SpaceService.QueryRaycast.Parser, new[]{ "StartPos", "Dir", "Distance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SpaceService.QueryRaycastResult), global::SpaceService.QueryRaycastResult.Parser, new[]{ "Hit", "StartPos", "HitPos" }, null, null, null, null)
           }));
     }
     #endregion
@@ -5137,6 +5145,586 @@ namespace SpaceService {
             break;
           case 10: {
             paths_.AddEntriesFrom(ref input, _repeated_paths_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class QueryRaycast : pb::IMessage<QueryRaycast>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<QueryRaycast> _parser = new pb::MessageParser<QueryRaycast>(() => new QueryRaycast());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<QueryRaycast> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[21]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryRaycast() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryRaycast(QueryRaycast other) : this() {
+      startPos_ = other.startPos_ != null ? other.startPos_.Clone() : null;
+      dir_ = other.dir_ != null ? other.dir_.Clone() : null;
+      distance_ = other.distance_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryRaycast Clone() {
+      return new QueryRaycast(this);
+    }
+
+    /// <summary>Field number for the "start_pos" field.</summary>
+    public const int StartPosFieldNumber = 1;
+    private global::SpaceService.Vector3f startPos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Vector3f StartPos {
+      get { return startPos_; }
+      set {
+        startPos_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dir" field.</summary>
+    public const int DirFieldNumber = 2;
+    private global::SpaceService.Vector3f dir_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Vector3f Dir {
+      get { return dir_; }
+      set {
+        dir_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "distance" field.</summary>
+    public const int DistanceFieldNumber = 3;
+    private float distance_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Distance {
+      get { return distance_; }
+      set {
+        distance_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as QueryRaycast);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(QueryRaycast other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(StartPos, other.StartPos)) return false;
+      if (!object.Equals(Dir, other.Dir)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Distance, other.Distance)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (startPos_ != null) hash ^= StartPos.GetHashCode();
+      if (dir_ != null) hash ^= Dir.GetHashCode();
+      if (Distance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Distance);
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (startPos_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(StartPos);
+      }
+      if (dir_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Dir);
+      }
+      if (Distance != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Distance);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (startPos_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(StartPos);
+      }
+      if (dir_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Dir);
+      }
+      if (Distance != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(Distance);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (startPos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(StartPos);
+      }
+      if (dir_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Dir);
+      }
+      if (Distance != 0F) {
+        size += 1 + 4;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(QueryRaycast other) {
+      if (other == null) {
+        return;
+      }
+      if (other.startPos_ != null) {
+        if (startPos_ == null) {
+          StartPos = new global::SpaceService.Vector3f();
+        }
+        StartPos.MergeFrom(other.StartPos);
+      }
+      if (other.dir_ != null) {
+        if (dir_ == null) {
+          Dir = new global::SpaceService.Vector3f();
+        }
+        Dir.MergeFrom(other.Dir);
+      }
+      if (other.Distance != 0F) {
+        Distance = other.Distance;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (startPos_ == null) {
+              StartPos = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(StartPos);
+            break;
+          }
+          case 18: {
+            if (dir_ == null) {
+              Dir = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(Dir);
+            break;
+          }
+          case 29: {
+            Distance = input.ReadFloat();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (startPos_ == null) {
+              StartPos = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(StartPos);
+            break;
+          }
+          case 18: {
+            if (dir_ == null) {
+              Dir = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(Dir);
+            break;
+          }
+          case 29: {
+            Distance = input.ReadFloat();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class QueryRaycastResult : pb::IMessage<QueryRaycastResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<QueryRaycastResult> _parser = new pb::MessageParser<QueryRaycastResult>(() => new QueryRaycastResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<QueryRaycastResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::SpaceService.SpaceServiceReflection.Descriptor.MessageTypes[22]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryRaycastResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryRaycastResult(QueryRaycastResult other) : this() {
+      hit_ = other.hit_;
+      startPos_ = other.startPos_ != null ? other.startPos_.Clone() : null;
+      hitPos_ = other.hitPos_ != null ? other.hitPos_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public QueryRaycastResult Clone() {
+      return new QueryRaycastResult(this);
+    }
+
+    /// <summary>Field number for the "hit" field.</summary>
+    public const int HitFieldNumber = 1;
+    private bool hit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Hit {
+      get { return hit_; }
+      set {
+        hit_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "start_pos" field.</summary>
+    public const int StartPosFieldNumber = 2;
+    private global::SpaceService.Vector3f startPos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Vector3f StartPos {
+      get { return startPos_; }
+      set {
+        startPos_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "hit_pos" field.</summary>
+    public const int HitPosFieldNumber = 3;
+    private global::SpaceService.Vector3f hitPos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::SpaceService.Vector3f HitPos {
+      get { return hitPos_; }
+      set {
+        hitPos_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as QueryRaycastResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(QueryRaycastResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Hit != other.Hit) return false;
+      if (!object.Equals(StartPos, other.StartPos)) return false;
+      if (!object.Equals(HitPos, other.HitPos)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Hit != false) hash ^= Hit.GetHashCode();
+      if (startPos_ != null) hash ^= StartPos.GetHashCode();
+      if (hitPos_ != null) hash ^= HitPos.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Hit != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Hit);
+      }
+      if (startPos_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(StartPos);
+      }
+      if (hitPos_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(HitPos);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Hit != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Hit);
+      }
+      if (startPos_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(StartPos);
+      }
+      if (hitPos_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(HitPos);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Hit != false) {
+        size += 1 + 1;
+      }
+      if (startPos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(StartPos);
+      }
+      if (hitPos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(HitPos);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(QueryRaycastResult other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Hit != false) {
+        Hit = other.Hit;
+      }
+      if (other.startPos_ != null) {
+        if (startPos_ == null) {
+          StartPos = new global::SpaceService.Vector3f();
+        }
+        StartPos.MergeFrom(other.StartPos);
+      }
+      if (other.hitPos_ != null) {
+        if (hitPos_ == null) {
+          HitPos = new global::SpaceService.Vector3f();
+        }
+        HitPos.MergeFrom(other.HitPos);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Hit = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (startPos_ == null) {
+              StartPos = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(StartPos);
+            break;
+          }
+          case 26: {
+            if (hitPos_ == null) {
+              HitPos = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(HitPos);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Hit = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (startPos_ == null) {
+              StartPos = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(StartPos);
+            break;
+          }
+          case 26: {
+            if (hitPos_ == null) {
+              HitPos = new global::SpaceService.Vector3f();
+            }
+            input.ReadMessage(HitPos);
             break;
           }
         }

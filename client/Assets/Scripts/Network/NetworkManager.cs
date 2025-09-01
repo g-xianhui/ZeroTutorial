@@ -721,6 +721,7 @@ public class NetworkManager : MonoBehaviour
 
     public void sync_aoi_update(byte[] msgBytes)
     {
+        // Debug.Log($"sync_aoi_update: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
         SpaceService.AoiUpdates aoiUpdates = SpaceService.AoiUpdates.Parser.ParseFrom(msgBytes);
         foreach (SpaceService.AoiUpdate aoiUpdate in aoiUpdates.Datas)
         {
@@ -750,6 +751,20 @@ public class NetworkManager : MonoBehaviour
             Vector3 endPos = new Vector3 { x = queryPathResult.Paths[i+1].X, y = queryPathResult.Paths[i+1].Y, z = queryPathResult.Paths[i+1].Z };
             Debug.DrawLine(startPos, endPos, Color.red, 5f, false);
             Debug.Log($"{startPos} -> {endPos}");
+        }
+    }
+
+    public void query_raycast_result(byte[] msgBytes)
+    {
+
+        SpaceService.QueryRaycastResult queryRaycastResult = SpaceService.QueryRaycastResult.Parser.ParseFrom(msgBytes);
+        Debug.Log($"query_raycast_result, hit: {queryRaycastResult.Hit}");
+        if (queryRaycastResult.Hit)
+        {
+            Vector3 startPos = new Vector3 { x = queryRaycastResult.StartPos.X, y = queryRaycastResult.StartPos.Y, z = queryRaycastResult.StartPos.Z };
+            Vector3 hitPos = new Vector3 { x = queryRaycastResult.HitPos.X, y = queryRaycastResult.HitPos.Y, z = queryRaycastResult.HitPos.Z };
+            Debug.DrawLine(startPos, hitPos, Color.blue, 5f, false);
+            Debug.Log($"{startPos} -> {hitPos}");
         }
     }
 }

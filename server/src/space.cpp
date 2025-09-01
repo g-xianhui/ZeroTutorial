@@ -428,3 +428,22 @@ std::vector<Entity*> Space::find_entities_in_sector(float cx, float cy, float ux
     }
     return entitys;
 }
+
+bool Space::raycast_test(const Vector3f& start_pos, const Vector3f& dir, float distance, Vector3f& hit_pos)
+{
+    if (!_px_scene)
+        return false;
+
+    physx::PxRaycastBuffer hit;
+    if (_px_scene->raycast(physx::PxVec3{start_pos.x, start_pos.y, start_pos.z}, physx::PxVec3{dir.x, dir.y, dir.z}, distance, hit)) {
+        hit_pos.x = hit.block.position.x;
+        hit_pos.y = hit.block.position.y;
+        hit_pos.z = hit.block.position.z;
+        spdlog::debug("hit something, hit.pos=({}, {}, {})", hit_pos.x, hit_pos.y, hit_pos.z);
+        return true;
+    }
+    else {
+        spdlog::debug("hit nothing");
+        return false;
+    }
+}

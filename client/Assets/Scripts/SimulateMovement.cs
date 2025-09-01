@@ -1,4 +1,5 @@
 using SpaceService;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -290,7 +291,8 @@ public class SimulateMovement : IComponent
                 _curVelocity = (_endPos - _startPos) / realInterval;
                 _characterMovement.UpdateMoveMode(serverMovePack.Mode);
 
-                Debug.Log($"_curVelocity: {_curVelocity}, realInterval: {realInterval}, dist: {dist}");
+                //Debug.Log($"InterpolateMovement: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+                //Debug.Log($"_curVelocity: {_curVelocity}, realInterval: {realInterval}, dist: {dist}");
 
                 _isInterpolating = true;
             }
@@ -304,7 +306,8 @@ public class SimulateMovement : IComponent
 
                 _characterMovement.UpdateMoveMode(serverMovePack.Mode);
 
-                Debug.Log($"dist less than 0.1f: {dist}");
+                //Debug.Log($"InterpolateMovement: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+                //Debug.Log($"dist less than 0.1f: {dist}");
             }
         }
         else
@@ -313,7 +316,8 @@ public class SimulateMovement : IComponent
             _lerpTimePass = 0;
             _curVelocity = Vector3.zero;
 
-            Debug.Log("no interpolate");
+            //Debug.Log($"InterpolateMovement: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            //Debug.Log("no interpolate");
         }
     }
 

@@ -42,6 +42,12 @@ int PhysicsMgr::init()
         return 1;
     }
 
+
+    if (!PxInitExtensions(*px_physics_, px_pvd_)) {
+        spdlog::error("PxInitExtensions failed!");
+        return 1;
+    }
+
     return 0;
 }
 
