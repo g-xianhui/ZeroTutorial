@@ -6,12 +6,15 @@
 
 using json = nlohmann::json;
 
+extern std::string DATA_PATH;
+
 UnityPhysicsLoader::UnityPhysicsLoader() {}
 
 UnityPhysicsLoader::~UnityPhysicsLoader() {}
 
 bool UnityPhysicsLoader::LoadFromFile(const std::string& scenename) {
-    std::filesystem::path basePath{ scenename };
+    std::filesystem::path dataPath{ DATA_PATH };
+    std::filesystem::path basePath = dataPath / scenename;
     std::filesystem::path filePath = basePath / "scene.json";
     std::string filename = filePath.string();
     try {

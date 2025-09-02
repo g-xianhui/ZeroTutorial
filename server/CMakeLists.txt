@@ -15,6 +15,7 @@ source_group(network ${CMAKE_CURRENT_SOURCE_DIR}/src/network)
 source_group(combat ${CMAKE_CURRENT_SOURCE_DIR}/src/combat)
 source_group(skill ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill)
 source_group(aoi ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi)
+source_group(navigation ${CMAKE_CURRENT_SOURCE_DIR}/src/navigation)
 source_group(physics ${CMAKE_CURRENT_SOURCE_DIR}/src/physics)
 
 file(GLOB GAME_SERVER_SRCS
@@ -24,6 +25,7 @@ file(GLOB GAME_SERVER_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/navigation/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/physics/*.cpp
 )
 file(GLOB GAME_SERVER_HEADERS
@@ -32,6 +34,7 @@ file(GLOB GAME_SERVER_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/combat/skill/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/aoi/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/navigation/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/physics/*.h
 )
 

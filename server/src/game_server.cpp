@@ -9,6 +9,7 @@
 #include <spdlog/spdlog.h>
 
 struct event_base* EVENT_BASE = nullptr;
+std::string DATA_PATH;
 
 WheelTimer G_Timer{ 33, 1024 };
 PhysicsMgr G_PhysicsMgr;
@@ -33,6 +34,25 @@ int main(int argc, char** argv) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
     spdlog::set_level(spdlog::level::debug);
+
+    // 资源路径
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "-d" || arg == "--data") {
+            if (i + 1 < argc) {
+                DATA_PATH = argv[++i];
+            }
+            else {
+                spdlog::error("--data requires a path argument!");
+                return 1;
+            }
+        }
+    }
+
+    if (DATA_PATH.empty()) {
+        spdlog::error("need specify data path, use --data arguemnt");
+        return 1;
+    }
 
     int ret = G_PhysicsMgr.init();
     if (0 != ret) {
@@ -62,9 +82,6 @@ int main(int argc, char** argv) {
     init_timer();
 
     spdlog::info("game server started!");
-
-    //EchoService echo_service;
-    //echo_service.start(HOST, PORT);
 
     SpaceService space_service;
     space_service.start(HOST, PORT);

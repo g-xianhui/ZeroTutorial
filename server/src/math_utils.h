@@ -18,11 +18,11 @@ struct Vector3f {
     }
 
     float lenght() {
-        return std::sqrtf(x * x + y * y + z * z);
+        return std::sqrt(x * x + y * y + z * z);
     }
 
     Vector3f normalized() const {
-        float len = std::sqrtf(x * x + y * y + z * z);
+        float len = std::sqrt(x * x + y * y + z * z);
         return Vector3f(x / len, y / len, z / len);
     }
 
@@ -59,7 +59,7 @@ struct Quaternion {
     static Quaternion from_rotation_matrix(float m[3][3]) {
         float trace = m[0][0] + m[1][1] + m[2][2];
         if (trace > 0) {
-            float s = 0.5f / std::sqrtf(trace + 1.0f);
+            float s = 0.5f / std::sqrt(trace + 1.0f);
             return Quaternion(
                 0.25f / s,
                 (m[2][1] - m[1][2]) * s,
@@ -68,7 +68,7 @@ struct Quaternion {
             );
         }
         else if (m[0][0] > m[1][1] && m[0][0] > m[2][2]) {
-            float s = 2.0f * std::sqrtf(1.0f + m[0][0] - m[1][1] - m[2][2]);
+            float s = 2.0f * std::sqrt(1.0f + m[0][0] - m[1][1] - m[2][2]);
             return Quaternion(
                 (m[2][1] - m[1][2]) / s,
                 0.25f * s,
@@ -77,7 +77,7 @@ struct Quaternion {
             );
         }
         else if (m[1][1] > m[2][2]) {
-            float s = 2.0f * std::sqrtf(1.0f + m[1][1] - m[0][0] - m[2][2]);
+            float s = 2.0f * std::sqrt(1.0f + m[1][1] - m[0][0] - m[2][2]);
             return Quaternion(
                 (m[0][2] - m[2][0]) / s,
                 (m[0][1] + m[1][0]) / s,
@@ -86,7 +86,7 @@ struct Quaternion {
             );
         }
         else {
-            float s = 2.0f * std::sqrtf(1.0f + m[2][2] - m[0][0] - m[1][1]);
+            float s = 2.0f * std::sqrt(1.0f + m[2][2] - m[0][0] - m[1][1]);
             return Quaternion(
                 (m[1][0] - m[0][1]) / s,
                 (m[0][2] + m[2][0]) / s,

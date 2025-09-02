@@ -28,7 +28,7 @@ bool is_point_in_sector(float cx, float cy, float ux, float uy, float r, float t
     float dy = py - cy;
 
     // |D| = (dx^2 + dy^2)^0.5
-    float length = sqrtf(dx * dx + dy * dy);
+    float length = std::sqrt(dx * dx + dy * dy);
 
     // |D| > r
     if (length > r)

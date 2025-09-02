@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <cassert>
+#include <cmath>
 
 GridAOI::GridAOI(size_t grid_size) {
     _grid_size = grid_size;
