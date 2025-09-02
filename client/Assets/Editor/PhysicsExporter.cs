@@ -131,13 +131,6 @@ public class PhysicsExporter : Editor
         else if (collider is MeshCollider meshCollider && exportMeshColliders)
         {
             // 网格碰撞体需要特殊处理
-            //shapes.Add(new PhysicsShapeData()
-            //{
-            //    shapeType = 3,
-            //    size = collider.transform.lossyScale,
-            //    center = Vector3.zero,
-            //    rotation = Quaternion.identity
-            //});
             shapes.Add(CreateMeshShape(meshCollider, savePath));
         }
 

@@ -62,6 +62,10 @@ target_link_libraries(game_server
 )
 target_link_libraries(game_server nlohmann_json::nlohmann_json)
 
+option(ENABLE_PVD "Enable PhysX Visual Debugger" OFF)
+if(ENABLE_PVD)
+    add_definitions(-DENABLE_PVD)
+endif()
 
 IF (MSVC)
     # set_target_properties(game_server PROPERTIES VS_DEBUGGER_ENVIRONMENT "${MY_PATH}")

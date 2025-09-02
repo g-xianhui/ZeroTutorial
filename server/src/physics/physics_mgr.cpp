@@ -14,6 +14,7 @@ int PhysicsMgr::init()
         return 1;
     }
 
+#ifdef ENABLE_PVD
     px_pvd_ = PxCreatePvd(*px_foundation_);
     if (!px_pvd_) {
         spdlog::error("PxCreatePvd failed");
@@ -29,6 +30,7 @@ int PhysicsMgr::init()
         spdlog::error("connect pvd failed");
         return 1;
     }
+#endif
 
     px_physics_ = PxCreatePhysics(PX_PHYSICS_VERSION, *px_foundation_, physx::PxTolerancesScale(), false, px_pvd_);
     if (!px_physics_) {
@@ -56,6 +58,7 @@ void PhysicsMgr::fini()
     if (px_physics_)
         px_physics_->release();
 
+#ifdef ENABLE_PVD
     if (px_pvd_) {
         if(px_pvd_->isConnected())
             px_pvd_->disconnect();
@@ -65,6 +68,7 @@ void PhysicsMgr::fini()
     if (px_transport_) {
         px_transport_->release();
     }
+#endif
 
     if (px_cpu_dispatcher_) {
         px_cpu_dispatcher_->release();
