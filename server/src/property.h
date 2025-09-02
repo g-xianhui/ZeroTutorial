@@ -94,6 +94,6 @@ public:\
 private:\
     std::string _##name
 
-#define WRITE_IF_DIRTY(name)\
+#define WRITE_IF_DIRTY(name) \
     if (_dirty_flag & (uint32_t)DirtyFlag::name)\
         bs.write(_##name)
