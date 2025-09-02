@@ -30,7 +30,11 @@ dtNavMesh* loadNavMesh(const char* path)
     std::string filename = filePath.string();
 
     FILE* fp = nullptr;
+#ifdef _MSC_VER
     fopen_s(&fp, filename.c_str(), "rb");
+#else
+    fp = fopen(filename.c_str(), "rb");
+#endif
     if (!fp) return 0;
 
     // Read header.
